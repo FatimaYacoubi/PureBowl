@@ -20,6 +20,27 @@
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+/* Create two equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 70%;
+  padding: 10px;
+  height: 300px; /* Should be removed. Only for demonstration */
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+</style>
 
     <!-- Site Icons -->
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
@@ -42,6 +63,7 @@
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+
 
 </head>
   </head>
@@ -89,23 +111,40 @@
         </div>
       </div>
     </nav>
+    
+
+   
   </header>
+
   <!-- End header -->
   
     <main class="container">
 
-      <!-- Left Column / couscous Image -->
-      <div class="left-column">
-            <img src="images/img-01.jpg" class="img-fluid" alt=""> 
-      </div>
 
+          
+
+
+      <!-- Left Column / couscous Image -->
+       
+     <div class="column">
+      <br>
+      <br><br>
+      <br><br>
+      <br><br>
+      <br>
+
+            
+<img src="images/img-01.jpg" class="img-fluid" alt="Image" height="1200" width="700">
+
+          
+
+      </div>
+      
 
       <!-- Right Column -->
-      <div class="right-column">
 
-        <!-- Product Description -->
-        <div class="product-description">
-          <span>COUSCOUS</span>
+      <div class="right-column">
+        <span>COUSCOUS</span>
         
           <h1>    </h1>
           <h1>     </h1>
@@ -118,10 +157,6 @@
         </div>
           <p>Couscous is the national tunisian dish.
           when you order this you'll get ; Prepared couscous , couscous salsa , flavorings and meat </p>
-        </div>
-
-        <!-- Product Configuration -->
-        <div class="product-configuration">
 
           <!-- Product Color -->
           <div class="row">
@@ -179,9 +214,20 @@
           </div>
         </div>
             <a class="btn btn-lg btn-circle btn-outline-new-black" href="#">Order!</a>
+      </div>
+
+        <!-- Product Description -->
+        <div class="product-description">
+          
+        </div>
+
+        <!-- Product Configuration -->
+        <div class="product-configuration">
+          
 
         
       </div>
+
     </main>
 
 
