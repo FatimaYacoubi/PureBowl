@@ -165,13 +165,15 @@
           <div class="row">
         <div class="col-lg-12 col-sm-12 col-xs-12">
           <div class="contact-block">
-            <form id="contactForm">
+            <form  action="passercommande.php" method="POST">
+            	
+
               <div class="row">
                 <div class="col-md-12">
                   <h3>Place your order</h3>
                   <div class="col-md-12">
                     <div class="form-group">
-                      <input id="input_dish" class="form-control" name="dish"  placeholder="Please enter your dish"type="text" value="" equired data-error="??">
+                      <input id="dish" class="form-control" name="dish"  placeholder="Please enter your dish"type="text" value="" equired data-error="??">
                       <div class="help-block with-errors"></div>
                     </div>                                 
                   </div>
@@ -179,32 +181,32 @@
                  
                   <div class="col-md-12">
                     <div class="form-group">
-                      <select class="custom-select d-block form-control" name="meat" id="Meat" required data-error="Please select your prefered meat">
+                      <select class="custom-select d-block form-control" name="meat" id="meat" required data-error="Please select your prefered meat">
                         <option disabled selected>Select Meat Type*</option>
-                        <option value="1">Chicken</option>
-                        <option value="2">Beef</option>
-                        <option value="3">Lamb</option>
-                        <option value="4">Fish</option>
-                        <option value="5">Vegetarian</option>
+                        <option value="Chicken">Chicken</option>
+                        <option value="Beef">Beef</option>
+                        <option value="Lamb">Lamb</option>
+                        <option value="Fish">Fish</option>
+                        <option value="Vegetarian">Vegetarian</option>
                       </select>
                       <div class="help-block with-errors"></div>
                     </div> 
                   </div>
                    <div class="col-md-12">
                     <div class="form-group">
-                      <select class="custom-select d-block form-control"  name="option" id="Options" required data-error="Please select the options">
+                      <select class="custom-select d-block form-control"  name="option" id="option" required data-error="Please select the options">
                         <option disabled selected>Select Option*</option>
-                        <option value="1">Vegetables</option>
-                        <option value="2">Chickpeas</option>
-                        <option value="3">Fava beans</option>
-                        <option value="4">dried raisins </option>
+                        <option value="Vegetables">Vegetables</option>
+                        <option value="Chickpeas">Chickpeas</option>
+                        <option value="Fava beans">Fava beans</option>
+                        <option value="dried raisins">dried raisins </option>
                       </select>
                       <div class="help-block with-errors"></div>
                     </div> 
                   </div>  
                   <div class="col-md-12">
                     <div class="form-group">
-                      <select class="custom-select d-block form-control" id="person" required data-error="Please select the number of people">
+                      <select class="custom-select d-block form-control"  name="person" id="person" required data-error="Please select the number of people">
                         <option disabled selected>Select Person*</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -219,15 +221,17 @@
                   </div> 
                   <div class="col-md-12">
                     <div class="form-group">
-                      <input id="input_date" class="datepicker picker__input form-control" name="date" 
-                       placeholder="Please enter the date you want it delivered" type="text" value="" equired data-error="Please enter Date">
+
+
+                      <input id="date" class="datepicker picker__input form-control" name="date" 
+                       placeholder="Please enter the date you want it delivered" type="date" value="">
                       <div class="help-block with-errors"></div>
                     </div>                                 
                   </div>
                   <div class="col-md-12">
                     <div class="form-group">
-                      <input id="input_time" class="time form-control picker__input"  name="time" 
-                       placeholder="Please enter the time you want it delivered"required data-error="Please enter time">
+                      <input id="time" class="time form-control picker__input"  name="time" 
+                       placeholder="Please enter the time you want it delivered" type="time" value="" required data-error="Please enter time">
                       <div class="help-block with-errors"></div>
                     </div>                                 
                   </div>
@@ -245,9 +249,11 @@
 
            <div class="container1"></div>
 
-           <button class="btn-55"> GET COOKIN</button>
+                     <input type="submit" value="Submit"class="btn-55"> 
+
             </div>
       </div> </div>
+  </form>
     </main> 
 
 
