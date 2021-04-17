@@ -23,7 +23,7 @@ if (!empty($dish) || !empty($meat) || !empty($option) || !empty($person) || !emp
      if ($rnum==0) {
       $stmt->close();
       $stmt = $connexion->prepare($INSERT);
-      $stmt->bind_param("ssssii", $dish, $meat, $option, $person, $date, $time);
+      $stmt->bind_param("ssssss", $dish, $meat, $option, $person, $date, $time);
       $stmt->execute();
       echo "New record inserted sucessfully";
      } 
