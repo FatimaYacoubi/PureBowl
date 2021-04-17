@@ -1,3 +1,26 @@
+<?php
+	// $error = "zzzz";
+  // if (
+	// 	isset($_POST["someAction"])) {
+  // 	$error = "hhhhh";
+
+  //   }
+    include "./controller/DishC.php";
+    include_once './Model/Dish.php';
+
+	$dishC = new DishC();
+	$error = "";
+    if (isset($_POST["someAction"])) {
+          // $dish = new Dish('aaa', 'iiii', 12);
+            $dish = new Dish(
+                $_POST['name'],
+                $_POST['ingredients'], 
+                $_POST['price']  
+            );
+            $dishC->addDish($dish);
+        }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -125,7 +148,7 @@
             </div>
             <div class="row tm-edit-product-row">
               <div class="col-xl-6 col-lg-6 col-md-12">
-                <form action="" class="tm-edit-product-form">
+                <form action="add-product.php" class="tm-edit-product-form" method="POST">
                   <div class="form-group mb-3">
                     <label
                       for="name"
@@ -145,6 +168,8 @@
                       >ingredients</label
                     >
                     <textarea
+                    id="ingredients"
+                    name="ingredients"
                       class="form-control validate"
                       rows="3"
                       required
@@ -172,12 +197,12 @@
                             >Price
                           </label>
                           <input
-                            id="expire_date"
-                            name="expire_date"
-                            type="text"
-                            class="form-control validate"
-                            data-large-mode="true"
-                          />
+                      id="price"
+                      name="price"
+                      type="text"
+                      class="form-control validate"
+                      required
+                    />
                         </div>
                         
                   </div>
@@ -201,7 +226,7 @@
                 </div>
               </div>
               <div class="col-12">
-                <button type="submit" class="btn btn-primary btn-block text-uppercase">Add Product Now</button>
+                <button type="submit" name="someAction" class="btn btn-primary btn-block text-uppercase">Add Product Now</button>
               </div>
             </form>
             </div>
@@ -232,3 +257,4 @@
     </script>
   </body>
 </html>
+
