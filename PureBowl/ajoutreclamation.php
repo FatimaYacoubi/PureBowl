@@ -1,4 +1,4 @@
-<?php
+<? php
 $description = $_POST['description'];
 $date = $_POST['date'];
 $nomClient = $_POST['nomClient'];
@@ -14,7 +14,7 @@ if (!empty($description) || !empty($date) || !empty($nomClient) || !empty($email
     if (mysqli_connect_error()) {
      die('Connect Error('. mysqli_connect_errno().')'. mysqli_connect_error());
     } else {
-     $SELECT = "SELECT emailClient From reclamation Where emailClient = ? Limit 1";
+     $SELECT = "SELECT dish From utilisateur Where emailClient = ? Limit 1";
      $INSERT = "INSERT Into reclamation (description, date, nomClient, emailClient, phoneClient) values(?, ?, ?, ?, ?, ?)";
      //Prepare statement
      $stmt =$connexion->prepare($SELECT);
@@ -35,4 +35,4 @@ if (!empty($description) || !empty($date) || !empty($nomClient) || !empty($email
  echo "All field are required";
  die();
 }
- ?>
+ ?> 

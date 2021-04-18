@@ -26,6 +26,8 @@ if (!empty($dish) || !empty($meat) || !empty($option) || !empty($person) || !emp
       $stmt->bind_param("ssssss", $dish, $meat, $option, $person, $date, $time);
       $stmt->execute();
       echo "New record inserted sucessfully";
+      header("Location:affichercommande.php");
+
      } 
      $stmt->close();
      $connexion->close();
