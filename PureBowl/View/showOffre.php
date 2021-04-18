@@ -1,31 +1,39 @@
+<?PHP
+	include "../Controller/offreC.php";
+
+	$offreC=new offreC();
+	$listeOffers=$offreC->afficherOffre();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Product Page - Admin HTML Template</title>
+    <title>Pack Page - Admin HTML Template</title>
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Roboto:400,700"
     />
     <!-- https://fonts.google.com/specimen/Roboto -->
-    <link rel="stylesheet" href="css/fontawesome.min.css" />
+    <link rel="stylesheet" href="../css/fontawesome.min.css" />
     <!-- https://fontawesome.com/ -->
-    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../css/bootstrap.min.css" />
     <!-- https://getbootstrap.com/ -->
-    <link rel="stylesheet" href="css/templatemo-style.css">
+    <link rel="stylesheet" href="../css/templatemo-style.css">
     <!--
-	Product Admin CSS Template
-	https://templatemo.com/tm-524-product-admin
-	-->
+  Product Admin CSS Template
+  https://templatemo.com/tm-524-product-admin
+  -->
   </head>
 
   <body id="reportsPage">
     <nav class="navbar navbar-expand-xl">
       <div class="container h-100">
         <a class="navbar-brand" href="index1.html">
-          <h1 class="tm-site-title mb-0">Product Admin</h1>
+          <h1 class="tm-site-title mb-0">Pack Admin</h1>
         </a>
         <button
           class="navbar-toggler ml-auto mr-0"
@@ -66,15 +74,16 @@
               </div>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="products.html">
+              <a class="nav-link " href="products.html">
                 <i class="fas fa-shopping-cart"></i> Products
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link " href="Pack.html">
-                <i class="fas fa-shopping-cart"></i> Pack
-              </a>
-            </li>
+                            <a class="nav-link active" href="Pack.html">
+                                <i class="fas fa-shopping-cart"></i>
+                                Pack
+                            </a>
+                        </li>
 
             <li class="nav-item">
               <a class="nav-link" href="accounts.html">
@@ -119,19 +128,44 @@
                 <thead>
                   <tr>
                     <th scope="col">&nbsp;</th>
-                    <th scope="col">FOOD & DRINKS</th>
-                    <th scope="col">PRICE</th>
-                    <th scope="col">ingredients</th>
                     <th scope="col">ID</th>
+                    <th scope="col">PACK</th>
+                    <th scope="col">IMAGE</th>
+                    <th scope="col">MENUS</th>
+                    <th scope="col">TYPE </th>
+                    <th scope="col">PRICE </th>
                     <th scope="col">&nbsp;</th>
                   </tr>
                 </thead>
-                <tbody>
-                  <tr>
+             <tbody>
+
+             	<?PHP
+				foreach($listeOffers as $offer){
+			?>
+				<tr>
+					<td><?PHP echo $offre['id_offre']; ?></td>
+					<td><?PHP echo $offer['nom_offre']; ?></td>
+					<td><?PHP echo $offer['image_offre']; ?></td>
+					<td><?PHP echo $offer['descrip_offre']; ?></td>
+					<td><?PHP echo $offer['type_offer']; ?></td>
+					<td><?PHP echo $offer['prix_offer']; ?></td>
+					<td>
+						<form method="POST" action="supprimerUtilisateur.php">
+						<input type="submit" name="supprimer" value="supprimer">
+						<input type="hidden" value=<?PHP echo $user['id']; ?> name="id">
+						</form> 					</td>
+					<td>
+						<a href="modifierUtilisateur.php?id=<?PHP echo $user['id']; ?>"> Modifier </a>
+					</td>
+				</tr>
+			<?PHP
+				}
+			?>
+               <!--   <tr>
                     <th scope="row"><input type="checkbox" /></th>
-                    <td class="tm-product-name">Couscous</td>
-                    <td>15 Dt</td>
-                    <td>oignon/ poulet/ tomate/ piment/ carotte </td>
+                    <td class="tm-pack-name">SIMPLE</td>
+                    <td>150Dt</td>
+                    <td>tarte/ salade/ penne au saumon / soupe/ couscous </td>
                     <td>011</td>
                     <td>
                       <a href="#" class="tm-product-delete-link">
@@ -234,14 +268,14 @@
                         <i class="far fa-trash-alt tm-product-delete-icon"></i>
                       </a>
                     </td>
-                  </tr>
-                </tbody>
+                  </tr> -->
+                </tbody> 
               </table>
             </div>
             <!-- table container -->
             <a
-              href="add-product.php"
-              class="btn btn-primary btn-block text-uppercase mb-3">Add new product</a>
+              href="add-pack.html"
+              class="btn btn-primary btn-block text-uppercase mb-3">Add new pack</a>
             <button class="btn btn-primary btn-block text-uppercase">
               Delete selected products
             </button>
@@ -273,3 +307,4 @@
     </script>
   </body>
 </html>
+
