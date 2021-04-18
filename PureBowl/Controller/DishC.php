@@ -38,7 +38,7 @@
 					'price' => $dish->getPrice(),
 					'name' => $name
 				]);
-				echo $query->rowCount() . " records UPDATED successfully <br>";
+				//echo $query->rowCount() . " records UPDATED successfully <br>";
 			} catch (PDOException $e) {
 				$e->getMessage();
 			}
