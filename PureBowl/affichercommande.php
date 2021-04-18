@@ -99,7 +99,16 @@ $host = "localhost";
         
   <table align="center" border="1px" style="width:600px; line-height:40px;"> 
   <tr> 
-    <th colspan="8"><h2>                 VOS COMMANDES EN COURS </h2></th> 
+    <th colspan="8">div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="heading-title text-center">
+            <h2>Customer Reviews</h2>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting</p>
+          </div>
+        </div>
+      </div>
+    </th> 
     </tr> 
         <th>Order </th> 
         <th> Meat Type </th> 
