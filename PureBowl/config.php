@@ -18,6 +18,7 @@
       return self::$pdo;
     }
   }
+<<<<<<< HEAD
 
   /* 
 $databaseHost = 'localhost';
@@ -26,4 +27,6 @@ $databaseUsername = 'root';
 $databasePassword = '';
 
 $mysqli = mysqli_connect($databaseHost, $databaseUsername, $databasePassword, $databaseName);  */
+=======
+>>>>>>> 56ff7afd03dcaf03adfe1e14f8eece237ab62d9e
 ?>
