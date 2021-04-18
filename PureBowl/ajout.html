@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Display</title>
+</head>
+    <body>
+        <button><a href="afficherreclamation.php">Retour à la liste</a></button>
+        <hr>
+        
+        <div id="error">
+            <?php echo $error; ?>
+        </div>
+        
+        <form action="connexion.php" method="POST">
+            <table border="1" align="center">
+
+                <tr>
+                    <td rowspan='3' colspan='1'>Fiche Personnelle</td>
+                    <td>
+                        <label for="description">Description:
+                        </label>
+                    </td>
+                    <td><input type="text" name="description" id="description" maxlength="20" ></td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="date">Date:
+                        </label>
+                    </td>
+                    <td><input type="date" name="date" id="date" maxlength="20" ></td>
+                </tr>
+                
+                <tr>
+                    <td>
+                        <label for="emailClient">Email Client:
+                        </label>
+                    </td>
+                    <td>
+                        <input type="email" name="emailClient" id="emailClient" pattern=".+@gmail.com|.+@esprit.tn" >
+                    </td>
+                </tr>
+                <tr>
+                    <td rowspan='2' colspan='1'>Information de Connexion</td>
+                    <td>
+                        <label for="nomClient">Nom:
+                        </label>
+                    </td>
+                    <td>
+                        <input type="text" name="nomClient" id="nomClient" >
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="phoneClient">phone CLient:
+                        </label>
+                    </td>
+                    <td>
+                        <input type="text" name="phoneClient" id="phoneClient" >
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td></td>
+                    <td>
+                        <input type="submit" value="Envoyer"> 
+                    </td>
+                    <td>
+                        <input type="reset" value="Annuler" >
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </body>
+</html>
