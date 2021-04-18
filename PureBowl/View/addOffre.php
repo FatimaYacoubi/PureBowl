@@ -23,14 +23,14 @@
             !empty($_POST["type_offre"]) && 
             !empty($_POST["prix_offre"])
         ) {
-            $user = new offre(
+            $offer = new offre(
                 $_POST['nom_offre'],
-                $_POST['image_offre"'], 
+                $_POST['image_offre'], 
                 $_POST['descrip_offre'],
                 $_POST['type_offre'],
                 $_POST['prix_offre']
             );
-            $userC->ajouterOffre($offer);
+            $offerC->ajouterOffre($offer);
             header('Location:showOffre.php');
         }
         else
@@ -175,7 +175,7 @@
               <form action="" method="POST">
                   <div class="form-group mb-3">
                     <label
-                      for="name"
+                      for="nom_offre"
                       > Name
                     </label>
                     <input
@@ -188,8 +188,8 @@
                   </div>
                   <div class="form-group mb-3">
                     <label
-                      for="description"
-                      >MENUS</label
+                      for="descrip_offre"
+                      >DESCRIPTION</label
                     >
                     <textarea id="descrip_offre"
                     name="descrip_offre" 
@@ -200,7 +200,7 @@
                   </div>
                   <div class="form-group mb-3">
                     <label
-                      for="category"
+                      for="type_offre"
                       >TYPE</label
                     >
                     <select
@@ -240,7 +240,7 @@
                   ></i>
                 </div>
                <div class="custom-file mt-3 mb-3">
-                  <input id="fileInput" type="file" style="display:none;" />
+                  <input id="fileInput" name="image_offre" type="file" style="display:none;" />
                   <input name="image_offre" 
                     type="button"
                     class="btn btn-primary btn-block mx-auto"
