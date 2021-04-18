@@ -1,3 +1,27 @@
+<?PHP
+	include "../config.php";
+	//require_once './Model/Delivery.php';
+
+	class DeliveryC {
+		
+			
+		function displayDelivery(){
+			
+			$sql="SELECT * FROM delivery";
+			$db = config::getConnexion();
+			try{
+				$liste = $db->query($sql);
+				return $liste;
+			}
+			catch (Exception $e){
+				die('Erreur: '.$e->getMessage());
+			}	
+		}		
+	}
+  $deliverie =new DeliveryC() ; 
+  var_dump($deliverie->displayDelivery()) ;
+
+?>
 
 
 <!DOCTYPE html>
@@ -135,9 +159,10 @@
                 <thead>
                   <tr>
                     <th scope="col">&nbsp;</th>
-                    <th scope="col">FOOD & DRINKS</th>
-                    <th scope="col">PRICE</th>
-                    <th scope="col">ingredients</th>
+                    <th scope="col">NAME</th>
+                    <th scope="col">SALARY</th>
+                    <th scope="col">HOUR START</th>
+                    <th scope="col">HOUR END</th>
                     <th scope="col">ID</th>
                     <th scope="col">&nbsp;</th>
                   </tr>
@@ -145,112 +170,21 @@
                 <tbody>
                   <tr>
                     <th scope="row"><input type="checkbox" /></th>
-                    <td class="tm-product-name">Couscous</td>
-                    <td>15 Dt</td>
-                    <td>oignon/ poulet/ tomate/ piment/ carotte </td>
-                    <td>011</td>
+                    <td class="tm-product-name">firas</td>
+                    <td>200 Dt</td>
+                    <td>08:00 </td>
+                    <td>18:00</td>
+                    <td>01</td>
                     <td>
                       <a href="#" class="tm-product-delete-link">
                         <i class="far fa-trash-alt tm-product-delete-icon"></i>
                       </a>
                     </td>
                   </tr>
-                  <tr>
-                    <th scope="row"><input type="checkbox" /></th>
-                    <td class="tm-product-name">Lablebi</td>
-                    <td>9 Dt</td>
-                    <td>soupe Hrissa/ soupe vinaigre blanc/ chiches secs/ oueifs/ pains/ huile</td>
-                    <td>012</td>
-                    <td>
-                      <a href="#" class="tm-product-delete-link">
-                        <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row"><input type="checkbox" /></th>
-                    <td class="tm-product-name">Mloukhiya</td>
-                    <td>11 Dt</td>
-                    <td>hile d'olive/ viande boeuf/ oignon/ feuilles de laurier/ poudre </td>
-                    <td>013</td>
-                    <td>
-                      <a href="#" class="tm-product-delete-link">
-                        <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row"><input type="checkbox" /></th>
-                    <td class="tm-product-name">Chorba</td>
-                    <td>10 Dt</td>
-                    <td>tomate/ oignon/ gingembre/ poivre/ viande de boeuf  </td>
-                    <td>014</td>
-                    <td>
-                      <a href="#" class="tm-product-delete-link">
-                        <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row"><input type="checkbox" /></th>
-                    <td class="tm-product-name">Kammounia</td>
-                    <td>15 Dt</td>
-                    <td>oignon/ tomate/ piment/ gousse d'ail/ tabel</td>
-                    <td>015</td>
-                    <td>
-                      <a href="#" class="tm-product-delete-link">
-                        <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row"><input type="checkbox" /></th>
-                    <td class="tm-product-name">Ojja</td>
-                    <td>12 Dt</td>
-                    <td>tomate/ merguez/ ouefs/ poivron vert </td>
-                    <td>016</td>
-                    <td>
-                      <a href="#" class="tm-product-delete-link">
-                        <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row"><input type="checkbox" /></th>
-                    <td class="tm-product-name">Grilled chicken</td>
-                    <td>35 Dt</td>
-                    <td>poulet/ guile d'olive/ thym séché/ romarin séché/ citron/ ail haché</td>
-                    <td>017</td>
-                    <td>
-                      <a href="#" class="tm-product-delete-link">
-                        <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row"><input type="checkbox" /></th>
-                    <td class="tm-product-name">Seafood pasta</td>
-                    <td>40.900 Dt</td>
-                    <td>fruits de mer/huile d'olive/ vin blanc sec/ail/tomate/sel</td>
-                    <td>018</td>
-                    <td>
-                      <a href="#" class="tm-product-delete-link">
-                        <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row"><input type="checkbox" /></th>
-                    <td class="tm-product-name">Fruity juice</td>
-                    <td>13 Dt</td>
-                    <td>pommes ou banane ou peche ou orange </td>
-                    <td>019</td>
-                    <td>
-                      <a href="#" class="tm-product-delete-link">
-                        <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                      </a>
-                    </td>
-                  </tr>
+                  
+                  
+                
+                 
                 </tbody>
               </table>
             </div>
