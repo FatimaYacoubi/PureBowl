@@ -128,10 +128,12 @@
                 <thead>
                   <tr>
                     <th scope="col">&nbsp;</th>
-                    <th scope="col">PACK</th>
-                    <th scope="col">PRICE</th>
-                    <th scope="col">MENUS</th>
                     <th scope="col">ID</th>
+                    <th scope="col">PACK</th>
+                    <th scope="col">IMAGE</th>
+                    <th scope="col">MENUS</th>
+                    <th scope="col">TYPE </th>
+                    <th scope="col">PRICE </th>
                     <th scope="col">&nbsp;</th>
                   </tr>
                 </thead>
@@ -148,11 +150,10 @@
 					<td><?PHP echo $offer['type_offer']; ?></td>
 					<td><?PHP echo $offer['prix_offer']; ?></td>
 					<td>
-						<!--<form method="POST" action="supprimerUtilisateur.php">
+						<form method="POST" action="supprimerUtilisateur.php">
 						<input type="submit" name="supprimer" value="supprimer">
 						<input type="hidden" value=<?PHP echo $user['id']; ?> name="id">
-						</form> -->
-					</td>
+						</form> 					</td>
 					<td>
 						<a href="modifierUtilisateur.php?id=<?PHP echo $user['id']; ?>"> Modifier </a>
 					</td>
