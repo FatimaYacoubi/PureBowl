@@ -18,4 +18,12 @@
       return self::$pdo;
     }
   }
+
+  /* 
+$databaseHost = 'localhost';
+$databaseName = 'webprojet';
+$databaseUsername = 'root';
+$databasePassword = '';
+
+$mysqli = mysqli_connect($databaseHost, $databaseUsername, $databasePassword, $databaseName);  */
 ?>
