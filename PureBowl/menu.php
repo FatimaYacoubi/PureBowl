@@ -1,3 +1,11 @@
+
+<?PHP
+	include "./Controller/DishC.php";
+
+	$dish=new DishC();
+	$listDishes=$dish->displayDish();
+
+?>
 <!DOCTYPE html>
 <html lang="en"><!-- Basic -->
 <head>
@@ -47,7 +55,7 @@
 				<div class="collapse navbar-collapse" id="navbars-rs-food">
 					<ul class="navbar-nav ml-auto">
 						<li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-						<li class="nav-item active"><a class="nav-link" href="menu.html">Menu</a></li>
+						<li class="nav-item active"><a class="nav-link" href="menu.php">Menu</a></li>
 						<li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
 						<li class="nav-item dropdown">
 						</li>
@@ -119,116 +127,27 @@
 					</div>
 				</div>
 			</div>
-				
 			<div class="row special-list">
-				<div class="col-lg-4 col-md-6 special-grid lunch">
-					<div class="gallery-single fix">
-						<img src="images/img-01.jpg" class="img-fluid" alt="Image">
-						<div class="why-text">
-							<h4>Couscous </h4>
-							<p>Couscous is a traditional tunisian dish.</p>
-							<h4>15 Dt</h4>
-							<h4> <a class="btn btn-lg btn-circle btn-outline-new-black" href="couscous.html">Get it</a>  </h4> 
+				<?PHP
+				foreach($listDishes as $dish){ 
+					?>
+						<div class="col-lg-4 col-md-6 special-grid lunch">
+							<div class="gallery-single fix">
+								<img src="images/img-01.jpg" class="img-fluid" alt="Image">
+								<div class="why-text">
+									<h4><?PHP echo $dish['name']; ?></h4>
+									<p><?PHP echo $dish['ingredients']; ?></p>
+									<h4><?PHP echo $dish['price']; ?></h4>
+									<h4> <a class="btn btn-lg btn-circle btn-outline-new-black" href="couscous.html">Get it</a>  </h4> 
+								</div>
+							</div>
 						</div>
-					</div>
-				</div>
-				
-				<div class="col-lg-4 col-md-6 special-grid dinner">
-					<div class="gallery-single fix">
-						<img src="images/img-02.jpg" class="img-fluid" alt="Image">
-						<div class="why-text">
-							<h4>Lablebi</h4>
-							<p>Homemade bizertin pasta.</p>
-							<h4> 9 Dt</h4>
-							 <h4> <a class="btn btn-lg btn-circle btn-outline-new-black" href="couscous.html">Get it</a>  </h4> 
-						</div>
-					</div>
-				</div>
-				
-				<div class="col-lg-4 col-md-6 special-grid lunch">
-					<div class="gallery-single fix">
-						<img src="images/img-03.jpg" class="img-fluid" alt="Image">
-						<div class="why-text">
-							<h4>Mloukhia</h4>
-							<p>A traditional Tunisian dish .</p>
-							<h4> 11 Dt</h4>
-							<h4> <a class="btn btn-lg btn-circle btn-outline-new-black" href="couscous.html">Get it</a>  </h4> 
-						</div>
-					</div>
-				</div>
-				
-				<div class="col-lg-4 col-md-6 special-grid dinner">
-					<div class="gallery-single fix">
-						<img src="images/img-04.jpg" class="img-fluid" alt="Image">
-						<div class="why-text">
-							<h4>Chorba</h4>
-							<p>A tunisian Soup.</p>
-							<h5> 10 Dt</h5>
-							 <h4> <a class="btn btn-lg btn-circle btn-outline-new-black" href="couscous.html">Get it</a>  </h4> 
-						</div>
-					</div>
-				</div>
-				
-				<div class="col-lg-4 col-md-6 special-grid lunch">
-					<div class="gallery-single fix">
-						<img src="images/img-05.jpg" class="img-fluid" alt="Image">
-						<div class="why-text">
-							<h4>Kamounia </h4>
-							<p>A Tunisian dish ..</p>
-							<h4> 15 Dt</h4>
-							<h4> <a class="btn btn-lg btn-circle btn-outline-new-black" href="couscous.html">Get it</a>  </h4> 
-						</div>
-					</div>
-				</div>
-				
-				<div class="col-lg-4 col-md-6 special-grid lunch">
-					<div class="gallery-single fix">
-						<img src="images/img-06.jpg" class="img-fluid" alt="Image">
-						<div class="why-text">
-							<h4>Ojja</h4>
-							<p>A tunisian dish.</p>
-							<h5> 12 Dt</h5>
-							<h4> <a class="btn btn-lg btn-circle btn-outline-new-black" href="couscous.html">Get it</a>  </h4> 
-						</div>
-					</div>
-				</div>
-				
-				<div class="col-lg-4 col-md-6 special-grid dinner">
-					<div class="gallery-single fix">
-						<img src="images/poulet.png" class="img-fluid" alt="Image">
-						<div class="why-text">
-							<h4>Grilled chicken</h4>
-							<p>Sed id magna vitae eros sagittis euismod.</p>
-							<h5> 35 Dt</h5>
-							 <h4> <a class="btn btn-lg btn-circle btn-outline-new-black" href="couscous.html">Get it</a>  </h4> 
-						</div>
-					</div>
-				</div>
-				
-				<div class="col-lg-4 col-md-6 special-grid lunch">
-					<div class="gallery-single fix">
-						<img src="images/spaghetti.png" class="img-fluid" alt="Image">
-						<div class="why-text">
-							<h4>Seafood pasta</h4>
-							<p>italian pasta.</p>
-							<h5> 40.900 Dt</h5>
-							 <h4> <a class="btn btn-lg btn-circle btn-outline-new-black" href="couscous.html">Get it</a>  </h4> 
-						</div>
-					</div>
-				</div>
-				
-				<div class="col-lg-4 col-md-6 special-grid drinks">
-					<div class="gallery-single fix">
-						<img src="images/juice.png" class="img-fluid" alt="Image">
-						<div class="why-text">
-							<h4>fruity juice</h4>
-							<p>high-quality fruity ingredients.</p>
-							<h5> 13 Dt</h5>
-							<h4> <a class="btn btn-lg btn-circle btn-outline-new-black" href="couscous.html">Get it</a>  </h4> 
-						</div>
-					</div>
-				</div>
-				
+
+							<?PHP
+				}
+				?>		
+			</div>
+	
 			</div>
 		</div>
 	</div>

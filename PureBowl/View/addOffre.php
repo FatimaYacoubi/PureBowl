@@ -1,33 +1,76 @@
+ <?php 
+    include_once '../Model/Offre.php';
+    include_once '../Controller/OffreC.php';
+
+    $error = "";
+
+    // create user
+    $offer = null;
+
+  // create an instance of the controller
+    $offerC = new offreC();
+    if (
+        isset($_POST["nom_offre"]) && 
+        isset($_POST["image_offre"]) &&
+        isset($_POST["descrip_offre"]) && 
+        isset($_POST["type_offre"]) && 
+        isset($_POST["prix_offre"])
+    ) {
+        if (
+            !empty($_POST["nom_offre"]) && 
+            !empty($_POST["image_offre"]) && 
+            !empty($_POST["descrip_offre"]) && 
+            !empty($_POST["type_offre"]) && 
+            !empty($_POST["prix_offre"])
+        ) {
+            $offer = new offre(
+                $_POST['nom_offre'],
+                $_POST['image_offre'], 
+                $_POST['descrip_offre'],
+                $_POST['type_offre'],
+                $_POST['prix_offre']
+            );
+            $offerC->ajouterOffre($offer);
+            header('Location:showOffre.php');
+        }
+        else
+            $error = "Missing information";
+    }
+
+    
+?> 
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Add Product - Dashboard HTML Template</title>
+    <title>Add Pack - Dashboard HTML Template</title>
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Roboto:400,700"
     />
     <!-- https://fonts.google.com/specimen/Roboto -->
-    <link rel="stylesheet" href="css/fontawesome.min.css" />
+    <link rel="stylesheet" href="../css/fontawesome.min.css" />
     <!-- https://fontawesome.com/ -->
     <link rel="stylesheet" href="jquery-ui-datepicker/jquery-ui.min.css" type="text/css" />
     <!-- http://api.jqueryui.com/datepicker/ -->
-    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../css/bootstrap.min.css" />
     <!-- https://getbootstrap.com/ -->
-    <link rel="stylesheet" href="css/templatemo-style.css">
+    <link rel="stylesheet" href="../css/templatemo-style.css">
     <!--
-	Product Admin CSS Template
-	https://templatemo.com/tm-524-product-admin
-	-->
+    Product Admin CSS Template
+    https://templatemo.com/tm-524-product-admin
+    -->
   </head>
 
   <body>
     <nav class="navbar navbar-expand-xl">
       <div class="container h-100">
         <a class="navbar-brand" href="index.html">
-          <h1 class="tm-site-title mb-0">Product Admin</h1>
+          <h1 class="tm-site-title mb-0">Pack Admin</h1>
         </a>
         <button
           class="navbar-toggler ml-auto mr-0"
@@ -69,16 +112,16 @@
               </div>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="products.html">
+              <a class="nav-link " href="products.html">
                 <i class="fas fa-shopping-cart"></i> Products
               </a>
             </li>
-
-  <li class="nav-item">
-              <a class="nav-link " href="Pack.html">
+            <li class="nav-item">
+              <a class="nav-link active" href="Pack.html">
                 <i class="fas fa-shopping-cart"></i> Pack
               </a>
             </li>
+
             <li class="nav-item">
               <a class="nav-link" href="accounts.html">
                 <i class="far fa-user"></i> Accounts
@@ -120,20 +163,24 @@
           <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
             <div class="row">
               <div class="col-12">
-                <h2 class="tm-block-title d-inline-block">Add Product</h2>
+                <h2 class="tm-block-title d-inline-block">Add Pack</h2>
               </div>
             </div>
+            <div id="error">
+            <?php echo $error; ?>
+        </div>
+        
             <div class="row tm-edit-product-row">
               <div class="col-xl-6 col-lg-6 col-md-12">
-                <form action="" class="tm-edit-product-form">
+              <form action="" method="POST">
                   <div class="form-group mb-3">
                     <label
-                      for="name"
+                      for="nom_offre"
                       > Name
                     </label>
                     <input
-                      id="name"
-                      name="name"
+                      id="nom_offre"
+                      name="nom_offre"
                       type="text"
                       class="form-control validate"
                       required
@@ -141,10 +188,11 @@
                   </div>
                   <div class="form-group mb-3">
                     <label
-                      for="description"
-                      >ingredients</label
+                      for="descrip_offre"
+                      >DESCRIPTION</label
                     >
-                    <textarea
+                    <textarea id="descrip_offre"
+                    name="descrip_offre" 
                       class="form-control validate"
                       rows="3"
                       required
@@ -152,28 +200,29 @@
                   </div>
                   <div class="form-group mb-3">
                     <label
-                      for="category"
-                      >ID</label
+                      for="type_offre"
+                      >TYPE</label
                     >
                     <select
                       class="custom-select tm-select-accounts"
-                      id="category"
+                      id="type_offre"
+                      name ="type_offre"
                     >
                       <option selected>Select category</option>
-                      <option value="1">New Arrival</option>
-                      <option value="2">Most Popular</option>
-                      <option value="3">Trending</option>
+                      <option value="1">Healthy</option>
+                      <option value="2">Vegan</option>
+                      <option value="3">Diabetic</option>
                     </select>
                   </div>
                   <div class="row">
                       <div class="form-group mb-3 col-xs-12 col-sm-6">
                           <label
-                            for="expire_date"
+                            for="prix_offre"
                             >Price
                           </label>
                           <input
-                            id="expire_date"
-                            name="expire_date"
+                            id="prix_offre"
+                            name="prix_offre"
                             type="text"
                             class="form-control validate"
                             data-large-mode="true"
@@ -185,23 +234,23 @@
               </div>
               <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
                 <div class="tm-product-img-dummy mx-auto">
-                  <i
+                  <i name="image_offre"
                     class="fas fa-cloud-upload-alt tm-upload-icon"
                     onclick="document.getElementById('fileInput').click();"
                   ></i>
                 </div>
-                <div class="custom-file mt-3 mb-3">
-                  <input id="fileInput" type="file" style="display:none;" />
-                  <input
+               <div class="custom-file mt-3 mb-3">
+                  <input id="fileInput" name="image_offre" type="file" style="display:none;" />
+                  <input name="image_offre" 
                     type="button"
                     class="btn btn-primary btn-block mx-auto"
                     value="UPLOAD PRODUCT IMAGE"
                     onclick="document.getElementById('fileInput').click();"
                   />
-                </div>
+                </div> 
               </div>
               <div class="col-12">
-                <button type="submit" class="btn btn-primary btn-block text-uppercase">Add Product Now</button>
+                <button type="submit" class="btn btn-primary btn-block text-uppercase">Add Pack Now</button>
               </div>
             </form>
             </div>
