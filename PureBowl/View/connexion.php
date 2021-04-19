@@ -32,7 +32,7 @@
                 $_POST['phoneClient']
             );
             $userC->ajouterreclamation($user);
-            header('Location:afficherreclamation.php');
+            header('Location:afficherreclamation1.php');
         }
         else
             $error = "Missing information";
