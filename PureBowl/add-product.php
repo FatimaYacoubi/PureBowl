@@ -152,6 +152,8 @@
                       id="name"
                       name="name"
                       type="text"
+                      placeholder="Enter the dish name"
+                      pattern="[A-Za-z]*"
                       class="form-control validate"
                       required
                     />
@@ -164,6 +166,7 @@
                     <textarea
                     id="ingredients"
                     name="ingredients"
+                    placeholder="Enter the ingredients"
                       class="form-control validate"
                       rows="3"
                       required
@@ -179,7 +182,10 @@
                           <input
                       id="price"
                       name="price"
-                      type="text"
+                      type="number"
+                      placeholder="Enter the price"
+                      min="0"
+                      step="0.1"
                       class="form-control validate"
                       required
                     />

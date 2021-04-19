@@ -157,6 +157,8 @@
                       id="name"
                       name="name"
                       type="text"
+                      placeholder="Enter the dish name"
+                      pattern="[A-Za-z]*"
                       class="form-control validate"
                       
                     />
