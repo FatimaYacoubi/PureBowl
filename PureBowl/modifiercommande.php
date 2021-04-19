@@ -159,7 +159,7 @@ while($res = mysqli_fetch_array($result))
         <br>
     
      <form name="form1" method="post" action="modifiercommande.php">
-  <table align="center" border="1px" style="width:150px; line-height:40px;" class="myOtherTable"> 
+  <table align="center" border="1px" style="width:100px ;" class="myOtherTable"> 
   <tr> <div class="container">
       <div class="row">
         <div class="col-lg-12">
@@ -191,7 +191,8 @@ while($res = mysqli_fetch_array($result))
     <td><input type="text" name="time" value="<?php echo $time;?>"></td> 
 <?php 
                echo "<td><a href=affichercommande.php>cancel</a> "
-          ?>      
+          ?>              <input type="hidden" name="id" value=<?php echo $_GET['id'];?>>
+
                   <td><input type="submit" name="update" value="Update" class="btn-222" ></td>
     </table>   </form>
 

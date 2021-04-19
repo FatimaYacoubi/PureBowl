@@ -117,8 +117,8 @@ $host = "localhost";
         <th> People </th> 
         <th> Date</th> 
         <th> Time </th> 
-        <th> Annuler </th> 
-        <th> Modifier </th> 
+        <th> What to do ?  </th> 
+        
         
     </tr> 
     
@@ -132,19 +132,13 @@ $host = "localhost";
     <td><?php echo $rows['person']; ?></td> 
     <td><?php echo $rows['date']; ?></td> 
     <td><?php echo $rows['time']; ?></td> 
-    <td>
-            <form method="GET" action="supprimercommande.php">
-              <div class="container1"></div>
+    	 
+			<?php		
+                     echo "<td><a href=\"modifiercommande.php?id=$rows[id]\">Edit</a> | <a href=\"supprimercommande.php?id=$rows[id]\" onClick=\"return confirm('Are you sure you want to delete?')\">Delete</a>
+                     </td>";		 ?> 				
+                   
 
-            <input type="submit" name="Annuler" value="Annuler" class="btn-222">
-            </form>
-          </td>
-          
-               <?php 
-               echo "<td><a href=\"modifiercommande.php?id=$rows[id]\">Edit</a> "
-          ?>            
-
-            </form>
+           
           
     </tr> 
   <?php 
@@ -152,19 +146,14 @@ $host = "localhost";
           ?> 
 
   </table> 
-
-
   
-  <!--          
-  <!--             <a href="modifierUtilisateur.phpid=<?PHPecho $rows[]; ?>" class="btn-222" > Modifier </a>
-Start Customer Reviews -->
   <div class="customer-reviews-box">
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
           <div class="heading-title text-center">
             <h2>Customer Reviews</h2>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting</p>
+            <p>Here are some customer reviews</p>
           </div>
         </div>
       </div>
