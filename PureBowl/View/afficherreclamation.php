@@ -11,11 +11,16 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title> Afficher Liste reclamations </title>
+		<style type="text/css">
+.myOtherTable { background-color:#efdec8;border-collapse:collapse;color:#000;font-size:14px; }
+.myOtherTable th { background-color:#d0a772;color:white;width:10%; }
+.myOtherTable td, .myOtherTable th { padding:1px;border:1; }
+</style>
     </head>
     <body>
-		<button><a href="ajout.html">Ajouter une reclamation</a></button>
+		<button><a href="../reclamation.html">Retour</a></button>
 		<hr>
-		<table border=1 align = 'center'>
+		<table align="center" border="1px" style="width:600px; line-height:40px;" class="myOtherTable">
 			<tr>
 				<th>Id</th>
 				<th>Description</th>
