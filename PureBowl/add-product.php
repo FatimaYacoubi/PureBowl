@@ -1,10 +1,5 @@
 <?php
-	// $error = "zzzz";
-  // if (
-	// 	isset($_POST["someAction"])) {
-  // 	$error = "hhhhh";
 
-  //   }
     include "./controller/DishC.php";
     include_once './Model/Dish.php';
 
