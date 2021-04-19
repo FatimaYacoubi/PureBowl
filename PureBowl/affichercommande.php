@@ -1,3 +1,4 @@
+
 <?php 
 $host = "localhost";
     $dbUsername = "root";
@@ -6,6 +7,8 @@ $host = "localhost";
         $connexion = new mysqli($host, $dbUsername, $dbPassword, $dbname);
         $query=" SELECT * FROM commande"; 
         $result = $connexion->query($query);
+?>
+
 ?> 
 <!DOCTYPE html> 
 <html> 
@@ -15,6 +18,13 @@ $host = "localhost";
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
+<!-- Start Styles. Move the 'style' tags and everything between them to between the 'head' tags -->
+<style type="text/css">
+.myOtherTable { background-color:#efdec8;border-collapse:collapse;color:#000;font-size:14px; }
+.myOtherTable th { background-color:#d0a772;color:white;width:10%; }
+.myOtherTable td, .myOtherTable th { padding:1px;border:1; }
+</style>
+<!-- End Styles -->
 
     <!-- Site Icons -->
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
@@ -52,15 +62,9 @@ $host = "localhost";
         <div class="collapse navbar-collapse" id="navbars-rs-food">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-            <li class="nav-item"><a class="nav-link" href="menu.php">Menu</a></li>
-            <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+            <li class="nav-item"><a class="nav-link" href="menu.html">Menu</a></li>
             <li class="nav-item active dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Pages</a>
-              <div class="dropdown-menu" aria-labelledby="dropdown-a">
-                <a class="dropdown-item" href="reservation.html">Reservation</a>
-                <a class="dropdown-item" href="stuff.html">Stuff</a>
-                <a class="dropdown-item" href="gallery.html">Gallery</a>
-              </div>
+              
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Offres</a>
@@ -97,18 +101,24 @@ $host = "localhost";
         <br>
         
         
-  <table align="center" border="1px" style="width:600px; line-height:40px;"> 
-  <tr> 
-    <th colspan="8"><h2>                 VOS COMMANDES EN COURS </h2></th> 
-    </tr> 
+  <table align="center" border="1px" style="width:600px; line-height:40px;" class="myOtherTable"> 
+  <tr> <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="heading-title text-center">
+            <h2>Your Orders</h2>
+          </div>
+        </div>
+      </div>
+     </tr colspan="8">> 
         <th>Order </th> 
         <th> Meat Type </th> 
         <th> Option </th> 
-        <th> Number of people </th> 
+        <th> People </th> 
         <th> Date</th> 
         <th> Time </th> 
-        <th> Annuler </th> 
-        <th> Modifier </th> 
+        <th> What to do ?  </th> 
+        
         
     </tr> 
     
@@ -122,31 +132,28 @@ $host = "localhost";
     <td><?php echo $rows['person']; ?></td> 
     <td><?php echo $rows['date']; ?></td> 
     <td><?php echo $rows['time']; ?></td> 
-    <td>
-            <form method="GET" action="supprimercommande.php">
-              <div class="container1"></div>
+    	 
+			<?php		
+                     echo "<td><a href=\"modifiercommande.php?id=$rows[id]\">Edit</a> | <a href=\"supprimercommande.php?id=$rows[id]\" onClick=\"return confirm('Are you sure you want to delete?')\">Delete</a>
+                     </td>";		 ?> 				
+                   
 
-            <input type="submit" name="Annuler" value="Annuler" class="btn-222">
-            <input type="hidden" value=<?PHP echo $rows['id']; ?> name="id">
-            </form>
-          </td>
-          <td>
-            <a href="modifierUtilisateur.php?dish=<?PHP echo $rows['dish']; ?>"  > Modifier </a>
-          </td>
+           
+          
     </tr> 
   <?php 
                } 
           ?> 
 
   </table> 
-  <!-- Start Customer Reviews -->
+  
   <div class="customer-reviews-box">
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
           <div class="heading-title text-center">
             <h2>Customer Reviews</h2>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting</p>
+            <p>Here are some customer reviews</p>
           </div>
         </div>
       </div>

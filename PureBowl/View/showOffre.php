@@ -90,6 +90,11 @@
                 <i class="far fa-user"></i> Accounts
               </a>
             </li>
+             <li class="nav-item">
+              <a class="nav-link" href="promo.html">
+                <i class="far fa-user"></i> Promo
+              </a>
+            </li>
             <li class="nav-item dropdown">
               <a
                 class="nav-link dropdown-toggle"
@@ -127,40 +132,50 @@
               <table class="table table-hover tm-table-small tm-product-table">
                 <thead>
                   <tr>
-                    <th scope="col">&nbsp;</th>
+                    <th scope="col">&nbsp;</th> 
                     <th scope="col">ID</th>
-                    <th scope="col">PACK</th>
-                    <th scope="col">IMAGE</th>
-                    <th scope="col">MENUS</th>
-                    <th scope="col">TYPE </th>
-                    <th scope="col">PRICE </th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Image</th>
+                    <th scope="col">Menus</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Prix</th>
+                    <th scope="col">Type </th>
+                    <th scope="col"> </th>
+
                     <th scope="col">&nbsp;</th>
                   </tr>
+                  <tr></tr>
                 </thead>
              <tbody>
 
              	<?PHP
 				foreach($listeOffers as $offer){
 			?>
-				<tr>
-					<td><?PHP echo $offre['id_offre']; ?></td>
+			<tr>
+					<td><?PHP echo $offer['id_offre']; ?></td> 
 					<td><?PHP echo $offer['nom_offre']; ?></td>
 					<td><?PHP echo $offer['image_offre']; ?></td>
 					<td><?PHP echo $offer['descrip_offre']; ?></td>
-					<td><?PHP echo $offer['type_offer']; ?></td>
-					<td><?PHP echo $offer['prix_offer']; ?></td>
+					<td><?PHP echo $offer['type_offre']; ?></td>
+					<td><?PHP echo $offer['prix_offre']; ?></td>
+					<td></td>
 					<td>
-						<form method="POST" action="supprimerUtilisateur.php">
+						 
+                      <a href="#" class="tm-product-delete-link">
+                        <i class="far fa-trash-alt tm-product-delete-icon"></i>
+                      </a>
+                    
+						<form method="POST" action="deleteOffre.php">
 						<input type="submit" name="supprimer" value="supprimer">
-						<input type="hidden" value=<?PHP echo $user['id']; ?> name="id">
+						<input type="hidden" value=<?PHP echo $offer['id_offre']; ?> name="id_offre"  >
 						</form> 					</td>
 					<td>
-						<a href="modifierUtilisateur.php?id=<?PHP echo $user['id']; ?>"> Modifier </a>
+						<a href="modifyOffer.php?id_offre=<?PHP echo $offer['id_offre']; ?>"> Modifier </a>
 					</td>
 				</tr>
 			<?PHP
 				}
-			?>
+			?> 
                <!--   <tr>
                     <th scope="row"><input type="checkbox" /></th>
                     <td class="tm-pack-name">SIMPLE</td>
@@ -273,12 +288,12 @@
               </table>
             </div>
             <!-- table container -->
-            <a
-              href="add-pack.html"
-              class="btn btn-primary btn-block text-uppercase mb-3">Add new pack</a>
+          <a
+              href="addOffre.php"
+              class="btn btn-primary btn-block text-uppercase mb-3"> Add new pack </a>
             <button class="btn btn-primary btn-block text-uppercase">
               Delete selected products
-            </button>
+            </button> 
           </div>
         </div>
         
