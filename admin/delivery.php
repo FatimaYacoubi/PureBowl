@@ -3,6 +3,16 @@
   require_once '../Controller/DeliveryC.php';
   $deliveries = DeliveryC::displayDelivery();
 
+  if(!empty($_GET['idDeliveryForDelete'])) {
+    $id= trim($_GET['idDeliveryForDelete']);
+    $deliveries = DeliveryC::deleteDelivery($id);
+
+    $pageDeliveryList = $_SERVER['HTTP_HOST'].'PureBowl/PureBowl/admin/delivery.php';
+
+    header("Location: ". 'delivery.php');
+    exit;
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -88,7 +98,7 @@
       </li>
       <li class="nav-item">
         <a class="nav-link " href="provider.php">
-          <i class="fas fa-truck"></i> provider
+          <i class="fas fa-cubes"></i> provider
         </a>
       </li>
       <li class="nav-item">
@@ -160,9 +170,11 @@
                     <td>'.$delivery["hour_end"].'</td>
                     <td>'.$delivery["id"].'</td>
                     <td>
-                      <a href="#" class="tm-product-delete-link">
+                    <form action="delivery.php" class="tm-delete-delivery-form" method="POST">
+                    <a href="delivery.php?idDeliveryForDelete='.$delivery[ 'id'].'" class="tm-product-delete-link">
                         <i class="far fa-trash-alt tm-product-delete-icon"></i>
                       </a>
+                    </form>
                     </td>
                   </tr>';
                 }

@@ -38,5 +38,17 @@
                 echo 'Erreur: '.$e->getMessage();
             }
         }
+        function deleteDelivery($id){
+			$sql="DELETE FROM delivery WHERE id= :id";
+			$db = config::getConnexion();
+			$req=$db->prepare($sql);
+			$req->bindValue(':id',$id);
+			try{
+				$req->execute();
+			}
+			catch (Exception $e){
+				die('Erreur: '.$e->getMessage());
+			}
+		}
 	}
 
