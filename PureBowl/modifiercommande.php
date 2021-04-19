@@ -1,17 +1,75 @@
+<?php  
+     
+$databaseHost = 'localhost';
+$databaseName = 'purebowl';
+$databaseUsername = 'root';
+$databasePassword = '';
 
-<?php 
-$host = "localhost";
-    $dbUsername = "root";
-    $dbPassword = "";
-    $dbname = "purebowl";
-        $connexion = new mysqli($host, $dbUsername, $dbPassword, $dbname);
-        $query=" SELECT * FROM commande"; 
-        $result = $connexion->query($query);
+$mysqli = mysqli_connect($databaseHost, $databaseUsername, $databasePassword, $databaseName); 
+
+
+
+if(isset($_POST['update']))
+{	
+
+	$id = mysqli_real_escape_string($mysqli, $_POST['id']);
+	$dish = mysqli_real_escape_string($mysqli, $_POST['dish']);
+	$meat = mysqli_real_escape_string($mysqli, $_POST['meat']);
+	$option = mysqli_real_escape_string($mysqli, $_POST['option']);	
+	$person = mysqli_real_escape_string($mysqli, $_POST['person']);
+	$time = mysqli_real_escape_string($mysqli, $_POST['time']);
+	$date = mysqli_real_escape_string($mysqli, $_POST['date']);	
+	
+	// checking empty fields
+	if(empty($dish) || empty($meat) || empty($option) || empty($person) || empty($date) || empty($time)) {	
+			
+		if(empty($dish)) {
+			echo "<font color='red'>Name field is empty.</font><br/>";
+		}
+		
+		if(empty($meat)) {
+			echo "<font color='red'>Age field is empty.</font><br/>";
+		}
+        if(empty($option)) {
+            echo "<font color='red'>Age field is empty.</font><br/>";
+        }
+		
+		if(empty($person)) {
+			echo "<font color='red'>Email field is empty.</font><br/>";
+		}		
+		if(empty($date)) {
+			echo "<font color='red'>Email field is empty.</font><br/>";
+		}		
+		if(empty($time)) {
+			echo "<font color='red'>Email field is empty.</font><br/>";
+		}		
+	} else {	
+		//updating the table
+		$result = mysqli_query($mysqli, "UPDATE commande SET dish='$dish',meat='$meat',option='$option',person='$person',date='$date' ,time='$time' WHERE id=$id");
+		
+		//redirectig to the display page. In our case, it is index.php
+		header("Location:affichercommande.php");
+	}
+}
 ?>
+<?php
+//getting id from url
+$id = $_GET['id'];
 
-?> 
-<!DOCTYPE html> 
-<html> 
+//selecting data associated with this particular id
+$result = mysqli_query($mysqli, "SELECT * FROM commande WHERE id=$id");
+
+while($res = mysqli_fetch_array($result))
+{
+	$dish = $res['dish'];
+	$meat = $res['meat'];
+	$option = $res['option'];
+	$person = $res['person'];
+	$date = $res['date'];
+	$time = $res['time'];
+}
+?>
+<html>
   <head> 
    
     <title> Pure Bowl</title>  
@@ -99,14 +157,14 @@ $host = "localhost";
         <br>
         <br><br>
         <br>
-        
-        
-  <table align="center" border="1px" style="width:600px; line-height:40px;" class="myOtherTable"> 
+    
+     <form name="form1" method="post" action="modifiercommande.php">
+  <table align="center" border="1px" style="width:150px; line-height:40px;" class="myOtherTable"> 
   <tr> <div class="container">
       <div class="row">
         <div class="col-lg-12">
           <div class="heading-title text-center">
-            <h2>Your Orders</h2>
+            <h2>Modify your order and we'll review it!</h2>
           </div>
         </div>
       </div>
@@ -123,40 +181,25 @@ $host = "localhost";
     </tr> 
     
     <?php 
-    while($rows = $result->fetch_assoc())
     { 
     ?> 
-    <tr> <td><?php echo $rows['dish']; ?></td> 
-    <td><?php echo $rows['meat']; ?></td> 
-    <td><?php echo $rows['option']; ?></td> 
-    <td><?php echo $rows['person']; ?></td> 
-    <td><?php echo $rows['date']; ?></td> 
-    <td><?php echo $rows['time']; ?></td> 
-    <td>
-            <form method="GET" action="supprimercommande.php">
-              <div class="container1"></div>
+    <tr> <td><input type="text" name="dish" value="<?php echo $dish;?>"></td> 
+    <td><input type="text" name="meat" value="<?php echo $meat;?>"></td> 
+    <td><input type="text" name="option" value="<?php echo $option;?>"></td> 
+    <td><input type="text" name="person" value="<?php echo $person;?>"></td> 
+    <td><input type="text" name="date" value="<?php echo $date;?>"></td> 
+    <td><input type="text" name="time" value="<?php echo $time;?>"></td> 
+<?php 
+               echo "<td><a href=affichercommande.php>cancel</a> "
+          ?>      
+                  <td><input type="submit" name="update" value="Update" class="btn-222" ></td>
+    </table>   </form>
 
-            <input type="submit" name="Annuler" value="Annuler" class="btn-222">
-            </form>
-          </td>
-          
-               <?php 
-               echo "<td><a href=\"modifiercommande.php?id=$rows[id]\">Edit</a> "
-          ?>            
-
-            </form>
-          
     </tr> 
   <?php 
                } 
           ?> 
-
-  </table> 
-
-
-  
-  <!--          
-  <!--             <a href="modifierUtilisateur.phpid=<?PHPecho $rows[]; ?>" class="btn-222" > Modifier </a>
+<!--             <a href="modifierUtilisateur.phpid=<?PHPecho $rows[]; ?>" class="btn-222" > Modifier </a>
 Start Customer Reviews -->
   <div class="customer-reviews-box">
     <div class="container">
@@ -323,4 +366,9 @@ Start Customer Reviews -->
     <script src="js/custom.js"></script>
 </body>
 </html>
+  
+   
+   
+
+
   
