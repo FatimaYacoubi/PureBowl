@@ -42,6 +42,18 @@
 			} catch (PDOException $e) {
 				$e->getMessage();
 			}
+		}
+		function deleteDish($name){
+			$sql="DELETE FROM dishes WHERE name= :name";
+			$db = config::getConnexion();
+			$req=$db->prepare($sql);
+			$req->bindValue(':name',$name);
+			try{
+				$req->execute();
+			}
+			catch (Exception $e){
+				die('Erreur: '.$e->getMessage());
+			}
 		}	
 		function displayDish(){
 			
