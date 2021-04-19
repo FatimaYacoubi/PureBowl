@@ -1,38 +1,62 @@
 <?PHP
-	class Dish{
-		private ?int $id = null;
-		private ?string $name = null;
-		private ?string $ingredients = null;
-		private ?float $price = null;
+	class Delivery{
+		private  $id ;
+		private $name;
+		private $hour_start ;
+		private $hour_end ;
+		private $salary ;
         
-		function __construct(string $name, string $ingredients, float $price){
+		function __construct( $name =null, $hour_start = null, $hour_end = null, $salary= null){
 			
 			$this->name=$name;
-			$this->ingredients=$ingredients;
-			$this->price=$price;
-		}
-		
-		function getId(): int{
-			return $this->id;
-		}
-		function getName(): string{
-			return $this->name;
-		}
-		function getIngredients(): string{
-			return $this->ingredients;
-		}
-		function getPrice(): float{
-			return $this->price;
+			$this->hour_start=$hour_start;
+			$this->hour_end=$hour_end;
+			$this->salary = $salary;
 		}
 
-		function setName(string $name): void{
-			$this->name=$name;
-		}
-		function setIngredients(string $ingredients): void{
-			$this->ingredients;
-		}
-		function setPrice(float $price): void{
-			$this->price=$price;
-		}
+        public function getId()
+        {
+            return $this->id;
+        }
+
+        public function getName()
+        {
+            return $this->name;
+        }
+
+        public function setName($name)
+        {
+            $this->name = $name;
+        }
+
+        public function getHourStart()
+        {
+            return $this->hour_start;
+        }
+
+        public function setHourStart($hour_start)
+        {
+            $this->hour_start = $hour_start;
+        }
+
+        public function getHourEnd()
+        {
+            return $this->hour_end;
+        }
+
+        public function setHourEnd($hour_end)
+        {
+            $this->hour_end = $hour_end;
+        }
+
+        public function getSalary()
+        {
+            return $this->salary;
+        }
+
+        public function setSalary($salary)
+        {
+            $this->salary = $salary;
+        }
+
 	}
-?>

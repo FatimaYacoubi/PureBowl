@@ -1,28 +1,9 @@
-<?PHP
-	include "../config.php";
-	//require_once './Model/Delivery.php';
+<?php
 
-	class DeliveryC {
-		
-			
-		function displayDelivery(){
-			
-			$sql="SELECT * FROM delivery";
-			$db = config::getConnexion();
-			try{
-				$liste = $db->query($sql);
-				return $liste;
-			}
-			catch (Exception $e){
-				die('Erreur: '.$e->getMessage());
-			}	
-		}		
-	}
-  $deliverie =new DeliveryC() ; 
-  var_dump($deliverie->displayDelivery()) ;
+  require_once '../Controller/DeliveryC.php';
+  $deliveries = DeliveryC::displayDelivery();
 
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -168,32 +149,35 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
+                <?php
+                foreach ($deliveries as $delivery){
+
+                    echo ' <tr>
                     <th scope="row"><input type="checkbox" /></th>
-                    <td class="tm-product-name">firas</td>
-                    <td>200 Dt</td>
-                    <td>08:00 </td>
-                    <td>18:00</td>
-                    <td>01</td>
+                    <td class="tm-product-name">'.$delivery["name"].'</td>
+                    <td>'.$delivery["salary"].'</td>
+                    <td>'.$delivery["hour_start"].'</td>
+                    <td>'.$delivery["hour_end"].'</td>
+                    <td>'.$delivery["id"].'</td>
                     <td>
                       <a href="#" class="tm-product-delete-link">
                         <i class="far fa-trash-alt tm-product-delete-icon"></i>
                       </a>
                     </td>
-                  </tr>
-                  
-                  
-                
-                 
+                  </tr>';
+                }
+                ?>
+
+
                 </tbody>
               </table>
             </div>
             <!-- table container -->
             <a
-              href="add-product.php"
-              class="btn btn-primary btn-block text-uppercase mb-3">Add new product</a>
+              href="add-delivery.php"
+              class="btn btn-primary btn-block text-uppercase mb-3">Add new delivery</a>
             <button class="btn btn-primary btn-block text-uppercase">
-              Delete selected products
+              Delete selected deliveries
             </button>
           </div>
         </div>
