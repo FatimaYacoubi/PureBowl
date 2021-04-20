@@ -1,3 +1,19 @@
+<?php
+
+  require_once '../Controller/ProviderC.php';
+  $providers = ProviderC::displayProvider();
+
+  if(!empty($_GET['idProviderForDelete'])) {
+    $id= trim($_GET['idProviderForDelete']);
+    ProviderC::deleteProvider($id);
+
+    $pageDeliveryList = $_SERVER['HTTP_HOST'].'PureBowl/PureBowl/admin/provider.php';
+
+    header("Location: ". 'provider.php');
+    exit;
+  }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -81,7 +97,7 @@
       </li>
       <li class="nav-item">
         <a class="nav-link active" href="provider.php">
-          <i class="fas fa-truck"></i> provider
+          <i class="fas fa-cubes"></i> provider
         </a>
       </li>
       <li class="nav-item">
@@ -141,53 +157,32 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                  <th scope="row"><input type="checkbox" /></th>
-                    <td class="tm-product-name">samir</td>
-                    <td>25125878</td>
-                    <td>Bizert</td>
-                    <td>012</td>
+                <?php
+                foreach ($providers as $provider){
+
+                    echo ' <tr>
+                    <th scope="row"><input type="checkbox" /></th>
+                    <td class="tm-product-name">'.$provider["name"].'</td>
+                    <td>'.$provider["num_tel"].'</td>
+                    <td>'.$provider["region"].'</td>
+                    <td>'.$provider["id"].'</td>
                     <td>
-                      <a href="#" class="tm-product-delete-link">
+                    <form action="provider.php" class="tm-delete-provider-form" method="POST">
+                    <a href="provider.php?idProviderForDelete='.$provider[ 'id'].'" class="tm-product-delete-link">
                         <i class="far fa-trash-alt tm-product-delete-icon"></i>
                       </a>
+                    </form>
                     </td>
-                  </tr>
-                  <tr>
-                    
-                  </tr>
-                  <tr>
-                   
-                  </tr>
-                  <tr>
-                    
-                  </tr>
-                  <tr>
-                   
-                  </tr>
-                  <tr>
-                    
-                  </tr>
-                  <tr>
-                   
-                  </tr>
-                  <tr>
-                    
-                  </tr>
-                  <tr>
-                    
-                    </td>
-                  </tr>
+                  </tr>';
+                }
+                ?>
                 </tbody>
               </table>
             </div>
             <!-- table container -->
             <a
-              href="add-product.php"
-              class="btn btn-primary btn-block text-uppercase mb-3">Add new product</a>
-            <button class="btn btn-primary btn-block text-uppercase">
-              Delete selected products
-            </button>
+              href="add-provider.php"
+              class="btn btn-primary btn-block text-uppercase mb-3">Add new provider</a>
           </div>
         </div>
         

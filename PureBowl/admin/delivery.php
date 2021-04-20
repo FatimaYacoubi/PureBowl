@@ -5,7 +5,7 @@
 
   if(!empty($_GET['idDeliveryForDelete'])) {
     $id= trim($_GET['idDeliveryForDelete']);
-    $deliveries = DeliveryC::deleteDelivery($id);
+    DeliveryC::deleteDelivery($id);
 
     $pageDeliveryList = $_SERVER['HTTP_HOST'].'PureBowl/PureBowl/admin/delivery.php';
 
@@ -188,9 +188,6 @@
             <a
               href="add-delivery.php"
               class="btn btn-primary btn-block text-uppercase mb-3">Add new delivery</a>
-            <button class="btn btn-primary btn-block text-uppercase">
-              Delete selected deliveries
-            </button>
           </div>
         </div>
         
