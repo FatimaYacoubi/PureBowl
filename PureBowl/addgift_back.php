@@ -1,17 +1,17 @@
 <?php
-    include "./controller/DishC.php";
-    include_once './Model/Dish.php';
+    include "./controller/GiftBC.php";
+    include_once './Model/GiftB.php';
 
-	$dishC = new DishC();
+	$GiftC = new giftC();
 	$error = "";
     if (isset($_POST["someAction"])) {
-          // $dish = new Dish('aaa', 'iiii', 12);
-            $dish = new Dish(
-                $_POST['name'],
-                $_POST['ingredients'], 
+        
+            $Gift = new gift(
+                $_POST['nom'], 
+                $_POST['descr'], 
                 $_POST['price']  
             );
-            $dishC->addDish($dish);
+            $GiftC->ajoutergift($Gift);
         }
 ?>
 
@@ -21,7 +21,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Add Product - Dashboard HTML Template</title>
+    <title>Add Gift - Dashboard HTML Template</title>
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Roboto:400,700"
@@ -86,13 +86,12 @@
               </div>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="products.html">
+              <a class="nav-link " href="products.html">
                 <i class="fas fa-shopping-cart"></i> Products
               </a>
             </li>
-
             <li class="nav-item">
-              <a class="nav-link " href="giftBack.html">
+              <a class="nav-link active" href="giftBack.html">
                 <i class="fas fa-shopping-cart"></i> Gift
               </a>
             </li>
@@ -143,22 +142,22 @@
           <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
             <div class="row">
               <div class="col-12">
-                <h2 class="tm-block-title d-inline-block">Add Product</h2>
+                <h2 class="tm-block-title d-inline-block">Add Gift</h2>
               </div>
             </div>
             <div class="row tm-edit-product-row">
               <div class="col-xl-6 col-lg-6 col-md-12">
-                <form action="add-product.php" class="tm-edit-product-form" method="POST">
+                <form action="addgift_back.php" class="tm-edit-product-form" method="POST">
                   <div class="form-group mb-3">
                     <label
-                      for="name"
+                      for="nom"
                       > Name
                     </label>
                     <input
-                      id="name"
-                      name="name"
+                      id="nom"
+                      name="nom"
                       type="text"
-                      placeholder="Enter the dish name"
+                      placeholder="Enter the gift name"
                       pattern="[A-Za-z]*"
                       class="form-control validate"
                       required
@@ -166,36 +165,36 @@
                   </div>
                   <div class="form-group mb-3">
                     <label
-                      for="description"
-                      >ingredients</label
+                      for="descr"
+                      >Description</label
                     >
                     <textarea
-                    id="ingredients"
-                    name="ingredients"
-                    placeholder="Enter the ingredients"
+                    id="descr"
+                    name="descr"
+                    placeholder="Enter the description"
                       class="form-control validate"
                       rows="3"
                       required
                     ></textarea>
                   </div>
-                  
-                  <div class="row">
+                 
+                   <div class="row">
                       <div class="form-group mb-3 col-xs-12 col-sm-6">
                           <label
                             for="expire_date"
                             >Price
-                          </label>
-                          <input
-                      id="price"
-                      name="price"
-                      type="number"
-                      placeholder="Enter the price"
-                      min="0"
-                      step="0.1"
-                      class="form-control validate"
-                      required
+                           </label>
+                            <input
+                             id="price"
+                                  name="price"
+                                 type="number"
+                                placeholder="Enter the price"
+                              min="0"
+                             step="0.1"
+                             class="form-control validate"
+                               required
                     />
-                        </div>
+                     </div>
                         
                   </div>
                   
@@ -204,7 +203,7 @@
                 
               </div>
               <div class="col-12">
-                <button type="submit" name="someAction" class="btn btn-primary btn-block text-uppercase">Add Product Now</button>
+                <button type="submit" name="someAction" class="btn btn-primary btn-block text-uppercase">Add Gift Now</button>
               </div>
             </form>
             </div>
@@ -215,7 +214,7 @@
     <footer class="tm-footer row tm-mt-small">
         <div class="col-12 font-weight-light">
           <p class="text-center text-white mb-0 px-4 small">
-            Copyright &copy; <b>2021</b> All rights reserved. 
+            Copyright &copy; <b>2018</b> All rights reserved. 
             
             Design: <a rel="nofollow noopener" href="https://templatemo.com" class="tm-footer-link">Template Mo</a>
         </p>
