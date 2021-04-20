@@ -1,8 +1,8 @@
 <?PHP
 	include "../Controller/postC.php";
 
-	$reclamationC=new postC();
-	$listeUsers=$reclamationC->afficherpostadmin();
+	$postC=new postC();
+	$listeUsers=$postC->afficherpostadmin();
 
 ?>
 <!DOCTYPE html>
@@ -21,17 +21,17 @@
     <meta name="author" content="">
 
     <!-- Site Icons -->
-    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">    
+    <link rel="stylesheet" href="../css/bootstrap.min.css">    
 	<!-- Site CSS -->
-    <link rel="stylesheet" href="css/style.css">    
+    <link rel="stylesheet" href="../css/style.css">    
     <!-- Responsive CSS -->
-    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="../css/responsive.css">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/custom.css">
+    <link rel="stylesheet" href="../css/custom.css">
 
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -45,47 +45,47 @@
 	<header class="top-navbar">
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
 			<div class="container">
-				<a class="navbar-brand" href="index.html">
-					<img src="images/logo.png" alt="" />
+				<a class="navbar-brand" href="../index.html">
+					<img src="../images/logo.png" alt="" />
 				</a>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbars-rs-food" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
 				  <span class="navbar-toggler-icon"></span>
 				</button>
 				<div class="collapse navbar-collapse" id="navbars-rs-food">
 					<ul class="navbar-nav ml-auto">
-						<li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-						<li class="nav-item"><a class="nav-link" href="menu.php">Menu</a></li>
-						<li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+						<li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
+						<li class="nav-item"><a class="nav-link" href="../menu.php">Menu</a></li>
+						<li class="nav-item"><a class="nav-link" href="../about.html">About</a></li>
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Pages</a>
 							<div class="dropdown-menu" aria-labelledby="dropdown-a">
-								<a class="dropdown-item" href="reservation.html">Reservation</a>
-								<a class="dropdown-item" href="stuff.html">Stuff</a>
-								<a class="dropdown-item" href="gallery.html">Gallery</a>
+								<a class="dropdown-item" href="../reservation.html">Reservation</a>
+								<a class="dropdown-item" href="../stuff.html">Stuff</a>
+								<a class="dropdown-item" href="../gallery.html">Gallery</a>
 							</div>
 						</li>
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Offres</a>
 							<div class="dropdown-menu" aria-labelledby="dropdown-a">
-								<a class="dropdown-item" href="offre.html">Offre</a>
-								<a class="dropdown-item" href="offre.html">Promotion</a>
+								<a class="dropdown-item" href="../offre.html">Offre</a>
+								<a class="dropdown-item" href="../offre.html">Promotion</a>
 								</div>
 							</li>
 						<li class="nav-item active dropdown">
 							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Blog</a>
 							<div class="dropdown-menu" aria-labelledby="dropdown-a">
-								<a class="dropdown-item" href="blog.html">blog</a>
-								<a class="dropdown-item" href="blog-details.html">blog Single</a>
+								<a class="dropdown-item" href="../blog.html">blog</a>
+								<a class="dropdown-item" href="../blog-details.html">blog Single</a>
 							</div>
 						</li>
-						<li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-						<li class="nav-item"><a class="nav-link" href="reclamation.html">Reclamation</a></li>
-						<li class="nav-item"><a class="nav-link" href="gift.html">Gift</a></li>
+						<li class="nav-item"><a class="nav-link" href="../contact.html">Contact</a></li>
+						<li class="nav-item"><a class="nav-link" href="../reclamation.html">Reclamation</a></li>
+						<li class="nav-item"><a class="nav-link" href="../gift.html">Gift</a></li>
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Sign in</a>
 							<div class="dropdown-menu" aria-labelledby="dropdown-a">
-								<a class="dropdown-item" href="login.html">As an administrator</a>
-								<a class="dropdown-item" href="blog-details.html">As a client</a>
+								<a class="dropdown-item" href="../login.html">As an administrator</a>
+								<a class="dropdown-item" href="../blog-details.html">As a client</a>
 							</div>
 						</li>
 					</ul>
@@ -122,7 +122,7 @@
 				<div class="col-lg-4 col-md-6 col-12">
 					<div class="blog-box-inner">
 						<div class="blog-img-box">
-							<img class="img-fluid" src="images/blog-img-01.jpg" alt="">
+							<img class="img-fluid" src="../images/blog-img-01.jpg" alt="">
 						</div>
 						<div class="blog-detail">
 							<h4>Duis feugiat neque sed dolor cursus.</h4>
@@ -140,43 +140,30 @@
 				<div class="col-lg-4 col-md-6 col-12">
 					<div class="blog-box-inner">
 						<div class="blog-img-box">
-							<img class="img-fluid" src="images/blog-img-02.jpg" alt="">
+							<img class="img-fluid" src="../images/blog-img-02.jpg" alt="">
 						</div>
+						<?PHP
+				foreach($listeUsers as $user){
+			?>
 						<div class="blog-detail">
-							<h4>Duis feugiat neque sed dolor cursus.</h4>
+							
+							<h4><?PHP echo $user['titre']; ?>.</h4>
 							<ul>
 								<li><span>Post by Admin</span></li>
 								<li>|</li>
-								<li><span>27 February 2018</span></li>
+								<li><span><?PHP echo $user['date']; ?></li>
 							</ul>
-							<p>aziz1. </p>
-							<p>chrif1. </p>
-							<a class="btn btn-lg btn-circle btn-outline-new-white" href="#">Read More</a>
+							<p><?PHP echo $user['description']; ?></p>
 						</div>
+						<?PHP
+				}
+			?>
 					</div>
 				</div>
 				<div class="col-lg-4 col-md-6 col-12">
 					<div class="blog-box-inner">
 						<div class="blog-img-box">
-							<img class="img-fluid" src="images/blog-img-03.jpg" alt="">
-						</div>
-						<div class="blog-detail">
-							<h4>Duis feugiat neque sed dolor cursus.</h4>
-							<ul>
-								<li><span>Post by Admin</span></li>
-								<li>|</li>
-								<li><span>27 February 2018</span></li>
-							</ul>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque auctor suscipit feugiat. Ut at pellentesque ante, sed convallis arcu. Nullam facilisis, eros in eleifend luctus, odio ante sodales augue, eget lacinia lectus erat et sem. </p>
-							<p>Sed semper orci sit amet porta placerat. Etiam quis finibus eros. </p>
-							<a class="btn btn-lg btn-circle btn-outline-new-white" href="#">Read More</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6 col-12">
-					<div class="blog-box-inner">
-						<div class="blog-img-box">
-							<img class="img-fluid" src="images/blog-img-04.jpg" alt="">
+							<img class="img-fluid" src="../images/blog-img-04.jpg" alt="">
 						</div>
 						<div class="blog-detail">
 							<h4>Duis feugiat neque sed dolor cursus.</h4>
@@ -194,7 +181,7 @@
 				<div class="col-lg-4 col-md-6 col-12">
 					<div class="blog-box-inner">
 						<div class="blog-img-box">
-							<img class="img-fluid" src="images/blog-img-05.jpg" alt="">
+							<img class="img-fluid" src="../images/blog-img-05.jpg" alt="">
 						</div>
 						<div class="blog-detail">
 							<h4>Duis feugiat neque sed dolor cursus.</h4>
@@ -212,7 +199,7 @@
 				<div class="col-lg-4 col-md-6 col-12">
 					<div class="blog-box-inner">
 						<div class="blog-img-box">
-							<img class="img-fluid" src="images/blog-img-06.jpg" alt="">
+							<img class="img-fluid" src="../images/blog-img-06.jpg" alt="">
 						</div>
 						<div class="blog-detail">
 							<h4>Duis feugiat neque sed dolor cursus.</h4>
@@ -230,7 +217,7 @@
 				<div class="col-lg-4 col-md-6 col-12">
 					<div class="blog-box-inner">
 						<div class="blog-img-box">
-							<img class="img-fluid" src="images/blog-img-07.jpg" alt="">
+							<img class="img-fluid" src="../images/blog-img-07.jpg" alt="">
 						</div>
 						<div class="blog-detail">
 							<h4>Duis feugiat neque sed dolor cursus.</h4>
@@ -248,7 +235,7 @@
 				<div class="col-lg-4 col-md-6 col-12">
 					<div class="blog-box-inner">
 						<div class="blog-img-box">
-							<img class="img-fluid" src="images/blog-img-08.jpg" alt="">
+							<img class="img-fluid" src="../images/blog-img-08.jpg" alt="">
 						</div>
 						<div class="blog-detail">
 							<h4>Duis feugiat neque sed dolor cursus.</h4>
@@ -266,7 +253,7 @@
 				<div class="col-lg-4 col-md-6 col-12">
 					<div class="blog-box-inner">
 						<div class="blog-img-box">
-							<img class="img-fluid" src="images/blog-img-09.jpg" alt="">
+							<img class="img-fluid" src="../images/blog-img-09.jpg" alt="">
 						</div>
 						<div class="blog-detail">
 							<h4>Duis feugiat neque sed dolor cursus.</h4>
@@ -380,17 +367,17 @@
 	<a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
 
 	<!-- ALL JS FILES -->
-	<script src="js/jquery-3.2.1.min.js"></script>
-	<script src="js/popper.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
+	<script src="../js/jquery-3.2.1.min.js"></script>
+	<script src="../js/popper.min.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
     <!-- ALL PLUGINS -->
 	
-	<script src="js/jquery.superslides.min.js"></script>
-	<script src="js/images-loded.min.js"></script>
-	<script src="js/isotope.min.js"></script>
-	<script src="js/baguetteBox.min.js"></script>
-	<script src="js/form-validator.min.js"></script>
-    <script src="js/contact-form-script.js"></script>
-    <script src="js/custom.js"></script>
+	<script src="../js/jquery.superslides.min.js"></script>
+	<script src="../js/images-loded.min.js"></script>
+	<script src="../js/isotope.min.js"></script>
+	<script src="../js/baguetteBox.min.js"></script>
+	<script src="../js/form-validator.min.js"></script>
+    <script src="../js/contact-form-script.js"></script>
+    <script src="../js/custom.js"></script>
 </body>
 </html>
