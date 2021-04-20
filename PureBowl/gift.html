@@ -13,28 +13,31 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <!-- Site Icons -->
+    <!-- Site Icons 
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
-
+	-->
+	<link rel="gift" href="css/animate2.css">
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">    
+    <link rel="stylesheet" href="css/bootstrap.min.css">  
 	<!-- Site CSS -->
-    <link rel="stylesheet" href="css/style.css">    
-    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="css/style.css">
+	    <!-- Responsive CSS -->
     <link rel="stylesheet" href="css/responsive.css">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/custom.css">
+	
 
-    <!--[if lt IE 9]>
+    <!-- [if lt IE 9] -->
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+   <!-- [endif] -->
 
 </head>
 
 <body>
 	<!-- Start header -->
+	
 	<header class="top-navbar">
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
 			<div class="container">
@@ -47,8 +50,8 @@
 				<div class="collapse navbar-collapse" id="navbars-rs-food">
 					<ul class="navbar-nav ml-auto">
 						<li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-						<li class="nav-item"><a class="nav-link" href="menu.php">Menu</a></li>
-						<li class="nav-item active"><a class="nav-link" href="about.html">About</a></li>
+						<li class="nav-item "><a class="nav-link" href="menu.php">Menu</a></li>
+						<li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Pages</a>
 							<div class="dropdown-menu" aria-labelledby="dropdown-a">
@@ -73,14 +76,16 @@
 						</li>
 						<li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
 						<li class="nav-item"><a class="nav-link" href="reclamation.html">Reclamation</a></li>
-						<li class="nav-item"><a class="nav-link" href="gift.html">Gift</a></li>
+						<li class="nav-item active "><a class="nav-link" href="gift.html">Gift</a></li>
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Sign in</a>
 							<div class="dropdown-menu" aria-labelledby="dropdown-a">
 								<a class="dropdown-item" href="login.html">As an administrator</a>
 								<a class="dropdown-item" href="blog-details.html">As a client</a>
+
 							</div>
 						</li>
+
 					</ul>
 				</div>
 			</div>
@@ -88,53 +93,41 @@
 	</header>
 	<!-- End header -->
 	
-	<!-- Start header -->
+	<!-- Start All Pages -->
 	<div class="all-page-title page-breadcrumb">
 		<div class="container text-center">
 			<div class="row">
 				<div class="col-lg-12">
-					<h1>About Us</h1>
+					<h1>Special Menu</h1>
 				</div>
 			</div>
 		</div>
 	</div>
-	<!-- End header -->
+	<!-- End All Pages -->
+
+	<!--video part-->
+	<div class="banner">
+	<video autoplay="" muted="" loop="">
+		<source src="images/gift.mp4" type="video/mp4">
+	</video>	
+	<div id="ll"></div>
+	<script type="text/javascript">
+	let ll = document.querySelector('#ll');
+	window.addEventListener('scroll',function(){
+		let value =window.scrollY;
+		bg.style.backgroungSize = 1000 + value*2 +"px";
+	})
 	
-	<!-- Start About -->
-	<div class="about-section-box">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-6 col-md-6">
-					<img src="images/about-img.jpg" alt="" class="img-fluid">
-				</div>
-				<div class="col-lg-6 col-md-6 text-center">
-					<div class="inner-column">
-						<h1>Welcome To <span>Yamifood Restaurant</span></h1>
-						<h4>Little Story</h4>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque auctor suscipit feugiat. Ut at pellentesque ante, sed convallis arcu. Nullam facilisis, eros in eleifend luctus, odio ante sodales augue, eget lacinia lectus erat et sem. </p>
-						<p>Sed semper orci sit amet porta placerat. Etiam quis finibus eros. Sed aliquam metus lorem, a pellentesque tellus pretium a. Nulla placerat elit in justo vestibulum, et maximus sem pulvinar.</p>
-						<a class="btn btn-lg btn-circle btn-outline-new-white" href="#">Reservation</a>
-					</div>
-				</div>
-				<div class="col-md-12">
-					<div class="inner-pt">
-						<p>Sed tincidunt, neque at egestas imperdiet, nulla sapien blandit nunc, sit amet pulvinar orci nibh ut massa. Proin nec lectus sed nunc placerat semper. Duis hendrerit elit nec sapien porttitor, ut pretium ipsum feugiat. Aenean volutpat porta nisi in gravida. Curabitur pulvinar ligula sed facilisis bibendum. Nullam vitae nulla elit. </p>
-						<p>Integer purus velit, eleifend eu magna volutpat, porttitor blandit lectus. Aenean risus odio, efficitur quis erat eget, mattis tristique arcu. Fusce in ante enim. Integer consectetur elit nec laoreet rutrum. Mauris porta turpis nec tellus accumsan pellentesque. Morbi non quam tempus, convallis urna in, cursus mauris. </p>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- End About -->
-	
+	</script>
+
 	<!-- Start Menu -->
 	<div class="menu-box">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="heading-title text-center">
-						<h2>Special Menu</h2>
-						<p>Lorem Ipsum is simply dummy text of the printing and typesetting</p>
+						<h2>Our Special Offres </h2>
+						<p>it's not how much we give , but how much love we put into giving.</p>
 					</div>
 				</div>
 			</div>
@@ -143,120 +136,200 @@
 					<div class="special-menu text-center">
 						<div class="button-group filter-button-group">
 							<button class="active" data-filter="*">All</button>
-							<button data-filter=".drinks">Drinks</button>
-							<button data-filter=".lunch">Lunch</button>
-							<button data-filter=".dinner">Dinner</button>
+							<button data-filter=".chocolate">chocolate</button>
+							<button data-filter=".break">Breakfest box</button>
+							<!--<button data-filter=".dinner">Dinner</button>-->
 						</div>
 					</div>
 				</div>
 			</div>
 				
 			<div class="row special-list">
-				<div class="col-lg-4 col-md-6 special-grid drinks">
+				<div class="col-lg-4 col-md-6 special-grid chocolate">
 					<div class="gallery-single fix">
-						<img src="images/img-01.jpg" class="img-fluid" alt="Image">
+						<img src="images/choco1.jpg" class="img-fluid" alt="Image">
 						<div class="why-text">
-							<h4>Special Drinks 1</h4>
-							<p>Sed id magna vitae eros sagittis euismod.</p>
-							<h5> $7.79</h5>
+							<h4>chocolate coockies</h4>
+							<p></p>
+							<h4>7 Dt</h4>
+							<h4> <a class="btn btn-lg btn-circle btn-outline-new-black" href="couscous.html">Get it</a>  </h4> 
 						</div>
 					</div>
 				</div>
 				
-				<div class="col-lg-4 col-md-6 special-grid drinks">
+				<div class="col-lg-4 col-md-6 special-grid chocolate">
 					<div class="gallery-single fix">
-						<img src="images/img-02.jpg" class="img-fluid" alt="Image">
+						<img src="images/choco2.png" class="img-fluid" alt="Image">
 						<div class="why-text">
-							<h4>Special Drinks 2</h4>
-							<p>Sed id magna vitae eros sagittis euismod.</p>
-							<h5> $9.79</h5>
+							<h4>Dark chocolate balls</h4>
+							<p></p>
+							<h4>18 Dt</h4>
+							 <h4> <a class="btn btn-lg btn-circle btn-outline-new-black" href="couscous.html">Get it</a>  </h4> 
 						</div>
 					</div>
 				</div>
 				
-				<div class="col-lg-4 col-md-6 special-grid drinks">
+				<div class="col-lg-4 col-md-6 special-grid break">
 					<div class="gallery-single fix">
-						<img src="images/img-03.jpg" class="img-fluid" alt="Image">
+						<img src="images/br1.png" class="img-fluid" alt="Image">
 						<div class="why-text">
-							<h4>Special Drinks 3</h4>
+							<h4>sweet morning</h4>
+							<p></p>
+							<h5> 9 Dt</h5>
+							 <h4> <a class="btn btn-lg btn-circle btn-outline-new-black" href="couscous.html">Get it</a>  </h4> 
+						</div>
+					</div>
+				</div>
+				
+				<div class="col-lg-4 col-md-6 special-grid chocolate">
+					<div class="gallery-single fix">
+						<img src="images/choco3.jpg" class="img-fluid" alt="Image">
+						<div class="why-text">
+							<h4>chocolate dates</h4>
+							<p></p>
+							<h4> 10 Dt</h4>
+							<h4> <a class="btn btn-lg btn-circle btn-outline-new-black" href="couscous.html">Get it</a>  </h4> 
+						</div>
+					</div>
+				</div>
+				
+				
+				
+				<div class="col-lg-4 col-md-6 special-grid break">
+					<div class="gallery-single fix">
+						<img src="images/br2.png" class="img-fluid" alt="Image">
+						<div class="why-text">
+							<h4>special breakfest </h4>
+							<p></p>
+							<h4> 12 Dt</h4>
+							<h4> <a class="btn btn-lg btn-circle btn-outline-new-black" href="couscous.html">Get it</a>  </h4> 
+						</div>
+					</div>
+				</div>
+				
+				<div class="col-lg-4 col-md-6 special-grid break">
+					<div class="gallery-single fix">
+						<img src="images/br3.png" class="img-fluid" alt="Image">
+						<div class="why-text">
+							<h4>the big feast</h4>
+							<p></p>
+							<h5> 19 Dt</h5>
+							<h4> <a class="btn btn-lg btn-circle btn-outline-new-black" href="couscous.html">Get it</a>  </h4> 
+						</div>
+					</div>
+				</div>
+				
+		<!---	<div class="col-lg-4 col-md-6 special-grid dinner">
+					<div class="gallery-single fix">
+						<img src="images/poulet.png" class="img-fluid" alt="Image">
+						<div class="why-text">
+							<h4>Grilled chicken</h4>
 							<p>Sed id magna vitae eros sagittis euismod.</p>
-							<h5> $10.79</h5>
+							<h5> 35 Dt</h5>
+							 <h4> <a class="btn btn-lg btn-circle btn-outline-new-black" href="couscous.html">Get it</a>  </h4> 
 						</div>
 					</div>
 				</div>
 				
 				<div class="col-lg-4 col-md-6 special-grid lunch">
 					<div class="gallery-single fix">
-						<img src="images/img-04.jpg" class="img-fluid" alt="Image">
+						<img src="images/spaghetti.png" class="img-fluid" alt="Image">
 						<div class="why-text">
-							<h4>Special Lunch 1</h4>
-							<p>Sed id magna vitae eros sagittis euismod.</p>
-							<h5> $15.79</h5>
+							<h4>Seafood pasta</h4>
+							<p>italian pasta.</p>
+							<h5> 40.900 Dt</h5>
+							 <h4> <a class="btn btn-lg btn-circle btn-outline-new-black" href="couscous.html">Get it</a>  </h4> 
 						</div>
 					</div>
 				</div>
 				
-				<div class="col-lg-4 col-md-6 special-grid lunch">
+				<div class="col-lg-4 col-md-6 special-grid drinks">
 					<div class="gallery-single fix">
-						<img src="images/img-05.jpg" class="img-fluid" alt="Image">
+						<img src="images/juice.png" class="img-fluid" alt="Image">
 						<div class="why-text">
-							<h4>Special Lunch 2</h4>
-							<p>Sed id magna vitae eros sagittis euismod.</p>
-							<h5> $18.79</h5>
+							<h4>fruity juice</h4>
+							<p>high-quality fruity ingredients.</p>
+							<h5> 13 Dt</h5>
+							<h4> <a class="btn btn-lg btn-circle btn-outline-new-black" href="couscous.html">Get it</a>  </h4> 
 						</div>
 					</div>
 				</div>
-				
-				<div class="col-lg-4 col-md-6 special-grid lunch">
-					<div class="gallery-single fix">
-						<img src="images/img-06.jpg" class="img-fluid" alt="Image">
-						<div class="why-text">
-							<h4>Special Lunch 3</h4>
-							<p>Sed id magna vitae eros sagittis euismod.</p>
-							<h5> $20.79</h5>
-						</div>
-					</div>
-				</div>
-				
-				<div class="col-lg-4 col-md-6 special-grid dinner">
-					<div class="gallery-single fix">
-						<img src="images/img-07.jpg" class="img-fluid" alt="Image">
-						<div class="why-text">
-							<h4>Special Dinner 1</h4>
-							<p>Sed id magna vitae eros sagittis euismod.</p>
-							<h5> $25.79</h5>
-						</div>
-					</div>
-				</div>
-				
-				<div class="col-lg-4 col-md-6 special-grid dinner">
-					<div class="gallery-single fix">
-						<img src="images/img-08.jpg" class="img-fluid" alt="Image">
-						<div class="why-text">
-							<h4>Special Dinner 2</h4>
-							<p>Sed id magna vitae eros sagittis euismod.</p>
-							<h5> $22.79</h5>
-						</div>
-					</div>
-				</div>
-				
-				<div class="col-lg-4 col-md-6 special-grid dinner">
-					<div class="gallery-single fix">
-						<img src="images/img-09.jpg" class="img-fluid" alt="Image">
-						<div class="why-text">
-							<h4>Special Dinner 3</h4>
-							<p>Sed id magna vitae eros sagittis euismod.</p>
-							<h5> $24.79</h5>
-						</div>
-					</div>
-				</div>
-				
+			-->
 			</div>
 		</div>
 	</div>
-	<!-- End Menu -->
+	 <!--End Menu -->
 	
-	<!-- Start Contact info -->
+	<!-- Start QT 
+	<div class="qt-box qt-background">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8 ml-auto mr-auto text-left">
+					<p class="lead ">
+						" If you're not the one cooking, stay out of the way and compliment the chef. "
+					</p>
+					<span class="lead">Michael Strahan</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	 End QT -->
+	
+	<!-- Start Customer Reviews 
+	<div class="customer-reviews-box">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="heading-title text-center">
+						<h2>Customer Reviews</h2>
+						<p>Lorem Ipsum is simply dummy text of the printing and typesetting</p>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-8 mr-auto ml-auto text-center">
+					<div id="reviews" class="carousel slide" data-ride="carousel">
+						<div class="carousel-inner mt-4">
+							<div class="carousel-item text-center active">
+								<div class="img-box p-1 border rounded-circle m-auto">
+									<img class="d-block w-100 rounded-circle" src="images/profile-1.jpg" alt="">
+								</div>
+								<h5 class="mt-4 mb-0"><strong class="text-warning text-uppercase">Paul Mitchel</strong></h5>
+								<h6 class="text-dark m-0">Web Developer</h6>
+								<p class="m-0 pt-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eu sem tempor, varius quam at, luctus dui. Mauris magna metus, dapibus nec turpis vel, semper malesuada ante. Idac bibendum scelerisque non non purus. Suspendisse varius nibh non aliquet.</p>
+							</div>
+							<div class="carousel-item text-center">
+								<div class="img-box p-1 border rounded-circle m-auto">
+									<img class="d-block w-100 rounded-circle" src="images/profile-3.jpg" alt="">
+								</div>
+								<h5 class="mt-4 mb-0"><strong class="text-warning text-uppercase">Steve Fonsi</strong></h5>
+								<h6 class="text-dark m-0">Web Designer</h6>
+								<p class="m-0 pt-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eu sem tempor, varius quam at, luctus dui. Mauris magna metus, dapibus nec turpis vel, semper malesuada ante. Idac bibendum scelerisque non non purus. Suspendisse varius nibh non aliquet.</p>
+							</div>
+							<div class="carousel-item text-center">
+								<div class="img-box p-1 border rounded-circle m-auto">
+									<img class="d-block w-100 rounded-circle" src="images/profile-7.jpg" alt="">
+								</div>
+								<h5 class="mt-4 mb-0"><strong class="text-warning text-uppercase">Daniel vebar</strong></h5>
+								<h6 class="text-dark m-0">Seo Analyst</h6>
+								<p class="m-0 pt-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eu sem tempor, varius quam at, luctus dui. Mauris magna metus, dapibus nec turpis vel, semper malesuada ante. Idac bibendum scelerisque non non purus. Suspendisse varius nibh non aliquet.</p>
+							</div>
+						</div>
+						<a class="carousel-control-prev" href="#reviews" role="button" data-slide="prev">
+							<i class="fa fa-angle-left" aria-hidden="true"></i>
+							<span class="sr-only">Previous</span>
+						</a>
+						<a class="carousel-control-next" href="#reviews" role="button" data-slide="next">
+							<i class="fa fa-angle-right" aria-hidden="true"></i>
+							<span class="sr-only">Next</span>
+						</a>
+                    </div>
+				</div>
+			</div>
+		</div>
+	</div>
+	 End Customer Reviews -->
+		<!-- Start Contact info 
 	<div class="contact-imfo-box">
 		<div class="container">
 			<div class="row">
@@ -290,7 +363,7 @@
 			</div>
 		</div>
 	</div>
-	<!-- End Contact info -->
+	 End Contact info -->
 	
 	<!-- Start Footer -->
 	<footer class="footer-area bg-f">
@@ -337,7 +410,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-12">
-						<p class="company-name">All Rights Reserved. &copy; 2018 <a href="#">Yamifood Restaurant</a> Design By : 
+						<p class="company-name">All Rights Reserved. &copy; 2021 <a href="#">Pure Bowl</a> Design By : 
 					<a href="https://html.design/">html design</a></p>
 					</div>
 				</div>
