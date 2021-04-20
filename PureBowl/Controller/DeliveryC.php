@@ -50,5 +50,30 @@
 				die('Erreur: '.$e->getMessage());
 			}
 		}
+		function modifierOffre($delivery, $id){
+			try {
+				$db = config::getConnexion();
+				$query = $db->prepare(
+					'UPDATE delivery SET 
+						name = :name, 
+						hour_start = :hour_start,
+						hour_end = :hour_end,
+						salary = :salary,
+						
+					WHERE id_offre = :id_offre'
+				);
+				$query->execute([
+					'name' => $offre->getName(),
+					'hour_start' => $offre->getHourStart(),
+					'hour_end' => $offre->getHourEnd(),
+					'salary' => $offre->getSalary(),				
+					'id' => $id
+				]);
+				echo $query->rowCount() . " records UPDATED successfully <br>";
+			} catch (PDOException $e) {
+				$e->getMessage();
+			}
+		}
+
 	}
 

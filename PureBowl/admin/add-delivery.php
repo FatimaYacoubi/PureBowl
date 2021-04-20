@@ -157,10 +157,13 @@
                       for="name"
                       > Name
                     </label>
+                  
                     <input
                       id="name"
                       name="name"
                       type="text"
+                      pattern="[A-Za-z]*"
+                      placeholder="Enter the dish name"
                       class="form-control validate"
                       required
                     />

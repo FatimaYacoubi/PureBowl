@@ -111,6 +111,7 @@
           <i class="far fa-user"></i> Accounts
         </a>
       </li>
+     
       <li class="nav-item dropdown">
         <a
           class="nav-link dropdown-toggle"
@@ -183,6 +184,9 @@
             <a
               href="add-provider.php"
               class="btn btn-primary btn-block text-uppercase mb-3">Add new provider</a>
+              <td>
+                        <input type="submit" value="Modifier" name = "modifer"> 
+                    </td>
           </div>
         </div>
         

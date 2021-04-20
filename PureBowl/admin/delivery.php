@@ -135,6 +135,7 @@
       <li class="nav-item">
         <a class="nav-link d-block" href="../login.html">
           Admin, <b>Logout</b>
+
         </a>
       </li>
     </ul>
@@ -154,7 +155,7 @@
                     <th scope="col">SALARY</th>
                     <th scope="col">HOUR START</th>
                     <th scope="col">HOUR END</th>
-                    <th scope="col">ID</th>
+                    <th scope="col">ID</th>                                    
                     <th scope="col">&nbsp;</th>
                   </tr>
                 </thead>
@@ -168,11 +169,16 @@
                     <td>'.$delivery["salary"].'</td>
                     <td>'.$delivery["hour_start"].'</td>
                     <td>'.$delivery["hour_end"].'</td>
-                    <td>'.$delivery["id"].'</td>
+                    <td>'.$delivery["id"].'</td>                   
                     <td>
                     <form action="delivery.php" class="tm-delete-delivery-form" method="POST">
                     <a href="delivery.php?idDeliveryForDelete='.$delivery[ 'id'].'" class="tm-product-delete-link">
                         <i class="far fa-trash-alt tm-product-delete-icon"></i>
+                      </a>
+                    </form>
+                    <form action="edit-delivery.php" class="tm-edit-delivery-form" method="POST">
+                    <a href="edit-delivery.php?idDeliveryForEdit='.$delivery[ 'id'].'" class="tm-product-edit-link">
+                    <i class="fas fa-user-edit"></i>
                       </a>
                     </form>
                     </td>
@@ -188,6 +194,9 @@
             <a
               href="add-delivery.php"
               class="btn btn-primary btn-block text-uppercase mb-3">Add new delivery</a>
+            <a
+              href="add-delivery.php"
+              class="btn btn-primary btn-block text-uppercase mb-3">Edit delivery</a>
           </div>
         </div>
         

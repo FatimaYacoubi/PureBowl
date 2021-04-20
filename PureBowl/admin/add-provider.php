@@ -160,6 +160,8 @@
                       id="name"
                       name="name"
                       type="text"
+                      pattern="[A-Za-z]*"
+                      placeholder="Enter the dish name"
                       class="form-control validate"
                       required
                     />
@@ -186,6 +188,8 @@
                                 id="phone"
                                 name="phone"
                                 type="phone"
+                                min="0"
+                                step="0.1"
                                 class="form-control validate"
                                 required
                         />
