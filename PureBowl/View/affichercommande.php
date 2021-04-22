@@ -131,14 +131,13 @@
     <td><?PHP echo $user['time']; ?></td> 
     	 
 			<?php		
-                     echo "<td><a href=\"modifiercommande.php?id=$user[id]\">Edit</a> | <a href=\"supprimercommande.php?id=$user[id]\" onClick=\"return confirm('Are you sure you want to delete?')\">Delete</a>
+                     echo "<td><a href=\"modifiercommande.php?id=$user[id]\">Edit</a>   
                      </td>";		 ?> 				
                    
-
            
           <td>
             <form method="POST" action="supprimercommande.php">
-                        <button type="submit" name="supprimer" class="btn"><i class="fa fa-trash"></i></button> 
+                        <button type="submit" name="supprimer" class="btn" onClick="return confirm('Are you sure you want to delete?')\"><i class="fa fa-trash"></i></button> 
                         
                         <input type="hidden" value=<?PHP echo $user['id']; ?> name="id">
                         </form>
