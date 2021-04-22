@@ -1,75 +1,15 @@
-<?php  
-     
-$databaseHost = 'localhost';
-$databaseName = 'purebowl';
-$databaseUsername = 'root';
-$databasePassword = '';
 
-$mysqli = mysqli_connect($databaseHost, $databaseUsername, $databasePassword, $databaseName); 
+<?PHP
+	include "../Controller/commandeC.php";
 
+	$commandeC=new commandeC();
+	$listeUsers=$commandeC->affichercommande();
 
-
-if(isset($_POST['update']))
-{	
-
-	$id = mysqli_real_escape_string($mysqli, $_POST['id']);
-	$dish = mysqli_real_escape_string($mysqli, $_POST['dish']);
-	$meat = mysqli_real_escape_string($mysqli, $_POST['meat']);
-	$option = mysqli_real_escape_string($mysqli, $_POST['option']);	
-	$person = mysqli_real_escape_string($mysqli, $_POST['person']);
-	$time = mysqli_real_escape_string($mysqli, $_POST['time']);
-	$date = mysqli_real_escape_string($mysqli, $_POST['date']);	
-	
-	// checking empty fields
-	if(empty($dish) || empty($meat) || empty($option) || empty($person) || empty($date) || empty($time)) {	
-			
-		if(empty($dish)) {
-			echo "<font color='red'>Name field is empty.</font><br/>";
-		}
-		
-		if(empty($meat)) {
-			echo "<font color='red'>Age field is empty.</font><br/>";
-		}
-        if(empty($option)) {
-            echo "<font color='red'>Age field is empty.</font><br/>";
-        }
-		
-		if(empty($person)) {
-			echo "<font color='red'>Email field is empty.</font><br/>";
-		}		
-		if(empty($date)) {
-			echo "<font color='red'>Email field is empty.</font><br/>";
-		}		
-		if(empty($time)) {
-			echo "<font color='red'>Email field is empty.</font><br/>";
-		}		
-	} else {	
-		//updating the table
-		$result = mysqli_query($mysqli, "UPDATE commande SET dish='$dish',meat='$meat',option='$option',person='$person',date='$date' ,time='$time' WHERE id=$id");
-		
-		//redirectig to the display page. In our case, it is index.php
-		header("Location:affichercommande.php");
-	}
-}
 ?>
-<?php
-//getting id from url
-$id = $_GET['id'];
 
-//selecting data associated with this particular id
-$result = mysqli_query($mysqli, "SELECT * FROM commande WHERE id=$id");
 
-while($res = mysqli_fetch_array($result))
-{
-	$dish = $res['dish'];
-	$meat = $res['meat'];
-	$option = $res['option'];
-	$person = $res['person'];
-	$date = $res['date'];
-	$time = $res['time'];
-}
-?>
-<html>
+<!DOCTYPE html> 
+<html> 
   <head> 
    
     <title> Pure Bowl</title>  
@@ -85,67 +25,67 @@ while($res = mysqli_fetch_array($result))
 <!-- End Styles -->
 
     <!-- Site Icons -->
-    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">    
+    <link rel="stylesheet" href="../css/bootstrap.min.css">    
   <!-- Site CSS -->
 
 
-    <link rel="stylesheet" href="css/style.css"> 
-        <link rel="stylesheet" href="css/style2.css">    
+    <link rel="stylesheet" href="../css/style.css"> 
+        <link rel="stylesheet" href="../css/style2.css">    
 
-    <link rel="stylesheet" href="css/style.css">    
+    <link rel="stylesheet" href="../css/style.css">    
   <!-- Pickadate CSS -->
-    <link rel="stylesheet" href="css/classic.css">    
-  <link rel="stylesheet" href="css/classic.date.css">    
-  <link rel="stylesheet" href="css/classic.time.css">    
+    <link rel="stylesheet" href="../css/classic.css">    
+  <link rel="stylesheet" href="../css/classic.date.css">    
+  <link rel="stylesheet" href="../css/classic.time.css">    
     <!-- Responsive CSS -->
-    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="../css/responsive.css">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/custom.css">
+    <link rel="stylesheet" href="../css/custom.css">
 
   </head> 
   <body> 
     <header class="top-navbar">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container">
-        <a class="navbar-brand" href="index.html">
-          <img src="images/logo.png" alt="" />
+        <a class="navbar-brand" href="../index.html">
+          <img src="../images/logo.png" alt="" />
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbars-rs-food" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbars-rs-food">
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-            <li class="nav-item"><a class="nav-link" href="menu.html">Menu</a></li>
+            <li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="../menu.html">Menu</a></li>
             <li class="nav-item active dropdown">
               
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Offres</a>
               <div class="dropdown-menu" aria-labelledby="dropdown-a">
-                <a class="dropdown-item" href="offre.html">Offre</a>
-                <a class="dropdown-item" href="offre.html">Promotion</a>
+                <a class="dropdown-item" href="../offre.html">Offre</a>
+                <a class="dropdown-item" href="../offre.html">Promotion</a>
                 </div>
               </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Blog</a>
               <div class="dropdown-menu" aria-labelledby="dropdown-a">
-                <a class="dropdown-item" href="blog.html">blog</a>
-                <a class="dropdown-item" href="blog-details.html">blog Single</a>
+                <a class="dropdown-item" href="../blog.html">blog</a>
+                <a class="dropdown-item" href="../blog-details.html">blog Single</a>
               </div>
             </li>
-            <li class="nav-item"><a class="nav-link" href="affichercommande.php">My orders</a></li>
-            <li class="nav-item"><a class="nav-link" href="reclamation.html">Reclamation</a></li>
-            <li class="nav-item"><a class="nav-link" href="gift.html">Gift</a></li>
+            <li class="nav-item"><a class="nav-link" href="../affichercommande.php">My orders</a></li>
+            <li class="nav-item"><a class="nav-link" href="../reclamation.html">Reclamation</a></li>
+            <li class="nav-item"><a class="nav-link" href="../gift.html">Gift</a></li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Sign in</a>
               <div class="dropdown-menu" aria-labelledby="dropdown-a">
-                <a class="dropdown-item" href="login.html">As an administrator</a>
-                <a class="dropdown-item" href="blog-details.html">As a client</a>
+                <a class="dropdown-item" href="../login.html">As an administrator</a>
+                <a class="dropdown-item" href="../blog-details.html">As a client</a>
               </div>
             </li>
           </ul>
@@ -157,14 +97,14 @@ while($res = mysqli_fetch_array($result))
         <br>
         <br><br>
         <br>
-    
-     <form name="form1" method="post" action="modifiercommande.php">
-  <table align="center" border="1px" style="width:100px ;" class="myOtherTable"> 
+        
+        
+  <table align="center" border="1px" style="width:600px; line-height:40px;" class="myOtherTable"> 
   <tr> <div class="container">
       <div class="row">
         <div class="col-lg-12">
           <div class="heading-title text-center">
-            <h2>Modify your order and we'll review it!</h2>
+            <h2>Your Orders</h2>
           </div>
         </div>
       </div>
@@ -175,40 +115,48 @@ while($res = mysqli_fetch_array($result))
         <th> People </th> 
         <th> Date</th> 
         <th> Time </th> 
-        <th> Annuler </th> 
-        <th> Modifier </th> 
+        <th> What to do ?  </th> 
+        
         
     </tr> 
     
     <?php 
-    { 
-    ?> 
-    <tr> <td><input type="text" name="dish" value="<?php echo $dish;?>"></td> 
-    <td><input type="text" name="meat" value="<?php echo $meat;?>"></td> 
-    <td><input type="text" name="option" value="<?php echo $option;?>"></td> 
-    <td><input type="text" name="person" value="<?php echo $person;?>"></td> 
-    <td><input type="text" name="date" value="<?php echo $date;?>"></td> 
-    <td><input type="text" name="time" value="<?php echo $time;?>"></td> 
-<?php 
-               echo "<td><a href=affichercommande.php>cancel</a> "
-          ?>              <input type="hidden" name="id" value=<?php echo $_GET['id'];?>>
+    foreach($listeUsers as $user){
+            ?> 
+    <tr> <td><?PHP echo $user['dish']; ?></td> 
+    <td><?PHP echo $user['meat']; ?></td> 
+    <td><?PHP echo $user['option']; ?></td> 
+    <td><?PHP echo $user['person']; ?></td> 
+    <td><?PHP echo $user['date']; ?></td> 
+    <td><?PHP echo $user['time']; ?></td> 
+    	 
+			<?php		
+                     echo "<td><a href=\"modifiercommande.php?id=$user[id]\">Edit</a> | <a href=\"supprimercommande.php?id=$user[id]\" onClick=\"return confirm('Are you sure you want to delete?')\">Delete</a>
+                     </td>";		 ?> 				
+                   
 
-                  <td><input type="submit" name="update" value="Update" class="btn-222" ></td>
-    </table>   </form>
-
+           
+          <td>
+            <form method="POST" action="supprimercommande.php">
+                        <button type="submit" name="supprimer" class="btn"><i class="fa fa-trash"></i></button> 
+                        
+                        <input type="hidden" value=<?PHP echo $user['id']; ?> name="id">
+                        </form>
+          </td>
     </tr> 
   <?php 
                } 
           ?> 
-<!--             <a href="modifierUtilisateur.phpid=<?PHPecho $rows[]; ?>" class="btn-222" > Modifier </a>
-Start Customer Reviews -->
+
+  </table> 
+  
   <div class="customer-reviews-box">
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
           <div class="heading-title text-center">
             <h2>Customer Reviews</h2>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting</p>
+            <p>Here are some customer reviews</p>
           </div>
         </div>
       </div>
@@ -218,7 +166,7 @@ Start Customer Reviews -->
             <div class="carousel-inner mt-4">
               <div class="carousel-item text-center active">
                 <div class="img-box p-1 border rounded-circle m-auto">
-                  <img class="d-block w-100 rounded-circle" src="images/profile-1.jpg" alt="">
+                  <img class="d-block w-100 rounded-circle" src="../images/profile-1.jpg" alt="">
                 </div>
                 <h5 class="mt-4 mb-0"><strong class="text-warning text-uppercase">Wajdi Hachana</strong></h5>
                 <h6 class="text-dark m-0">Web Developer</h6>
@@ -226,7 +174,7 @@ Start Customer Reviews -->
               </div>
               <div class="carousel-item text-center">
                 <div class="img-box p-1 border rounded-circle m-auto">
-                  <img class="d-block w-100 rounded-circle" src="images/profile-3.jpg" alt="">
+                  <img class="d-block w-100 rounded-circle" src="../images/profile-3.jpg" alt="">
                 </div>
                 <h5 class="mt-4 mb-0"><strong class="text-warning text-uppercase">Mohamed Hedi Yaacoubi</strong></h5>
                 <h6 class="text-dark m-0">Dentist</h6>
@@ -234,7 +182,7 @@ Start Customer Reviews -->
               </div>
               <div class="carousel-item text-center">
                 <div class="img-box p-1 border rounded-circle m-auto">
-                  <img class="d-block w-100 rounded-circle" src="images/profile-7.jpg" alt="">
+                  <img class="d-block w-100 rounded-circle" src="../images/profile-7.jpg" alt="">
                 </div>
                 <h5 class="mt-4 mb-0"><strong class="text-warning text-uppercase">Daniel vebar</strong></h5>
                 <h6 class="text-dark m-0">Seo Analyst</h6>
@@ -350,26 +298,21 @@ Start Customer Reviews -->
   <a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
 
   <!-- ALL JS FILES -->
-  <script src="js/jquery-3.2.1.min.js"></script>
-  <script src="js/popper.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
+  <script src="../js/jquery-3.2.1.min.js"></script>
+  <script src="../js/popper.min.js"></script>
+  <script src="../js/bootstrap.min.js"></script>
     <!-- ALL PLUGINS -->
-  <script src="js/jquery.superslides.min.js"></script>
-  <script src="js/images-loded.min.js"></script>
-  <script src="js/isotope.min.js"></script>
-  <script src="js/baguetteBox.min.js"></script>
-  <script src="js/picker.js"></script>
-  <script src="js/picker.date.js"></script>
-  <script src="js/picker.time.js"></script>
-  <script src="js/legacy.js"></script>
-  <script src="js/form-validator.min.js"></script>
-    <script src="js/contact-form-script.js"></script>
-    <script src="js/custom.js"></script>
+  <script src="../js/jquery.superslides.min.js"></script>
+  <script src="../js/images-loded.min.js"></script>
+  <script src="../js/isotope.min.js"></script>
+  <script src="../js/baguetteBox.min.js"></script>
+  <script src="../js/picker.js"></script>
+  <script src="../js/picker.date.js"></script>
+  <script src="../js/picker.time.js"></script>
+  <script src="../js/legacy.js"></script>
+  <script src="../js/form-validator.min.js"></script>
+    <script src="../js/contact-form-script.js"></script>
+    <script src="../js/custom.js"></script>
 </body>
 </html>
-  
-   
-   
-
-
   
