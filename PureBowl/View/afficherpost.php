@@ -12,6 +12,24 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Add icon library -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+.btn {
+  background-color: DodgerBlue;
+  border: none;
+  color: white;
+  padding: 12px 16px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* Darker background on mouse-over */
+.btn:hover {
+  background-color: RoyalBlue;
+}
+</style>
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Dashboard Admin - Dashboard HTML Template</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700">
@@ -123,38 +141,48 @@
                     <p class="text-white mt-5 mb-5">Welcome back, <b>Admin</b></p>
                 </div>
             </div>
-            
-		<table align="center" border="1px" style="width:600px; line-height:40px;" class="myOtherTable">
-			<tr>
-				<th>Id</th>
-				<th>Description</th>
-				<th>Date</th>
-				<th>Titre</th>
-				<th>supprimer</th>
-				<th>modifier</th>
-			</tr>
+            <table class="table table-hover tm-table-small tm-product-table">
+                <thead>
+                  <tr>
+                    <th scope="col">&nbsp;</th>
+                    <th scope="col">ID</th>
+                    <th scope="col">Titre</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">&nbsp;</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <?PHP
+                foreach($listeUsers as $user){
+            ?>
+                    <th scope="row"><input type="checkbox" /></th>
+                    <td><?PHP echo $user['id']; ?></td>
+                    <td class="tm-product-name"><?PHP echo $user['titre']; ?></td>
+                    <td><?PHP echo $user['date']; ?></td>
+                    <td>
 
-			<?PHP
-				foreach($listeUsers as $user){
-			?>
-				<tr>
-					<td><?PHP echo $user['id']; ?></td>
-					<td><?PHP echo $user['description']; ?></td>
-					<td><?PHP echo $user['date']; ?></td>
-					<td><?PHP echo $user['titre']; ?></td>
-					<td>
-						<form method="POST" action="supprimerpost.php">
-						<input type="submit" name="supprimer" value="supprimer" >
-						<input type="hidden" value=<?PHP echo $user['id']; ?> name="id">
-						</form>
-					</td>
-					<td>
-						<a href="modifierpost.php?id=<?PHP echo $user['id']; ?>"> Modifier </a>
-					</td>
-				</tr>
-			<?PHP
-				}
-			?>
-		</table>
+                      <a href="modifierpost.php?id=<?PHP echo $user['id']; ?>" class=" btn | far fa-edit" >
+                        
+                      </a>
+                    </td>
+                    <td >
+                        <form method="POST" action="supprimerpost.php">
+                        <button type="submit" name="supprimer" class="btn"><i class="fa fa-trash"></i></button> 
+                        
+                        <input type="hidden" value=<?PHP echo $user['id']; ?> name="id">
+                        </form>
+                    </td>
+                    
+                  </tr>
+                  
+                </tbody>
+                <?PHP
+                }
+            ?>
+              </table>
+		
 	</body>
 </html>
