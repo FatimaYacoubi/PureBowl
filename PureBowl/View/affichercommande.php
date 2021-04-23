@@ -119,7 +119,7 @@ button:disabled:hover  {
    </style>
 <!-- End Styles -->     <title> Pure Bowl</title>  
 
-   <meta name="keywords" content="">
+   <meta name="keywords" content=""> 
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Site Icons -->
