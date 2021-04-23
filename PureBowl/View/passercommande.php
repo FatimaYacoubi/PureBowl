@@ -34,11 +34,11 @@
                 $_POST['time']
             );
             $userC->ajoutercommande($user);
-            header('Location:affichercommande.php');
+            
         }
         else
             $error = "Missing information";
     }
-
+header('Location:affichercommande.php');
     
 ?>

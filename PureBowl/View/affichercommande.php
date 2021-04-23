@@ -115,7 +115,9 @@
         <th> People </th> 
         <th> Date</th> 
         <th> Time </th> 
-        <th> What to do ?  </th> 
+        <th> Edit  </th> 
+                <th> Delete </th> 
+
         
         
     </tr> 
@@ -130,14 +132,18 @@
     <td><?PHP echo $user['date']; ?></td> 
     <td><?PHP echo $user['time']; ?></td> 
     	 
-			<?php		
-                     echo "<td><a href=\"modifiercommande.php?id=$user[id]\">Edit</a>   
-                     </td>";		 ?> 				
+			
                    
-           
+           <td>
+
+                      <a href="modifiercommande.php?id=<?PHP echo $user['id']; ?>"  > 
+                       <button class="btn-222" style="color:black">Edit</button>
+
+                      </a>
+                    </td>
           <td>
             <form method="POST" action="supprimercommande.php">
-                        <button type="submit" name="supprimer" class="btn" onClick="return confirm('Are you sure you want to delete?')\"><i class="fa fa-trash"></i></button> 
+                        <button type="submit" name="supprimer" class="btn-222" style="color:black" onClick="\return confirm('Are you sure you want to delete?')\"> Delete</button> 
                         
                         <input type="hidden" value=<?PHP echo $user['id']; ?> name="id">
                         </form>
