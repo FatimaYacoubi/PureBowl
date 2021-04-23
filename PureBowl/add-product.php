@@ -91,6 +91,12 @@
               </a>
             </li>
 
+            <li class="nav-item">
+              <a class="nav-link " href="giftBack.html">
+                <i class="fas fa-shopping-cart"></i> Gift
+              </a>
+            </li>
+
   <li class="nav-item">
               <a class="nav-link " href="Pack.html">
                 <i class="fas fa-shopping-cart"></i> Pack
@@ -153,7 +159,7 @@
                       name="name"
                       type="text"
                       placeholder="Enter the dish name"
-                      pattern="[A-Za-z]*"
+                      pattern="[A-Z a-z]*"
                       class="form-control validate"
                       required
                     />
