@@ -223,7 +223,6 @@
                   </div> 
                   <div class="col-md-12">
                     <div class="form-group">
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script >
 $(document).ready(function(){
@@ -240,6 +239,8 @@ $(document).ready(function(){
 $('#dateControl').attr('min',maxDate);
 })
 </script>
+              
+
                       <input id="dateControl" class="datepicker picker__input form-control" name="date" 
                        placeholder="Please enter the date you want it delivered" type="date" value="">
                       <div class="help-block with-errors"></div>
@@ -247,7 +248,7 @@ $('#dateControl').attr('min',maxDate);
                   </div>
                   <div class="col-md-12">
                     <div class="form-group">
-                      <input id="time" class="time form-control picker__input"  name="time" 
+                    	        <input id="time" class="time form-control picker__input"  name="time" 
                        placeholder="Please enter the time you want it delivered" type="time" value="" required data-error="Please enter time">
                       <div class="help-block with-errors"></div>
                     </div>                                 
