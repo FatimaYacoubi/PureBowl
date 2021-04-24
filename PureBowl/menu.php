@@ -131,14 +131,13 @@
 				<?PHP
 				foreach($listDishes as $dish){ 
 					?>
-						<div class="col-lg-4 col-md-6 special-grid lunch">
+						<div class="col-lg-4 col-md-10 special-grid lunch">
 							<div class="gallery-single fix">
 								<img src="images/img-01.jpg" class="img-fluid" alt="Image">
 								<div class="why-text">
-									<h4><?PHP echo $dish['name']; ?></h4>
+								<pre> <h4>  <?PHP echo $dish['name']; echo('                '); echo $dish['price']; ?> </h4> </pre>
 									<p><?PHP echo $dish['ingredients']; ?></p>
-									<h4><?PHP echo $dish['price']; ?></h4>
-									<h4> <a class="btn btn-lg btn-circle btn-outline-new-black" href="couscous.html">Get it</a>  </h4> 
+										<h4> <a class="btn btn-lg btn-circle btn-outline-new-black" href="couscous.html">Get it</a>        <a class="btn btn-lg btn-circle btn-outline-new-black" href="couscous.html">Tuto</a> </h4> 
 								</div>
 							</div>
 						</div>
