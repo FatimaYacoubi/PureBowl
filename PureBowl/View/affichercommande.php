@@ -288,7 +288,7 @@ button:disabled:hover  {
                } 
           ?> 
         </table>
-        <h1>Votre total est <strong><?php 
+        <h1>Votre total est de <strong><?php 
 
     echo $sum;
             ?></strong> DT</h1>
