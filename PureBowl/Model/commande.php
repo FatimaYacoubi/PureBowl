@@ -1,5 +1,5 @@
 <?PHP
-	class post{
+	class commande{
 		private ?int $id = null;
 		private ?string $dish = null;
 		private ?string $meat = null;

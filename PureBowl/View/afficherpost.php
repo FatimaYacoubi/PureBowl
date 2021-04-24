@@ -1,8 +1,8 @@
 <?PHP
 	include "../Controller/postC.php";
 
-	$reclamationC=new postC();
-	$listeUsers=$reclamationC->afficherpostadmin();
+	$postC=new postC();
+	$listeUsers=$postC->afficherpostadmin();
 
 ?>
 
@@ -47,7 +47,7 @@
 </style>
     </head>
     <body id="reportsPage">
-		<button><a href="../reclamation.html">Retour</a></button>
+		<button><a href="../index1.html">Retour</a></button>
 		<hr>
 		<div class="" id="home">
         <nav class="navbar navbar-expand-xl">
