@@ -8,22 +8,25 @@
   if (
     isset($_POST["duration"]) && 
         
-        isset($_POST["steps"]) 
+        isset($_POST["steps"]) &&
+        isset($_POST["id"]) 
   ){
     if (
             !empty($_POST["duration"]) && 
          
-            !empty($_POST["steps"]) 
+            !empty($_POST["steps"]) &&
+            !empty($_POST["id"]) 
           
         ) {
             $recipe = new recipe(
                 $_POST['duration'],
             
-                $_POST['steps']
+                $_POST['steps'],
+                $_POST['id']
               
       );
       
-            $recipeC->modifyRecipe($offer, $_GET['idR']);
+            $recipeC->modifyRecipe($recipe, $_GET['idR']);
             header('refresh:5;url=displayRecipe.php');
         }
         else
@@ -82,80 +85,22 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mx-auto h-100">
+            
+            
+            
             <li class="nav-item">
-              <a class="nav-link" href="index.html">
-                <i class="fas fa-tachometer-alt"></i> Dashboard
-                <span class="sr-only">(current)</span>
-              </a>
-            </li>
-            <li class="nav-item dropdown">
-              <a
-                class="nav-link dropdown-toggle"
-                href="#"
-                id="navbarDropdown"
-                role="button"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
-                <i class="far fa-file-alt"></i>
-                <span> Reports <i class="fas fa-angle-down"></i> </span>
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">Daily Report</a>
-                <a class="dropdown-item" href="#">Weekly Report</a>
-                <a class="dropdown-item" href="#">Yearly Report</a>
-              </div>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link " href="products.html">
-                <i class="fas fa-shopping-cart"></i> Products
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" href="recipes.html">
+              <a class="nav-link active" href="displayRecipe.php">
                 <i class="fas fa-shopping-cart"></i> Recipes
               </a>
             </li>
-             <li class="nav-item">
-                <a class="nav-link " href="Pack.html">
-                  <i class="fas fa-shopping-cart"></i> Pack
-                </a>
-              </li>
+             
 
-            <li class="nav-item">
-              <a class="nav-link" href="accounts.html">
-                <i class="far fa-user"></i> Accounts
-              </a>
-            </li>
-             <li class="nav-item">
-              <a class="nav-link" href="accounts.html">
-                <i class="far fa-user"></i> Promo
-              </a>
-            </li>
-            <li class="nav-item dropdown">
-              <a
-                class="nav-link dropdown-toggle"
-                href="#"
-                id="navbarDropdown"
-                role="button"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
-                <i class="fas fa-cog"></i>
-                <span> Settings <i class="fas fa-angle-down"></i> </span>
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">Profile</a>
-                <a class="dropdown-item" href="#">Billing</a>
-                <a class="dropdown-item" href="#">Customize</a>
-              </div>
-            </li>
+            
+             
           </ul>
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link d-block" href="login.html">
+              <a class="nav-link d-block" href="../login.html">
                 Admin, <b>Logout</b>
               </a>
             </li>
@@ -193,7 +138,7 @@
                       id="idR"
                       name="idR"
                       type="text"
-                      value="<?php echo $offer['idR']; ?>" disabled
+                      value="<?php echo $recipe['idR']; ?>" disabled
                       class="form-control validate"
                     />
                   </div>
@@ -207,7 +152,7 @@
                       id="duration"
                       name="duration"
                       type="text"
-                      value="<?php echo $offer['duration']; ?>"
+                      value="<?php echo $recipe['duration']; ?>"
                       class="form-control validate"
                     />
                   </div>
@@ -222,11 +167,26 @@
                       id="steps"
                       name="steps"
                       type="text"
-                      value="<?php echo $offer['steps']; ?>"
+                      value="<?php echo $recipe['steps']; ?>"
                       class="form-control validate"
                     />
                     
                   </div>
+                  <div class="form-group mb-3">
+                    <label
+                      for="id"
+                      > ID dish
+                    </label>
+                    
+                    <input
+                      id="id"
+                      name="id"
+                      type="text"
+                      value="<?php echo $recipe['id']; ?>" disabled
+                      class="form-control validate"
+                    />
+                  </div>
+
                   
     
                        

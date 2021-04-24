@@ -5,16 +5,16 @@
 	class recipeC {
 		
 		function addRecipe($recipe){
-			$sql="INSERT INTO recipes (duration, steps) 
-			VALUES (:duration,:steps)";
+			$sql="INSERT INTO recipes (duration, steps,id) 
+			VALUES (:duration,:steps,:id)";
 			$db = config::getConnexion();
 			try{
 				$query = $db->prepare($sql);
 			
 				$query->execute([
-					'duration' => $offre->getDuration(),
-					'steps' => $offre->getSteps()
-					
+					'duration' => $recipe->getDuration(),
+					'steps' => $recipe->getSteps(),
+					'id' => $recipe->getId()
 				]);			
 			}
 			catch (Exception $e){
@@ -46,19 +46,21 @@
 				die('Erreur: '.$e->getMessage());
 			}
 		}
-		function modifyRecipe($recipe, $idR){
+		function modifyRecipe($recipe, $idR,$id){
 			try {
 				$db = config::getConnexion();
 				$query = $db->prepare(
-					'UPDATE offre SET 
+					'UPDATE recipes SET 
 						duration = :duration, 
-						steps = :steps
+						steps = :steps,
+						id = :id
 						
 					WHERE idR = :idR'
 				);
 				$query->execute([
-					'duration' => $offre->getDuration(),
-					'steps' => $offre->getSteps(),
+					'duration' => $recipe->getDuration(),
+					'steps' => $recipe->getSteps(),
+					'id' => $recipe->getId(),
 					
 					'idR' => $idR
 				]);
@@ -74,8 +76,8 @@
 				$query=$db->prepare($sql);
 				$query->execute();
 
-				$offer=$query->fetch();
-				return $offer;
+				$recipe=$query->fetch();
+				return $recipe;
 			}
 			catch (Exception $e){
 				die('Erreur: '.$e->getMessage());
@@ -88,8 +90,8 @@
 				$query=$db->prepare($sql);
 				$query->execute();
 				
-				$offer = $query->fetch(PDO::FETCH_OBJ);
-				return $offer;
+				$recipe = $query->fetch(PDO::FETCH_OBJ);
+				return $recipe;
 			}
 			catch (Exception $e){
 				die('Erreur: '.$e->getMessage());

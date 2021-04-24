@@ -6,24 +6,24 @@
 		private ?int $id = null;
 		
 		
-		function __construct( string $duration, string $steps){
+		function __construct( string $duration, string $steps,int $id){
 			
 			$this->duration=$duration;
 			$this->steps=$steps;
-			
+			$this->id=$id;
 		}
 		
 		function getIdR(): int{
 			return $this->idR;
 		}
-		function getDurarion(): string{
+		function getDuration(): string{
 			return $this->duration;
 		}
 		function getSteps(): string{
 			return $this->steps;
 		}
 		function getId(): int{
-			return $this->Id;
+			return $this->id;
 		}
 		function setIdR(int $idR): void{
 			$this->idR=$idR;

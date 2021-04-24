@@ -2,7 +2,7 @@
 	include "../Controller/recipeC.php";
 
 	$recipeC=new recipeC();
-	$listerecipes=$recipeC->displayRecipe();
+	$listeRecipes=$recipeC->displayRecipe();
 
 ?>
 
@@ -50,7 +50,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mx-auto h-100">
             <li class="nav-item">
-              <a class="nav-link" href="index1.html">
+              <a class="nav-link" href="../index1.html">
                 <i class="fas fa-tachometer-alt"></i> Dashboard
                 <span class="sr-only">(current)</span>
               </a>
@@ -74,29 +74,34 @@
               </div>
             </li>
             <li class="nav-item">
-              <a class="nav-link " href="products.html">
+              <a class="nav-link " href="../products.html">
                 <i class="fas fa-shopping-cart"></i> Products
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active " href="recipes.html">
+              <a class="nav-link active " href="displayRecipe.php">
                 <i class="fas fa-shopping-cart"></i> Recipes
               </a>
             </li>
             <li class="nav-item">
-                            <a class="nav-link " href="Pack.html">
+                            <a class="nav-link " href="../Pack.html">
                                 <i class="fas fa-shopping-cart"></i>
                                 Pack
                             </a>
-                        </li>
+              </li>
+            <li class="nav-item">
+                <a class="nav-link " href="../giftBack.html">
+                  <i class="fas fa-shopping-cart"></i> Gifts
+                </a>
+              </li>
 
             <li class="nav-item">
-              <a class="nav-link" href="accounts.html">
+              <a class="nav-link" href="../accounts.html">
                 <i class="far fa-user"></i> Accounts
               </a>
             </li>
              <li class="nav-item">
-              <a class="nav-link" href="promo.html">
+              <a class="nav-link" href="../promo.html">
                 <i class="far fa-user"></i> Promo
               </a>
             </li>
@@ -121,7 +126,7 @@
           </ul>
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link d-block" href="login.html">
+              <a class="nav-link d-block" href="../login.html">
                 Admin, <b>Logout</b>
               </a>
             </li>
@@ -137,10 +142,12 @@
               <table class="table table-hover tm-table-small tm-product-table">
                 <thead>
                   <tr>
-                    <th scope="col">&nbsp;</th> 
+                    <th scope="col">&nbsp;</th>
+                     
+                    <th scope="col">ID </th>
                     <th scope="col">DURATION</th>
                     <th scope="col">STEPS</th>
-                    <th scope="col">ID </th>
+                    <th scope="col">ID dish</th>
 
                     <th scope="col">&nbsp;</th>
                   </tr>
@@ -152,22 +159,24 @@
 				foreach($listeRecipes as $recipe){
 			?>
 			<tr>
-          <td><?PHP echo $offer['idR']; ?></td> 
-					<td><?PHP echo $offer['duration']; ?></td> 
-					<td><?PHP echo $offer['steps']; ?></td>
-					
+      <td></td>
+          <td><?PHP echo $recipe['idR']; ?></td> 
+					<td><?PHP echo $recipe['duration']; ?></td> 
+					<td><?PHP echo $recipe['steps']; ?></td>
+          <td><?PHP echo $recipe['id']; ?></td>
+					<td></td>
 					<td>
 						 
-                      <a href="#" class="tm-product-delete-link">
+            <!-- <a href="#" class="tm-product-delete-link">
                         <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                      </a>
+             </a>-->
                     
 						<form method="POST" action="deleteRecipe.php">
-						<input type="submit" name="supprimer" value="supprimer">
-						<input type="hidden" value=<?PHP echo $offer['idR']; ?> name="idR"  >
+						<input type="submit" name="DELETE" value="DELETE" class="btn btn-primary btn-block text-uppercase">
+						<input type="hidden" value=<?PHP echo $recipe['idR']; ?> name="idR"  >
 						</form> 					</td>
 					<td>
-						<a href="modifyrecipe.php?idR=<?PHP echo $offer['idR']; ?>"> Modifier </a>
+						<a href="modifyRecipe.php? idR=<?PHP echo $recipe['idR']; ?>" class="btn btn-primary btn-block text-uppercase"> Modifier </a>
 					</td>
 				</tr>
 			<?PHP
@@ -288,9 +297,7 @@
           <a
               href="addRecipe.php"
               class="btn btn-primary btn-block text-uppercase mb-3"> Add Recipe </a>
-            <button class="btn btn-primary btn-block text-uppercase">
-              Delete selected products
-            </button> 
+             
           </div>
         </div>
         
