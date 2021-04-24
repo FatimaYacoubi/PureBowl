@@ -159,7 +159,7 @@
                       name="name"
                       type="text"
                       placeholder="Enter the dish name"
-                      pattern="[A-Za-z]*"
+                      pattern="[A-Z a-z]*"
                       class="form-control validate"
                       required
                     />

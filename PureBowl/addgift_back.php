@@ -12,6 +12,7 @@
     if (
         isset($_POST["nom"]) && 
         isset($_POST["imageG"]) &&
+        isset($_POST["descr"]) && 
         isset($_POST["price"]) 
         
     ) {
