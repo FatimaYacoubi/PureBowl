@@ -1,4 +1,4 @@
-?>
+
 <!DOCTYPE html>
 <html lang="en"><!-- Basic -->
 <head>
@@ -224,8 +224,23 @@
                   <div class="col-md-12">
                     <div class="form-group">
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script >
+$(document).ready(function(){
 
-                      <input id="date" class="datepicker picker__input form-control" name="date" 
+	var dtToday= new Date();
+	var month= dtToday.getMonth()+1;
+	var day= dtToday.getDate();
+	var year=dtToday.getFullYear();
+	if(month<10)
+		month='0'+month.toString();
+	if(day<10)
+		day='0'+day.toString();
+	var maxDate = year+'-'+month+'-'+day;
+$('#dateControl').attr('min',maxDate);
+})
+</script>
+                      <input id="dateControl" class="datepicker picker__input form-control" name="date" 
                        placeholder="Please enter the date you want it delivered" type="date" value="">
                       <div class="help-block with-errors"></div>
                     </div>                                 
