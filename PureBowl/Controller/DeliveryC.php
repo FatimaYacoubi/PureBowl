@@ -18,10 +18,24 @@
 			}	
 		}
 
+        function displayDeliveryById($id){
+
+            $sql="SELECT * FROM delivery where id=".$id;
+            $db = config::getConnexion();
+
+            try{
+                $liste = $db->query($sql);
+                return $liste->fetch();
+            }
+            catch (Exception $e){
+                die('Erreur: '.$e->getMessage());
+            }
+        }
+
 
         function addDelivery($delivery){
-            $sql="INSERT INTO delivery (name, salary, hour_start, hour_end) 
-			VALUES (:name, :salary, :hour_start, :hour_end)";
+            $sql="INSERT INTO delivery (name, salary, hour_start, hour_end, image) 
+			VALUES (:name, :salary, :hour_start, :hour_end, :image)";
             $db = config::getConnexion();
             try{
                 $query = $db->prepare($sql);
@@ -30,50 +44,58 @@
                     'name' => $delivery->getName(),
                     'salary' => $delivery->getSalary(),
                     'hour_start' => $delivery->getHourStart(),
-                    'hour_end' => $delivery->getHourEnd()
+                    'hour_end' => $delivery->getHourEnd(),
+                    'image' => $delivery->getImage()
 
                 ]);
+                return 1;
             }
             catch (Exception $e){
                 echo 'Erreur: '.$e->getMessage();
             }
         }
-        function deleteDelivery($id){
-			$sql="DELETE FROM delivery WHERE id= :id";
-			$db = config::getConnexion();
-			$req=$db->prepare($sql);
-			$req->bindValue(':id',$id);
-			try{
-				$req->execute();
-			}
-			catch (Exception $e){
-				die('Erreur: '.$e->getMessage());
-			}
-		}
-		function modifierOffre($delivery, $id){
-			try {
-				$db = config::getConnexion();
-				$query = $db->prepare(
-					'UPDATE delivery SET 
-						name = :name, 
-						hour_start = :hour_start,
-						hour_end = :hour_end,
-						salary = :salary,
-						
-					WHERE id_offre = :id_offre'
-				);
-				$query->execute([
-					'name' => $offre->getName(),
-					'hour_start' => $offre->getHourStart(),
-					'hour_end' => $offre->getHourEnd(),
-					'salary' => $offre->getSalary(),				
-					'id' => $id
-				]);
-				echo $query->rowCount() . " records UPDATED successfully <br>";
-			} catch (PDOException $e) {
-				$e->getMessage();
-			}
-		}
 
+        function updateDelivery($delivery){
+
+            $db = config::getConnexion();
+            $sql = "UPDATE delivery SET 
+                               name=:name, 
+                               salary=:salary,
+                               hour_start=:hour_start, 
+                               hour_end=:hour_end,
+                               image=:image  
+                               WHERE id=:id";
+
+            try{
+                $query= $db->prepare($sql);
+
+                $query->execute([
+                    'id' => $delivery["id"],
+                    'name' => $delivery["name"],
+                    'salary' => $delivery["salary"],
+                    'hour_start' => $delivery["hour_start"],
+                    'hour_end' => $delivery["hour_end"],
+                    'image' => $delivery["image"]
+
+                ]);
+                return 1 ;
+
+            } catch (Exception $e){
+                echo 'Erreur: '.$e->getMessage();
+            }
+        }
+
+        function deleteDelivery($id){
+            $sql="DELETE FROM delivery WHERE id= :id";
+            $db = config::getConnexion();
+            try{
+                $query = $db->prepare($sql);
+                $query->bindValue(":id", $id);
+                $query->execute();
+            }
+            catch (Exception $e){
+                echo 'Erreur: '.$e->getMessage();
+            }
+        }
 	}
 

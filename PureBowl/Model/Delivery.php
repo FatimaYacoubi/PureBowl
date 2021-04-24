@@ -5,14 +5,19 @@
 		private $hour_start ;
 		private $hour_end ;
 		private $salary ;
-        
-		function __construct( $name =null, $hour_start = null, $hour_end = null, $salary= null){
+        private $image ;
+
+        function __construct($name =null, $salary= null, $hour_start = null, $hour_end = null, $image = null){
 			
 			$this->name=$name;
+            $this->salary = $salary;
 			$this->hour_start=$hour_start;
-			$this->hour_end=$hour_end;
-			$this->salary = $salary;
+			$this->hour_end =$hour_end;
+			$this->image = $image;
+
 		}
+
+		
 
         public function getId()
         {
@@ -57,6 +62,14 @@
         public function setSalary($salary)
         {
             $this->salary = $salary;
+        }
+        public function getImage()
+        {
+            return $this->image;
+        }
+        public function setImage($image)
+        {
+            $this->image = $image;
         }
 
 	}

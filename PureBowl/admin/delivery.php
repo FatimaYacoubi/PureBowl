@@ -3,9 +3,9 @@
   require_once '../Controller/DeliveryC.php';
   $deliveries = DeliveryC::displayDelivery();
 
-  if(!empty($_GET['idDeliveryForDelete'])) {
+if(!empty($_GET['idDeliveryForDelete'])) {
     $id= trim($_GET['idDeliveryForDelete']);
-    DeliveryC::deleteDelivery($id);
+    $deliveries = DeliveryC::deleteDelivery($id);
 
     $pageDeliveryList = $_SERVER['HTTP_HOST'].'PureBowl/PureBowl/admin/delivery.php';
 
@@ -93,12 +93,12 @@
       <li class="nav-item">
 
         <a class="nav-link active " href="delivery.php">
-          <i class="fas fa-truck"></i> Delivery
+          <i class="fas fa-cubes"></i> Delivery
         </a>
       </li>
       <li class="nav-item">
         <a class="nav-link " href="provider.php">
-          <i class="fas fa-cubes"></i> provider
+          <i class="fas fa-truck"></i> provider
         </a>
       </li>
       <li class="nav-item">
@@ -135,7 +135,6 @@
       <li class="nav-item">
         <a class="nav-link d-block" href="../login.html">
           Admin, <b>Logout</b>
-
         </a>
       </li>
     </ul>
@@ -155,35 +154,34 @@
                     <th scope="col">SALARY</th>
                     <th scope="col">HOUR START</th>
                     <th scope="col">HOUR END</th>
-                    <th scope="col">ID</th>                                    
+                    <th scope="col">ID</th>
                     <th scope="col">&nbsp;</th>
                   </tr>
                 </thead>
                 <tbody>
                 <?php
-                foreach ($deliveries as $delivery){
+               // if(isset($deliveries) and !empty($deliveries)){
+                    foreach ($deliveries as $delivery){
 
-                    echo ' <tr>
-                    <th scope="row"><input type="checkbox" /></th>
+                        echo ' <tr>
+                    <th scope="row"><img src="upload/'.$delivery["image"].'" width="200"/></th>
                     <td class="tm-product-name">'.$delivery["name"].'</td>
                     <td>'.$delivery["salary"].'</td>
                     <td>'.$delivery["hour_start"].'</td>
                     <td>'.$delivery["hour_end"].'</td>
-                    <td>'.$delivery["id"].'</td>                   
+                    <td>'.$delivery["id"].'</td>
                     <td>
-                    <form action="delivery.php" class="tm-delete-delivery-form" method="POST">
-                    <a href="delivery.php?idDeliveryForDelete='.$delivery[ 'id'].'" class="tm-product-delete-link">
+                      <a href="delivery.php?idDeliveryForDelete='.$delivery[ 'id'].'" class="tm-product-delete-link">
                         <i class="far fa-trash-alt tm-product-delete-icon"></i>
                       </a>
-                    </form>
-                    <form action="edit-delivery.php" class="tm-edit-delivery-form" method="POST">
-                    <a href="edit-delivery.php?idDeliveryForEdit='.$delivery[ 'id'].'" class="tm-product-edit-link">
-                    <i class="fas fa-user-edit"></i>
+                       <a href="edit-delivery.php?id='.$delivery[ 'id'].'" class="tm-product-delete-link">
+                        <i class="far fa-edit tm-product-delete-icon"></i>
                       </a>
-                    </form>
                     </td>
                   </tr>';
+                  //  }
                 }
+
                 ?>
 
 
@@ -194,9 +192,9 @@
             <a
               href="add-delivery.php"
               class="btn btn-primary btn-block text-uppercase mb-3">Add new delivery</a>
-            <a
-              href="add-delivery.php"
-              class="btn btn-primary btn-block text-uppercase mb-3">Edit delivery</a>
+            <button class="btn btn-primary btn-block text-uppercase">
+              Delete selected deliveries
+            </button>
           </div>
         </div>
         
