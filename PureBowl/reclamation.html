@@ -36,7 +36,38 @@
     <![endif]-->
 
 </head>
-
+<style >
+	input.controle {
+  outline:0;
+  font-size:22px;
+  width:510px;
+}	
+label.label {
+  display:inline-block;
+  width:200px;
+  text-align: right;
+  font-style: italic;
+  margin-right:5px;
+}
+input.controle:valid {
+  border:3px solid #0a0;
+}
+input.controle:invalid {
+  border:3px solid #a00;
+}
+input.controle:valid + span:before  {
+  content: "\f00c";
+  font-family: "FontAwesome";
+  color:#0a0;
+  font-size: 1.5em;
+}	
+input.controle:invalid + span:before  {
+  content: "\f00d";
+  font-family: "FontAwesome";
+  color:#a00;
+  font-size: 1.5em;
+}
+</style>
 <body>
         	<!-- Start header -->
 	<header class="top-navbar">
@@ -133,8 +164,24 @@
 									</div>
 									<div class="col-md-12">
 										<div class="form-group">
-											<input id="date"  name="date" 
-                       placeholder="Please enter the date you want it delivered" type="date" value="">
+											<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script >
+$(document).ready(function(){
+
+	var dtToday= new Date();
+	var month= dtToday.getMonth()+1;
+	var day= dtToday.getDate();
+	var year=dtToday.getFullYear();
+	if(month<10)
+		month='0'+month.toString();
+	if(day<10)
+		day='0'+day.toString();
+	var maxDate = year+'-'+month+'-'+day;
+$('#dateControl').attr('min',maxDate);
+})
+</script>
+											<input id="dateControl"  name="date" 
+                       placeholder="Please enter the date you want it delivered" type="date" >
                       <div class="help-block with-errors"></div>
 										</div>                                 
 									</div>
@@ -144,13 +191,13 @@
 									<h3>Contact Details</h3>
 									<div class="col-md-12">
 										<div class="form-group">
-											<input type="text" class="form-control" id="nomClient" name="nomClient" placeholder="Your Name" required data-error="Please enter your name">
+											<input type="text"  class="controle" id="nomClient" name="nomClient" required pattern="[0-9a-zA-Z-\.]{3,12}" placeholder="Your Name" required data-error="Please enter your name">
 											<div class="help-block with-errors"></div>
 										</div>                                 
 									</div>
 									<div class="col-md-12">
 										<div class="form-group">
-											<input type="text" placeholder="Your Email" id="emailClient" class="form-control" name="emailClient" required data-error="Please enter your email">
+											<input type="text" placeholder="Your Email" id="emailClient" class="controle" name="emailClient" required data-error="Please enter your email">
 											<div class="help-block with-errors"></div>
 										</div> 
 									</div>

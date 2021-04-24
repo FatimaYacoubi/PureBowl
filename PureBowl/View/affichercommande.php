@@ -229,6 +229,7 @@ button:disabled:hover  {
 <div id="main">  
 </div>
 </div> 
+
   <table align="center" id="orders" style="width:800px; line-height:40px;" class="myOtherTable"> 
   <tr> 
           </div>
@@ -254,7 +255,9 @@ button:disabled:hover  {
    </tr> 
     
     <?php 
+    $sum=0;
     foreach($listeUsers as $user){
+      $sum +=15;
             ?> 
     <tr> 
      <td> <?PHP echo $user['dish']; ?></td>
@@ -280,10 +283,17 @@ button:disabled:hover  {
                         </form>
           </td>
     </tr> 
+
   <?php 
                } 
           ?> 
-        </table> </main>
+        </table>
+        <h1>Votre total est <strong><?php 
+
+    echo $sum;
+            ?></strong> DT</h1>
+         </main>
+
    <br>
   <br>
   
@@ -292,6 +302,7 @@ button:disabled:hover  {
   <button align="center" id="nextBtn"class="btn-222">Next</button>
   <button align="center" id="finishBtn" class="btn-222" color="black">Finish</button>
   </div>
+  
 
   <div class="customer-reviews-box">
     <div class="container">
