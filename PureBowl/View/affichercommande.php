@@ -234,7 +234,7 @@ button:disabled:hover  {
           </div>
         </div>
       </div>
-     </tr colspan="8">> 
+     </tr colspan="8">
         <th>Order </th> 
         <th> Meat Type </th> 
         <th> Option </th> 
