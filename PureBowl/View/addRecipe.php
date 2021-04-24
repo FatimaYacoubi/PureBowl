@@ -1,6 +1,6 @@
 <?php 
-    include_once '../Model/Offre.php';
-    include_once '../Controller/OffreC.php';
+    include_once '../Model/recipe.php';
+    include_once '../Controller/recipeC.php';
 
     $error = "";
 

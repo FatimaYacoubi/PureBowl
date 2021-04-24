@@ -5,8 +5,8 @@
 	class postC {
 		
 		function ajouterpost($post){
-			$sql="INSERT INTO post (description, date, titre) 
-			VALUES (:description,:date,:titre )";
+			$sql="INSERT INTO post (description, date, titre, image, etat) 
+			VALUES (:description,:date,:titre,:image,1 )";
 			$db = config::getConnexion();
 			try{
 				$query = $db->prepare($sql);
@@ -14,7 +14,8 @@
 				$query->execute([
 					'description' => $post->getdescription(),
 					'date' => $post->getdate(),
-					'titre' => $post->gettitre()
+					'titre' => $post->gettitre(),
+					'image' => $post->getimage(),
 				]);			
 			}
 			catch (Exception $e){
@@ -66,13 +67,17 @@
 					'UPDATE post SET 
 						description = :description, 
 						date = :date,
-						titre = :titre
+						titre = :titre,
+						image = :image,
+						etat =: etat,
 					WHERE id = :id'
 				);
 				$query->execute([
 					'description' => $post->getdescription(),
 					'date' => $post->getdate(),
 					'titre' => $post->gettitre(),
+					'image' => $post->getimage(),
+					'etat' => $post->getetat(),
 					'id' => $id
 				]);
 				echo $query->rowCount() . " records UPDATED successfully <br>";
