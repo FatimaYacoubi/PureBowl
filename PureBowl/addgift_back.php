@@ -1,19 +1,44 @@
-<?php
-    include "./controller/GiftBC.php";
+<?php 
     include_once './Model/GiftB.php';
+    include_once './Controller/GiftBC.php';
 
-	$GiftC = new giftC();
-	$error = "";
-    if (isset($_POST["someAction"])) {
+    $error = "";
+
+    // create user
+    $GiftC = null;
+
+  // create an instance of the controller
+    $GiftC = new giftC();
+    if (
+        isset($_POST["nom"]) && 
+        isset($_POST["imageG"]) &&
+        isset($_POST["price"]) 
         
+    ) {
+        if (
+            !empty($_POST["nom"]) && 
+            !empty($_POST["imageG"]) && 
+            !empty($_POST["descr"]) && 
+            !empty($_POST["price"])  
+            
+        ) {
             $Gift = new gift(
-                $_POST['nom'], 
-                $_POST['descr'], 
-                $_POST['price']  
+                $_POST['nom'],
+                $_POST['imageG'], 
+                $_POST['descr'],
+                $_POST['price']
             );
             $GiftC->ajoutergift($Gift);
+            header('Location:showGift.php');
         }
-?>
+        else
+            $error = "Missing information";
+    }
+
+    
+?> 
+ 
+  
 
 <!DOCTYPE html>
 <html lang="en">
@@ -146,7 +171,7 @@
               </div>
             </div>
             <div class="row tm-edit-product-row">
-              <div class="col-xl-6 col-lg-6 col-md-12">
+              <div class="col-xl-12 col-lg-6 col-md-12">
                 <form action="addgift_back.php" class="tm-edit-product-form" method="POST">
                   <div class="form-group mb-3">
                     <label
@@ -179,7 +204,7 @@
                   </div>
                  
                    <div class="row">
-                      <div class="form-group mb-3 col-xs-12 col-sm-6">
+                      <div class="form-group mb-3 col-xs-12 col-sm-12">
                           <label
                             for="expire_date"
                             >Price
@@ -202,7 +227,7 @@
               
                 
               </div>
-              <div class="col-12">
+              <div class="col-4">
                 <button type="submit" name="someAction" class="btn btn-primary btn-block text-uppercase">Add Gift Now</button>
               </div>
             </form>

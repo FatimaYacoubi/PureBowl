@@ -5,18 +5,15 @@
 
 	$GiftC = new giftC();
 	$error = "";
-    if (isset($_POST["someAction"]))
-     {
-          
+    if (isset($_POST["someAction"])) {
          
-          $Gift = new Gift(
-            $_POST['nom'],
-            '',
-            0  
-        );
-        
-            $GiftC->deleteGift($Gift->getName());
-    }
+            $Gift = new gift(
+                $_POST['nom'],
+                $_POST['descr'], 
+                $_POST['price']  
+            );
+            $GiftC->modifyGift($Gift,$Gift->getName());
+        }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -24,7 +21,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Delete gift - Dashboard HTML Template</title>
+    <title>Modify Gift - Dashboard HTML Template</title>
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Roboto:400,700"
@@ -47,7 +44,7 @@
     <nav class="navbar navbar-expand-xl">
       <div class="container h-100">
         <a class="navbar-brand" href="index.html">
-          <h1 class="tm-site-title mb-0">Menu Admin</h1>
+          <h1 class="tm-site-title mb-0">Product Admin</h1>
         </a>
         <button
           class="navbar-toggler ml-auto mr-0"
@@ -141,36 +138,74 @@
     </nav>
     <div class="container tm-mt-big tm-mb-big">
       <div class="row">
-        <div class="col-xl-9 col-lg-10 col-md-12 col-sm-12 mx-auto">
+        <div class="col-xl-12 col-lg-10 col-md-12 col-sm-12 mx-auto">
           <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
             <div class="row">
               <div class="col-12">
-                <h2 class="tm-block-title d-inline-block">Delete Gift</h2>
+                <h2 class="tm-block-title d-inline-block">Modify Dish</h2>
               </div>
             </div>
             <div class="row tm-edit-product-row">
               <div class="col-xl-12 col-lg-6 col-md-12">
-                <form action="deletegift_back.php" class="tm-edit-product-form" method="POST">
+                <form action="modifiergift_back.php" class="tm-edit-product-form" method="POST">
                   <div class="form-group mb-3">
-                       <label
-                        for="nom"
-                       >  Name
-                        </label>
+                    <label
+                      for="nom"
+                      > Name
+                    </label>
                     <input
                       id="nom"
                       name="nom"
                       type="text"
-                      placeholder="Enter the gift name"
                       pattern="[A-Za-z]*"
+                      placeholder="Enter the Gift name"
                       class="form-control validate"
-                      
+                      required
                     />
                   </div>
+                  <div class="form-group mb-3">
+                    <label
+                      for="descr"
+                      >description</label
+                    >
+                    <textarea
+                    id="descr"
+                    name="descr"
+                    placeholder="Enter the description"
+                    
+                      class="form-control validate"
+                      rows="3"
+                      required
+                    ></textarea>
+                  </div>
+                  
+                  <div class="row">
+                      <div class="form-group mb-3 col-xs-12 col-sm-12">
+                          <label
+                            for="expire_date"
+                            >Price
+                          </label>
+                          <input
+                      id="price"
+                      name="price"
+                      type="number"
+                      min="0"
+                      step="0.1"
+                      placeholder="Enter the price"
+                         
+                      class="form-control validate"
+                      required
+                    />
+                        </div>
+                        
+                  </div>
+                  
               </div>
               
+               
               </div>
-              <div class="col-xl-4 col-lg-4 col-md-4">
-                <button type="submit" name="someAction" class="btn btn-primary btn-block text-uppercase">delete</button>
+              <div class="col-4">
+                <button type="submit" name="someAction" class="btn btn-primary btn-block text-uppercase">Modify Gift</button>
               </div>
             </form>
             </div>
