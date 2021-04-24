@@ -1,44 +1,17 @@
-<?php
-  include "../Controller/commandeC.php";
-  include_once "../Model/commande.php";
 
-  $commandeC = new commandeC();
-  $error = "";
-
-if (
-    isset($_POST["dish"]) && 
-    isset($_POST["meat"]) &&
-    isset($_POST["option"]) &&
-    isset($_POST["person"]) &&
-    isset($_POST["date"]) &&
-    isset($_POST["time"]) 
-  ){
-    if (
-            !empty($_POST["dish"]) &&
-            !empty($_POST["meat"]) &&
-            !empty($_POST["option"]) &&
-            !empty($_POST["person"]) && 
-            !empty($_POST["date"]) && 
-            !empty($_POST["time"]) 
-        ) {
-            $user = new commande(
-                $_POST['dish'],
-                $_POST['meat'], 
-                $_POST['option'],
-                $_POST['person'],
-                $_POST['date'],
-                $_POST['time']
-      );
-      
-            $commandeC->modifiercommande($user, $_GET['id']);
-            header('Location:affichercommande.php');
-        }
-        else
-            $error = "Missing information";
-  }
-
+<?php 
+$host = "localhost";
+    $dbUsername = "root";
+    $dbPassword = "";
+    $dbname = "purebowl";
+        $connexion = new mysqli($host, $dbUsername, $dbPassword, $dbname);
+        $query=" SELECT * FROM commande"; 
+        $result = $connexion->query($query);
 ?>
-<html>
+
+?> 
+<!DOCTYPE html> 
+<html> 
   <head> 
    
     <title> Pure Bowl</title>  
@@ -126,18 +99,14 @@ if (
         <br>
         <br><br>
         <br>
-    <?php
-      if (isset($_GET['id'])){
-        $user = $commandeC->recuperercommande($_GET['id']);
         
-    ?>
-     <form name="form1" method="post" action="">
-  <table align="center" border="1px" style="width:100px ;" class="myOtherTable"> 
+        
+  <table align="center" border="1px" style="width:600px; line-height:40px;" class="myOtherTable"> 
   <tr> <div class="container">
       <div class="row">
         <div class="col-lg-12">
           <div class="heading-title text-center">
-            <h2>Modify your order and we'll review it!</h2>
+            <h2>Your Orders</h2>
           </div>
         </div>
       </div>
@@ -148,37 +117,43 @@ if (
         <th> People </th> 
         <th> Date</th> 
         <th> Time </th> 
-        <th> Annuler </th> 
-        <th> Modifier </th> 
+        <th> What to do ?  </th> 
+        
         
     </tr> 
     
-    <tr> <td><input type="text" name="dish"value = "<?php echo $user['dish']; ?>"></td> 
-    <td><input type="text" name="meat" value = "<?php echo $user['meat']; ?>"></td> 
-    <td><input type="text" name="option" value = "<?php echo $user['option']; ?>"></td> 
-    <td><input type="text" name="person" value = "<?php echo $user['person']; ?>"></td> 
-    <td><input type="text" name="date" value = "<?php echo $user['date']; ?>"></td> 
-    <td><input type="text" name="time" value = "<?php echo $user['time']; ?>"></td> 
-<?php 
-               echo "<td><a href=affichercommande.php>cancel</a> "
-          ?>              <input type="hidden" name="id" value=<?php echo $_GET['id'];?>>
+    <?php 
+    while($rows = $result->fetch_assoc())
+    { 
+    ?> 
+    <tr> <td><?php echo $rows['dish']; ?></td> 
+    <td><?php echo $rows['meat']; ?></td> 
+    <td><?php echo $rows['option']; ?></td> 
+    <td><?php echo $rows['person']; ?></td> 
+    <td><?php echo $rows['date']; ?></td> 
+    <td><?php echo $rows['time']; ?></td> 
+    	 
+			<?php		
+                     echo "<td><a href=\"modifiercommande.php?id=$rows[id]\">Edit</a> | <a href=\"supprimercommande.php?id=$rows[id]\" onClick=\"return confirm('Are you sure you want to delete?')\">Delete</a>
+                     </td>";		 ?> 				
+                   
 
-                  <td><input type="submit" name="update" value="Update" class="btn-222" ></td>
-    </table>   </form>
-    <?php
-        }
-        ?>
-
+           
+          
     </tr> 
-<!--             <a href="modifierUtilisateur.phpid=<?PHPecho $rows[]; ?>" class="btn-222" > Modifier </a>
-Start Customer Reviews -->
+  <?php 
+               } 
+          ?> 
+
+  </table> 
+  
   <div class="customer-reviews-box">
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
           <div class="heading-title text-center">
             <h2>Customer Reviews</h2>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting</p>
+            <p>Here are some customer reviews</p>
           </div>
         </div>
       </div>
@@ -337,9 +312,4 @@ Start Customer Reviews -->
     <script src="js/custom.js"></script>
 </body>
 </html>
-  
-   
-   
-
-
   
