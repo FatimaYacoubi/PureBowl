@@ -1,4 +1,7 @@
 <?php
+   include "../config.php";
+    require_once '../Model/utilisateur.php';
+
 
 class utilisateurC
 {
@@ -10,7 +13,7 @@ class utilisateurC
             $query = $db->prepare($sql);
 
             $query->execute([
-                'idClient' => $Utilisateur->getCin(),
+                'idClient' => $Utilisateur->getidClient(),
                 'nom' => $Utilisateur->getNom(),
                 'prenom' => $Utilisateur->getPrenom(),
                 'email' => $Utilisateur->getEmail(),
@@ -41,11 +44,11 @@ class utilisateurC
 
 
 
-    function supprimerutilisateur($cin){
-        $sql="DELETE FROM Compte WHERE cin= :cin";
+    function supprimerutilisateur($idClient){
+        $sql="DELETE FROM Compte WHERE idClient= :idClient";
         $db = config::getConnexion();
         $req=$db->prepare($sql);
-        $req->bindValue(':cin',$cin);
+        $req->bindValue(':idClient',$idClient);
         try{
             $req->execute();
         }
@@ -58,7 +61,7 @@ class utilisateurC
         try {
             $db = config::getConnexion();
             $query = $db->prepare(
-                'UPDATE utilisateur SET 						 
+                'UPDATE Compte SET 						 
 		
 					    
 					    nom = :nom,
@@ -90,7 +93,7 @@ class utilisateurC
 
     function recupererutilisateur($idClient)
     {
-        $sql="SELECT * from utilisateur where idClient=:idClient";
+        $sql="SELECT * from Compte where idClient=:idClient";
         $db = config::getConnexion();
         try{
             $query=$db->prepare($sql);
@@ -108,7 +111,7 @@ class utilisateurC
     }
     function recupererrole($idClient)
     {
-        $sql = "SELECT * from utilisateur where email= :idClient";
+        $sql = "SELECT * from Compte where email= :idClient";
         $db = config::getConnexion();
         try {
             $query = $db->prepare($sql);
