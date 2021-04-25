@@ -287,12 +287,12 @@ button:disabled:hover  {
   <?php 
                } 
           ?> 
-        </table>
-        <h1>Votre total est de <strong><?php 
+        <h1 id="total" align="center" class="btn-55">Votre total est de <strong><?php 
 
     echo $sum;
             ?></strong> DT</h1>
-         </main>
+          </div>
+        </table> 
 
    <br>
   <br>
@@ -301,7 +301,8 @@ button:disabled:hover  {
   <button align="center" id="previousBtn" class="btn-222">Previous</button>
   <button align="center" id="nextBtn"class="btn-222">Next</button>
   <button align="center" id="finishBtn" class="btn-222" color="black">Finish</button>
-  </div>
+  </div> 
+  </main>
   
 
   <div class="customer-reviews-box">
