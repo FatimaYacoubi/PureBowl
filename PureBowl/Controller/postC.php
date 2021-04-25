@@ -69,7 +69,7 @@
 						date = :date,
 						titre = :titre,
 						image = :image,
-						etat =: etat,
+						etat = :etat
 					WHERE id = :id'
 				);
 				$query->execute([
