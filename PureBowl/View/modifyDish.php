@@ -1,42 +1,36 @@
-<?php 
-    include_once '../Model/dish.php';
-    include_once '../Controller/dishC.php';
+<?php
+  include "../Controller/dishC.php";
+  include_once '../Model/dish.php';
 
-    $error = "";
-
-    // create user
-    $dish = null;
-
-  // create an instance of the controller
-    $dishC = new dishC();
-    if (
-        isset($_POST["name"]) && 
+  $dishC = new dishC();
+  $error = "";
+  
+  if (
+    isset($_POST["name"]) && 
         isset($_POST["ingredients"]) &&
         isset($_POST["price"]) 
-        
-    ) {
-        if (
-            !empty($_POST["name"]) && 
-            !empty($_POST["ingredients"]) &&
-            !empty($_POST["price"])
-            
-        ) {
+  ){
+    if (
+        !empty($_POST["name"]) && 
+        !empty($_POST["ingredients"]) &&
+        !empty($_POST["price"])
+          
+        ) 
             $dish = new dish(
                 $_POST['name'],
                 $_POST['ingredients'],
                 $_POST['price']
-                
-            );
-            $dishC->adddish($dish);
-            header('Location:displayProduct.php');
-        }
+              
+      );
+      
+            $dishC->modifyDish($dish, $_GET['id']);
+            header('refresh:5;url=displayProduct.php');
+       }
         else
             $error = "Missing information";
-    }
+  
 
-    
-?> 
-
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -44,7 +38,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Add Dish - Dashboard HTML Template</title>
+    <title>Modify Dish - Dashboard Admin Template</title>
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Roboto:400,700"
@@ -58,12 +52,17 @@
     <!-- https://getbootstrap.com/ -->
     <link rel="stylesheet" href="../css/templatemo-style.css">
     <!--
-    Product Admin CSS Template
-    https://templatemo.com/tm-524-product-admin
-    -->
+  Product Admin CSS Template
+  https://templatemo.com/tm-524-product-admin
+  -->
   </head>
 
   <body>
+     <?php
+      if (isset($_GET['id'])) {
+        $dish = $dishC->recupererDish($_GET['id']);
+        
+    ?>
     <nav class="navbar navbar-expand-xl">
       <div class="container h-100">
         <a class="navbar-brand" href="index.html">
@@ -84,15 +83,17 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mx-auto h-100">
             
-          
             
-            <li class="nav-item">
-              <a class="nav-link active " href="displayProduct.php">
+            
+          <li class="nav-item">
+              <a class="nav-link active" href="displayProduct.php">
                 <i class="fas fa-shopping-cart"></i> Products
               </a>
             </li>
-            
+             
 
+            
+             
           </ul>
           <ul class="navbar-nav">
             <li class="nav-item">
@@ -110,27 +111,46 @@
           <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
             <div class="row">
               <div class="col-12">
-                <h2 class="tm-block-title d-inline-block">Add Dish</h2>
+                <h2 class="tm-block-title d-inline-block">Modify Dish</h2>
               </div>
             </div>
-            <div id="error">
-            <?php echo $error; ?>
-        </div>
-        
             <div class="row tm-edit-product-row">
               <div class="col-xl-6 col-lg-6 col-md-12">
-              <form action="" method="POST">
+                <div>
+        <div id="error">
+            <?php echo $error; ?>
+        </div>
+    
+   
+     
+    <form action="" method="POST" >
+
+                  <div class="form-group mb-3">
+                    <label
+                      for="id"
+                      >DISH ID
+                    </label>
+                    
+                    <input
+                      id="id"
+                      name="id"
+                      type="text"
+                      value="<?php echo $dish['id']; ?>" disabled
+                      class="form-control validate"
+                    />
+                  </div>
+
                   <div class="form-group mb-3">
                     <label
                       for="name"
-                      > FOOD & DRINKS
+                      >FOOD & DRINKS
                     </label>
                     <input
                       id="name"
                       name="name"
                       type="text"
+                      value="<?php echo $dish['name']; ?>"
                       class="form-control validate"
-                      required
                     />
                   </div>
                   <div class="form-group mb-3">
@@ -138,64 +158,98 @@
                       for="ingredients"
                       >ingredients</label
                     >
-                    <textarea id="ingredients"
-                    name="ingredients" 
+                    <textarea
+                    id="ingredients"
+                    name="ingredients"
+                    placeholder="Enter the ingredients"
+                    value="<?php echo $dish['ingredients']; ?>"
                       class="form-control validate"
                       rows="3"
                       required
                     ></textarea>
                   </div>
+
                   <div class="form-group mb-3">
                     <label
                       for="price"
-                      >PRICE
-                    </label>
-                    <input
+                      >PRICE</label
+                    >
+                     <input
                       id="price"
                       name="price"
                       type="text"
+                      value="<?php echo $dish['price']; ?>"
                       class="form-control validate"
-                      required
                     />
+                    
                   </div>
-                 
                   
-                        
+
+                  
+    
+                       
                   </div>
                   
               </div>
-              
-               
-              </div>
+          <!--    <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
+                <div class="tm-product-img-edit mx-auto">
+                  <img src="../imageweb <?php echo $offer['image_offre'];?>" alt="Product image" class="img-fluid d-block mx-auto">
+                  <i
+                    class="fas fa-cloud-upload-alt tm-upload-icon"
+                    onclick="document.getElementById('fileInput').click();"
+                  ></i>
+                </div>
+                <div class="custom-file mt-3 mb-3">
+                  <input id="fileInput" type="file" style="display:none;" />
+                  <input
+                    type="button"
+                    class="btn btn-primary btn-block mx-auto"
+                    value="CHANGE IMAGE NOW"
+                    onclick="document.getElementById('fileInput').click();"
+                  />
+                </div>
+              </div> -->
               <div class="col-12">
-                <button type="submit" class="btn btn-primary btn-block text-uppercase">Add Dish</button>
+                <button type="submit" class="btn btn-primary btn-block text-uppercase">Update Now</button>
               </div>
+
             </form>
+             
+      </div>
+     
             </div>
           </div>
         </div>
       </div>
     </div>
+
     <footer class="tm-footer row tm-mt-small">
         <div class="col-12 font-weight-light">
           <p class="text-center text-white mb-0 px-4 small">
-            Copyright &copy; <b>2021</b> All rights reserved. 
+            Copyright &copy; <b>2018</b> All rights reserved. 
             
             Design: <a rel="nofollow noopener" href="https://templatemo.com" class="tm-footer-link">Template Mo</a>
         </p>
         </div>
     </footer> 
-
+      
     <script src="js/jquery-3.3.1.min.js"></script>
     <!-- https://jquery.com/download/ -->
-    <script src="jquery-ui-datepicker/jquery-ui.min.js"></script>
-    <!-- https://jqueryui.com/download/ -->
-    <script src="js/bootstrap.min.js"></script>
+  <script src="jquery-ui-datepicker/jquery-ui.min.js"></script>
+   <!-- https://jqueryui.com/download/ -->
+  <script src="js/bootstrap.min.js"></script>
     <!-- https://getbootstrap.com/ -->
-    <script>
+ <!--   <script>
       $(function() {
-        $("#expire_date").datepicker();
+        $("#expire_date").datepicker({
+          defaultDate: "10/22/2020"
+        });
       });
-    </script>
+    </script> 
+  -->
+<?php
+    }
+    ?> 
   </body>
+ 
 </html>
