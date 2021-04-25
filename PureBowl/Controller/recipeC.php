@@ -46,7 +46,7 @@
 				die('Erreur: '.$e->getMessage());
 			}
 		}
-		function modifyRecipe($recipe, $idR,$id){
+		function modifyRecipe($recipe, $idR){
 			try {
 				$db = config::getConnexion();
 				$query = $db->prepare(

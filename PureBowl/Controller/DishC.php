@@ -1,6 +1,6 @@
 <?PHP
-	include "config.php";
-	require_once 'Model/Dish.php';
+	include "../config.php";
+	require_once '../Model/Dish.php';
 
 	class DishC {
 		function addDish($dish){
@@ -21,40 +21,41 @@
 				echo 'Erreur: '.$e->getMessage();
 			}			
 		}
-		function modifyDish($dish, $name){
+		function modifydish($dish, $id){
 			try {
 				$db = config::getConnexion();
 				$query = $db->prepare(
 					'UPDATE dishes SET 
-						
+						name = :name, 
 						ingredients = :ingredients,
 						price = :price
 						
-					WHERE name = :name'
+					WHERE id = :id'
 				);
 				$query->execute([
-					
+					'name' => $dish->getName(),
 					'ingredients' => $dish->getIngredients(),
 					'price' => $dish->getPrice(),
-					'name' => $name
+					
+					'id' => $id
 				]);
-				//echo $query->rowCount() . " records UPDATED successfully <br>";
+				
 			} catch (PDOException $e) {
 				$e->getMessage();
 			}
 		}
-		function deleteDish($name){
-			$sql="DELETE FROM dishes WHERE name= :name";
+		function deleteDish($id){
+			$sql="DELETE FROM dishes WHERE id= :id";
 			$db = config::getConnexion();
 			$req=$db->prepare($sql);
-			$req->bindValue(':name',$name);
+			$req->bindValue(':id',$id);
 			try{
 				$req->execute();
 			}
 			catch (Exception $e){
 				die('Erreur: '.$e->getMessage());
 			}
-		}	
+		}
 		function displayDish(){
 			
 			$sql="SELECT * FROM dishes";
@@ -66,7 +67,36 @@
 			catch (Exception $e){
 				die('Erreur: '.$e->getMessage());
 			}	
-		}		
+		}
+		function recupererDish($id){
+			$sql="SELECT * from dishes where id=$id";
+			$db = config::getConnexion();
+			try{
+				$query=$db->prepare($sql);
+				$query->execute();
+
+				$dish=$query->fetch();
+				return $dish;
+			}
+			catch (Exception $e){
+				die('Erreur: '.$e->getMessage());
+			}
+		}
+		function recupererDish1($id){
+			$sql="SELECT * from dishes where id=$id";
+			$db = config::getConnexion();
+			try{
+				$query=$db->prepare($sql);
+				$query->execute();
+				
+				$dish = $query->fetch(PDO::FETCH_OBJ);
+				return $dish;
+			}
+			catch (Exception $e){
+				die('Erreur: '.$e->getMessage());
+			}
+		}
+		
 	}
 
 ?>
