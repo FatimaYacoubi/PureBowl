@@ -1,33 +1,33 @@
 <?php
-  include "../Controller/recipeC.php";
-  include_once '../Model/recipe.php';
+  include "../Controller/GiftBC.php";
+  include_once '../Model/GiftB.php';
 
-  $recipeC = new recipeC();
+  $GiftC = new giftC();
   $error = "";
   
   if (
-    isset($_POST["duration"]) && 
-        
-        isset($_POST["steps"]) &&
-        isset($_POST["id"]) 
+        isset($_POST["nom"]) && 
+        isset($_POST["imageG"]) && 
+        isset($_POST["descr"]) &&
+        isset($_POST["price"]) 
   ){
     if (
-            !empty($_POST["duration"]) && 
-         
-            !empty($_POST["steps"]) &&
-            !empty($_POST["id"]) 
+            !empty($_POST["nom"]) && 
+            !empty($_POST["imageG"]) &&
+            !empty($_POST["descr"]) &&
+            !empty($_POST["price"]) 
           
         ) {
-            $recipe = new recipe(
-                $_POST['duration'],
-            
-                $_POST['steps'],
-                $_POST['id']
+            $Gift = new gift(
+                $_POST['nom'],
+                $_POST['imageG'],
+                $_POST['descr'],
+                $_POST['price']
               
       );
       
-            $recipeC->modifyRecipe($recipe, $_GET['idR']);
-            header('refresh:5;url=displayRecipe.php');
+            $GiftC->modifyGift($Gift, $_GET['id']);
+            header('refresh:5;url=displayGift.php');
         }
         else
             $error = "Missing information";
@@ -41,7 +41,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Modify recipe - Dashboard Admin Template</title>
+    <title>Modify Gift</title>
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Roboto:400,700"
@@ -62,8 +62,8 @@
 
   <body>
      <?php
-      if (isset($_GET['idR'])) {
-        $recipe = $recipeC->recupererRecipe($_GET['idR']);
+      if (isset($_GET['id'])) {
+        $Gift = $GiftC->recupererGift($_GET['id']);
         
     ?>
     <nav class="navbar navbar-expand-xl">
@@ -89,8 +89,8 @@
             
             
             <li class="nav-item">
-              <a class="nav-link active" href="displayRecipe.php">
-                <i class="fas fa-shopping-cart"></i> Recipes
+              <a class="nav-link active" href="displayGift.php">
+                <i class="fas fa-shopping-cart"></i> Gift
               </a>
             </li>
              
@@ -114,7 +114,7 @@
           <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
             <div class="row">
               <div class="col-12">
-                <h2 class="tm-block-title d-inline-block">Modify recipe</h2>
+                <h2 class="tm-block-title d-inline-block">Modify Gift</h2>
               </div>
             </div>
             <div class="row tm-edit-product-row">
@@ -130,49 +130,81 @@
 
                   <div class="form-group mb-3">
                     <label
-                      for="idR"
-                      >Recipe ID
+                      for="id"
+                      >Gift ID
                     </label>
                     
                     <input
-                      id="idR"
-                      name="idR"
+                      id="id"
+                      name="id"
                       type="text"
-                      value="<?php echo $recipe['idR']; ?>" disabled
+                      value="<?php echo $Gift['id']; ?>" disabled
                       class="form-control validate"
                     />
                   </div>
 
                   <div class="form-group mb-3">
                     <label
-                      for="duration"
-                      >DURATION
+                      for="nom"
+                      >Name
                     </label>
                     <input
-                      id="duration"
-                      name="duration"
+                      id="nom"
+                      name="nom"
                       type="text"
-                      
+                      value="<?php echo $Gift['nom']; ?>"
                       class="form-control validate"
                     />
                   </div>
 
+        <!--           <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
+                <div class="tm-product-img-edit mx-auto">
+                  <img src="../images <?php echo $Gift['imageG'];?>" alt="Gift Image" class="img-fluid d-block mx-auto">
+                  <i
+                    class="fas fa-cloud-upload-alt tm-upload-icon"
+                    onclick="document.getElementById('fileInput').click();"
+                  ></i>
+                </div>
+                <div class="custom-file mt-3 mb-3">
+                  <input id="fileInput" type="file" style="display:none;" />
+                  <input
+                    type="button"
+                    class="btn btn-primary btn-block mx-auto"
+                    value="CHANGE IMAGE NOW"
+                    onclick="document.getElementById('fileInput').click();"
+                  />
+                </div>
+              </div> 
+      -->
 
                   <div class="form-group mb-3">
                     <label
-                      for="steps"
-                      >STEPS</label
+                      for="descr"
+                      >DESCRIPTION</label
                     >
                      <input
-                      id="steps"
-                      name="steps"
+                      id="descr"
+                      name="descr"
                       type="text"
-                    
+                      value="<?php echo $Gift['descr']; ?>"
                       class="form-control validate"
                     />
                     
                   </div>
-                 
+                  <div class="form-group mb-3">
+                    <label
+                      for="price"
+                      > PRICE
+                    </label>
+                    
+                    <input
+                      id="price"
+                      name="price"
+                      type="text"
+                      value="<?php echo $Gift['price']; ?>" 
+                      class="form-control validate"
+                    />
+                  </div>
 
                   
     
@@ -180,7 +212,7 @@
                   </div>
                   
               </div>
-     
+         
               <div class="col-12">
                 <button type="submit" class="btn btn-primary btn-block text-uppercase">Update Now</button>
               </div>
