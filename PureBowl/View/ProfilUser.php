@@ -11,7 +11,13 @@ if(empty($_SESSION['e']))
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	
+    <link rel="stylesheet" href="css/style.css"> 
+        <link rel="stylesheet" href="css/style1.css">    
+
+    <link rel="stylesheet" href="css/style.css"> 
     <title>Utilisateur</title>
+
 </head>
 <body>
 <button><a href="login.php">Déconnexion</a></button>
@@ -19,7 +25,7 @@ if(empty($_SESSION['e']))
 <?php
 // Il est bien connecté
 echo 'Bienvenue cher client, ', $_SESSION['e'];
-include ('../index.php');
+include ('index.html');
 ?>
 </body>
 </html>

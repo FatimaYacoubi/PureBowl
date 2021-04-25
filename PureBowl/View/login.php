@@ -16,9 +16,9 @@ if (isset($_POST["email"]) &&
         if($message!='pseudo ou le mot de passe est incorrect') {
             $user = $user1C->recupererrole($_POST['email']);
             if ($user['role'] == 'client') {
-                header('Location:ProfilUser.php');
+                header('Location:../ProfilUser.php'); //client
             }else
-                { header('location:../login.html');}
+                { header('Location:../ProfilUser.php');} //admin
         }
         else{
             $message='pseudo ou le mot de passe est incorrect';
@@ -33,63 +33,94 @@ if (isset($_POST["email"]) &&
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Authentification</title>
     <link rel="stylesheet" type="text/css" href="../assets/css/styles.css">
+    <link href="../css/progress-wizard.min.css" rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../css/bootstrap.min.css">    
+  <!-- Site CSS -->
+
+<style type="text/css">
+    #aDiv{width: 300px; height: 300px; margin: 0 auto;}
+    body {
+  background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQa9E8MLs_rO4scn2FKCw_CTgT3AGITGfBAAm5Nt_uWOHPznHX0r13hnQ2uIhRXt9ngEpw&usqp=CAU');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+}
+
+</style>
+    <link rel="stylesheet" href="../css/style.css"> 
+        <link rel="stylesheet" href="../css/style2.css">    
+
+    <link rel="stylesheet" href="../css/style.css">    
+  <!-- Pickadate CSS -->
+    <link rel="stylesheet" href="../css/classic.css">    
+  <link rel="stylesheet" href="../css/classic.date.css">    
+  <link rel="stylesheet" href="../css/classic.time.css">    
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="../css/responsive.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../css/custom.css">
+  
 </head>
 <body>
+<br>
+<br>
+<br>
 
-<form action="login.php" method="POST" align="center" >
-    <div class="row">
-        <div class="col-md-7 pr-1">
+<div id="aDiv">
+    <div class="container" align="center">
+                    <img src="../images/logo.png"  />
+<br>
+<br>
+<form action="login.php" method="POST" >
+    <div class="container" align="center"> 
+        <div class="row">
+                   <div class="col-md-12">
             <div class="form-group">
                 <label>E-mail</label>
                 <br>
-                <input type="text" name="email" class="form-control" placeholder="e-mail">
+                <input type="text" align="center" name="email" class="form-control" placeholder="e-mail">
             </div>
         </div>
 
-        <div class="col-md-7 pr-1">
+                   <div class="col-md-12">
             <div class="form-group">
                 <label>Mot de passe</label>
                 <br>
-                <input type="password" name="password" class="form-control" placeholder="Mot de passe">
+                <input align="center" type="password" name="password" class="form-control" placeholder="Mot de passe">
             </div>
         </div>
 
     </div>
-    <input type="submit" value="se connecter" name = "se connecter">
-    <input type="reset" value="Annuler" >
+    <input class="btn-222" type="submit" value="se connecter" name = "se connecter">
+    <input class="btn-222" type="reset" value="Annuler" >
     <br>
     Vous n'avez pas un compte ?
     <a href="inscription.php">S'inscrire</a>
-
+   </div>  </div>
 
 </form>
 <!-- jQuery -->
+<a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
 
-
-<script src="js/jquery.min.js"></script>
-<!-- jQuery Easing -->
-<script src="js/jquery.easing.1.3.js"></script>
-<!-- Bootstrap -->
-<script src="js/bootstrap.min.js"></script>
-<!-- Waypoints -->
-<script src="js/jquery.waypoints.min.js"></script>
-<script src="js/sticky.js"></script>
-
-<!-- Stellar -->
-<script src="js/jquery.stellar.min.js"></script>
-<!-- Superfish -->
-<script src="js/hoverIntent.js"></script>
-<script src="js/superfish.js"></script>
-<!-- Magnific Popup -->
-<script src="js/jquery.magnific-popup.min.js"></script>
-<script src="js/magnific-popup-options.js"></script>
-<!-- Date Picker -->
-<script src="js/bootstrap-datepicker.min.js"></script>
-<!-- CS Select -->
-<script src="js/classie.js"></script>
-<script src="js/selectFx.js"></script>
-
-<!-- Main JS -->
-<script src="js/main.js"></script>
+    <!-- ALL JS FILES -->
+    <script src="../js/jquery-3.2.1.min.js"></script>
+    <script src="../js/popper.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <!-- ALL PLUGINS -->
+    <script src="../js/jquery.superslides.min.js"></script>
+    <script src="../js/images-loded.min.js"></script>
+    <script src="../js/isotope.min.js"></script>
+    <script src="../js/baguetteBox.min.js"></script>
+    <script src="../js/picker.js"></script>
+    <script src="../js/picker.date.js"></script>
+    <script src="../js/picker.time.js"></script>
+    <script src="../js/legacy.js"></script>
+    <script src="../js/form-validator.min.js"></script>
+    <script src="../js/contact-form-script.js"></script>
+    <script src="../js/custom.js"></script>
 </body>
 </html>
+
+
