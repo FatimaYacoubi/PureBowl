@@ -141,16 +141,16 @@
                     <p class="text-white mt-5 mb-5">Welcome back, <b>Admin</b></p>
                 </div>
             </div>
+
             <table class="table table-hover tm-table-small tm-product-table">
+            	<form method="POST" action="supprimerpost.php">
                 <thead>
                   <tr>
-                    <th scope="col">&nbsp;</th>
+
                     <th scope="col">ID</th>
                     <th scope="col">Titre</th>
                     <th scope="col">Date</th>
-                    <th scope="col">Date</th>
-                    <th scope="col">Date</th>
-                    <th scope="col">&nbsp;</th>
+                    <th scope="col">What to do ?</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -158,23 +158,21 @@
                     <?PHP
                 foreach($listeUsers as $user){
             ?>
-                    <th scope="row"><input type="checkbox" /></th>
                     <td><?PHP echo $user['id']; ?></td>
                     <td class="tm-product-name"><?PHP echo $user['titre']; ?></td>
                     <td><?PHP echo $user['date']; ?></td>
                     <td>
 
-                      <a href="modifierpost.php?id=<?PHP echo $user['id']; ?>" class=" btn | far fa-edit" >
-                        
+                      <a href="modifierpost.php?id=<?PHP echo $user['id']; ?>" class="tm-product-delete-link" >
+                        <i class="far fa-edit tm-product-delete-icon" ></i>
                       </a>
-                    </td>
-                    <td >
-                        <form method="POST" action="supprimerpost.php">
-                        <button type="submit" name="supprimer" class="btn"><i class="fa fa-trash"></i></button> 
+                       <button type="submit" name="supprimer "class="tm-product-delete-link" >
+                        <i class="far fa-trash-alt tm-product-delete-icon"></i></button> 
                         
                         <input type="hidden" value=<?PHP echo $user['id']; ?> name="id">
                         </form>
                     </td>
+                    
                     
                   </tr>
                   

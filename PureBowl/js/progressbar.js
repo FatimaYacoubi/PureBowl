@@ -9,9 +9,13 @@ let currentStep = 1;
 document.addEventListener('click',hide1)
 function hide1()
 {    if(currentStep===1)
-     document.getElementById("orders").style.display="block";
-               else  document.getElementById("orders").style.display="none";
+    { document.getElementById("orders").style.display="block";
+          document.getElementById("total").style.display="block"; }
+
+               else { document.getElementById("orders").style.display="none";
+               document.getElementById("total").style.display="none";}
 }
+
 
 nextBtn.addEventListener('click',  ()  =>  {
     bullets[currentStep  -  1].classList.add('completed');

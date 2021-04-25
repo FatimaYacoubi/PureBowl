@@ -46,25 +46,25 @@
 				die('Erreur: '.$e->getMessage());
 			}
 		}
-		function modifyRecipe($recipe, $idR,$id){
+		function modifyRecipe($recipe, $idR){
 			try {
 				$db = config::getConnexion();
 				$query = $db->prepare(
 					'UPDATE recipes SET 
 						duration = :duration, 
 						steps = :steps,
-						id = :id
+					
 						
 					WHERE idR = :idR'
 				);
 				$query->execute([
 					'duration' => $recipe->getDuration(),
-					'steps' => $recipe->getSteps(),
-					'id' => $recipe->getId(),
+					'price' => $recipe->getPrice(),
 					
-					'idR' => $idR
+					
+					'idR' => $id
 				]);
-				echo $query->rowCount() . " records UPDATED successfully <br>";
+				
 			} catch (PDOException $e) {
 				$e->getMessage();
 			}

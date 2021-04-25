@@ -74,7 +74,7 @@
               </div>
             </li>
             <li class="nav-item">
-              <a class="nav-link " href="../products.html">
+              <a class="nav-link " href="displayProduct.php">
                 <i class="fas fa-shopping-cart"></i> Products
               </a>
             </li>
@@ -181,7 +181,7 @@
 						<input type="hidden" value=<?PHP echo $recipe['idR']; ?> name="idR"  >
 						</form> 					</td>
 					<td>
-						<a href="modifyRecipe.php? idR=<?PHP echo $recipe['idR']; ?>" class="btn btn-primary btn-block text-uppercase"> Modifier </a>
+						<a href="modifyRecipe.php?idR=<?PHP echo $recipe['idR']; ?>" class="btn btn-primary btn-block text-uppercase"> Modify </a>
 					</td>
 				</tr>
 			<?PHP

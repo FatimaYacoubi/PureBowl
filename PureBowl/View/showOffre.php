@@ -2,7 +2,14 @@
 	include "../Controller/offreC.php";
 
 	$offreC=new offreC();
-	$listeOffers=$offreC->afficherOffre();
+	
+  if ((isset($_POST["recherche"]))&& (isset($_POST["colonne"]))){
+   if (!empty(isset($_POST["recherche"]))){
+    $n=$_POST["colonne"];
+    echo ("colonne = $n " );
+     $listeOffers=$offreC->rechercher($_POST["recherche"],$n);
+   } 
+  } else {$listeOffers=$offreC->afficherOffre();}
 
 ?>
 
@@ -124,22 +131,44 @@
         </div>
       </div>
     </nav>
+
     <div class="container mt-5">
       <div class="row tm-content-row">
-        <div class="col-sm-12 col-md-12 col-lg-8 col-xl-8 tm-block-col">
+              <div class="col-sm-12 col-md-12 col-lg-8 col-xl-8 tm-block-col">
           <div class="tm-bg-primary-dark tm-block tm-block-products">
+
+      
+       <form method="POST" action="">
+        <select name="colonne">
+        <option value="all">ALL</option>
+          <option value="nom_offre">NAME</option>
+          <option value="id_offre">ID</option>
+          <option value="prix_offre">PRICE</option>
+        </select>
+          <input type="text" name="recherche" placeholder="rechercher" class="recherche"> 
+          <input type="submit" name="chercher" value="Valider">
+
+</script>
+       </form>
             <div class="tm-product-table-container">
+
               <table class="table table-hover tm-table-small tm-product-table">
                 <thead>
+                  
+                  
                   <tr>
+
                     <th scope="col">&nbsp;</th> 
+                    <th scope="col">select</th>
                     <th scope="col">ID</th>
                     <th scope="col">Name</th>
                     <th scope="col">Image</th>
                     <th scope="col">Menus</th>
                     <th scope="col">Type</th>
                     <th scope="col">Prix</th>
-                    <th scope="col">Type </th>
+                     
+                      
+                    
                     <th scope="col"> </th>
 
                     <th scope="col">&nbsp;</th>
@@ -152,30 +181,35 @@
 				foreach($listeOffers as $offer){
 			?>
 			<tr>
+        <td>  <th scope="row"><input type="checkbox" /></th> </td>
 					<td><?PHP echo $offer['id_offre']; ?></td> 
 					<td><?PHP echo $offer['nom_offre']; ?></td>
-					<td><?PHP echo $offer['image_offre']; ?></td>
+					<!-- <td><?PHP echo $offer['image_offre']; ?></td> -->  <td><img src="../imageweb/<?php echo $offer['image_offre'];?>" width="200px" height="200px"></td>
 					<td><?PHP echo $offer['descrip_offre']; ?></td>
 					<td><?PHP echo $offer['type_offre']; ?></td>
 					<td><?PHP echo $offer['prix_offre']; ?></td>
 					<td></td>
 					<td>
 						 
-                      <a href="#" class="tm-product-delete-link">
+                  <!--    <a href="#" class="tm-product-delete-link">
                         <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                      </a>
+                      </a> -->
                     
 						<form method="POST" action="deleteOffre.php">
-						<input type="submit" name="supprimer" value="supprimer">
+						<input type="submit" name="supprimer" value="supprimer" class="btn btn-primary btn-block text-uppercase" >
 						<input type="hidden" value=<?PHP echo $offer['id_offre']; ?> name="id_offre"  >
 						</form> 					</td>
 					<td>
-						<a href="modifyOffer.php?id_offre=<?PHP echo $offer['id_offre']; ?>"> Modifier </a>
+						<a href="modifyOffre.php?id_offre=<?PHP echo $offer['id_offre']; ?>"  class="btn btn-primary btn-block text-uppercase"> Modifier </a>
 					</td>
+          <td>
+            <a href="addpromo.php?id_offre=<?PHP echo $offer['id_offre']; ?>"  class="btn btn-primary btn-block text-uppercase"> Ajouter promo </a>
+          </td>
 				</tr>
 			<?PHP
 				}
 			?> 
+
                <!--   <tr>
                     <th scope="row"><input type="checkbox" /></th>
                     <td class="tm-pack-name">SIMPLE</td>
@@ -291,10 +325,9 @@
           <a
               href="addOffre.php"
               class="btn btn-primary btn-block text-uppercase mb-3"> Add new pack </a>
-            <button class="btn btn-primary btn-block text-uppercase">
-              Delete selected products
-            </button> 
-          </div>
+          <button class="btn btn-primary btn-block text-uppercase">
+              Delete selected packs
+            </button>   </div>
         </div>
         
       </div>
@@ -316,7 +349,7 @@
     <script>
       $(function() {
         $(".tm-product-name").on("click", function() {
-          window.location.href = "edit-product.html";
+          window.location.href = "modifyOffre.php";
         });
       });
     </script>

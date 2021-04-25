@@ -1,53 +1,43 @@
- <?php 
-    include_once '../Model/Offre.php';
-    include_once '../Controller/OffreC.php';
+<?php
+    include_once '../Model/Promo.php';
+    include_once '../Controller/PromoC.php';
 
     $error = "";
 
     // create user
-    $offer = null;
+    $promos = null;
 
-  // create an instance of the controller
-    $offerC = new offreC();
+    // create an instance of the controller
+    $promoC = new PromoC();
     if (
-        isset($_POST["nom_offre"]) && 
-        isset($_POST["image_offre"]) &&
-        isset($_POST["descrip_offre"]) && 
-        isset($_POST["type_offre"]) && 
-        isset($_POST["prix_offre"])
+        isset($_POST["id_pack"]) && 
+        isset($_POST["pourcentage"]) &&
+        isset($_POST["date_deb"]) && 
+        isset($_POST["date_fin"]) 
     ) {
         if (
-            !empty($_POST["nom_offre"]) && 
-            !empty($_POST["image_offre"]) && 
-            !empty($_POST["descrip_offre"]) && 
-            !empty($_POST["type_offre"]) && 
-            !empty($_POST["prix_offre"])
-        ) {if( preg_match ( " /^[a-zA-Z]{2,}$/ " , $_POST['nom_offre'] )==1 && preg_match (" /^[a-zA-Z]{2,}$/ ", $_POST['descrip_offre'] )==1  && preg_match ( ' #^[0-9]{3}+$# ', $_POST['prix_offre'])==1 ) {
-            $offer = new offre(
-                $_POST['nom_offre'],
-                $_POST['image_offre'], 
-                $_POST['descrip_offre'],
-                $_POST['type_offre'],
-                $_POST['prix_offre']
+            !empty($_POST["id_pack"]) && 
+            !empty($_POST["pourcentage"]) && 
+            !empty($_POST["date_deb"]) && 
+            !empty($_POST["date_fin"]) 
+        ) {
+            $promos = new promo(
+                $_POST['id_pack'],
+                $_POST['pourcentage'], 
+                $_POST['date_deb'],
+                $_POST['date_fin']
             );
-            $offerC->ajouterOffre($offer);
-            header('Location:showOffre.php');
+
+      
+            $promoC->ajouterPromo($promos);
+            // header('Location:showpromo.php');
         }
-        else {
-            echo "<br>";echo "<br>";echo "<br>";echo "<br>";echo "<br>";echo "<br>";echo "<br>" ;echo "<br>";
-            if(preg_match ( " /^[a-zA-Z]{2,}$/ " , $_POST['nom_offre'] )==0){echo 'Le nom doit contenir que des lettres '; echo "<br>";}
-            if(preg_match ( " /^[a-zA-Z]{2,}$/ " , $_POST['descrip_offre'] )==0){echo 'La Description doit contenir que des lettres '; echo "<br>";}
-           
-            if(preg_match ( " /^[0-9]{}$/ " , $_POST['prix_offre'] )==0){echo 'Le prix doit contenir 3  chiffres '; echo "<br>";}
-            
-          }
-      }
-      else{echo "<br>";echo "<br>";echo "<br>";echo "<br>";echo "<br>";echo "<br>";echo "<br>" ;echo "<br>";
-            echo "Missing information";}
+        else
+            $error = "Missing information";
     }
 
     
-?> 
+?>
 
 
 <!DOCTYPE html>
@@ -126,7 +116,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="Pack.html">
+              <a class="nav-link " href="Pack.html">
                 <i class="fas fa-shopping-cart"></i> Pack
               </a>
             </li>
@@ -134,6 +124,11 @@
             <li class="nav-item">
               <a class="nav-link" href="accounts.html">
                 <i class="far fa-user"></i> Accounts
+              </a>
+            </li>
+             <li class="nav-item">
+              <a class="nav-link active" href="promo.html">
+                <i class="far fa-user"></i> promo
               </a>
             </li>
             <li class="nav-item dropdown">
@@ -166,101 +161,82 @@
         </div>
       </div>
     </nav>
-     <button class="navbar-toggler ml-auto mr-0"><a href="showOffre.php">Retour à la liste</a></button>
     <div class="container tm-mt-big tm-mb-big">
       <div class="row">
         <div class="col-xl-9 col-lg-10 col-md-12 col-sm-12 mx-auto">
           <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
             <div class="row">
               <div class="col-12">
-                <h2 class="tm-block-title d-inline-block">Add Pack</h2>
+                <h2 class="tm-block-title d-inline-block">Add Promo</h2>
               </div>
             </div>
-            <div id="error">
+              <div id="error">
             <?php echo $error; ?>
         </div>
-        
             <div class="row tm-edit-product-row">
               <div class="col-xl-6 col-lg-6 col-md-12">
-              <form action="" method="POST">
+             <form action="" method="POST">
                   <div class="form-group mb-3">
                     <label
-                      for="nom_offre"
-                      > Name
+                      for="id_pack"
+                      > ID PACK
                     </label>
                     <input
-                      id="nom_offre"
-                      name="nom_offre"
-                      type="text"
+                      id="id_pack"
+                      name="id_pack"
+                      type="number"
                       class="form-control validate"
                       required
                     />
                   </div>
                   <div class="form-group mb-3">
                     <label
-                      for="descrip_offre"
-                      >DESCRIPTION</label
+                      for="pourcentage"
+                      >Pourcentage</label
                     >
-                    <textarea id="descrip_offre"
-                    name="descrip_offre" 
+                    <input
+                      id="pourcentage"
+                      name="pourcentage"
+                      type="number"
                       class="form-control validate"
-                      rows="3"
                       required
-                    ></textarea>
+                    />
+                  
                   </div>
                   <div class="form-group mb-3">
                     <label
-                      for="type_offre"
-                      >TYPE</label
+                      for="date_deb"
+                      >date debut</label
                     >
-                    <select
-                      class="custom-select tm-select-accounts"
-                      id="type_offre"
-                      name ="type_offre"
-                    >
-                      <option selected>Select category</option>
-                      <option value="1">Healthy</option>
-                      <option value="2">Vegan</option>
-                      <option value="3">Diabetic</option>
-                    </select>
+                    <input
+                      id="date_deb"
+                      name="date_deb"
+                      type="date"
+                      class="form-control validate"
+                      required
+                    />
                   </div>
                   <div class="row">
-                      <div class="form-group mb-3 col-xs-12 col-sm-6">
+                      <div class="form-group mb-3">
                           <label
-                            for="prix_offre"
-                            >Price
+                            for="date_fin"
+                            > date fin
                           </label>
                           <input
-                            id="prix_offre"
-                            name="prix_offre"
-                            type="text"
+                            id="date_fin"
+                            name="date_fin"
+                            type="date"
                             class="form-control validate"
-                            data-large-mode="true"
+                             required
                           />
                         </div>
                         
                   </div>
                   
               </div>
-              <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
-                <div class="tm-product-img-dummy mx-auto">
-                  <i name="image_offre"
-                    class="fas fa-cloud-upload-alt tm-upload-icon"
-                    onclick="document.getElementById('fileInput').click();"
-                  ></i>
-                </div>
-               <div class="custom-file mt-3 mb-3">
-                  <input id="fileInput" name="image_offre" type="file" style="display:none;" />
-                  <input name="image_offre" 
-                    type="button"
-                    class="btn btn-primary btn-block mx-auto"
-                    value="UPLOAD PRODUCT IMAGE"
-                    onclick="document.getElementById('fileInput').click();"
-                  />
-                </div> 
-              </div>
+              
               <div class="col-12">
-                <button type="submit" class="btn btn-primary btn-block text-uppercase">Add Pack Now</button>
+                <button type="submit" class="btn btn-primary btn-block text-uppercase">Add Promo Now</button>
               </div>
             </form>
             </div>

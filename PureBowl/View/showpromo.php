@@ -1,8 +1,8 @@
 <?PHP
-	include "../Controller/dishC.php";
-
-	$dishC=new dishC();
-	$listeDishes=$dishC->displayDish();
+  include "../Controller/PromoC.php";
+ 
+  $promoC=new PromoC();
+  $listePromos=$promoC->afficherpromo();
 
 ?>
 
@@ -12,7 +12,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Dish Page - Admin HTML Template</title>
+    <title>Pack Page - Admin HTML Template</title>
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Roboto:400,700"
@@ -33,7 +33,7 @@
     <nav class="navbar navbar-expand-xl">
       <div class="container h-100">
         <a class="navbar-brand" href="index1.html">
-          <h1 class="tm-site-title mb-0">Dishes</h1>
+          <h1 class="tm-site-title mb-0">Pack Admin</h1>
         </a>
         <button
           class="navbar-toggler ml-auto mr-0"
@@ -50,7 +50,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mx-auto h-100">
             <li class="nav-item">
-              <a class="nav-link" href="../index1.html">
+              <a class="nav-link" href="index1.html">
                 <i class="fas fa-tachometer-alt"></i> Dashboard
                 <span class="sr-only">(current)</span>
               </a>
@@ -73,36 +73,25 @@
                 <a class="dropdown-item" href="#">Yearly Report</a>
               </div>
             </li>
-           
             <li class="nav-item">
-              <a class="nav-link active " href="displayProduct.php">
+              <a class="nav-link " href="products.html">
                 <i class="fas fa-shopping-cart"></i> Products
               </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="displayRecipe.php">
-                  <i class="fas fa-shopping-cart"></i> Recipes
-                </a>
-              </li>
-            <li class="nav-item">
-                            <a class="nav-link " href="../Pack.html">
+                            <a class="nav-link " href="Pack.html">
                                 <i class="fas fa-shopping-cart"></i>
                                 Pack
                             </a>
-              </li>
-            <li class="nav-item">
-                <a class="nav-link " href="../giftBack.html">
-                  <i class="fas fa-shopping-cart"></i> Gifts
-                </a>
-              </li>
+                        </li>
 
             <li class="nav-item">
-              <a class="nav-link" href="../accounts.html">
+              <a class="nav-link" href="accounts.html">
                 <i class="far fa-user"></i> Accounts
               </a>
             </li>
-             <li class="nav-item">
-              <a class="nav-link" href="../promo.html">
+               <li class="nav-item">
+              <a class="nav-link active" href="promo.html.html">
                 <i class="far fa-user"></i> Promo
               </a>
             </li>
@@ -127,7 +116,7 @@
           </ul>
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link d-block" href="../login.html">
+              <a class="nav-link d-block" href="login.html">
                 Admin, <b>Logout</b>
               </a>
             </li>
@@ -144,47 +133,51 @@
                 <thead>
                   <tr>
                     <th scope="col">&nbsp;</th>
-                     
-                    <th scope="col">FOOD & DRINKS </th>
-                    <th scope="col">INGREDIENTS</th>
-                    <th scope="col">PRICE</th>
-                    <th scope="col">ID</th>
-                    <th scope="col"></th>
-
+                    <th scope="col">&nbsp;</th>
+                    <th scope="col">ID PROMO</th>
+                    <th scope="col">ID PACK</th>
+                    <th scope="col">POURCENTAGE</th>
+                    <th scope="col">DATE DEBUT</th>
+                    <th scope="col">DATE FIN</th>
+                    
                     <th scope="col">&nbsp;</th>
                   </tr>
-                  <tr></tr>
                 </thead>
-             <tbody>
-
-             	<?PHP
-				foreach($listeDishes as $dish){
-			?>
-			<tr>
-      <td></td>
-          <td><?PHP echo $dish['name']; ?></td> 
-					<td><?PHP echo $dish['ingredients']; ?></td> 
-					<td><?PHP echo $dish['price']; ?></td>
-                    <td><?PHP echo $dish['id']; ?></td>
-					<td></td>
-					<td>
-						 
-            <!-- <a href="#" class="tm-product-delete-link">
+                <tbody>
+  <?PHP
+        foreach($listePromos as $promo){
+      ?>
+      <tr>
+        <td>  <th scope="row"><input type="checkbox" /></th> </td>
+          <td><?PHP echo $promo['id_promo']; ?></td> 
+          <td><?PHP echo $promo['id_pack']; ?></td>
+      
+          <td><?PHP echo $promo['pourcentage']; ?></td>
+          <td><?PHP echo $promo['date_deb']; ?></td>
+          <td><?PHP echo $promo['date_fin']; ?></td>
+          <td></td>
+          <td>
+             
+                  <!--    <a href="#" class="tm-product-delete-link">
                         <i class="far fa-trash-alt tm-product-delete-icon"></i>
-             </a>-->
+                      </a> -->
                     
-						<form method="POST" action="deleteDish.php">
-						<input type="submit" name="DELETE" value="DELETE" class="btn btn-primary btn-block text-uppercase">
-						<input type="hidden" value=<?PHP echo $dish['id']; ?> name="id"  >
-						</form> 					</td>
-					<td>
-						<a href="modifydish.php? id=<?PHP echo $dish['id']; ?>" class="btn btn-primary btn-block text-uppercase"> Modify </a>
-					</td>
-				</tr>
-			<?PHP
-				}
-			?> 
-               <!--   <tr>
+            <form method="POST" action="deletepromo.php">
+            <input type="submit" name="supprimer" value="supprimer" class="btn btn-primary btn-block text-uppercase" >
+            <input type="hidden" value=<?PHP echo $promo['id_promo']; ?> name="id_promo"  >
+            </form>           </td>
+          <td>
+            <a href="modifypromo.php?id_promo=<?PHP echo $promo['id_promo']; ?>"  class="btn btn-primary btn-block text-uppercase"> Modifier </a>
+          </td>
+          
+        </tr>
+      <?PHP
+        }
+      ?> 
+
+
+                 <!--
+                  <tr>
                     <th scope="row"><input type="checkbox" /></th>
                     <td class="tm-pack-name">SIMPLE</td>
                     <td>150Dt</td>
@@ -292,14 +285,16 @@
                       </a>
                     </td>
                   </tr> -->
-                </tbody> 
+                </tbody>
               </table>
             </div>
             <!-- table container -->
-          <a
-              href="addProduct.php"
-              class="btn btn-primary btn-block text-uppercase mb-3"> Add Dish </a>
-             
+            <a
+              href="addpromo.php"
+              class="btn btn-primary btn-block text-uppercase mb-3">Add new promo</a>
+            <button class="btn btn-primary btn-block text-uppercase">
+              Delete selected promos
+            </button>
           </div>
         </div>
         
