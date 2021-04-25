@@ -1,8 +1,8 @@
 <?PHP
-	include "./Controller/GiftBC.php";
-
-	$GiftC=new giftC();
-	$listeGifts=$GiftC->displayGift();
+  include "../Controller/PromoC.php";
+ 
+  $promoC=new PromoC();
+  $listePromos=$promoC->afficherpromo();
 
 ?>
 
@@ -12,7 +12,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title> Page - Admin HTML Template</title>
+    <title>Pack Page - Admin HTML Template</title>
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Roboto:400,700"
@@ -79,12 +79,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="Gift.html">
-                <i class="fas fa-shopping-cart"></i> Gift
-              </a>
-            </li>
-            <li class="nav-item">
-                            <a class="nav-link active" href="Pack.html">
+                            <a class="nav-link " href="Pack.html">
                                 <i class="fas fa-shopping-cart"></i>
                                 Pack
                             </a>
@@ -95,8 +90,8 @@
                 <i class="far fa-user"></i> Accounts
               </a>
             </li>
-             <li class="nav-item">
-              <a class="nav-link" href="promo.html">
+               <li class="nav-item">
+              <a class="nav-link active" href="promo.html.html">
                 <i class="far fa-user"></i> Promo
               </a>
             </li>
@@ -137,51 +132,52 @@
               <table class="table table-hover tm-table-small tm-product-table">
                 <thead>
                   <tr>
-                    <th scope="col">&nbsp;</th> 
-                    <th scope="col">ID</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Image</th>
-                    <th scope="col">Description</th>
-                    <th scope="col">Type</th>
-                    <th scope="col">Prix</th>
-                    <th scope="col">Type </th>
-                    <th scope="col"> </th>
-
+                    <th scope="col">&nbsp;</th>
+                    <th scope="col">&nbsp;</th>
+                    <th scope="col">ID PROMO</th>
+                    <th scope="col">ID PACK</th>
+                    <th scope="col">POURCENTAGE</th>
+                    <th scope="col">DATE DEBUT</th>
+                    <th scope="col">DATE FIN</th>
+                    
                     <th scope="col">&nbsp;</th>
                   </tr>
-                  <tr></tr>
                 </thead>
-             <tbody>
-
-             	<?PHP
-				foreach($listeGifts as $Gift){
-			?>
-			<tr>
-					<td><?PHP echo $Gift['id']; ?></td> 
-					<td><?PHP echo $Gift['nom']; ?></td>
-					<td><?PHP echo $Gift['imageG']; ?></td>
-					<td><?PHP echo $Gift['descr']; ?></td>
-					<
-					<td><?PHP echo $Gift['price']; ?></td>
-					<td></td>
-					<td>
-						 
-                      <a href="#" class="tm-product-delete-link">
+                <tbody>
+  <?PHP
+        foreach($listePromos as $promo){
+      ?>
+      <tr>
+        <td>  <th scope="row"><input type="checkbox" /></th> </td>
+          <td><?PHP echo $promo['id_promo']; ?></td> 
+          <td><?PHP echo $promo['id_pack']; ?></td>
+      
+          <td><?PHP echo $promo['pourcentage']; ?></td>
+          <td><?PHP echo $promo['date_deb']; ?></td>
+          <td><?PHP echo $promo['date_fin']; ?></td>
+          <td></td>
+          <td>
+             
+                  <!--    <a href="#" class="tm-product-delete-link">
                         <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                      </a>
+                      </a> -->
                     
-						<form method="POST" action="deletegift_back.php">
-						<input type="submit" name="supprimer" value="supprimer">
-						<input type="hidden" value=<?PHP echo $Gift['id']; ?> name="id"  >
-						</form> 					</td>
-					<td>
-						<a href="modifiergift_back.php?id=<?PHP echo $Gift['id']; ?>"> Modifier </a>
-					</td>
-				</tr>
-			<?PHP
-				}
-			?> 
-               <!--   <tr>
+            <form method="POST" action="deletepromo.php">
+            <input type="submit" name="supprimer" value="supprimer" class="btn btn-primary btn-block text-uppercase" >
+            <input type="hidden" value=<?PHP echo $promo['id_promo']; ?> name="id_promo"  >
+            </form>           </td>
+          <td>
+            <a href="modifypromo.php?id_promo=<?PHP echo $promo['id_promo']; ?>"  class="btn btn-primary btn-block text-uppercase"> Modifier </a>
+          </td>
+          
+        </tr>
+      <?PHP
+        }
+      ?> 
+
+
+                 <!--
+                  <tr>
                     <th scope="row"><input type="checkbox" /></th>
                     <td class="tm-pack-name">SIMPLE</td>
                     <td>150Dt</td>
@@ -289,16 +285,16 @@
                       </a>
                     </td>
                   </tr> -->
-                </tbody> 
+                </tbody>
               </table>
             </div>
             <!-- table container -->
-          <a
-              href="addgift_back.php"
-              class="btn btn-primary btn-block text-uppercase mb-3"> Add new Gift </a>
+            <a
+              href="addpromo.php"
+              class="btn btn-primary btn-block text-uppercase mb-3">Add new promo</a>
             <button class="btn btn-primary btn-block text-uppercase">
-              Delete selected products
-            </button> 
+              Delete selected promos
+            </button>
           </div>
         </div>
         
@@ -307,7 +303,7 @@
     <footer class="tm-footer row tm-mt-small">
       <div class="col-12 font-weight-light">
         <p class="text-center text-white mb-0 px-4 small">
-          Copyright &copy; <b>2021</b> All rights reserved. 
+          Copyright &copy; <b>2018</b> All rights reserved. 
           
           Design: <a rel="nofollow noopener" href="https://templatemo.com" class="tm-footer-link">Template Mo</a>
         </p>
@@ -327,4 +323,3 @@
     </script>
   </body>
 </html>
-

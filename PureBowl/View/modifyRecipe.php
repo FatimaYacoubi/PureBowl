@@ -152,7 +152,7 @@
                       id="duration"
                       name="duration"
                       type="text"
-                      value="<?php echo $recipe['duration']; ?>"
+                      
                       class="form-control validate"
                     />
                   </div>
@@ -167,25 +167,12 @@
                       id="steps"
                       name="steps"
                       type="text"
-                      value="<?php echo $recipe['steps']; ?>"
+                    
                       class="form-control validate"
                     />
                     
                   </div>
-                  <div class="form-group mb-3">
-                    <label
-                      for="id"
-                      > ID dish
-                    </label>
-                    
-                    <input
-                      id="id"
-                      name="id"
-                      type="text"
-                      value="<?php echo $recipe['id']; ?>" disabled
-                      class="form-control validate"
-                    />
-                  </div>
+                 
 
                   
     
@@ -193,24 +180,7 @@
                   </div>
                   
               </div>
-          <!--    <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
-                <div class="tm-product-img-edit mx-auto">
-                  <img src="../imageweb <?php echo $offer['image_offre'];?>" alt="Product image" class="img-fluid d-block mx-auto">
-                  <i
-                    class="fas fa-cloud-upload-alt tm-upload-icon"
-                    onclick="document.getElementById('fileInput').click();"
-                  ></i>
-                </div>
-                <div class="custom-file mt-3 mb-3">
-                  <input id="fileInput" type="file" style="display:none;" />
-                  <input
-                    type="button"
-                    class="btn btn-primary btn-block mx-auto"
-                    value="CHANGE IMAGE NOW"
-                    onclick="document.getElementById('fileInput').click();"
-                  />
-                </div>
-              </div> -->
+     
               <div class="col-12">
                 <button type="submit" class="btn btn-primary btn-block text-uppercase">Update Now</button>
               </div>

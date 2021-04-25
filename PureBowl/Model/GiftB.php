@@ -1,9 +1,9 @@
 <?PHP
 	class gift{
 		private ?int $id = null;
-		private ?string $imageG = null;
 		private ?string $nom = null;
-        private ?string $descr = null;
+        private ?string $imageG = null;
+		private ?string $descr = null;
 		private ?float $price = null;
 
 		function __construct(string $nom, string $imageG, string $descr, float $price){
@@ -17,6 +17,9 @@
 		
 		
 		
+		function getId(): int{
+			return $this->id;
+		}
 		function getName(): string{
 			return $this->nom;
 		}

@@ -1,53 +1,75 @@
 <?php
-	
-    include "./controller/GiftBC.php";
-    include_once './Model/GiftB.php';
+    include_once '../Model/Promo.php';
+    include_once '../Controller/PromoC.php';
 
-	$GiftC = new giftC();
-	$error = "";
-    if (isset($_POST["someAction"]))
-     {
-          
-         
-          $Gift = new Gift(
-            $_POST['nom'],
-            '',
-            0  
-        );
-        
-            $GiftC->deleteGift($Gift->getName());
+    $error = "";
+
+    // create user
+    $promos = null;
+
+    // create an instance of the controller
+    $promoC = new PromoC();
+    if (
+        isset($_POST["id_pack"]) && 
+        isset($_POST["pourcentage"]) &&
+        isset($_POST["date_deb"]) && 
+        isset($_POST["date_fin"]) 
+    ) {
+        if (
+            !empty($_POST["id_pack"]) && 
+            !empty($_POST["pourcentage"]) && 
+            !empty($_POST["date_deb"]) && 
+            !empty($_POST["date_fin"]) 
+        ) {
+            $promos = new promo(
+                $_POST['id_pack'],
+                $_POST['pourcentage'], 
+                $_POST['date_deb'],
+                $_POST['date_fin']
+            );
+
+      
+            $promoC->ajouterPromo($promos);
+            // header('Location:showpromo.php');
+        }
+        else
+            $error = "Missing information";
     }
+
+    
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Delete gift - Dashboard HTML Template</title>
+    <title>Add Pack - Dashboard HTML Template</title>
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Roboto:400,700"
     />
     <!-- https://fonts.google.com/specimen/Roboto -->
-    <link rel="stylesheet" href="css/fontawesome.min.css" />
+    <link rel="stylesheet" href="../css/fontawesome.min.css" />
     <!-- https://fontawesome.com/ -->
     <link rel="stylesheet" href="jquery-ui-datepicker/jquery-ui.min.css" type="text/css" />
     <!-- http://api.jqueryui.com/datepicker/ -->
-    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../css/bootstrap.min.css" />
     <!-- https://getbootstrap.com/ -->
-    <link rel="stylesheet" href="css/templatemo-style.css">
+    <link rel="stylesheet" href="../css/templatemo-style.css">
     <!--
-	Product Admin CSS Template
-	https://templatemo.com/tm-524-product-admin
-	-->
+    Product Admin CSS Template
+    https://templatemo.com/tm-524-product-admin
+    -->
   </head>
 
   <body>
     <nav class="navbar navbar-expand-xl">
       <div class="container h-100">
         <a class="navbar-brand" href="index.html">
-          <h1 class="tm-site-title mb-0">Menu Admin</h1>
+          <h1 class="tm-site-title mb-0">Pack Admin</h1>
         </a>
         <button
           class="navbar-toggler ml-auto mr-0"
@@ -94,19 +116,19 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="giftBack.html">
-                <i class="fas fa-shopping-cart"></i> Gift
-              </a>
-            </li>
-
-  <li class="nav-item">
               <a class="nav-link " href="Pack.html">
                 <i class="fas fa-shopping-cart"></i> Pack
               </a>
             </li>
+
             <li class="nav-item">
               <a class="nav-link" href="accounts.html">
                 <i class="far fa-user"></i> Accounts
+              </a>
+            </li>
+             <li class="nav-item">
+              <a class="nav-link active" href="promo.html">
+                <i class="far fa-user"></i> promo
               </a>
             </li>
             <li class="nav-item dropdown">
@@ -145,32 +167,76 @@
           <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
             <div class="row">
               <div class="col-12">
-                <h2 class="tm-block-title d-inline-block">Delete Gift</h2>
+                <h2 class="tm-block-title d-inline-block">Add Promo</h2>
               </div>
             </div>
+              <div id="error">
+            <?php echo $error; ?>
+        </div>
             <div class="row tm-edit-product-row">
-              <div class="col-xl-12 col-lg-6 col-md-12">
-                <form action="deletegift_back.php" class="tm-edit-product-form" method="POST">
+              <div class="col-xl-6 col-lg-6 col-md-12">
+             <form action="" method="POST">
                   <div class="form-group mb-3">
-                       <label
-                        for="nom"
-                       >  Name
-                        </label>
+                    <label
+                      for="id_pack"
+                      > ID PACK
+                    </label>
                     <input
-                      id="nom"
-                      name="nom"
-                      type="text"
-                      placeholder="Enter the gift name"
-                      pattern="[A-Za-z]*"
+                      id="id_pack"
+                      name="id_pack"
+                      type="number"
                       class="form-control validate"
-                      
+                      required
                     />
                   </div>
+                  <div class="form-group mb-3">
+                    <label
+                      for="pourcentage"
+                      >Pourcentage</label
+                    >
+                    <input
+                      id="pourcentage"
+                      name="pourcentage"
+                      type="number"
+                      class="form-control validate"
+                      required
+                    />
+                  
+                  </div>
+                  <div class="form-group mb-3">
+                    <label
+                      for="date_deb"
+                      >date debut</label
+                    >
+                    <input
+                      id="date_deb"
+                      name="date_deb"
+                      type="date"
+                      class="form-control validate"
+                      required
+                    />
+                  </div>
+                  <div class="row">
+                      <div class="form-group mb-3">
+                          <label
+                            for="date_fin"
+                            > date fin
+                          </label>
+                          <input
+                            id="date_fin"
+                            name="date_fin"
+                            type="date"
+                            class="form-control validate"
+                             required
+                          />
+                        </div>
+                        
+                  </div>
+                  
               </div>
               
-              </div>
-              <div class="col-xl-4 col-lg-4 col-md-4">
-                <button type="submit" name="someAction" class="btn btn-primary btn-block text-uppercase">delete</button>
+              <div class="col-12">
+                <button type="submit" class="btn btn-primary btn-block text-uppercase">Add Promo Now</button>
               </div>
             </form>
             </div>

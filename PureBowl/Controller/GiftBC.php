@@ -1,6 +1,6 @@
 <?PHP
-	include "config.php";
-	require_once 'Model/GiftB.php';
+	include "../config.php";
+	require_once '../Model/GiftB.php';
 
 	class giftC 
 	{
@@ -21,7 +21,7 @@
 					'price' => $Gift->getPrice()
 					
 				]);	
-				echo $query->rowCount() . " records Added successfully <br>";		
+				//echo $query->rowCount() . " records Added successfully <br>";		
 			}
 			catch (Exception $e){
 				echo 'Erreur: '.$e->getMessage();
@@ -57,14 +57,15 @@
 			}
 		}
         /*Fonction supprimer */
-		function deleteGift($id){
+		function deleteGift($id)
+		{
 			$sql="DELETE FROM gift WHERE id= :id";
 			$db = config::getConnexion();
 			$req=$db->prepare($sql);
 			$req->bindValue(':id',$id);
 			try{
 				$req->execute();
-				echo $query->rowCount() . " records DELETED successfully <br>";
+				//echo $query->rowCount() . " records DELETED successfully <br>";
 			}
 			catch (Exception $e){
 				die('Erreur: '.$e->getMessage());
