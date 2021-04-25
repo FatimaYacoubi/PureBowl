@@ -84,6 +84,11 @@
               </a>
             </li>
             <li class="nav-item">
+              <a class="nav-link  " href="displayGift.php">
+                <i class="fas fa-shopping-cart"></i> Gifts
+              </a>
+            </li>
+            <li class="nav-item">
                             <a class="nav-link " href="../Pack.html">
                                 <i class="fas fa-shopping-cart"></i>
                                 Pack
