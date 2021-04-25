@@ -74,7 +74,9 @@
 				$e->getMessage();
 			}
 		}
-		function recupererOffre($id_offre){
+		
+		function recupererOffre($id_offre)
+		{
 			$sql="SELECT * from offre where id_offre=$id_offre";
 			$db = config::getConnexion();
 			try{
@@ -89,7 +91,8 @@
 			}
 		}
 
-		function recupererOffre1($id_offre){
+		function recupererOffre1($id_offre)
+		{
 			$sql="SELECT * from offre where id_offre=$id_offre";
 			$db = config::getConnexion();
 			try{
@@ -103,6 +106,23 @@
 				die('Erreur: '.$e->getMessage());
 			}
 		}
+		 function rechercher($input,$colonne) {
+		 	if($colonne == "all") 
+		 	{        $sql = "SELECT * from offre WHERE ( nom_offre LIKE \"%$input%\") OR ( id_offre LIKE \"%$input%\") ";
+            } else {
+        $sql = "SELECT * from offre WHERE ( $colonne LIKE \"%$input%\")  "; }
+        $db = config::getConnexion();
+        try { $liste=$db->query($sql); 
+         
+
+            return $liste;
+        }
+        catch (PDOException $e) {
+            $e->getMessage();
+        }
+
+
+    }
 
 }
 

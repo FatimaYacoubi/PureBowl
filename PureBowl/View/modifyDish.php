@@ -1,33 +1,33 @@
 <?php
-  include "../Controller/recipeC.php";
-  include_once '../Model/recipe.php';
+  include "../Controller/dishC.php";
+  include_once '../Model/dish.php';
 
-  $recipeC = new recipeC();
+  $dishC = new dishC();
   $error = "";
   
   if (
-    isset($_POST["duration"]) && 
+    isset($_POST["name"]) && 
         
-        isset($_POST["steps"]) &&
-        isset($_POST["id"]) 
+        isset($_POST["ingredients"]) &&
+        isset($_POST["price"]) 
   ){
     if (
-            !empty($_POST["duration"]) && 
+            !empty($_POST["name"]) && 
          
-            !empty($_POST["steps"]) &&
-            !empty($_POST["id"]) 
+            !empty($_POST["ingredients"]) &&
+            !empty($_POST["price"]) 
           
         ) {
-            $recipe = new recipe(
-                $_POST['duration'],
+            $dish = new dish(
+                $_POST['name'],
             
-                $_POST['steps'],
-                $_POST['id']
+                $_POST['ingredients'],
+                $_POST['price']
               
       );
       
-            $recipeC->modifyRecipe($recipe, $_GET['idR']);
-            header('refresh:5;url=displayRecipe.php');
+            $dishC->modifyDish($dish, $_GET['id']);
+            header('refresh:5;url=displayProduct.php');
         }
         else
             $error = "Missing information";
@@ -41,7 +41,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Modify recipe - Dashboard Admin Template</title>
+    <title>Modify Dish - Dashboard Admin Template</title>
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Roboto:400,700"
@@ -62,14 +62,14 @@
 
   <body>
      <?php
-      if (isset($_GET['idR'])) {
-        $recipe = $recipeC->recupererRecipe($_GET['idR']);
+      if (isset($_GET['id'])) {
+        $dish = $dishC->recupererDish($_GET['id']);
         
     ?>
     <nav class="navbar navbar-expand-xl">
       <div class="container h-100">
         <a class="navbar-brand" href="index.html">
-          <h1 class="tm-site-title mb-0">Recipes</h1>
+          <h1 class="tm-site-title mb-0">Dishes</h1>
         </a>
         <button
           class="navbar-toggler ml-auto mr-0"
@@ -88,9 +88,9 @@
             
             
             
-            <li class="nav-item">
-              <a class="nav-link active" href="displayRecipe.php">
-                <i class="fas fa-shopping-cart"></i> Recipes
+          <li class="nav-item">
+              <a class="nav-link active" href="displayProduct.php">
+                <i class="fas fa-shopping-cart"></i> Products
               </a>
             </li>
              
@@ -114,7 +114,7 @@
           <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
             <div class="row">
               <div class="col-12">
-                <h2 class="tm-block-title d-inline-block">Modify recipe</h2>
+                <h2 class="tm-block-title d-inline-block">Modify Dish</h2>
               </div>
             </div>
             <div class="row tm-edit-product-row">
@@ -130,49 +130,63 @@
 
                   <div class="form-group mb-3">
                     <label
-                      for="idR"
-                      >Recipe ID
+                      for="id"
+                      >DISH ID
                     </label>
                     
                     <input
-                      id="idR"
-                      name="idR"
+                      id="id"
+                      name="id"
                       type="text"
-                      value="<?php echo $recipe['idR']; ?>" disabled
+                      value="<?php echo $dish['id']; ?>" disabled
                       class="form-control validate"
                     />
                   </div>
 
                   <div class="form-group mb-3">
                     <label
-                      for="duration"
-                      >DURATION
+                      for="name"
+                      >FOOD & DRINKS
                     </label>
                     <input
-                      id="duration"
-                      name="duration"
+                      id="name"
+                      name="name"
                       type="text"
-                      
+                      value="<?php echo $dish['name']; ?>"
                       class="form-control validate"
                     />
                   </div>
-
+                  <div class="form-group mb-3">
+                    <label
+                      for="ingredients"
+                      >ingredients</label
+                    >
+                    <textarea
+                    id="ingredients"
+                    name="ingredients"
+                    placeholder="Enter the ingredients"
+                    value="<?php echo $dish['ingredients']; ?>"
+                      class="form-control validate"
+                      rows="3"
+                      required
+                    ></textarea>
+                  </div>
 
                   <div class="form-group mb-3">
                     <label
-                      for="steps"
-                      >STEPS</label
+                      for="price"
+                      >PRICE</label
                     >
                      <input
-                      id="steps"
-                      name="steps"
+                      id="price"
+                      name="price"
                       type="text"
-                    
+                      value="<?php echo $dish['price']; ?>"
                       class="form-control validate"
                     />
                     
                   </div>
-                 
+                  
 
                   
     

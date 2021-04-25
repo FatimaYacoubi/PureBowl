@@ -1,3 +1,11 @@
+
+<?PHP
+	include "../Controller/DishC.php";
+
+	$dish=new DishC();
+	$listDishes=$dish->displayDish();
+
+?>
 <!DOCTYPE html>
 <html lang="en"><!-- Basic -->
 <head>
@@ -8,38 +16,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
  
      <!-- Site Metas -->
-    <title>Yamifood Restaurant - Responsive HTML5 Template</title>  
+    <title>Pure Bowl</title>  
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <!-- Site Icons 
+    <!-- Site Icons -->
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
-	-->
-	<link rel="gift" href="css/animate2.css">
+
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">  
+    <link rel="stylesheet" href="css/bootstrap.min.css">    
 	<!-- Site CSS -->
-    <link rel="stylesheet" href="css/style.css">
-	    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="css/style.css">    
+    <!-- Responsive CSS -->
     <link rel="stylesheet" href="css/responsive.css">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/custom.css">
-	
 
-    <!-- [if lt IE 9] -->
+    <!--[if lt IE 9]>-->
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-   <!-- [endif] -->
-  
+    <!--[endif]-->
 
- 
 </head>
 
 <body>
 	<!-- Start header -->
-	
 	<header class="top-navbar">
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
 			<div class="container">
@@ -52,15 +55,9 @@
 				<div class="collapse navbar-collapse" id="navbars-rs-food">
 					<ul class="navbar-nav ml-auto">
 						<li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-						<li class="nav-item "><a class="nav-link" href="menu.php">Menu</a></li>
+						<li class="nav-item active"><a class="nav-link" href="menu.php">Menu</a></li>
 						<li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
 						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Pages</a>
-							<div class="dropdown-menu" aria-labelledby="dropdown-a">
-								<a class="dropdown-item" href="reservation.html">Reservation</a>
-								<a class="dropdown-item" href="stuff.html">Stuff</a>
-								<a class="dropdown-item" href="gallery.html">Gallery</a>
-							</div>
 						</li>
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Offres</a>
@@ -76,9 +73,9 @@
 								<a class="dropdown-item" href="blog-details.html">blog Single</a>
 							</div>
 						</li>
-						<li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+						<li class="nav-item"><a class="nav-link" href="affichercommande.php">My orders</a></li>
 						<li class="nav-item"><a class="nav-link" href="reclamation.html">Reclamation</a></li>
-						<li class="nav-item active "><a class="nav-link" href="gift.html">Gift</a></li>
+						<li class="nav-item"><a class="nav-link" href="gift.html">Gift</a></li>
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Sign in</a>
 							<div class="dropdown-menu" aria-labelledby="dropdown-a">
@@ -106,30 +103,15 @@
 		</div>
 	</div>
 	<!-- End All Pages -->
-
-	<!--video part-->
-	<div class="banner">
-	<video autoplay="" muted="" loop="">
-		<source src="images/gift.mp4" type="video/mp4">
-	</video>	
-	<div id="ll"></div>
-	<script type="text/javascript">
-	let ll = document.querySelector('#ll');
-	window.addEventListener('scroll',function(){
-		let value =window.scrollY;
-		bg.style.backgroungSize = 1000 + value*2 +"px";
-	})
 	
-	</script>
-
 	<!-- Start Menu -->
 	<div class="menu-box">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="heading-title text-center">
-						<h2>Our Special Offres </h2>
-						<p>it's not how much we give , but how much love we put into giving.</p>
+						<h2>Special Menu</h2>
+						<p>Our nutritious food and drink restores inner and outer vitality.</p>
 					</div>
 				</div>
 			</div>
@@ -138,96 +120,39 @@
 					<div class="special-menu text-center">
 						<div class="button-group filter-button-group">
 							<button class="active" data-filter="*">All</button>
-							<button data-filter=".chocolate">chocolate</button>
-							<button data-filter=".break">Breakfest box</button>
-							<!--<button data-filter=".dinner">Dinner</button>-->
+							<button data-filter=".drinks">Drinks</button>
+							<button data-filter=".lunch">Lunch</button>
+							<button data-filter=".dinner">Dinner</button>
 						</div>
 					</div>
 				</div>
 			</div>
-				
 			<div class="row special-list">
-				<div class="col-lg-4 col-md-6 special-grid chocolate">
-					<div class="gallery-single fix">
-						<img src="images/choco1.jpg" class="img-fluid" alt="Image">
-						<div class="why-text">
-							<h4>chocolate coockies</h4>
-							<p></p>
-							<h4>7 Dt</h4>
-							<h4> <a class="btn btn-lg btn-circle btn-outline-new-black" href="giftLook.html">Get it</a>  </h4> 
+				<?PHP
+				foreach($listDishes as $dish){ 
+					?>
+						<div class="col-lg-4 col-md-10 special-grid lunch">
+							<div class="gallery-single fix">
+								<img src="images/img-01.jpg" class="img-fluid" alt="Image">
+								<div class="why-text">
+								<pre> <h4>  <?PHP echo $dish['name']; echo('                '); echo $dish['price']; ?> </h4> </pre>
+									<p><?PHP echo $dish['ingredients']; ?></p>
+										<h4> <a class="btn btn-lg btn-circle btn-outline-new-black" href="couscous.html">Get it</a>        <a class="btn btn-lg btn-circle btn-outline-new-black" href="couscous.html">Tuto</a> </h4> 
+								</div>
+							</div>
 						</div>
-					</div>
-				</div>
-				
-				<div class="col-lg-4 col-md-6 special-grid chocolate">
-					<div class="gallery-single fix">
-						<img src="images/choco2.png" class="img-fluid" alt="Image">
-						<div class="why-text">
-							<h4>Dark chocolate balls</h4>
-							<p></p>
-							<h4>18 Dt</h4>
-							 <h4> <a class="btn btn-lg btn-circle btn-outline-new-black" href="giftLook.html">Get it</a>  </h4> 
-						</div>
-					</div>
-				</div>
-				
-				<div class="col-lg-4 col-md-6 special-grid break">
-					<div class="gallery-single fix">
-						<img src="images/br1.png" class="img-fluid" alt="Image">
-						<div class="why-text">
-							<h4>sweet morning</h4>
-							<p></p>
-							<h5> 9 Dt</h5>
-							 <h4> <a class="btn btn-lg btn-circle btn-outline-new-black" href="giftLook.html">Get it</a>  </h4> 
-						</div>
-					</div>
-				</div>
-				
-				<div class="col-lg-4 col-md-6 special-grid chocolate">
-					<div class="gallery-single fix">
-						<img src="images/choco3.jpg" class="img-fluid" alt="Image">
-						<div class="why-text">
-							<h4>chocolate dates</h4>
-							<p></p>
-							<h4> 10 Dt</h4>
-							<h4> <a class="btn btn-lg btn-circle btn-outline-new-black" href="giftLook.html">Get it</a>  </h4> 
-						</div>
-					</div>
-				</div>
-				
-				
-				
-				<div class="col-lg-4 col-md-6 special-grid break">
-					<div class="gallery-single fix">
-						<img src="images/br2.png" class="img-fluid" alt="Image">
-						<div class="why-text">
-							<h4>special breakfest </h4>
-							<p></p>
-							<h4> 12 Dt</h4>
-							<h4> <a class="btn btn-lg btn-circle btn-outline-new-black" href="giftLook.html">Get it</a>  </h4> 
-						</div>
-					</div>
-				</div>
-				
-				<div class="col-lg-4 col-md-6 special-grid break">
-					<div class="gallery-single fix">
-						<img src="images/br3.png" class="img-fluid" alt="Image">
-						<div class="why-text">
-							<h4>the big feast</h4>
-							<p></p>
-							<h5> 19 Dt</h5>
-							<h4> <a class="btn btn-lg btn-circle btn-outline-new-black" href="giftLook.html">Get it</a>  </h4> 
-						</div>
-					</div>
-				</div>
-				
+
+							<?PHP
+				}
+				?>		
+			</div>
 	
 			</div>
 		</div>
 	</div>
-	 <!--End Menu -->
+	<!-- End Menu -->
 	
-	<!-- Start QT 
+	<!-- Start QT -->
 	<div class="qt-box qt-background">
 		<div class="container">
 			<div class="row">
@@ -240,9 +165,9 @@
 			</div>
 		</div>
 	</div>
-	 End QT -->
+	<!-- End QT -->
 	
-	<!-- Start Customer Reviews 
+	<!-- Start Customer Reviews -->
 	<div class="customer-reviews-box">
 		<div class="container">
 			<div class="row">
@@ -295,8 +220,9 @@
 			</div>
 		</div>
 	</div>
-	 End Customer Reviews -->
-		<!-- Start Contact info 
+	<!-- End Customer Reviews -->
+	
+	<!-- Start Contact info -->
 	<div class="contact-imfo-box">
 		<div class="container">
 			<div class="row">
@@ -330,8 +256,7 @@
 			</div>
 		</div>
 	</div>
-	 End Contact info -->
-	
+	<!-- End Contact info -->
 	
 	<!-- Start Footer -->
 	<footer class="footer-area bg-f">
@@ -360,7 +285,6 @@
 						<form class="subscribe_form">
 							<input name="EMAIL" id="subs-email" class="form_input" placeholder="Email Address..." type="email">
 							<button type="submit" class="submit">SUBSCRIBE</button>
-							
 							<div class="clearfix"></div>
 						</form>
 					</div>
@@ -379,7 +303,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-12">
-						<p class="company-name">All Rights Reserved. &copy; 2021 <a href="#">Pure Bowl</a> Design By : 
+						<p class="company-name">All Rights Reserved. &copy; 2018 <a href="#">Yamifood Restaurant</a> Design By : 
 					<a href="https://html.design/">html design</a></p>
 					</div>
 				</div>
@@ -388,7 +312,6 @@
 		
 	</footer>
 	<!-- End Footer -->
-	
 	
 	<a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
 

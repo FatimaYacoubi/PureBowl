@@ -1,15 +1,8 @@
 <?PHP
-	include "../Controller/offreC.php";
+	include "./Controller/GiftBC.php";
 
-	$offreC=new offreC();
-	
-  if ((isset($_POST["recherche"]))&& (isset($_POST["colonne"]))){
-   if (!empty(isset($_POST["recherche"]))){
-    $n=$_POST["colonne"];
-    echo ("colonne = $n " );
-     $listeOffers=$offreC->rechercher($_POST["recherche"],$n);
-   } 
-  } else {$listeOffers=$offreC->afficherOffre();}
+	$GiftC=new giftC();
+	$listeGifts=$GiftC->displayGift();
 
 ?>
 
@@ -19,7 +12,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Pack Page - Admin HTML Template</title>
+    <title> Page - Admin HTML Template</title>
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Roboto:400,700"
@@ -86,6 +79,11 @@
               </a>
             </li>
             <li class="nav-item">
+              <a class="nav-link active" href="Gift.html">
+                <i class="fas fa-shopping-cart"></i> Gift
+              </a>
+            </li>
+            <li class="nav-item">
                             <a class="nav-link active" href="Pack.html">
                                 <i class="fas fa-shopping-cart"></i>
                                 Pack
@@ -131,44 +129,22 @@
         </div>
       </div>
     </nav>
-
     <div class="container mt-5">
       <div class="row tm-content-row">
-              <div class="col-sm-12 col-md-12 col-lg-8 col-xl-8 tm-block-col">
+        <div class="col-sm-12 col-md-12 col-lg-8 col-xl-8 tm-block-col">
           <div class="tm-bg-primary-dark tm-block tm-block-products">
-
-      
-       <form method="POST" action="">
-        <select name="colonne">
-        <option value="all">ALL</option>
-          <option value="nom_offre">NAME</option>
-          <option value="id_offre">ID</option>
-          <option value="prix_offre">PRICE</option>
-        </select>
-          <input type="text" name="recherche" placeholder="rechercher" class="recherche"> 
-          <input type="submit" name="chercher" value="Valider">
-
-</script>
-       </form>
             <div class="tm-product-table-container">
-
               <table class="table table-hover tm-table-small tm-product-table">
                 <thead>
-                  
-                  
                   <tr>
-
                     <th scope="col">&nbsp;</th> 
-                    <th scope="col">select</th>
                     <th scope="col">ID</th>
                     <th scope="col">Name</th>
                     <th scope="col">Image</th>
-                    <th scope="col">Menus</th>
+                    <th scope="col">Description</th>
                     <th scope="col">Type</th>
                     <th scope="col">Prix</th>
-                     
-                      
-                    
+                    <th scope="col">Type </th>
                     <th scope="col"> </th>
 
                     <th scope="col">&nbsp;</th>
@@ -178,38 +154,33 @@
              <tbody>
 
              	<?PHP
-				foreach($listeOffers as $offer){
+				foreach($listeGifts as $Gift){
 			?>
 			<tr>
-        <td>  <th scope="row"><input type="checkbox" /></th> </td>
-					<td><?PHP echo $offer['id_offre']; ?></td> 
-					<td><?PHP echo $offer['nom_offre']; ?></td>
-					<!-- <td><?PHP echo $offer['image_offre']; ?></td> -->  <td><img src="../imageweb/<?php echo $offer['image_offre'];?>" width="200px" height="200px"></td>
-					<td><?PHP echo $offer['descrip_offre']; ?></td>
-					<td><?PHP echo $offer['type_offre']; ?></td>
-					<td><?PHP echo $offer['prix_offre']; ?></td>
+					<td><?PHP echo $Gift['id']; ?></td> 
+					<td><?PHP echo $Gift['nom']; ?></td>
+					<td><?PHP echo $Gift['imageG']; ?></td>
+					<td><?PHP echo $Gift['descr']; ?></td>
+					<
+					<td><?PHP echo $Gift['price']; ?></td>
 					<td></td>
 					<td>
 						 
-                  <!--    <a href="#" class="tm-product-delete-link">
+                      <a href="#" class="tm-product-delete-link">
                         <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                      </a> -->
+                      </a>
                     
-						<form method="POST" action="deleteOffre.php">
-						<input type="submit" name="supprimer" value="supprimer" class="btn btn-primary btn-block text-uppercase" >
-						<input type="hidden" value=<?PHP echo $offer['id_offre']; ?> name="id_offre"  >
+						<form method="POST" action="deletegift_back.php">
+						<input type="submit" name="supprimer" value="supprimer">
+						<input type="hidden" value=<?PHP echo $Gift['id']; ?> name="id"  >
 						</form> 					</td>
 					<td>
-						<a href="modifyOffre.php?id_offre=<?PHP echo $offer['id_offre']; ?>"  class="btn btn-primary btn-block text-uppercase"> Modifier </a>
+						<a href="modifiergift_back.php?id=<?PHP echo $Gift['id']; ?>"> Modifier </a>
 					</td>
-          <td>
-            <a href="addpromo.php?id_offre=<?PHP echo $offer['id_offre']; ?>"  class="btn btn-primary btn-block text-uppercase"> Ajouter promo </a>
-          </td>
 				</tr>
 			<?PHP
 				}
 			?> 
-
                <!--   <tr>
                     <th scope="row"><input type="checkbox" /></th>
                     <td class="tm-pack-name">SIMPLE</td>
@@ -323,11 +294,12 @@
             </div>
             <!-- table container -->
           <a
-              href="addOffre.php"
-              class="btn btn-primary btn-block text-uppercase mb-3"> Add new pack </a>
-          <button class="btn btn-primary btn-block text-uppercase">
-              Delete selected packs
-            </button>   </div>
+              href="addgift_back.php"
+              class="btn btn-primary btn-block text-uppercase mb-3"> Add new Gift </a>
+            <button class="btn btn-primary btn-block text-uppercase">
+              Delete selected products
+            </button> 
+          </div>
         </div>
         
       </div>
@@ -335,7 +307,7 @@
     <footer class="tm-footer row tm-mt-small">
       <div class="col-12 font-weight-light">
         <p class="text-center text-white mb-0 px-4 small">
-          Copyright &copy; <b>2018</b> All rights reserved. 
+          Copyright &copy; <b>2021</b> All rights reserved. 
           
           Design: <a rel="nofollow noopener" href="https://templatemo.com" class="tm-footer-link">Template Mo</a>
         </p>
@@ -349,7 +321,7 @@
     <script>
       $(function() {
         $(".tm-product-name").on("click", function() {
-          window.location.href = "modifyOffre.php";
+          window.location.href = "edit-product.html";
         });
       });
     </script>
