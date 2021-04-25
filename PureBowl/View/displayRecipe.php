@@ -1,20 +1,28 @@
+<?PHP
+	include "../Controller/recipeC.php";
+
+	$recipeC=new recipeC();
+	$listeRecipes=$recipeC->displayRecipe();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Pack Page - Admin HTML Template</title>
+    <title>Recipe Page - Admin HTML Template</title>
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Roboto:400,700"
     />
     <!-- https://fonts.google.com/specimen/Roboto -->
-    <link rel="stylesheet" href="css/fontawesome.min.css" />
+    <link rel="stylesheet" href="../css/fontawesome.min.css" />
     <!-- https://fontawesome.com/ -->
-    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../css/bootstrap.min.css" />
     <!-- https://getbootstrap.com/ -->
-    <link rel="stylesheet" href="css/templatemo-style.css">
+    <link rel="stylesheet" href="../css/templatemo-style.css">
     <!--
   Product Admin CSS Template
   https://templatemo.com/tm-524-product-admin
@@ -25,7 +33,7 @@
     <nav class="navbar navbar-expand-xl">
       <div class="container h-100">
         <a class="navbar-brand" href="index1.html">
-          <h1 class="tm-site-title mb-0">Pack Admin</h1>
+          <h1 class="tm-site-title mb-0">Recipe</h1>
         </a>
         <button
           class="navbar-toggler ml-auto mr-0"
@@ -42,7 +50,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mx-auto h-100">
             <li class="nav-item">
-              <a class="nav-link" href="index1.html">
+              <a class="nav-link" href="../index1.html">
                 <i class="fas fa-tachometer-alt"></i> Dashboard
                 <span class="sr-only">(current)</span>
               </a>
@@ -66,30 +74,34 @@
               </div>
             </li>
             <li class="nav-item">
-              <a class="nav-link " href="products.html">
+              <a class="nav-link " href="../products.html">
                 <i class="fas fa-shopping-cart"></i> Products
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="View/displayRecipe.php">
-                  <i class="fas fa-shopping-cart"></i>
-                  Recipes
+              <a class="nav-link active " href="displayRecipe.php">
+                <i class="fas fa-shopping-cart"></i> Recipes
               </a>
-          </li>
+            </li>
             <li class="nav-item">
-                            <a class="nav-link " href="Pack.html">
+                            <a class="nav-link " href="../Pack.html">
                                 <i class="fas fa-shopping-cart"></i>
                                 Pack
                             </a>
-                        </li>
+              </li>
+            <li class="nav-item">
+                <a class="nav-link " href="../giftBack.html">
+                  <i class="fas fa-shopping-cart"></i> Gifts
+                </a>
+              </li>
 
             <li class="nav-item">
-              <a class="nav-link" href="accounts.html">
+              <a class="nav-link" href="../accounts.html">
                 <i class="far fa-user"></i> Accounts
               </a>
             </li>
-               <li class="nav-item">
-              <a class="nav-link active" href="promo.html.html">
+             <li class="nav-item">
+              <a class="nav-link" href="../promo.html">
                 <i class="far fa-user"></i> Promo
               </a>
             </li>
@@ -114,7 +126,7 @@
           </ul>
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link d-block" href="login.html">
+              <a class="nav-link d-block" href="../login.html">
                 Admin, <b>Logout</b>
               </a>
             </li>
@@ -131,17 +143,46 @@
                 <thead>
                   <tr>
                     <th scope="col">&nbsp;</th>
-                    <th scope="col">ID</th>
-                    <th scope="col">NAME</th>
-                    <th scope="col">DESCRIP</th>
-                    <th scope="col">PRIX</th>
-                    <th scope="col">IMAGE</th>
-                    <th scope="col">PERIODE</th>
+                     
+                    <th scope="col">ID </th>
+                    <th scope="col">DURATION</th>
+                    <th scope="col">STEPS</th>
+                    <th scope="col">ID dish</th>
+
                     <th scope="col">&nbsp;</th>
                   </tr>
+                  <tr></tr>
                 </thead>
-                <tbody> <!--
-                  <tr>
+             <tbody>
+
+             	<?PHP
+				foreach($listeRecipes as $recipe){
+			?>
+			<tr>
+      <td></td>
+          <td><?PHP echo $recipe['idR']; ?></td> 
+					<td><?PHP echo $recipe['duration']; ?></td> 
+					<td><?PHP echo $recipe['steps']; ?></td>
+          <td><?PHP echo $recipe['id']; ?></td>
+					<td></td>
+					<td>
+						 
+            <!-- <a href="#" class="tm-product-delete-link">
+                        <i class="far fa-trash-alt tm-product-delete-icon"></i>
+             </a>-->
+                    
+						<form method="POST" action="deleteRecipe.php">
+						<input type="submit" name="DELETE" value="DELETE" class="btn btn-primary btn-block text-uppercase">
+						<input type="hidden" value=<?PHP echo $recipe['idR']; ?> name="idR"  >
+						</form> 					</td>
+					<td>
+						<a href="modifyRecipe.php? idR=<?PHP echo $recipe['idR']; ?>" class="btn btn-primary btn-block text-uppercase"> Modifier </a>
+					</td>
+				</tr>
+			<?PHP
+				}
+			?> 
+               <!--   <tr>
                     <th scope="row"><input type="checkbox" /></th>
                     <td class="tm-pack-name">SIMPLE</td>
                     <td>150Dt</td>
@@ -249,16 +290,14 @@
                       </a>
                     </td>
                   </tr> -->
-                </tbody>
+                </tbody> 
               </table>
             </div>
             <!-- table container -->
-            <a
-              href="addpromo.html"
-              class="btn btn-primary btn-block text-uppercase mb-3">Add new promo</a>
-            <button class="btn btn-primary btn-block text-uppercase">
-              Delete selected promos
-            </button>
+          <a
+              href="addRecipe.php"
+              class="btn btn-primary btn-block text-uppercase mb-3"> Add Recipe </a>
+             
           </div>
         </div>
         
@@ -287,3 +326,4 @@
     </script>
   </body>
 </html>
+
