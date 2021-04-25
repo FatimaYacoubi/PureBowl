@@ -2,7 +2,7 @@
 	include "../Controller/postC.php";
 
 	$postC=new postC();
-	$listeUsers=$postC->afficherpostadmin();
+	$listeUsers=$postC->afficherarchive();
 
 ?>
 
@@ -139,23 +139,17 @@
             <div class="row">
                 <div class="col">
                     <p class="text-white mt-5 mb-5">Welcome back, <b>Admin</b></p>
-                    <a href="afficherarchivedpost.php"  >See archived posts </a>
-                    <br>
                 </div>
-                <br>
             </div>
-<br>
-<br>
-<br>
+
             <table class="table table-hover tm-table-small tm-product-table">
-            	
                 <thead>
                   <tr>
 
                     <th scope="col">ID</th>
                     <th scope="col">Titre</th>
                     <th scope="col">Date</th>
-                    <th scope="col" colspan="3"><p align="center">What to do ?</p></th>
+                    <th scope="col" colspan="3">What to do ?</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -170,7 +164,7 @@
                       
                         
                         <form method="POST" action="supprimerpost.php">
-                        	 <button type="submit" name="supprimer "class="tm-product-delete-link" >
+                             <button type="submit" name="supprimer "class="tm-product-delete-link" >
                         <i class="far fa-trash-alt tm-product-delete-icon"></i></button> 
                         
                         <input type="hidden" value=<?PHP echo $user['id']; ?> name="id">
@@ -179,27 +173,22 @@
                         </form>
                         
                        
-                      	</td >
-                      	<td style="width: 30px">
-                      		<form><button class="tm-product-delete-link">
-                        	<a href="modifierpost.php?id=<?PHP echo $user['id']; ?>"  >
+                        </td >
+                        <td style="width: 30px">
+                            <form><button class="tm-product-delete-link">
+                            <a href="modifierpost.php?id=<?PHP echo $user['id']; ?>"  >
                         <i class="far fa-edit tm-product-delete-icon" ></i>
 
                       </a>
                         </button></form></td>
-                      	<td style="width: 30px" ><form method="POST" action="archiverpost.php">
-                            <button style="height: : 30px" type="submit" name="archiver "class="tm-product-delete-link" >
+                        <td style="width: 30px" ><form method="POST" action="inarchiverpost.php">
+                            <button style="height: : 30px" type="submit" name="inarchiver "class="tm-product-delete-link" >
                         <i class="fas fa-archive tm-product-delete-icon" ></i></button> 
                         
                         <input type="hidden" value=<?PHP echo $user['id']; ?> name="id">
                     </form>
 
                 </td>
-                        
-                         
-                     
-</form> 
-                    
                     
                     
                   </tr>
