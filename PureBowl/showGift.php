@@ -1,20 +1,28 @@
+<?PHP
+	include "./Controller/GiftBC.php";
+
+	$GiftC=new giftC();
+	$listeGifts=$GiftC->displayGift();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Pack Page - Admin HTML Template</title>
+    <title> Page - Admin HTML Template</title>
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Roboto:400,700"
     />
     <!-- https://fonts.google.com/specimen/Roboto -->
-    <link rel="stylesheet" href="css/fontawesome.min.css" />
+    <link rel="stylesheet" href="../css/fontawesome.min.css" />
     <!-- https://fontawesome.com/ -->
-    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../css/bootstrap.min.css" />
     <!-- https://getbootstrap.com/ -->
-    <link rel="stylesheet" href="css/templatemo-style.css">
+    <link rel="stylesheet" href="../css/templatemo-style.css">
     <!--
   Product Admin CSS Template
   https://templatemo.com/tm-524-product-admin
@@ -66,48 +74,28 @@
               </div>
             </li>
             <li class="nav-item">
-              <a class="nav-link " href="View/displayProduct.php">
+              <a class="nav-link " href="products.html">
                 <i class="fas fa-shopping-cart"></i> Products
               </a>
             </li>
             <li class="nav-item">
-<<<<<<< HEAD
-<<<<<<< HEAD
-              <a class="nav-link " href="giftBack.html">
+              <a class="nav-link active" href="Gift.html">
                 <i class="fas fa-shopping-cart"></i> Gift
-=======
-=======
-              <a class="nav-link" href="View/displayRecipe.php">
-                  <i class="fas fa-shopping-cart"></i>
-                  Recipes
               </a>
-          </li>
-            <li class="nav-item">
-                <a class="nav-link active" href="Pack.html">
-                   <i class="fas fa-shopping-cart"></i>
-                    Pack
-                   </a>
             </li>
             <li class="nav-item">
->>>>>>> c6c48944650e3668a2e8232e33803fcb63ef8793
+                            <a class="nav-link active" href="Pack.html">
+                                <i class="fas fa-shopping-cart"></i>
+                                Pack
+                            </a>
+                        </li>
 
-              <a class="nav-link  " href="admin/delivery.php">
-                <i class="fas fa-truck"></i> Delivery
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link " href="admin/provider.php">
-                <i class="fas fa-cubes"></i> provider
->>>>>>> 6dfd94ae269e9b8b7e530b9fbe0fc95a6c407f42
-              </a>
-            </li>
-          
             <li class="nav-item">
               <a class="nav-link" href="accounts.html">
                 <i class="far fa-user"></i> Accounts
               </a>
             </li>
-            <li class="nav-item">
+             <li class="nav-item">
               <a class="nav-link" href="promo.html">
                 <i class="far fa-user"></i> Promo
               </a>
@@ -149,30 +137,63 @@
               <table class="table table-hover tm-table-small tm-product-table">
                 <thead>
                   <tr>
-                    <th scope="col">&nbsp;</th>
-                    <th scope="col">PACK</th>
-                    <th scope="col">PRICE</th>
-                    <th scope="col">MENUS</th>
+                    <th scope="col">&nbsp;</th> 
                     <th scope="col">ID</th>
-                    <th scope="col">IMAGE</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Image</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Prix</th>
+                    <th scope="col">Type </th>
+                    <th scope="col"> </th>
+
                     <th scope="col">&nbsp;</th>
                   </tr>
+                  <tr></tr>
                 </thead>
-                <tbody>
-                  <tr>
+             <tbody>
+
+             	<?PHP
+				foreach($listeGifts as $Gift){
+			?>
+			<tr>
+					<td><?PHP echo $Gift['id']; ?></td> 
+					<td><?PHP echo $Gift['nom']; ?></td>
+					<td><?PHP echo $Gift['imageG']; ?></td>
+					<td><?PHP echo $Gift['descr']; ?></td>
+					<
+					<td><?PHP echo $Gift['price']; ?></td>
+					<td></td>
+					<td>
+						 
+                      <a href="#" class="tm-product-delete-link">
+                        <i class="far fa-trash-alt tm-product-delete-icon"></i>
+                      </a>
+                    
+						<form method="POST" action="deletegift_back.php">
+						<input type="submit" name="supprimer" value="supprimer">
+						<input type="hidden" value=<?PHP echo $Gift['id']; ?> name="id"  >
+						</form> 					</td>
+					<td>
+						<a href="modifiergift_back.php?id=<?PHP echo $Gift['id']; ?>"> Modifier </a>
+					</td>
+				</tr>
+			<?PHP
+				}
+			?> 
+               <!--   <tr>
                     <th scope="row"><input type="checkbox" /></th>
                     <td class="tm-pack-name">SIMPLE</td>
                     <td>150Dt</td>
                     <td>tarte/ salade/ penne au saumon / soupe/ couscous </td>
                     <td>011</td>
-                    <td></td>
                     <td>
                       <a href="#" class="tm-product-delete-link">
                         <i class="far fa-trash-alt tm-product-delete-icon"></i>
                       </a>
                     </td>
                   </tr>
-                <!--  <tr>
+                  <tr>
                     <th scope="row"><input type="checkbox" /></th>
                     <td class="tm-product-name">Lablebi</td>
                     <td>9 Dt</td>
@@ -184,7 +205,7 @@
                       </a>
                     </td>
                   </tr>
-                 <tr>
+                  <tr>
                     <th scope="row"><input type="checkbox" /></th>
                     <td class="tm-product-name">Mloukhiya</td>
                     <td>11 Dt</td>
@@ -268,16 +289,16 @@
                       </a>
                     </td>
                   </tr> -->
-                </tbody>
+                </tbody> 
               </table>
             </div>
             <!-- table container -->
-            <a
-              href="add-pack.html"
-              class="btn btn-primary btn-block text-uppercase mb-3">Add new pack</a>
+          <a
+              href="addgift_back.php"
+              class="btn btn-primary btn-block text-uppercase mb-3"> Add new Gift </a>
             <button class="btn btn-primary btn-block text-uppercase">
               Delete selected products
-            </button>
+            </button> 
           </div>
         </div>
         
@@ -286,7 +307,7 @@
     <footer class="tm-footer row tm-mt-small">
       <div class="col-12 font-weight-light">
         <p class="text-center text-white mb-0 px-4 small">
-          Copyright &copy; <b>2018</b> All rights reserved. 
+          Copyright &copy; <b>2021</b> All rights reserved. 
           
           Design: <a rel="nofollow noopener" href="https://templatemo.com" class="tm-footer-link">Template Mo</a>
         </p>
@@ -306,3 +327,4 @@
     </script>
   </body>
 </html>
+

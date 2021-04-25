@@ -74,7 +74,9 @@
 				$e->getMessage();
 			}
 		}
-		function recupererOffre($id_offre){
+		
+		function recupererOffre($id_offre)
+		{
 			$sql="SELECT * from offre where id_offre=$id_offre";
 			$db = config::getConnexion();
 			try{
@@ -89,7 +91,8 @@
 			}
 		}
 
-		function recupererOffre1($id_offre){
+		function recupererOffre1($id_offre)
+		{
 			$sql="SELECT * from offre where id_offre=$id_offre";
 			$db = config::getConnexion();
 			try{
