@@ -1,18 +1,18 @@
 <?php
-	include "../Controller/OffreC.php";
-	include_once '../Model/Offre.php';
+  include "../Controller/OffreC.php";
+  include_once '../Model/Offre.php';
 
-	$offreC = new OffreC();
-	$error = "";
-	
-	if (
-		isset($_POST["nom_offre"]) && 
+  $offreC = new offreC();
+  $error = "";
+  
+  if (
+    isset($_POST["nom_offre"]) && 
         isset($_POST["image_offre"]) &&
         isset($_POST["descrip_offre"]) && 
         isset($_POST["type_offre"]) && 
         isset($_POST["prix_offre"])
-	){
-		if (
+  ){
+    if (
             !empty($_POST["nom_offre"]) && 
             !empty($_POST["image_offre"]) && 
             !empty($_POST["descrip_offre"]) && 
@@ -25,20 +25,18 @@
                 $_POST['descrip_offre'],
                 $_POST['type_offre'],
                 $_POST['prix_offre']
-			);
-			
+      );
+      
             $offreC->modifierOffre($offer, $_GET['id_offre']);
             header('refresh:5;url=showOffre.php');
         }
         else
             $error = "Missing information";
-	}
+  }
 
 ?>
 
-
 <!DOCTYPE html>
-
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -58,12 +56,17 @@
     <!-- https://getbootstrap.com/ -->
     <link rel="stylesheet" href="../css/templatemo-style.css">
     <!--
-    Product Admin CSS Template
-    https://templatemo.com/tm-524-product-admin
-    -->
+  Product Admin CSS Template
+  https://templatemo.com/tm-524-product-admin
+  -->
   </head>
 
   <body>
+     <?php
+      if (isset($_GET['id_offre'])) {
+        $offer = $offreC->recupererOffre($_GET['id_offre']);
+        
+    ?>
     <nav class="navbar navbar-expand-xl">
       <div class="container h-100">
         <a class="navbar-brand" href="index.html">
@@ -167,23 +170,36 @@
               <div class="col-12">
                 <h2 class="tm-block-title d-inline-block">Edit Pack</h2>
               </div>
-              <div id="error">
-            <?php echo $error; ?>
-        </div>
-        
-        <?php
-            if (isset($_GET['id_offre'])){
-                $offer = $offreC->recupererOffre($_GET['id_offre']);
-                
-        ?>
             </div>
-
             <div class="row tm-edit-product-row">
               <div class="col-xl-6 col-lg-6 col-md-12">
-               <form action="" method="POST">
+                <div>
+        <div id="error">
+            <?php echo $error; ?>
+        </div>
+    
+   
+     
+    <form action="" method="POST" >
+
                   <div class="form-group mb-3">
                     <label
-                      for="name"
+                      for="id_offre"
+                      >Pack ID
+                    </label>
+                    
+                    <input
+                      id="id_offre"
+                      name="id_offre"
+                      type="text"
+                      value="<?php echo $offer['id_offre']; ?>" disabled
+                      class="form-control validate"
+                    />
+                  </div>
+
+                  <div class="form-group mb-3">
+                    <label
+                      for="nom_offre"
                       >Pack Name
                     </label>
                     <input
@@ -194,68 +210,77 @@
                       class="form-control validate"
                     />
                   </div>
+
+
                   <div class="form-group mb-3">
                     <label
                       for="descrip_offre"
                       >Description</label
                     >
-                    <textarea     
-                    name="descrip_offre"               
-                      class="form-control validate tm-small"
-                      value="<?php echo $offer['descrip_offre']; ?>" 
-                      rows="5"
-                      required
-                    >Lorem ipsum dolor amet gentrify glossier locavore messenger bag chillwave hashtag irony migas wolf kale chips small batch kogi direct trade shaman.</textarea>
+                     <input
+                      id="descrip_offre"
+                      name="descrip_offre"
+                      type="text"
+                      value="<?php echo $offer['descrip_offre']; ?>"
+                      class="form-control validate"
+                    />
+                    
                   </div>
                   <div class="form-group mb-3">
                     <label
                       for="type_offre"
                       >Type</label
                     >
-                    <select
-                      class="custom-select tm-select-accounts"
-                      id="type_offre" name="type_offre"
-                    >
-                      <option value="<?php echo $offer['type_offre']; ?>" </option>
-                      <option value="1" >Normal</option>
-                      <option value="2">Healthy</option>
-                      <option value="3">Vegan</option>
-                    </select>
+                      <input
+                      id="type_offre"
+                      name="type_offre"
+                      type="number"
+                      value="<?php echo $offer['type_offre']; ?>" 
+                      class="form-control validate"
+                    />
+                   
                   </div>
-              <!--    <div class="row">
-                      <div class="form-group mb-3 col-xs-12 col-sm-6">
-                          <label
-                            for="expire_date"
-                            >Expire Date
-                          </label>
-                          <input
-                            id="expire_date"
-                            name="expire_date"
-                            type="text"
-                            value="22 Oct, 2020"
-                            class="form-control validate"
-                            data-large-mode="true"
-                          />
-                        </div> -->
+     
+             
                         <div class="form-group mb-3 col-xs-12 col-sm-6">
                           <label
-                            for="prix_offre"
+                            for="stock"
                             >Prix
                           </label>
                           <input
                             id="prix_offre"
                             name="prix_offre"
-                            type="text"
+                            type="number"
                             value="<?php echo $offer['prix_offre']; ?>"
                             class="form-control validate"
+                          />
+                        </div>
+                         <div class="form-group mb-3 col-xs-12 col-sm-6">
+                          <label
+                            for="image_offre"
+                            >Image
+                          </label>
+                          <input
+                            id="image_offre"
+                            name="image_offre"
+                            type="text"
+                            value="<?php echo $offer['image_offre']; ?>"
+                            class="form-control validate"
+                          />
+                            <input
+                            id="image_offre"
+                            name="image_offre"
+                            type="file"
+                            value="<?php echo $offer['image_offre']; ?>"
+                            class="btn btn-primary btn-block text-uppercase"
                           />
                         </div>
                   </div>
                   
               </div>
-              <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
+          <!--    <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
                 <div class="tm-product-img-edit mx-auto">
-                  <img src="img/product-image.jpg" alt="Product image" class="img-fluid d-block mx-auto">
+                  <img src="../imageweb/<?php echo $offer['image_offre'];?>" alt="Product image" class="img-fluid d-block mx-auto">
                   <i
                     class="fas fa-cloud-upload-alt tm-upload-icon"
                     onclick="document.getElementById('fileInput').click();"
@@ -270,16 +295,21 @@
                     onclick="document.getElementById('fileInput').click();"
                   />
                 </div>
-              </div>
+              </div> -->
               <div class="col-12">
                 <button type="submit" class="btn btn-primary btn-block text-uppercase">Update Now</button>
               </div>
+
             </form>
+             
+      </div>
+     
             </div>
           </div>
         </div>
       </div>
     </div>
+
     <footer class="tm-footer row tm-mt-small">
         <div class="col-12 font-weight-light">
           <p class="text-center text-white mb-0 px-4 small">
@@ -289,19 +319,24 @@
         </p>
         </div>
     </footer> 
-
+      
     <script src="js/jquery-3.3.1.min.js"></script>
     <!-- https://jquery.com/download/ -->
-    <script src="jquery-ui-datepicker/jquery-ui.min.js"></script>
-    <!-- https://jqueryui.com/download/ -->
-    <script src="js/bootstrap.min.js"></script>
+  <script src="jquery-ui-datepicker/jquery-ui.min.js"></script>
+   <!-- https://jqueryui.com/download/ -->
+  <script src="js/bootstrap.min.js"></script>
     <!-- https://getbootstrap.com/ -->
-    <!--<script>
+ <!--   <script>
       $(function() {
         $("#expire_date").datepicker({
           defaultDate: "10/22/2020"
         });
-      }); 
-    </script> -->
+      });
+    </script> 
+  -->
+<?php
+    }
+    ?> 
   </body>
+ 
 </html>

@@ -1,15 +1,8 @@
 <?PHP
-	include "../Controller/offreC.php";
-
-	$offreC=new offreC();
-	
-  if ((isset($_POST["recherche"]))&& (isset($_POST["colonne"]))){
-   if (!empty(isset($_POST["recherche"]))){
-    $n=$_POST["colonne"];
-    echo ("colonne = $n " );
-     $listeOffers=$offreC->rechercher($_POST["recherche"],$n);
-   } 
-  } else {$listeOffers=$offreC->afficherOffre();}
+  include "../Controller/PromoC.php";
+ 
+  $promoC=new PromoC();
+  $listePromos=$promoC->afficherpromo();
 
 ?>
 
@@ -86,7 +79,7 @@
               </a>
             </li>
             <li class="nav-item">
-                            <a class="nav-link active" href="Pack.html">
+                            <a class="nav-link " href="Pack.html">
                                 <i class="fas fa-shopping-cart"></i>
                                 Pack
                             </a>
@@ -97,8 +90,8 @@
                 <i class="far fa-user"></i> Accounts
               </a>
             </li>
-             <li class="nav-item">
-              <a class="nav-link" href="promo.html">
+               <li class="nav-item">
+              <a class="nav-link active" href="promo.html.html">
                 <i class="far fa-user"></i> Promo
               </a>
             </li>
@@ -131,86 +124,60 @@
         </div>
       </div>
     </nav>
-
     <div class="container mt-5">
       <div class="row tm-content-row">
-              <div class="col-sm-12 col-md-12 col-lg-8 col-xl-8 tm-block-col">
+        <div class="col-sm-12 col-md-12 col-lg-8 col-xl-8 tm-block-col">
           <div class="tm-bg-primary-dark tm-block tm-block-products">
-
-      
-       <form method="POST" action="">
-        <select name="colonne">
-        <option value="all">ALL</option>
-          <option value="nom_offre">NAME</option>
-          <option value="id_offre">ID</option>
-          <option value="prix_offre">PRICE</option>
-        </select>
-          <input type="text" name="recherche" placeholder="rechercher" class="recherche"> 
-          <input type="submit" name="chercher" value="Valider">
-
-</script>
-       </form>
             <div class="tm-product-table-container">
-
               <table class="table table-hover tm-table-small tm-product-table">
                 <thead>
-                  
-                  
                   <tr>
-
-                    <th scope="col">&nbsp;</th> 
-                    <th scope="col">select</th>
-                    <th scope="col">ID</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Image</th>
-                    <th scope="col">Menus</th>
-                    <th scope="col">Type</th>
-                    <th scope="col">Prix</th>
-                     
-                      
+                    <th scope="col">&nbsp;</th>
+                    <th scope="col">&nbsp;</th>
+                    <th scope="col">ID PROMO</th>
+                    <th scope="col">ID PACK</th>
+                    <th scope="col">POURCENTAGE</th>
+                    <th scope="col">DATE DEBUT</th>
+                    <th scope="col">DATE FIN</th>
                     
-                    <th scope="col"> </th>
-
                     <th scope="col">&nbsp;</th>
                   </tr>
-                  <tr></tr>
                 </thead>
-             <tbody>
-
-             	<?PHP
-				foreach($listeOffers as $offer){
-			?>
-			<tr>
+                <tbody>
+  <?PHP
+        foreach($listePromos as $promo){
+      ?>
+      <tr>
         <td>  <th scope="row"><input type="checkbox" /></th> </td>
-					<td><?PHP echo $offer['id_offre']; ?></td> 
-					<td><?PHP echo $offer['nom_offre']; ?></td>
-					<!-- <td><?PHP echo $offer['image_offre']; ?></td> -->  <td><img src="../imageweb/<?php echo $offer['image_offre'];?>" width="200px" height="200px"></td>
-					<td><?PHP echo $offer['descrip_offre']; ?></td>
-					<td><?PHP echo $offer['type_offre']; ?></td>
-					<td><?PHP echo $offer['prix_offre']; ?></td>
-					<td></td>
-					<td>
-						 
+          <td><?PHP echo $promo['id_promo']; ?></td> 
+          <td><?PHP echo $promo['id_pack']; ?></td>
+      
+          <td><?PHP echo $promo['pourcentage']; ?></td>
+          <td><?PHP echo $promo['date_deb']; ?></td>
+          <td><?PHP echo $promo['date_fin']; ?></td>
+          <td></td>
+          <td>
+             
                   <!--    <a href="#" class="tm-product-delete-link">
                         <i class="far fa-trash-alt tm-product-delete-icon"></i>
                       </a> -->
                     
-						<form method="POST" action="deleteOffre.php">
-						<input type="submit" name="supprimer" value="supprimer" class="btn btn-primary btn-block text-uppercase" >
-						<input type="hidden" value=<?PHP echo $offer['id_offre']; ?> name="id_offre"  >
-						</form> 					</td>
-					<td>
-						<a href="modifyOffre.php?id_offre=<?PHP echo $offer['id_offre']; ?>"  class="btn btn-primary btn-block text-uppercase"> Modifier </a>
-					</td>
+            <form method="POST" action="deletepromo.php">
+            <input type="submit" name="supprimer" value="supprimer" class="btn btn-primary btn-block text-uppercase" >
+            <input type="hidden" value=<?PHP echo $promo['id_promo']; ?> name="id_promo"  >
+            </form>           </td>
           <td>
-            <a href="addpromo.php?id_offre=<?PHP echo $offer['id_offre']; ?>"  class="btn btn-primary btn-block text-uppercase"> Ajouter promo </a>
+            <a href="modifypromo.php?id_promo=<?PHP echo $promo['id_promo']; ?>"  class="btn btn-primary btn-block text-uppercase"> Modifier </a>
           </td>
-				</tr>
-			<?PHP
-				}
-			?> 
+          
+        </tr>
+      <?PHP
+        }
+      ?> 
 
-               <!--   <tr>
+
+                 <!--
+                  <tr>
                     <th scope="row"><input type="checkbox" /></th>
                     <td class="tm-pack-name">SIMPLE</td>
                     <td>150Dt</td>
@@ -318,16 +285,17 @@
                       </a>
                     </td>
                   </tr> -->
-                </tbody> 
+                </tbody>
               </table>
             </div>
             <!-- table container -->
-          <a
-              href="addOffre.php"
-              class="btn btn-primary btn-block text-uppercase mb-3"> Add new pack </a>
-          <button class="btn btn-primary btn-block text-uppercase">
-              Delete selected packs
-            </button>   </div>
+            <a
+              href="addpromo.php"
+              class="btn btn-primary btn-block text-uppercase mb-3">Add new promo</a>
+            <button class="btn btn-primary btn-block text-uppercase">
+              Delete selected promos
+            </button>
+          </div>
         </div>
         
       </div>
@@ -349,10 +317,9 @@
     <script>
       $(function() {
         $(".tm-product-name").on("click", function() {
-          window.location.href = "modifyOffre.php";
+          window.location.href = "edit-product.html";
         });
       });
     </script>
   </body>
 </html>
-
