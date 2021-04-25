@@ -1,7 +1,7 @@
 <?php
 	
-    include "./controller/GiftB.php";
-    include_once './Model/GiftBC.php';
+    include "./controller/GiftBC.php";
+    include_once './Model/GiftB.php';
 
 	$GiftC = new giftC();
 	$error = "";
@@ -89,8 +89,13 @@
               </div>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="products.html">
+              <a class="nav-link " href="products.html">
                 <i class="fas fa-shopping-cart"></i> Products
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="giftBack.html">
+                <i class="fas fa-shopping-cart"></i> Gift
               </a>
             </li>
 
@@ -140,11 +145,11 @@
           <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
             <div class="row">
               <div class="col-12">
-                <h2 class="tm-block-title d-inline-block">Delete Dish</h2>
+                <h2 class="tm-block-title d-inline-block">Delete Gift</h2>
               </div>
             </div>
             <div class="row tm-edit-product-row">
-              <div class="col-xl-6 col-lg-6 col-md-12">
+              <div class="col-xl-12 col-lg-6 col-md-12">
                 <form action="deletegift_back.php" class="tm-edit-product-form" method="POST">
                   <div class="form-group mb-3">
                        <label
@@ -164,8 +169,8 @@
               </div>
               
               </div>
-              <div class="col-12">
-                <button type="submit" name="someAction" class="btn btn-primary btn-block text-uppercase">Click to delete</button>
+              <div class="col-xl-4 col-lg-4 col-md-4">
+                <button type="submit" name="someAction" class="btn btn-primary btn-block text-uppercase">delete</button>
               </div>
             </form>
             </div>

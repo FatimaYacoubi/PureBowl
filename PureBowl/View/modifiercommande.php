@@ -1,17 +1,45 @@
 
-<?php 
-$host = "localhost";
-    $dbUsername = "root";
-    $dbPassword = "";
-    $dbname = "purebowl";
-        $connexion = new mysqli($host, $dbUsername, $dbPassword, $dbname);
-        $query=" SELECT * FROM commande"; 
-        $result = $connexion->query($query);
-?>
+<?php
+  include "../Controller/commandeC.php";
+  include_once "../Model/commande.php";
 
-?> 
-<!DOCTYPE html> 
-<html> 
+  $commandeC = new commandeC();
+  $error = "";
+
+if (
+    isset($_POST["dish"]) && 
+    isset($_POST["meat"]) &&
+    isset($_POST["option"]) &&
+    isset($_POST["person"]) &&
+    isset($_POST["date"]) &&
+    isset($_POST["time"]) 
+  ){
+    if (
+            !empty($_POST["dish"]) &&
+            !empty($_POST["meat"]) &&
+            !empty($_POST["option"]) &&
+            !empty($_POST["person"]) && 
+            !empty($_POST["date"]) && 
+            !empty($_POST["time"]) 
+        ) {
+            $user = new commande(
+                $_POST['dish'],
+                $_POST['meat'], 
+                $_POST['option'],
+                $_POST['person'],
+                $_POST['date'],
+                $_POST['time']
+      );
+      
+            $commandeC->modifiercommande($user, $_GET['id']);
+            header('Location:affichercommande.php');
+        }
+        else
+            $error = "Missing information";
+  }
+
+?>
+<html>
   <head> 
    
     <title> Pure Bowl</title>  
@@ -27,66 +55,66 @@ $host = "localhost";
 <!-- End Styles -->
 
     <!-- Site Icons -->
-    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">    
+    <link rel="stylesheet" href="../css/bootstrap.min.css">    
   <!-- Site CSS -->
 
 
-    <link rel="stylesheet" href="css/style.css"> 
-        <link rel="stylesheet" href="css/style2.css">    
+    <link rel="stylesheet" href="../css/style.css"> 
+        <link rel="stylesheet" href="../css/style2.css">    
 
-    <link rel="stylesheet" href="css/style.css">    
+    <link rel="stylesheet" href="../css/style.css">    
   <!-- Pickadate CSS -->
-    <link rel="stylesheet" href="css/classic.css">    
-  <link rel="stylesheet" href="css/classic.date.css">    
-  <link rel="stylesheet" href="css/classic.time.css">    
+    <link rel="stylesheet" href="../css/classic.css">    
+  <link rel="stylesheet" href="../css/classic.date.css">    
+  <link rel="stylesheet" href="../css/classic.time.css">    
     <!-- Responsive CSS -->
-    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="../css/responsive.css">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/custom.css">
+    <link rel="stylesheet" href="../css/custom.css">
 
   </head> 
   <body> 
     <header class="top-navbar">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container">
-        <a class="navbar-brand" href="index.html">
-          <img src="images/logo.png" alt="" />
+        <a class="navbar-brand" href="../index.html">
+          <img src="../images/logo.png" alt="" />
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbars-rs-food" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbars-rs-food">
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-            <li class="nav-item"><a class="nav-link" href="menu.html">Menu</a></li>
+            <li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="../menu.html">Menu</a></li>
             <li class="nav-item active dropdown">
               
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Offres</a>
               <div class="dropdown-menu" aria-labelledby="dropdown-a">
-                <a class="dropdown-item" href="offre.html">Offre</a>
-                <a class="dropdown-item" href="offre.html">Promotion</a>
+                <a class="dropdown-item" href="../offre.html">Offre</a>
+                <a class="dropdown-item" href="../offre.html">Promotion</a>
                 </div>
               </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Blog</a>
               <div class="dropdown-menu" aria-labelledby="dropdown-a">
-                <a class="dropdown-item" href="blog.html">blog</a>
-                <a class="dropdown-item" href="blog-details.html">blog Single</a>
+                <a class="dropdown-item" href="../blog.html">blog</a>
+                <a class="dropdown-item" href="../blog-details.html">blog Single</a>
               </div>
             </li>
-            <li class="nav-item"><a class="nav-link" href="affichercommande.php">My orders</a></li>
-            <li class="nav-item"><a class="nav-link" href="reclamation.html">Reclamation</a></li>
-            <li class="nav-item"><a class="nav-link" href="gift.html">Gift</a></li>
+            <li class="nav-item"><a class="nav-link" href="../view/affichercommande.php">My orders</a></li>
+            <li class="nav-item"><a class="nav-link" href="../reclamation.html">Reclamation</a></li>
+            <li class="nav-item"><a class="nav-link" href="../gift.html">Gift</a></li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Sign in</a>
               <div class="dropdown-menu" aria-labelledby="dropdown-a">
-                <a class="dropdown-item" href="login.html">As an administrator</a>
+                <a class="dropdown-item" href="../login.html">As an administrator</a>
                 <a class="dropdown-item" href="blog-details.html">As a client</a>
               </div>
             </li>
@@ -99,14 +127,18 @@ $host = "localhost";
         <br>
         <br><br>
         <br>
+    <?php
+      if (isset($_GET['id'])){
+        $user = $commandeC->recuperercommande($_GET['id']);
         
-        
-  <table align="center" border="1px" style="width:600px; line-height:40px;" class="myOtherTable"> 
+    ?>
+     <form name="form1" method="post" action="">
+  <table align="center" border="1px" style="width:100px ;" class="myOtherTable"> 
   <tr> <div class="container">
       <div class="row">
         <div class="col-lg-12">
           <div class="heading-title text-center">
-            <h2>Your Orders</h2>
+            <h2>Modify your order and we'll review it!</h2>
           </div>
         </div>
       </div>
@@ -117,43 +149,37 @@ $host = "localhost";
         <th> People </th> 
         <th> Date</th> 
         <th> Time </th> 
-        <th> What to do ?  </th> 
-        
+        <th> Annuler </th> 
+        <th> Modifier </th> 
         
     </tr> 
     
-    <?php 
-    while($rows = $result->fetch_assoc())
-    { 
-    ?> 
-    <tr> <td><?php echo $rows['dish']; ?></td> 
-    <td><?php echo $rows['meat']; ?></td> 
-    <td><?php echo $rows['option']; ?></td> 
-    <td><?php echo $rows['person']; ?></td> 
-    <td><?php echo $rows['date']; ?></td> 
-    <td><?php echo $rows['time']; ?></td> 
-    	 
-			<?php		
-                     echo "<td><a href=\"modifiercommande.php?id=$rows[id]\">Edit</a> | <a href=\"supprimercommande.php?id=$rows[id]\" onClick=\"return confirm('Are you sure you want to delete?')\">Delete</a>
-                     </td>";		 ?> 				
-                   
+    <tr> <td><input type="text" name="dish"value = "<?php echo $user['dish']; ?>"></td> 
+    <td><input type="text" name="meat" value = "<?php echo $user['meat']; ?>"></td> 
+    <td><input type="text" name="option" value = "<?php echo $user['option']; ?>"></td> 
+    <td><input type="text" name="person" value = "<?php echo $user['person']; ?>"></td> 
+    <td><input type="text" name="date" value = "<?php echo $user['date']; ?>"></td> 
+    <td><input type="text" name="time" value = "<?php echo $user['time']; ?>"></td> 
+<?php 
+               echo "<td><a href=affichercommande.php>cancel</a> "
+          ?>              <input type="hidden" name="id" value=<?php echo $_GET['id'];?>>
 
-           
-          
+                  <td><input type="submit" name="update" value="Update" class="btn-222" ></td>
+    </table>   </form>
+    <?php
+        }
+        ?>
+
     </tr> 
-  <?php 
-               } 
-          ?> 
-
-  </table> 
-  
+<!--             <a href="modifierUtilisateur.phpid=<?PHPecho $rows[]; ?>" class="btn-222" > Modifier </a>
+Start Customer Reviews -->
   <div class="customer-reviews-box">
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
           <div class="heading-title text-center">
             <h2>Customer Reviews</h2>
-            <p>Here are some customer reviews</p>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting</p>
           </div>
         </div>
       </div>
@@ -163,7 +189,7 @@ $host = "localhost";
             <div class="carousel-inner mt-4">
               <div class="carousel-item text-center active">
                 <div class="img-box p-1 border rounded-circle m-auto">
-                  <img class="d-block w-100 rounded-circle" src="images/profile-1.jpg" alt="">
+                  <img class="d-block w-100 rounded-circle" src="../images/profile-1.jpg" alt="">
                 </div>
                 <h5 class="mt-4 mb-0"><strong class="text-warning text-uppercase">Wajdi Hachana</strong></h5>
                 <h6 class="text-dark m-0">Web Developer</h6>
@@ -171,7 +197,7 @@ $host = "localhost";
               </div>
               <div class="carousel-item text-center">
                 <div class="img-box p-1 border rounded-circle m-auto">
-                  <img class="d-block w-100 rounded-circle" src="images/profile-3.jpg" alt="">
+                  <img class="d-block w-100 rounded-circle" src="../images/profile-3.jpg" alt="">
                 </div>
                 <h5 class="mt-4 mb-0"><strong class="text-warning text-uppercase">Mohamed Hedi Yaacoubi</strong></h5>
                 <h6 class="text-dark m-0">Dentist</h6>
@@ -179,7 +205,7 @@ $host = "localhost";
               </div>
               <div class="carousel-item text-center">
                 <div class="img-box p-1 border rounded-circle m-auto">
-                  <img class="d-block w-100 rounded-circle" src="images/profile-7.jpg" alt="">
+                  <img class="d-block w-100 rounded-circle" src="../images/profile-7.jpg" alt="">
                 </div>
                 <h5 class="mt-4 mb-0"><strong class="text-warning text-uppercase">Daniel vebar</strong></h5>
                 <h6 class="text-dark m-0">Seo Analyst</h6>
@@ -295,21 +321,26 @@ $host = "localhost";
   <a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
 
   <!-- ALL JS FILES -->
-  <script src="js/jquery-3.2.1.min.js"></script>
-  <script src="js/popper.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
+  <script src="../js/jquery-3.2.1.min.js"></script>
+  <script src="../js/popper.min.js"></script>
+  <script src="../js/bootstrap.min.js"></script>
     <!-- ALL PLUGINS -->
-  <script src="js/jquery.superslides.min.js"></script>
-  <script src="js/images-loded.min.js"></script>
-  <script src="js/isotope.min.js"></script>
-  <script src="js/baguetteBox.min.js"></script>
-  <script src="js/picker.js"></script>
-  <script src="js/picker.date.js"></script>
-  <script src="js/picker.time.js"></script>
-  <script src="js/legacy.js"></script>
-  <script src="js/form-validator.min.js"></script>
-    <script src="js/contact-form-script.js"></script>
-    <script src="js/custom.js"></script>
+  <script src="../js/jquery.superslides.min.js"></script>
+  <script src="../js/images-loded.min.js"></script>
+  <script src="../js/isotope.min.js"></script>
+  <script src="../js/baguetteBox.min.js"></script>
+  <script src="../js/picker.js"></script>
+  <script src="../js/picker.date.js"></script>
+  <script src="../js/picker.time.js"></script>
+  <script src="../js/legacy.js"></script>
+  <script src="../js/form-validator.min.js"></script>
+    <script src="../js/contact-form-script.js"></script>
+    <script src="../js/custom.js"></script>
 </body>
 </html>
+  
+   
+   
+
+
   
