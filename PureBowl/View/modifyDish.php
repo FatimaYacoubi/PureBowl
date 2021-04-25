@@ -7,17 +7,20 @@
   
   if (
     isset($_POST["name"]) && 
+        
         isset($_POST["ingredients"]) &&
         isset($_POST["price"]) 
   ){
     if (
-        !empty($_POST["name"]) && 
-        !empty($_POST["ingredients"]) &&
-        !empty($_POST["price"])
+            !empty($_POST["name"]) && 
+         
+            !empty($_POST["ingredients"]) &&
+            !empty($_POST["price"]) 
           
-        ) 
+        ) {
             $dish = new dish(
                 $_POST['name'],
+            
                 $_POST['ingredients'],
                 $_POST['price']
               
@@ -25,10 +28,10 @@
       
             $dishC->modifyDish($dish, $_GET['id']);
             header('refresh:5;url=displayProduct.php');
-       }
+        }
         else
             $error = "Missing information";
-  
+  }
 
 ?>
 
@@ -149,7 +152,7 @@
                       id="name"
                       name="name"
                       type="text"
-                      value="<?php echo $dish['name']; ?>"
+                      
                       class="form-control validate"
                     />
                   </div>
@@ -162,7 +165,7 @@
                     id="ingredients"
                     name="ingredients"
                     placeholder="Enter the ingredients"
-                    value="<?php echo $dish['ingredients']; ?>"
+                   
                       class="form-control validate"
                       rows="3"
                       required
@@ -178,7 +181,7 @@
                       id="price"
                       name="price"
                       type="text"
-                      value="<?php echo $dish['price']; ?>"
+                      
                       class="form-control validate"
                     />
                     
