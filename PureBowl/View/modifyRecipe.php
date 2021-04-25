@@ -152,7 +152,7 @@
                       id="duration"
                       name="duration"
                       type="text"
-                      value="<?php echo $recipe['duration']; ?>"
+                      
                       class="form-control validate"
                     />
                   </div>
@@ -167,25 +167,12 @@
                       id="steps"
                       name="steps"
                       type="text"
-                      value="<?php echo $recipe['steps']; ?>"
+                    
                       class="form-control validate"
                     />
                     
                   </div>
-                  <div class="form-group mb-3">
-                    <label
-                      for="id"
-                      > ID dish
-                    </label>
-                    
-                    <input
-                      id="id"
-                      name="id"
-                      type="text"
-                      value="<?php echo $recipe['id']; ?>" disabled
-                      class="form-control validate"
-                    />
-                  </div>
+                 
 
                   
     
