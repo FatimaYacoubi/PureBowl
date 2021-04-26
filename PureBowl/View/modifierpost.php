@@ -174,7 +174,7 @@
 		
 		<?php
 			if (isset($_GET['id'])){
-				$user = $postC->recupererreclamation($_GET['id']);
+				$user = $postC->recupererpost($_GET['id']);
 				
 		?>
 		<form action="" method="POST">

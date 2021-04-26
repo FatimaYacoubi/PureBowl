@@ -163,13 +163,15 @@
                         
                        
                       	</td >
-                      	<td style="width: 30px">
-                      		<form><button class="tm-product-delete-link">
-                        	<a href="modifierpost.php?id=<?PHP echo $user['id']; ?>"  >
+                      	
+                        <td style="width: 30px">
+                            <form>
+                            <a href="modifierpost.php?id=<?PHP echo $user['id']; ?>" class="tm-product-delete-link"  >
                         <i class="far fa-edit tm-product-delete-icon" ></i>
 
                       </a>
-                        </button></form></td>
+                      </form>
+                        </td>
                       	<td style="width: 30px" ><form method="POST" action="archiverpost.php">
                             <button style="height: : 30px" type="submit" name="archiver "class="tm-product-delete-link" >
                         <i class="fas fa-archive tm-product-delete-icon" ></i></button> 
