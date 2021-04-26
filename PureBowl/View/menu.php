@@ -137,14 +137,15 @@
 								<div class="why-text">
 								<pre> <h4>  <?PHP echo $dish['name']; echo('                '); echo $dish['price']; ?> </h4> </pre>
 									<p><?PHP echo $dish['ingredients']; ?></p>
-										<h4> <a class="btn btn-lg btn-circle btn-outline-new-black" href="../couscous.html">Get it</a>        <a class="btn btn-lg btn-circle btn-outline-new-black" href="../couscous.html">Tuto</a> </h4> 
+										<h4> <a class="btn btn-lg btn-circle btn-outline-new-black" href="../couscous.html">Get it</a>        
+										<a class="btn btn-lg btn-circle btn-outline-new-black" href="displayTuto.php?dish=<?php echo $dish['name'] ?>">Tuto</a> </h4> 
 								</div>
 							</div>
 						</div>
 
-							<?PHP
+					<?PHP
 				}
-				?>		
+			?>		
 			</div>
 	
 			</div>
