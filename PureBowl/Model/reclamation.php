@@ -5,7 +5,7 @@
 		private ?string $date = null;
 		private ?string $nomClient = null;
 		private ?string $emailClient = null;
-		private ?int $phoneClient = null;
+		private ?string $phoneClient = null;
 		private ?int $etat = null;
 		function __construct(string $description, string $date, string $nomClient, string $emailClient, string $phoneClient,int $etat){
 			
@@ -54,7 +54,7 @@
 		function setphoneClient(string $phoneClient): void{
 			$this->phoneClient=$phoneClient;
 		}
-		function setetat(string $etat): void{
+		function setetat(int $etat): void{
 			$this->etat=$etat;
 		}
 	}

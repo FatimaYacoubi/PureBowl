@@ -9,6 +9,7 @@
     isset($_POST["nbP"]) && 
         isset($_POST["dateC"]) 
   ){
+    
     if (
             !empty($_POST["nbP"]) && 
             !empty($_POST["dateC"]) 

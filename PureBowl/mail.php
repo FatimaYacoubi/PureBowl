@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en"><!-- Basic -->
 <head>
@@ -390,3 +391,22 @@ $('#dateControl').attr('min',maxDate);
     <script src="js/custom.js"></script>
 </body>
 </html>
+=======
+<?php
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+require 'mailing/autoload.php';
+
+  $mail = new PHPMailer();
+    $mail->SMTPDebug = SMTP::DEBUG_SERVER;
+    $mail->isSMTP();              
+    $mail->Host       = 'smtp.gmail.com';
+    $mail->SMTPAuth   = true;
+    $mail->Username   = 'vefmorrison@gmail.com';
+    $mail->Password   ='Kamehameha123';
+    $mail->SMTPSecure = 'ssl';         
+    $mail->Port       = 465;
+    $mail->isHTML(true);  
+?>
+>>>>>>> 6e424f972d656442eb5bbc6909fab17d698e83fb
