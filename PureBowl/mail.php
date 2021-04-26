@@ -40,11 +40,11 @@
 	input.controle {
   outline:0;
   font-size:22px;
-  width:510px;
+  width:300px;
 }	
 label.label {
   display:inline-block;
-  width:200px;
+  width:500px;
   text-align: right;
   font-style: italic;
   margin-right:5px;
@@ -58,7 +58,7 @@ input.controle:invalid {
 input.controle:valid + span:before  {
   content: "\f00c";
   font-family: "FontAwesome";
-  color:#0a0;
+  color: #0a0a0a;;
   font-size: 1.5em;
 }	
 input.controle:invalid + span:before  {

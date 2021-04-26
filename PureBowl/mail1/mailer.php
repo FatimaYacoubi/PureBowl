@@ -1,76 +1,155 @@
+<?php
+if (isset($_POST['ajax'])) {
+$to = $_POST['to'];
+$subject = $_POST['sub'];
+$msg = $_POST['msg'];
+$headers = "MIME-Version: 1.0" . "\r\n";
+$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+$headers .= "From: ".$_POST['name']."<".$_POST['from'].">";
+
+
+$send = mail($to,$subject,$msg,$headers);
+
+if ($send)
+{
+	echo "<p id='success'>✔️  $to</p>";
+}else{
+	echo "<p id='error'>❌  $to</p>";
+}
+exit();
+}
+?>
 <!DOCTYPE html>
-<html lang="en"><!-- Basic -->
+<html lang="en">
 <head>
-	<meta charset="utf-8">
+<meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">   
    
     <!-- Mobile Metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
  
      <!-- Site Metas -->
-    <title>Yamifood Restaurant - Responsive HTML5 Template</title>  
+    <title>Gift</title>  
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
 
     <!-- Site Icons -->
-    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="shortcut icon" href="../images/favicon.ico" type="../image/x-icon">
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">    
+    <link rel="stylesheet" href="../css/bootstrap.min.css">    
 	<!-- Site CSS -->
-    <link rel="stylesheet" href="css/style.css">    
+    <link rel="stylesheet" href="../css/style.css">    
 	<!-- Pickadate CSS -->
-    <link rel="stylesheet" href="css/classic.css">    
-	<link rel="stylesheet" href="css/classic.date.css">    
-	<link rel="stylesheet" href="css/classic.time.css">    
+    <link rel="stylesheet" href="../css/classic.css">    
+	<link rel="stylesheet" href="../css/classic.date.css">    
+	<link rel="stylesheet" href="../css/classic.time.css">    
     <!-- Responsive CSS -->
-    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="../css/responsive.css">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/custom.css">
-
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
+    <link rel="stylesheet" href="../css/custom.css">
+ 
+	<style>
+	body{
+		margin: 0;
+		padding: 0;
+		background-color: #FFFFFF;
+	}
+	::placeholder {
+    	color: grey;
+    	opacity: .9;
+    	font-size: 15px!important;
+	}
+	.main{
+		max-width: 768px;
+		margin: 0 auto;
+	}
+	#title{
+		color: ;
+	    text-shadow: 0 0 20px grey;
+		text-align: center;
+		font-family: Montserrat;
+	}
+	input[type="text"]{
+		background-color: #250;
+		box-shadow: 0 0 11px 0px white;
+		height: 40px;
+		width: 47%;
+		border: #FFE4C4;
+		border-radius: 4px;
+		padding: 15px;
+		margin: 1%;
+		box-sizing: border-box;
+		outline: none;
+		transition: .5s ease-in;
+		color: grey;
+		font-family: Montserrat;
+		font-size: 14px;
+	}
+	input[type="text"]:hover{
+		box-shadow: 0 0 11px 0px white;
+	}
+	#sub{
+		width: 96.5%;
+	}
+	textarea{
+		background-color: #FFE4C4;
+		box-shadow: 0 0 11px 0px white;
+		height: 300px;
+    	width: 47%;
+    	max-width: 49%;
+		border: none;
+		border-radius: 4px;
+		padding: 15px;
+		margin: 1%;
+		box-sizing: border-box;
+		outline: none;
+		transition: .5s ease-in;
+		color: grey;
+		font-family: Montserrat;
+		font-size: 14px;
+	}
+	textarea:hover{
+		box-shadow: 0 0 11px 0px #DEB887;
+	}
+	#btn{
+		background-color: #white;
+		box-shadow: 0 0 11px 0px #DEB887;
+		width: 96.5%;
+		height: 40px;
+	    margin-left: 5px;
+		margin-bottom: 40px;
+		color: #DAA520;
+		border: none;
+		border-radius: 4px;
+		font-family: Montserrat;
+		font-size: 18px;
+		font-weight: bold;
+		letter-spacing: 1px;
+		box-sizing: border-box;
+		outline: none;
+		transition: .5s ease-in;
+		cursor: pointer;
+	}
+	#btn:hover{
+		color: white;
+	}
+	#success{
+		font-family: Montserrat;
+		color: brown;
+	}
+	#error{
+		font-family: Montserrat;
+		color: white;
+	}
+	</style>
 </head>
-<style >
-	input.controle {
-  outline:0;
-  font-size:22px;
-  width:510px;
-}	
-label.label {
-  display:inline-block;
-  width:200px;
-  text-align: right;
-  font-style: italic;
-  margin-right:5px;
-}
-input.controle:valid {
-  border:3px solid #0a0;
-}
-input.controle:invalid {
-  border:3px solid #a00;
-}
-input.controle:valid + span:before  {
-  content: "\f00c";
-  font-family: "FontAwesome";
-  color:#0a0;
-  font-size: 1.5em;
-}	
-input.controle:invalid + span:before  {
-  content: "\f00d";
-  font-family: "FontAwesome";
-  color:rgb(37, 64, 214);
-  font-size: 1.5em;
-}
-</style>
+
 <body>
-        	<!-- Start header -->
-	<header class="top-navbar">
+	      	<!-- Start header -->
+			  <header class="top-navbar">
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
 			<div class="container">
 				<a class="navbar-brand" href="index.html">
@@ -81,39 +160,39 @@ input.controle:invalid + span:before  {
 				</button>
 				<div class="collapse navbar-collapse" id="navbars-rs-food">
 					<ul class="navbar-nav ml-auto">
-						<li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-						<li class="nav-item"><a class="nav-link" href="menu.php">Menu</a></li>
-						<li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+						<li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
+						<li class="nav-item"><a class="nav-link" href="../menu.php">Menu</a></li>
+						<li class="nav-item"><a class="nav-link" href="../about.html">About</a></li>
 						<li class="nav-item  dropdown">
 							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Pages</a>
 							<div class="dropdown-menu" aria-labelledby="dropdown-a">
-								<a class="dropdown-item" href="reservation.html">Reservation</a>
-								<a class="dropdown-item" href="stuff.html">Stuff</a>
-								<a class="dropdown-item" href="gallery.html">Gallery</a>
+								<a class="dropdown-item" href="../reservation.html">Reservation</a>
+								<a class="dropdown-item" href="../stuff.html">Stuff</a>
+								<a class="dropdown-item" href="../gallery.html">Gallery</a>
 							</div>
 						</li>
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Offres</a>
 							<div class="dropdown-menu" aria-labelledby="dropdown-a">
-								<a class="dropdown-item" href="offre.html">Offre</a>
-								<a class="dropdown-item" href="offre.html">Promotion</a>
+								<a class="dropdown-item" href="../offre.html">Offre</a>
+								<a class="dropdown-item" href="../offre.html">Promotion</a>
 								</div>
 							</li>
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Blog</a>
 							<div class="dropdown-menu" aria-labelledby="dropdown-a">
-								<a class="dropdown-item" href="blog.html">blog</a>
-								<a class="dropdown-item" href="blog-details.html">blog Single</a>
+								<a class="dropdown-item" href="../blog.html">blog</a>
+								<a class="dropdown-item" href="../blog-details.html">blog Single</a>
 							</div>
 						</li>
-						<li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-						<li class="nav-item active "><a class="nav-link" href="reclamation.html">Reclamation</a></li>
-						<li class="nav-item"><a class="nav-link" href="gift.html">Gift</a></li>
+						<li class="nav-item"><a class="nav-link" href="../contact.html">Contact</a></li>
+						<li class="nav-item  "><a class="nav-link" href="../reclamation.html">Reclamation</a></li>
+						<li class="nav-item active "><a class="nav-link" href="../gift.html">Gift</a></li>
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Sign in</a>
 							<div class="dropdown-menu" aria-labelledby="dropdown-a">
-								<a class="dropdown-item" href="login.html">As an administrator</a>
-								<a class="dropdown-item" href="blog-details.html">As a client</a>
+								<a class="dropdown-item" href="../login.html">As an administrator</a>
+								<a class="dropdown-item" href="../blog-details.html">As a client</a>
 							</div>
 						</li>
 					</ul>
@@ -121,109 +200,63 @@ input.controle:invalid + span:before  {
 			</div>
 		</nav>
 	</header>
-	<!-- End header -->
-	
-	<!-- Start All Pages -->
-	<div class="all-page-title page-breadcrumb">
+		<!-- Start All Pages -->
+		<div class="all-page-title page-breadcrumb">
 		<div class="container text-center">
 			<div class="row">
 				<div class="col-lg-12">
-					<h1>Help us be better</h1>
+					<h1>Write your email</h1>
 				</div>
 			</div>
 		</div>
 	</div>
 	<!-- End All Pages -->
-	
-	<!-- Start Reservation -->
-	<div class="reservation-box">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12">
-					<div class="heading-title text-center">
-						<h2>Reclamation Box</h2>
-						<p>What's wrong with your order </p>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-lg-12 col-sm-12 col-xs-12">
-					<div id="error">
-            <?php echo $error; ?>
-        </div>
-					<div class="contact-block">
-						<form action="./View/connexion.php" method="POST">
-							<div class="row">
-								<div class="col-md-6">
-									<h3>Tell us what's wrong</h3>
-									<div class="col-md-12">
-										<div class="form-group">
-											<textarea name="description" id="description" cols="30" rows="10" class="form-control" placeholder="Please describe your reclamation"></textarea>
-											<div class="help-block with-errors"></div>
-										</div>                                 
-									</div>
-									<div class="col-md-12">
-										<div class="form-group">
-											<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script >
-$(document).ready(function(){
-
-	var dtToday= new Date();
-	var month= dtToday.getMonth()+1;
-	var day= dtToday.getDate();
-	var year=dtToday.getFullYear();
-	if(month<10)
-		month='0'+month.toString();
-	if(day<10)
-		day='0'+day.toString();
-	var maxDate = year+'-'+month+'-'+day;
-$('#dateControl').attr('min',maxDate);
-})
-</script>
-											<input id="dateControl"  name="date" 
-                       placeholder="Please enter the date you want it delivered" type="date" >
-                      <div class="help-block with-errors"></div>
-										</div>                                 
-									</div>
-									
-								</div>
-								<div class="col-md-6">
-									<h3>Contact Details</h3>
-									<div class="col-md-12">
-										<div class="form-group">
-											<input type="text"  class="controle" id="nomClient" name="nomClient" required pattern="[0-9a-zA-Z-\.]{3,12}" placeholder="Your Name" required data-error="Please enter your name">
-											<div class="help-block with-errors"></div>
-										</div>                                 
-									</div>
-									<div class="col-md-12">
-										<div class="form-group">
-											<input type="text" placeholder="Your Email" id="emailClient" class="controle" name="emailClient" required data-error="Please enter your email">
-											<div class="help-block with-errors"></div>
-										</div> 
-									</div>
-									<div class="col-md-12">
-										<div class="form-group">
-											<input type="text" placeholder="Your Number" id="phoneClient" class="form-control" name="phoneClient" required data-error="Please enter your Number">
-											<div class="help-block with-errors"></div>
-										</div> 
-									</div>
-								</div>
-								<div class="col-md-12">
-									<div class="submit-button text-center">
-										<button class="btn btn-common" id="submit" type="submit"> Place your order</button>
-										<div id="msgSubmit" class="h3 text-center hidden"></div> 
-										<div class="clearfix"></div> 
-									</div>
-								</div>
-							</div>            
-					</div>
-				</div>
-			</div>
-		</form>
-		</div>
+<form action="" method="post">
+<div class="main" style="margin-top: 100px;">
+<h1>Send a mail to your loved ones 💗</h1>
+	<div>
+		<input type="text" name="from" id="from" class="form-control"  value="purebowlcontact@gmail.com" readonly required autofocus>
+		<input type="text" name="name" id="name" class="form-control"  value="Pure Bowl" readonly required autofocus>
+	</div><br>
+	<div>
+		<input type="text" name="sub" id="sub" class="form-control"  value="You Got a Gift !" readonly required autofocus>">
+	</div><br>
+	<div>
+		<textarea name="msg" id="msg" placeholder="Write your message here ... "></textarea>
+		<textarea name="to" id="to" placeholder="to ..( write an email )"></textarea>
 	</div>
-	<!-- End Reservation -->
-	
+	<div><br><br>
+		<button id="btn" onclick="return false">SEND</button>
+	</div>
+	<div id="result"></div>
+</div>
+</form>
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#btn").on('click',function(){
+		var mailist = $("#to").val().split("\n");
+		var tmailist =  mailist.length;
+		for (var current = 0; current < tmailist; current++) {
+		var from = $("#from").val();
+		var name = $("#name").val();
+		var sub = $("#sub").val();
+		var msg = $("#msg").val();
+		var to = mailist[current];
+		var data = "ajax=1&from=" + from + "&name=" + name + "&sub=" + sub + "&msg=" + msg + "&to=" + to;
+			$.ajax({
+				type : 'POST',
+				data:  data,
+				success: function(data) {
+	                $("#result").append(data);
+	            }
+			});
+		}
+
+
+	});
+});
+</script>
 	<!-- Start Customer Reviews -->
 	<div class="customer-reviews-box">
 		<div class="container">
@@ -241,7 +274,7 @@ $('#dateControl').attr('min',maxDate);
 						<div class="carousel-inner mt-4">
 							<div class="carousel-item text-center active">
 								<div class="img-box p-1 border rounded-circle m-auto">
-									<img class="d-block w-100 rounded-circle" src="images/profile-1.jpg" alt="">
+									<img class="d-block w-100 rounded-circle" src="../images/profile-1.jpg" alt="">
 								</div>
 								<h5 class="mt-4 mb-0"><strong class="text-warning text-uppercase">Paul Mitchel</strong></h5>
 								<h6 class="text-dark m-0">Web Developer</h6>
@@ -249,7 +282,7 @@ $('#dateControl').attr('min',maxDate);
 							</div>
 							<div class="carousel-item text-center">
 								<div class="img-box p-1 border rounded-circle m-auto">
-									<img class="d-block w-100 rounded-circle" src="images/profile-3.jpg" alt="">
+									<img class="d-block w-100 rounded-circle" src="../images/profile-3.jpg" alt="">
 								</div>
 								<h5 class="mt-4 mb-0"><strong class="text-warning text-uppercase">Steve Fonsi</strong></h5>
 								<h6 class="text-dark m-0">Web Designer</h6>
@@ -257,7 +290,7 @@ $('#dateControl').attr('min',maxDate);
 							</div>
 							<div class="carousel-item text-center">
 								<div class="img-box p-1 border rounded-circle m-auto">
-									<img class="d-block w-100 rounded-circle" src="images/profile-7.jpg" alt="">
+									<img class="d-block w-100 rounded-circle" src="../images/profile-7.jpg" alt="">
 								</div>
 								<h5 class="mt-4 mb-0"><strong class="text-warning text-uppercase">Daniel vebar</strong></h5>
 								<h6 class="text-dark m-0">Seo Analyst</h6>
@@ -297,6 +330,7 @@ $('#dateControl').attr('min',maxDate);
 					<div class="overflow-hidden">
 						<h4>Email</h4>
 						<p class="lead">
+
 							yourmail@gmail.com
 						</p>
 					</div>
@@ -373,20 +407,20 @@ $('#dateControl').attr('min',maxDate);
 	<a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
 
 	<!-- ALL JS FILES -->
-	<script src="js/jquery-3.2.1.min.js"></script>
-	<script src="js/popper.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
+	<script src="../js/jquery-3.2.1.min.js"></script>
+	<script src="../js/popper.min.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
     <!-- ALL PLUGINS -->
-	<script src="js/jquery.superslides.min.js"></script>
-	<script src="js/images-loded.min.js"></script>
-	<script src="js/isotope.min.js"></script>
-	<script src="js/baguetteBox.min.js"></script>
-	<script src="js/picker.js"></script>
-	<script src="js/picker.date.js"></script>
-	<script src="js/picker.time.js"></script>
-	<script src="js/legacy.js"></script>
-	<script src="js/form-validator.min.js"></script>
-    <script src="js/contact-form-script.js"></script>
-    <script src="js/custom.js"></script>
+	<script src="../js/jquery.superslides.min.js"></script>
+	<script src="../js/images-loded.min.js"></script>
+	<script src="../js/isotope.min.js"></script>
+	<script src="../js/baguetteBox.min.js"></script>
+	<script src="../js/picker.js"></script>
+	<script src="../js/picker.date.js"></script>
+	<script src="../js/picker.time.js"></script>
+	<script src="../js/legacy.js"></script>
+	<script src="../js/form-validator.min.js"></script>
+    <script src="../js/contact-form-script.js"></script>
+    <script src="../js/custom.js"></script>
 </body>
 </html>

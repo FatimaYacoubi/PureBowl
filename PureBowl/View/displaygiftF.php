@@ -1,3 +1,11 @@
+<?PHP
+	include "../Controller/GiftBC.php";
+
+	$GiftC=new giftC();
+	$listeGift=$GiftC->displayGift();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en"><!-- Basic -->
 <head>
@@ -13,63 +21,33 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <!-- Site Icons -->
+    <!-- Site Icons 
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
-
+	-->
+	<link rel="gift" href="../css/animate2.css">
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">    
+    <link rel="stylesheet" href="../css/bootstrap.min.css">  
 	<!-- Site CSS -->
-    <link rel="stylesheet" href="css/style.css">    
-	<!-- Pickadate CSS -->
-    <link rel="stylesheet" href="css/classic.css">    
-	<link rel="stylesheet" href="css/classic.date.css">    
-	<link rel="stylesheet" href="css/classic.time.css">    
-    <!-- Responsive CSS -->
-    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="../css/style.css">
+	    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="../css/responsive.css">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/custom.css">
+    <link rel="stylesheet" href="../css/custom.css">
+	
 
-    <!--[if lt IE 9]>
+    <!-- [if lt IE 9] -->
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+   <!-- [endif] -->
+  
 
+ 
 </head>
-<style >
-	input.controle {
-  outline:0;
-  font-size:22px;
-  width:510px;
-}	
-label.label {
-  display:inline-block;
-  width:200px;
-  text-align: right;
-  font-style: italic;
-  margin-right:5px;
-}
-input.controle:valid {
-  border:3px solid #0a0;
-}
-input.controle:invalid {
-  border:3px solid #a00;
-}
-input.controle:valid + span:before  {
-  content: "\f00c";
-  font-family: "FontAwesome";
-  color:#0a0;
-  font-size: 1.5em;
-}	
-input.controle:invalid + span:before  {
-  content: "\f00d";
-  font-family: "FontAwesome";
-  color:rgb(37, 64, 214);
-  font-size: 1.5em;
-}
-</style>
+
 <body>
-        	<!-- Start header -->
+	<!-- Start header -->
+	
 	<header class="top-navbar">
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
 			<div class="container">
@@ -82,9 +60,9 @@ input.controle:invalid + span:before  {
 				<div class="collapse navbar-collapse" id="navbars-rs-food">
 					<ul class="navbar-nav ml-auto">
 						<li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-						<li class="nav-item"><a class="nav-link" href="menu.php">Menu</a></li>
+						<li class="nav-item "><a class="nav-link" href="menu.php">Menu</a></li>
 						<li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
-						<li class="nav-item  dropdown">
+						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Pages</a>
 							<div class="dropdown-menu" aria-labelledby="dropdown-a">
 								<a class="dropdown-item" href="reservation.html">Reservation</a>
@@ -107,15 +85,17 @@ input.controle:invalid + span:before  {
 							</div>
 						</li>
 						<li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-						<li class="nav-item active "><a class="nav-link" href="reclamation.html">Reclamation</a></li>
-						<li class="nav-item"><a class="nav-link" href="gift.html">Gift</a></li>
+						<li class="nav-item"><a class="nav-link" href="reclamation.html">Reclamation</a></li>
+						<li class="nav-item active "><a class="nav-link" href="gift.html">Gift</a></li>
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Sign in</a>
 							<div class="dropdown-menu" aria-labelledby="dropdown-a">
 								<a class="dropdown-item" href="login.html">As an administrator</a>
 								<a class="dropdown-item" href="blog-details.html">As a client</a>
+
 							</div>
 						</li>
+
 					</ul>
 				</div>
 			</div>
@@ -128,103 +108,68 @@ input.controle:invalid + span:before  {
 		<div class="container text-center">
 			<div class="row">
 				<div class="col-lg-12">
-					<h1>Help us be better</h1>
+					<h1>Special Menu</h1>
 				</div>
 			</div>
 		</div>
 	</div>
 	<!-- End All Pages -->
+
+	<!--video part-->
+	<div class="banner">
+	<video autoplay="" muted="" loop="">
+		<source src="images/gift.mp4" type="video/mp4">
+	</video>	
+	<div id="ll"></div>
+	<script type="text/javascript">
+	let ll = document.querySelector('#ll');
+	window.addEventListener('scroll',function(){
+		let value =window.scrollY;
+		bg.style.backgroungSize = 1000 + value*2 +"px";
+	})
 	
-	<!-- Start Reservation -->
-	<div class="reservation-box">
+	</script>
+
+<?PHP
+				foreach($listeGift as $Gift){
+			?>
+			<tr>
+      <td></td>
+                    <td><?PHP echo $Gift['id']; ?></td> 
+                    <td><?PHP echo $Gift['nom']; ?></td>
+                    <td> <img src="../images <?PHP echo $Gift['imageG']; ?>" /> </td>  
+					<td><?PHP echo $Gift['descr']; ?></td>
+                    <td><?PHP echo $Gift['price']; ?></td>
+					<td></td>
+					<td>
+						 
+            <!-- <a href="#" class="tm-product-delete-link">
+                        <i class="far fa-trash-alt tm-product-delete-icon"></i>
+             </a>-->
+                    
+						
+					</td>
+				</tr>
+			<?PHP
+				}
+			?> 
+	
+	<!-- Start QT 
+	<div class="qt-box qt-background">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-12">
-					<div class="heading-title text-center">
-						<h2>Reclamation Box</h2>
-						<p>What's wrong with your order </p>
-					</div>
+				<div class="col-md-8 ml-auto mr-auto text-left">
+					<p class="lead ">
+						" If you're not the one cooking, stay out of the way and compliment the chef. "
+					</p>
+					<span class="lead">Michael Strahan</span>
 				</div>
 			</div>
-			<div class="row">
-				<div class="col-lg-12 col-sm-12 col-xs-12">
-					<div id="error">
-            <?php echo $error; ?>
-        </div>
-					<div class="contact-block">
-						<form action="./View/connexion.php" method="POST">
-							<div class="row">
-								<div class="col-md-6">
-									<h3>Tell us what's wrong</h3>
-									<div class="col-md-12">
-										<div class="form-group">
-											<textarea name="description" id="description" cols="30" rows="10" class="form-control" placeholder="Please describe your reclamation"></textarea>
-											<div class="help-block with-errors"></div>
-										</div>                                 
-									</div>
-									<div class="col-md-12">
-										<div class="form-group">
-											<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script >
-$(document).ready(function(){
-
-	var dtToday= new Date();
-	var month= dtToday.getMonth()+1;
-	var day= dtToday.getDate();
-	var year=dtToday.getFullYear();
-	if(month<10)
-		month='0'+month.toString();
-	if(day<10)
-		day='0'+day.toString();
-	var maxDate = year+'-'+month+'-'+day;
-$('#dateControl').attr('min',maxDate);
-})
-</script>
-											<input id="dateControl"  name="date" 
-                       placeholder="Please enter the date you want it delivered" type="date" >
-                      <div class="help-block with-errors"></div>
-										</div>                                 
-									</div>
-									
-								</div>
-								<div class="col-md-6">
-									<h3>Contact Details</h3>
-									<div class="col-md-12">
-										<div class="form-group">
-											<input type="text"  class="controle" id="nomClient" name="nomClient" required pattern="[0-9a-zA-Z-\.]{3,12}" placeholder="Your Name" required data-error="Please enter your name">
-											<div class="help-block with-errors"></div>
-										</div>                                 
-									</div>
-									<div class="col-md-12">
-										<div class="form-group">
-											<input type="text" placeholder="Your Email" id="emailClient" class="controle" name="emailClient" required data-error="Please enter your email">
-											<div class="help-block with-errors"></div>
-										</div> 
-									</div>
-									<div class="col-md-12">
-										<div class="form-group">
-											<input type="text" placeholder="Your Number" id="phoneClient" class="form-control" name="phoneClient" required data-error="Please enter your Number">
-											<div class="help-block with-errors"></div>
-										</div> 
-									</div>
-								</div>
-								<div class="col-md-12">
-									<div class="submit-button text-center">
-										<button class="btn btn-common" id="submit" type="submit"> Place your order</button>
-										<div id="msgSubmit" class="h3 text-center hidden"></div> 
-										<div class="clearfix"></div> 
-									</div>
-								</div>
-							</div>            
-					</div>
-				</div>
-			</div>
-		</form>
 		</div>
 	</div>
-	<!-- End Reservation -->
+	 End QT -->
 	
-	<!-- Start Customer Reviews -->
+	<!-- Start Customer Reviews 
 	<div class="customer-reviews-box">
 		<div class="container">
 			<div class="row">
@@ -277,9 +222,8 @@ $('#dateControl').attr('min',maxDate);
 			</div>
 		</div>
 	</div>
-	<!-- End Customer Reviews -->
-	
-	<!-- Start Contact info -->
+	 End Customer Reviews -->
+		<!-- Start Contact info 
 	<div class="contact-imfo-box">
 		<div class="container">
 			<div class="row">
@@ -313,7 +257,8 @@ $('#dateControl').attr('min',maxDate);
 			</div>
 		</div>
 	</div>
-	<!-- End Contact info -->
+	 End Contact info -->
+	
 	
 	<!-- Start Footer -->
 	<footer class="footer-area bg-f">
@@ -342,6 +287,7 @@ $('#dateControl').attr('min',maxDate);
 						<form class="subscribe_form">
 							<input name="EMAIL" id="subs-email" class="form_input" placeholder="Email Address..." type="email">
 							<button type="submit" class="submit">SUBSCRIBE</button>
+							
 							<div class="clearfix"></div>
 						</form>
 					</div>
@@ -360,7 +306,7 @@ $('#dateControl').attr('min',maxDate);
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-12">
-						<p class="company-name">All Rights Reserved. &copy; 2018 <a href="#">Yamifood Restaurant</a> Design By : 
+						<p class="company-name">All Rights Reserved. &copy; 2021 <a href="#">Pure Bowl</a> Design By : 
 					<a href="https://html.design/">html design</a></p>
 					</div>
 				</div>
@@ -369,6 +315,7 @@ $('#dateControl').attr('min',maxDate);
 		
 	</footer>
 	<!-- End Footer -->
+	
 	
 	<a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
 
@@ -381,10 +328,6 @@ $('#dateControl').attr('min',maxDate);
 	<script src="js/images-loded.min.js"></script>
 	<script src="js/isotope.min.js"></script>
 	<script src="js/baguetteBox.min.js"></script>
-	<script src="js/picker.js"></script>
-	<script src="js/picker.date.js"></script>
-	<script src="js/picker.time.js"></script>
-	<script src="js/legacy.js"></script>
 	<script src="js/form-validator.min.js"></script>
     <script src="js/contact-form-script.js"></script>
     <script src="js/custom.js"></script>

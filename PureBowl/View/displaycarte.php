@@ -1,8 +1,8 @@
 <?PHP
-	include "../Controller/dishC.php";
+	include "../Controller/carteFC.php";
 
-	$dishC=new dishC();
-	$listeDishes=$dishC->displayDish();
+	$carteC=new carteC();
+	$listeCartes=$carteC->displaycarte();
 
 ?>
 
@@ -12,7 +12,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Dish Page - Admin HTML Template</title>
+    <title>carte Page - Admin HTML Template</title>
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Roboto:400,700"
@@ -75,15 +75,27 @@
             </li>
            
             <li class="nav-item">
-              <a class="nav-link active " href="displayProduct.php">
+              <a class="nav-link  " href="displayProduct.php">
                 <i class="fas fa-shopping-cart"></i> Products
               </a>
             </li>
-
-            <li class="nav-item">
-              <a class="nav-link " href="displayGift.php">
-                <i class="fas fa-shopping-cart"></i> Products
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle active"
+                href="#"
+                id="navbarDropdown"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false">
+                <i class="far fa-file-alt"></i>
+                <span> Services <i class="fas fa-angle-down"></i> </span>
               </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="displayGift.php">Gifts</a>
+                <a class="dropdown-item" href="displaycarte.php">carte fédilite</a>
+                
+              </div>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="displayRecipe.php">
@@ -96,7 +108,7 @@
                                 Pack
                             </a>
               </li>
-          
+        
 
             <li class="nav-item">
               <a class="nav-link" href="../accounts.html">
@@ -147,10 +159,10 @@
                   <tr>
                     <th scope="col">&nbsp;</th>
                      
-                    <th scope="col">FOOD & DRINKS </th>
-                    <th scope="col">INGREDIENTS</th>
-                    <th scope="col">PRICE</th>
-                    <th scope="col">ID</th>
+                    <th scope="col">id </th>
+                    <th scope="col">points Number</th>
+                    <th scope="col">creation date</th>
+                    
                     <th scope="col"></th>
 
                     <th scope="col">&nbsp;</th>
@@ -160,14 +172,14 @@
              <tbody>
 
              	<?PHP
-				foreach($listeDishes as $dish){
+				foreach($listeCartes as $carteC){
 			?>
 			<tr>
       <td></td>
-          <td><?PHP echo $dish['name']; ?></td> 
-					<td><?PHP echo $dish['ingredients']; ?></td> 
-					<td><?PHP echo $dish['price']; ?></td>
-                    <td><?PHP echo $dish['id']; ?></td>
+          <td><?PHP echo $carteC['idC']; ?></td> 
+					<td><?PHP echo $carteC['nbP']; ?></td> 
+					<td><?PHP echo $carteC['dateC']; ?></td>
+                  
 					<td></td>
 					<td>
 						 
@@ -175,12 +187,12 @@
                         <i class="far fa-trash-alt tm-product-delete-icon"></i>
              </a>-->
                     
-						<form method="POST" action="deleteDish.php">
+						<form method="POST" action="deletecarte.php">
 						<input type="submit" name="DELETE" value="DELETE" class="btn btn-primary btn-block text-uppercase">
-						<input type="hidden" value=<?PHP echo $dish['id']; ?> name="id"  >
+						<input type="hidden" value=<?PHP echo $carteC['idC']; ?> name="idC"  >
 						</form> 					</td>
 					<td>
-						<a href="modifydish.php? id=<?PHP echo $dish['id']; ?>" class="btn btn-primary btn-block text-uppercase"> Modify </a>
+						<a href="modifycarte.php? idC=<?PHP echo $carteC['idC']; ?>" class="btn btn-primary btn-block text-uppercase"> Modify </a>
 					</td>
 				</tr>
 			<?PHP
@@ -299,8 +311,8 @@
             </div>
             <!-- table container -->
           <a
-              href="addProduct.php"
-              class="btn btn-primary btn-block text-uppercase mb-3"> Add Dish </a>
+              href="addcarte.php"
+              class="btn btn-primary btn-block text-uppercase mb-3"> Add Carte </a>
              
           </div>
         </div>
