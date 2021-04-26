@@ -9,8 +9,8 @@ require 'mailing/autoload.php';
     $mail->isSMTP();              
     $mail->Host       = 'smtp.gmail.com';
     $mail->SMTPAuth   = true;
-    $mail->Username   = 'mohamedaziz.cherif@esprit.tn';
-    $mail->Password   ='191JMT2753
+    $mail->Username   = 'purebowlcontact@gmail.com';
+    $mail->Password   ='Dorsaf2021
 ';
     $mail->SMTPSecure = 'ssl';         
     $mail->Port       = 465;
