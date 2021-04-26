@@ -153,7 +153,7 @@ $tuto=new tutoC();
   </div>
   <div class="text-center">
         <button onclick="window.print();" class="btn btn-lg btn-circle btn-outline-new-black" id="print-btn">Print</button>
-         <a class="btn btn-lg btn-circle btn-outline-new-black" href="mailer.php?dish=<?php echo $tuto['name'] ?>&duration=<?php echo $tuto['duration'] ?>&ingredients=<?php echo $tuto['ingredients'] ?>&steps=<?php echo $tuto['steps'] ?>"> Mailing</a> 
+         <a class="btn btn-lg btn-circle btn-outline-new-black" href="sendMail.php?dish=<?php echo $tuto['name'] ?>&duration=<?php echo $tuto['duration'] ?>&ingredients=<?php echo $tuto['ingredients'] ?>&steps=<?php echo $tuto['steps'] ?>"> Mailing</a> 
      </div>
       
  
