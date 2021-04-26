@@ -1,33 +1,26 @@
 <?php
-  include "../Controller/dishC.php";
-  include_once '../Model/dish.php';
+  include "../Controller/carteFC.php";
+  include_once '../Model/carteF.php';
 
-  $dishC = new dishC();
+  $CarteC = new carteC();
   $error = "";
   
   if (
-    isset($_POST["name"]) && 
-        
-        isset($_POST["ingredients"]) &&
-        isset($_POST["price"]) 
+    isset($_POST["nbP"]) && 
+        isset($_POST["dateC"]) 
   ){
+    
     if (
-            !empty($_POST["name"]) && 
-         
-            !empty($_POST["ingredients"]) &&
-            !empty($_POST["price"]) 
-          
+            !empty($_POST["nbP"]) && 
+            !empty($_POST["dateC"]) 
         ) {
-            $dish = new dish(
-                $_POST['name'],
-            
-                $_POST['ingredients'],
-                $_POST['price']
-              
+            $Carte = new carte(
+                $_POST['nbP'],
+                $_POST['dateC']
       );
       
-            $dishC->modifyDish($dish, $_GET['id']);
-            header('refresh:5;url=displayProduct.php');
+            $CarteC->modifycarte($Carte, $_GET['idC']);
+            header('refresh:5;url=displaycarte.php');
         }
         else
             $error = "Missing information";
@@ -41,7 +34,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Modify Dish - Dashboard Admin Template</title>
+    <title>Edit carte - Dashboard Admin Template</title>
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Roboto:400,700"
@@ -62,14 +55,14 @@
 
   <body>
      <?php
-      if (isset($_GET['id'])) {
-        $dish = $dishC->recupererDish($_GET['id']);
+      if (isset($_GET['idC'])) {
+        $Carte = $CarteC->recuperercarte($_GET['idC']);
         
     ?>
     <nav class="navbar navbar-expand-xl">
       <div class="container h-100">
         <a class="navbar-brand" href="index.html">
-          <h1 class="tm-site-title mb-0">Dishes</h1>
+          <h1 class="tm-site-title mb-0">Carte Admin</h1>
         </a>
         <button
           class="navbar-toggler ml-auto mr-0"
@@ -85,22 +78,95 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mx-auto h-100">
-            
-            
-            
-          <li class="nav-item">
-              <a class="nav-link active" href="displayProduct.php">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">
+                <i class="fas fa-tachometer-alt"></i> Dashboard
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="navbarDropdown"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                <i class="far fa-file-alt"></i>
+                <span> Reports <i class="fas fa-angle-down"></i> </span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="#">Daily Report</a>
+                <a class="dropdown-item" href="#">Weekly Report</a>
+                <a class="dropdown-item" href="#">Yearly Report</a>
+              </div>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link " href="products.html">
                 <i class="fas fa-shopping-cart"></i> Products
               </a>
             </li>
-             
+           
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle active"
+                href="#"
+                id="navbarDropdown"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                <i class="fas fa-cog"></i>
+                <span> Service <i class="fas fa-angle-down"></i> </span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="displayGift.php">Gift</a>
+                <a class="dropdown-item" href="displaycarte.php">carte  </a>
+               
+              </div>
+            </li>
+             <li class="nav-item">
+                <a class="nav-link " href="Pack.html">
+                  <i class="fas fa-shopping-cart"></i> Pack
+                </a>
+              </li>
 
-            
-             
+            <li class="nav-item">
+              <a class="nav-link" href="accounts.html">
+                <i class="far fa-user"></i> Accounts
+              </a>
+            </li>
+             <li class="nav-item">
+              <a class="nav-link" href="accounts.html">
+                <i class="far fa-user"></i> Promo
+              </a>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="navbarDropdown"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                <i class="fas fa-cog"></i>
+                <span> Settings <i class="fas fa-angle-down"></i> </span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="#">Profile</a>
+                <a class="dropdown-item" href="#">Billing</a>
+                <a class="dropdown-item" href="#">Customize</a>
+              </div>
+            </li>
           </ul>
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link d-block" href="../login.html">
+              <a class="nav-link d-block" href="login.html">
                 Admin, <b>Logout</b>
               </a>
             </li>
@@ -114,7 +180,7 @@
           <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
             <div class="row">
               <div class="col-12">
-                <h2 class="tm-block-title d-inline-block">Modify Dish</h2>
+                <h2 class="tm-block-title d-inline-block">Edit Carte</h2>
               </div>
             </div>
             <div class="row tm-edit-product-row">
@@ -130,73 +196,59 @@
 
                   <div class="form-group mb-3">
                     <label
-                      for="id"
-                      >DISH ID
+                      for="idC"
+                      >id
                     </label>
                     
                     <input
-                      id="id"
-                      name="id"
+                      id="idC"
+                      name="idC"
                       type="text"
-                      value="<?php echo $dish['id']; ?>" disabled
+                      value="<?php echo $Carte['idC']; ?>" disabled
                       class="form-control validate"
                     />
                   </div>
 
                   <div class="form-group mb-3">
                     <label
-                      for="name"
-                      >FOOD & DRINKS
+                      for="nbP"
+                      > points number
                     </label>
                     <input
-                      id="name"
-                      name="name"
+                      id="nbP"
+                      name="nbP"
                       type="text"
-                      
+                      value="<?php echo $Carte['nbP']; ?>"
                       class="form-control validate"
                     />
                   </div>
-                  <div class="form-group mb-3">
-                    <label
-                      for="ingredients"
-                      >ingredients</label
-                    >
-                    <textarea
-                    id="ingredients"
-                    name="ingredients"
-                    placeholder="Enter the ingredients"
-                   
-                      class="form-control validate"
-                      rows="3"
-                      required
-                    ></textarea>
-                  </div>
+
 
                   <div class="form-group mb-3">
                     <label
-                      for="price"
-                      >PRICE</label
+                      for="dateC"
+                      >Creation date</label
                     >
                      <input
-                      id="price"
-                      name="price"
+                      id="dateC"
+                      name="dateC"
                       type="text"
-                      
+                      value="<?php echo $carte['dateC']; ?>"
                       class="form-control validate"
                     />
                     
                   </div>
-                  
-
-                  
-    
+                 
+     
+             
+                      
                        
                   </div>
                   
               </div>
           <!--    <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
                 <div class="tm-product-img-edit mx-auto">
-                  <img src="../imageweb <?php echo $offer['image_offre'];?>" alt="Product image" class="img-fluid d-block mx-auto">
+                  <img src="../imageweb/<?php echo $offer['image_offre'];?>" alt="Product image" class="img-fluid d-block mx-auto">
                   <i
                     class="fas fa-cloud-upload-alt tm-upload-icon"
                     onclick="document.getElementById('fileInput').click();"
@@ -236,11 +288,11 @@
         </div>
     </footer> 
       
-    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="../js/jquery-3.3.1.min.js"></script>
     <!-- https://jquery.com/download/ -->
-  <script src="jquery-ui-datepicker/jquery-ui.min.js"></script>
+  <script src="../jquery-ui-datepicker/jquery-ui.min.js"></script>
    <!-- https://jqueryui.com/download/ -->
-  <script src="js/bootstrap.min.js"></script>
+  <script src="../js/bootstrap.min.js"></script>
     <!-- https://getbootstrap.com/ -->
  <!--   <script>
       $(function() {

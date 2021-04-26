@@ -4,6 +4,20 @@
 
 	class commandeC {
 		
+		function archivercommande($id){
+			
+			$sql="UPDATE commande SET etatC = '0' WHERE id= :id";
+			$db = config::getConnexion();
+			$req=$db->prepare($sql);
+			$req->bindValue(':id',$id);
+			try{
+				$req->execute();
+			}
+			catch (Exception $e){
+				die('Erreur: '.$e->getMessage());
+			}
+		}
+		
 		function ajoutercommande($commande){
 			$sql="INSERT Into commande (dish, meat, option, person, date, time) 
 			VALUES (:dish,:meat,:option,:person,:date,:time )";
