@@ -25,7 +25,7 @@
 		
 		function afficherpost(){
 			
-			$sql="SELECT * FROM post ORDER BY id DESC LIMIT 1";
+			$sql="SELECT * FROM post WHERE etat=1 ORDER BY id DESC LIMIT 3 ";
 			$db = config::getConnexion();
 			try{
 				$liste = $db->query($sql);
@@ -37,7 +37,7 @@
 		}
 		function afficherpostadmin(){
 			
-			$sql="SELECT * FROM post ";
+			$sql="SELECT * FROM post WHERE etat=1 ";
 			$db = config::getConnexion();
 			try{
 				$liste = $db->query($sql);
@@ -47,6 +47,19 @@
 				die('Erreur: '.$e->getMessage());
 			}	
 		}
+		function afficherarchive(){
+			
+			$sql="SELECT * FROM post WHERE etat=0 ";
+			$db = config::getConnexion();
+			try{
+				$liste = $db->query($sql);
+				return $liste;
+			}
+			catch (Exception $e){
+				die('Erreur: '.$e->getMessage());
+			}	
+		}
+
 
 		function supprimerpost($id){
 			$sql="DELETE FROM post WHERE id= :id";
@@ -69,7 +82,7 @@
 						date = :date,
 						titre = :titre,
 						image = :image,
-						etat =: etat,
+						etat = :etat
 					WHERE id = :id'
 				);
 				$query->execute([
@@ -83,6 +96,32 @@
 				echo $query->rowCount() . " records UPDATED successfully <br>";
 			} catch (PDOException $e) {
 				$e->getMessage();
+			}
+		}
+		function archiverpost($id){
+			
+			$sql="UPDATE post SET etat = '0' WHERE id= :id";
+			$db = config::getConnexion();
+			$req=$db->prepare($sql);
+			$req->bindValue(':id',$id);
+			try{
+				$req->execute();
+			}
+			catch (Exception $e){
+				die('Erreur: '.$e->getMessage());
+			}
+		}
+		function unarchiverpost($id){
+			
+			$sql="UPDATE post SET etat = '1' WHERE id= :id";
+			$db = config::getConnexion();
+			$req=$db->prepare($sql);
+			$req->bindValue(':id',$id);
+			try{
+				$req->execute();
+			}
+			catch (Exception $e){
+				die('Erreur: '.$e->getMessage());
 			}
 		}
 		function recupererpost($id){

@@ -1,8 +1,8 @@
 <?PHP
-	include "./Controller/GiftBC.php";
+	include "../Controller/GiftBC.php";
 
 	$GiftC=new giftC();
-	$listeGifts=$GiftC->displayGift();
+	$listeGift=$GiftC->displayGift();
 
 ?>
 
@@ -12,7 +12,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title> Page - Admin HTML Template</title>
+    <title>Gift Page - Admin HTML Template</title>
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Roboto:400,700"
@@ -33,7 +33,7 @@
     <nav class="navbar navbar-expand-xl">
       <div class="container h-100">
         <a class="navbar-brand" href="index1.html">
-          <h1 class="tm-site-title mb-0">Pack Admin</h1>
+          <h1 class="tm-site-title mb-0">Gift</h1>
         </a>
         <button
           class="navbar-toggler ml-auto mr-0"
@@ -50,7 +50,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mx-auto h-100">
             <li class="nav-item">
-              <a class="nav-link" href="index1.html">
+              <a class="nav-link" href="../index1.html">
                 <i class="fas fa-tachometer-alt"></i> Dashboard
                 <span class="sr-only">(current)</span>
               </a>
@@ -74,29 +74,34 @@
               </div>
             </li>
             <li class="nav-item">
-              <a class="nav-link " href="products.html">
+              <a class="nav-link " href="../products.html">
                 <i class="fas fa-shopping-cart"></i> Products
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="Gift.html">
-                <i class="fas fa-shopping-cart"></i> Gift
+              <a class="nav-link  " href="displayRecipe.php">
+                <i class="fas fa-shopping-cart"></i> Recipes
               </a>
             </li>
             <li class="nav-item">
-                            <a class="nav-link active" href="Pack.html">
+              <a class="nav-link active " href="displayGift.php">
+                <i class="fas fa-shopping-cart"></i> Gifts
+              </a>
+            </li>
+            <li class="nav-item">
+                            <a class="nav-link " href="../Pack.html">
                                 <i class="fas fa-shopping-cart"></i>
                                 Pack
                             </a>
-                        </li>
-
+              </li>
+           
             <li class="nav-item">
-              <a class="nav-link" href="accounts.html">
+              <a class="nav-link" href="../accounts.html">
                 <i class="far fa-user"></i> Accounts
               </a>
             </li>
              <li class="nav-item">
-              <a class="nav-link" href="promo.html">
+              <a class="nav-link" href="../promo.html">
                 <i class="far fa-user"></i> Promo
               </a>
             </li>
@@ -121,7 +126,7 @@
           </ul>
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link d-block" href="login.html">
+              <a class="nav-link d-block" href="../login.html">
                 Admin, <b>Logout</b>
               </a>
             </li>
@@ -137,15 +142,13 @@
               <table class="table table-hover tm-table-small tm-product-table">
                 <thead>
                   <tr>
-                    <th scope="col">&nbsp;</th> 
+                    <th scope="col">&nbsp;</th>
+
                     <th scope="col">ID</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Image</th>
-                    <th scope="col">Description</th>
-                    <th scope="col">Type</th>
-                    <th scope="col">Prix</th>
-                    <th scope="col">Type </th>
-                    <th scope="col"> </th>
+                    <th scope="col">NAME</th>
+                   
+                    <th scope="col">DESCRIPTION</th>
+                    <th scope="col">PRICE</th>
 
                     <th scope="col">&nbsp;</th>
                   </tr>
@@ -154,28 +157,28 @@
              <tbody>
 
              	<?PHP
-				foreach($listeGifts as $Gift){
+				foreach($listeGift as $Gift){
 			?>
 			<tr>
-					<td><?PHP echo $Gift['id']; ?></td> 
-					<td><?PHP echo $Gift['nom']; ?></td>
-					<td><?PHP echo $Gift['imageG']; ?></td>
+      <td></td>
+                    <td><?PHP echo $Gift['id']; ?></td> 
+                    <td><?PHP echo $Gift['nom']; ?></td>
+                    <td><?PHP echo $Gift['imageG']; ?></td>  
 					<td><?PHP echo $Gift['descr']; ?></td>
-					<
-					<td><?PHP echo $Gift['price']; ?></td>
+                    <td><?PHP echo $Gift['price']; ?></td>
 					<td></td>
 					<td>
 						 
-                      <a href="#" class="tm-product-delete-link">
+            <!-- <a href="#" class="tm-product-delete-link">
                         <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                      </a>
+             </a>-->
                     
-						<form method="POST" action="deletegift_back.php">
-						<input type="submit" name="supprimer" value="supprimer">
+						<form method="POST" action="delete-Gift.php">
+						<input type="submit" name="DELETE" value="DELETE" class="btn btn-primary btn-block text-uppercase">
 						<input type="hidden" value=<?PHP echo $Gift['id']; ?> name="id"  >
 						</form> 					</td>
 					<td>
-						<a href="modifiergift_back.php?id=<?PHP echo $Gift['id']; ?>"> Modifier </a>
+						<a herf="modify-Gift.php? id=<?PHP echo $Gift['id']; ?>" class="btn btn-primary btn-block text-uppercase"> modify </a>
 					</td>
 				</tr>
 			<?PHP
@@ -294,11 +297,9 @@
             </div>
             <!-- table container -->
           <a
-              href="addgift_back.php"
-              class="btn btn-primary btn-block text-uppercase mb-3"> Add new Gift </a>
-            <button class="btn btn-primary btn-block text-uppercase">
-              Delete selected products
-            </button> 
+              href="add-Gift.php"
+              class="btn btn-primary btn-block text-uppercase mb-3"> Add Gift </a>
+             
           </div>
         </div>
         

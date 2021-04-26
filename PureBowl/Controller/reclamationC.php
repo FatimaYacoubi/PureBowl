@@ -5,8 +5,8 @@
 	class reclamationC {
 		
 		function ajouterreclamation($reclamation){
-			$sql="INSERT INTO reclamation (description, date, nomClient, emailClient, phoneClient) 
-			VALUES (:description,:date,:nomClient, :emailClient, :phoneClient )";
+			$sql="INSERT INTO reclamation (description, date, nomClient, emailClient, phoneClient,etat) 
+			VALUES (:description,:date,:nomClient, :emailClient, :phoneClient, 1)";
 			$db = config::getConnexion();
 			try{
 				$query = $db->prepare($sql);
@@ -38,7 +38,19 @@
 		}
 		function afficherreclamationadmin(){
 			
-			$sql="SELECT * FROM reclamation ";
+			$sql="SELECT * FROM reclamation WHERE etat=1";
+			$db = config::getConnexion();
+			try{
+				$liste = $db->query($sql);
+				return $liste;
+			}
+			catch (Exception $e){
+				die('Erreur: '.$e->getMessage());
+			}	
+		}
+		function afficherreclamationarchive(){
+			
+			$sql="SELECT * FROM reclamation WHERE etat=0";
 			$db = config::getConnexion();
 			try{
 				$liste = $db->query($sql);
@@ -70,7 +82,8 @@
 						date = :date,
 						nomClient = :nomClient,
 						emailClient = :emailClient,
-						phoneClient = :phoneClient
+						phoneClient = :phoneClient,
+						etat = :etat
 					WHERE id = :id'
 				);
 				$query->execute([
@@ -79,6 +92,7 @@
 					'nomClient' => $reclamation->getnomClient(),
 					'emailClient' => $reclamation->getemailClient(),
 					'phoneClient' => $reclamation->getphoneClient(),
+					'etat' => $reclamation->getetat(),
 					'id' => $id
 				]);
 				echo $query->rowCount() . " records UPDATED successfully <br>";
@@ -95,6 +109,32 @@
 
 				$user=$query->fetch();
 				return $user;
+			}
+			catch (Exception $e){
+				die('Erreur: '.$e->getMessage());
+			}
+		}
+		function archiverreclamation($id){
+			
+			$sql="UPDATE reclamation SET etat = '0' WHERE id= :id";
+			$db = config::getConnexion();
+			$req=$db->prepare($sql);
+			$req->bindValue(':id',$id);
+			try{
+				$req->execute();
+			}
+			catch (Exception $e){
+				die('Erreur: '.$e->getMessage());
+			}
+		}
+		function inarchiverreclamation($id){
+			
+			$sql="UPDATE reclamation SET etat = '1' WHERE id= :id";
+			$db = config::getConnexion();
+			$req=$db->prepare($sql);
+			$req->bindValue(':id',$id);
+			try{
+				$req->execute();
 			}
 			catch (Exception $e){
 				die('Erreur: '.$e->getMessage());

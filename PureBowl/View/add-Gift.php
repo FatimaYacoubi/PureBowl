@@ -1,50 +1,73 @@
-<?php
-	
-    include "./controller/GiftBC.php";
-    include_once './Model/GiftB.php';
+<?php 
+    include_once '../Model/GiftB.php';
+    include_once '../Controller/GiftBC.php';
 
-	$GiftC = new giftC();
-	$error = "";
-    if (isset($_POST["someAction"])) {
-         
+    $error = "";
+
+    // create user
+    $Gift = null;
+
+  // create an instance of the controller
+    $GiftC = new giftC();
+    if (
+        isset($_POST["nom"]) && 
+        isset($_POST["imageG"]) &&
+        isset($_POST["descr"]) && 
+        isset($_POST["price"])
+    ) {
+        if (
+            !empty($_POST["nom"]) && 
+            !empty($_POST["imageG"]) && 
+            !empty($_POST["descr"]) && 
+            !empty($_POST["price"])
+        ) {
             $Gift = new gift(
                 $_POST['nom'],
-                $_POST['descr'], 
-                $_POST['price']  
+                $_POST['imageG'], 
+                $_POST['descr'],
+                $_POST['price']
             );
-            $GiftC->modifyGift($Gift,$Gift->getName());
+            $GiftC->ajoutergift($Gift);
+            header('Location:displayGift.php');
         }
-?>
+        else
+            $error = "Missing information";
+    }
+
+    
+?> 
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Modify Gift - Dashboard HTML Template</title>
+    <title>Add Gift</title>
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Roboto:400,700"
     />
     <!-- https://fonts.google.com/specimen/Roboto -->
-    <link rel="stylesheet" href="css/fontawesome.min.css" />
+    <link rel="stylesheet" href="../css/fontawesome.min.css" />
     <!-- https://fontawesome.com/ -->
     <link rel="stylesheet" href="jquery-ui-datepicker/jquery-ui.min.css" type="text/css" />
     <!-- http://api.jqueryui.com/datepicker/ -->
-    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../css/bootstrap.min.css" />
     <!-- https://getbootstrap.com/ -->
-    <link rel="stylesheet" href="css/templatemo-style.css">
+    <link rel="stylesheet" href="../css/templatemo-style.css">
     <!--
-	Product Admin CSS Template
-	https://templatemo.com/tm-524-product-admin
-	-->
+    Product Admin CSS Template
+    https://templatemo.com/tm-524-product-admin
+    -->
   </head>
 
   <body>
     <nav class="navbar navbar-expand-xl">
       <div class="container h-100">
         <a class="navbar-brand" href="index.html">
-          <h1 class="tm-site-title mb-0">Product Admin</h1>
+          <h1 class="tm-site-title mb-0">Gift Admin</h1>
         </a>
         <button
           class="navbar-toggler ml-auto mr-0"
@@ -91,16 +114,17 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="giftBack.html">
-                <i class="fas fa-shopping-cart"></i> Gift
-              </a>
-            </li>
-
-  <li class="nav-item">
               <a class="nav-link " href="Pack.html">
                 <i class="fas fa-shopping-cart"></i> Pack
               </a>
             </li>
+
+            <li class="nav-item">
+              <a class="nav-link active" href="displayGift.php">
+                <i class="fas fa-shopping-cart"></i> Gift
+              </a>
+            </li>
+
             <li class="nav-item">
               <a class="nav-link" href="accounts.html">
                 <i class="far fa-user"></i> Accounts
@@ -138,16 +162,20 @@
     </nav>
     <div class="container tm-mt-big tm-mb-big">
       <div class="row">
-        <div class="col-xl-12 col-lg-10 col-md-12 col-sm-12 mx-auto">
+        <div class="col-xl-9 col-lg-10 col-md-12 col-sm-12 mx-auto">
           <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
             <div class="row">
               <div class="col-12">
-                <h2 class="tm-block-title d-inline-block">Modify Dish</h2>
+                <h2 class="tm-block-title d-inline-block">Add Gift</h2>
               </div>
             </div>
+            <div id="error">
+            <?php echo $error; ?>
+        </div>
+        
             <div class="row tm-edit-product-row">
-              <div class="col-xl-12 col-lg-6 col-md-12">
-                <form action="modifiergift_back.php" class="tm-edit-product-form" method="POST">
+              <div class="col-xl-6 col-lg-6 col-md-12">
+              <form action="" method="POST">
                   <div class="form-group mb-3">
                     <label
                       for="nom"
@@ -157,22 +185,34 @@
                       id="nom"
                       name="nom"
                       type="text"
-                      pattern="[A-Za-z]*"
-                      placeholder="Enter the Gift name"
                       class="form-control validate"
                       required
                     />
                   </div>
+                  <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
+                <div class="tm-product-img-dummy mx-auto">
+                  <i name="imageG"
+                    class="fas fa-cloud-upload-alt tm-upload-icon"
+                    onclick="document.getElementById('fileInput').click();"
+                  ></i>
+                </div>
+               <div class="custom-file mt-3 mb-3">
+                  <input id="fileInput" name="imageG" type="file" style="display:none;" />
+                  <input name="imageG" 
+                    type="button"
+                    class="btn btn-primary btn-block mx-auto"
+                    value="UPLOAD GIFT IMAGE"
+                    onclick="document.getElementById('fileInput').click();"
+                  />
+                </div> 
+              </div>
                   <div class="form-group mb-3">
                     <label
                       for="descr"
-                      >description</label
+                      >Description</label
                     >
-                    <textarea
-                    id="descr"
-                    name="descr"
-                    placeholder="Enter the description"
-                    
+                    <textarea id="descr"
+                    name="descr" 
                       class="form-control validate"
                       rows="3"
                       required
@@ -180,32 +220,26 @@
                   </div>
                   
                   <div class="row">
-                      <div class="form-group mb-3 col-xs-12 col-sm-12">
+                      <div class="form-group mb-3 col-xs-12 col-sm-6">
                           <label
-                            for="expire_date"
+                            for="price"
                             >Price
                           </label>
                           <input
-                      id="price"
-                      name="price"
-                      type="number"
-                      min="0"
-                      step="0.1"
-                      placeholder="Enter the price"
-                         
-                      class="form-control validate"
-                      required
-                    />
+                            id="price"
+                            name="price"
+                            type="text"
+                            class="form-control validate"
+                            data-large-mode="true"
+                          />
                         </div>
                         
                   </div>
                   
               </div>
-              
-               
-              </div>
-              <div class="col-4">
-                <button type="submit" name="someAction" class="btn btn-primary btn-block text-uppercase">Modify Gift</button>
+             
+              <div class="col-12">
+                <button type="submit" class="btn btn-primary btn-block text-uppercase">Add Gift</button>
               </div>
             </form>
             </div>
