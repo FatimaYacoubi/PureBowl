@@ -92,8 +92,8 @@ if (isset($_POST["email"]) &&
             </div>
         </div>
 
-    </div> <a href="../send.php">
-    <input class="btn-222" type="submit" value="se connecter" name = "se connecter"> </a>
+    </div> 
+    <input class="btn-222" type="submit" value="se connecter" name = "se connecter">
     <input class="btn-222" type="reset" value="Annuler" >
     <br>
     Vous n'avez pas un compte ?

@@ -1,6 +1,10 @@
 <?php
   include "../Controller/commandeC.php";
+    include "../Controller/UtilisateurC.php";
 
+
+  $UtilisateurC=new UtilisateurC();
+  $listeUsers1=$UtilisateurC->afficherutilisateur();
   $commandeC=new commandeC();
   $listeUsers=$commandeC->affichercommande();
 ?>
@@ -145,83 +149,64 @@
                             <canvas id="pieChart" class="chartjs-render-monitor" width="200" height="200"></canvas>
                         </div>                        
                     </div>
-                </div>
-                <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 tm-block-col">
-                    <div class="tm-bg-primary-dark tm-block tm-block-taller tm-block-overflow">
-                        <h2 class="tm-block-title">Notification List</h2>
-                        <div class="tm-notification-items">
-                            <div class="media tm-notification-item">
-                                <div class="tm-gray-circle"><img src="../img/notification-01.jpg" alt="Avatar Image" class="rounded-circle"></div>
-                                <div class="media-body">
-                                    <p class="mb-2"><b>Jessica</b> and <b>6 others</b> sent you new <a href="#"
-                                            class="tm-notification-link">product updates</a>. Check new orders.</p>
-                                    <span class="tm-small tm-text-color-secondary">6h ago.</span>
-                                </div>
+                </div>                    <div class="col-12 tm-block-col">
+                    <div class="tm-bg-primary-dark tm-block tm-block-taller tm-block-scroll">
+                        <h2 class="tm-block-title">Clients info</h2>
+                         <table class="table">
+                            <thead>
+                                <tr>
+                                    <tr colspan="8">
+        <th> Client id </th> 
+        <th> Name </th> 
+        <th> Last Name </th> 
+        <th> Email</th> 
+        <th> Number </th>  
+        <th> Login </th>                                   
+        <th> Password </th>                           
+                                  <th> Adress </th>   
+                                                                    <th> Edit </th>                           
+                                                                    <th> Delete </th>                           
+
+                        
+                        
+
+          
+   </tr> 
+    
+    <?php 
+    foreach($listeUsers1 as $user1){
+            ?> 
+    <tr> 
+     <td> <?PHP echo $user1['idClient']; ?></td>
+
+    <td><?PHP echo $user1['nom']; ?></td> 
+    <td><?PHP echo $user1['prenom']; ?></td> 
+    <td><?PHP echo $user1['email']; ?></td> 
+        <td><?PHP echo $user1['tel']; ?></td> 
+                <td><?PHP echo $user1['login']; ?></td> 
+                <td><?PHP echo $user1['password']; ?></td> 
+    <td><?PHP echo $user1['adresse']; ?></td> 
+      <td>          <a href="modifierutilisateur.php?idClient=<?PHP echo $user1['idClient']; ?>"  > 
+                       <button class="btn-222" style="color:black">Edit</button>
+
+                      </a>
+                    </td>
+          <td>
+            <form method="POST" action="">
+                        <button type="submit" name="supprimer" class="btn-222" id="1" style="color:black" onClick="\return confirm('Are you sure you want to delete?')\"> Delete</button> 
+                        
+                        <input type="hidden" value=<?PHP echo $user1['idClient']; ?> name="idClient">
+                       </td> </form>
+<?php 
+               } 
+          ?> </div>
                             </div>
-                            <div class="media tm-notification-item">
-                                <div class="tm-gray-circle"><img src="../img/notification-02.jpg" alt="Avatar Image" class="rounded-circle"></div>
-                                <div class="media-body">
-                                    <p class="mb-2"><b>Oliver Too</b> and <b>6 others</b> sent you existing <a href="#"
-                                            class="tm-notification-link">product updates</a>. Read more reports.</p>
-                                    <span class="tm-small tm-text-color-secondary">6h ago.</span>
-                                </div>
-                            </div>
-                            <div class="media tm-notification-item">
-                                <div class="tm-gray-circle"><img src="../img/notification-03.jpg" alt="Avatar Image" class="rounded-circle"></div>
-                                <div class="media-body">
-                                    <p class="mb-2"><b>Victoria</b> and <b>6 others</b> sent you <a href="#"
-                                            class="tm-notification-link">order updates</a>. Read order information.</p>
-                                    <span class="tm-small tm-text-color-secondary">6h ago.</span>
-                                </div>
-                            </div>
-                            <div class="media tm-notification-item">
-                                <div class="tm-gray-circle"><img src="../img/notification-01.jpg" alt="Avatar Image" class="rounded-circle"></div>
-                                <div class="media-body">
-                                    <p class="mb-2"><b>Laura Cute</b> and <b>6 others</b> sent you <a href="#"
-                                            class="tm-notification-link">product records</a>.</p>
-                                    <span class="tm-small tm-text-color-secondary">6h ago.</span>
-                                </div>
-                            </div>
-                            <div class="media tm-notification-item">
-                                <div class="tm-gray-circle"><img src="../img/notification-02.jpg" alt="Avatar Image" class="rounded-circle"></div>
-                                <div class="media-body">
-                                    <p class="mb-2"><b>Samantha</b> and <b>6 others</b> sent you <a href="#"
-                                            class="tm-notification-link">order stuffs</a>.</p>
-                                    <span class="tm-small tm-text-color-secondary">6h ago.</span>
-                                </div>
-                            </div>
-                            <div class="media tm-notification-item">
-                                <div class="tm-gray-circle"><img src="../img/notification-03.jpg" alt="Avatar Image" class="rounded-circle"></div>
-                                <div class="media-body">
-                                    <p class="mb-2"><b>Sophie</b> and <b>6 others</b> sent you <a href="#"
-                                            class="tm-notification-link">product updates</a>.</p>
-                                    <span class="tm-small tm-text-color-secondary">6h ago.</span>
-                                </div>
-                            </div>
-                            <div class="media tm-notification-item">
-                                <div class="tm-gray-circle"><img src="../img/notification-01.jpg" alt="Avatar Image" class="rounded-circle"></div>
-                                <div class="media-body">
-                                    <p class="mb-2"><b>Lily A</b> and <b>6 others</b> sent you <a href="#"
-                                            class="tm-notification-link">product updates</a>.</p>
-                                    <span class="tm-small tm-text-color-secondary">6h ago.</span>
-                                </div>
-                            </div>
-                            <div class="media tm-notification-item">
-                                <div class="tm-gray-circle"><img src="../img/notification-02.jpg" alt="Avatar Image" class="rounded-circle"></div>
-                                <div class="media-body">
-                                    <p class="mb-2"><b>Amara</b> and <b>6 others</b> sent you <a href="#"
-                                            class="tm-notification-link">product updates</a>.</p>
-                                    <span class="tm-small tm-text-color-secondary">6h ago.</span>
-                                </div>
-                            </div>
-                            <div class="media tm-notification-item">
-                                <div class="tm-gray-circle"><img src="../img/notification-03.jpg" alt="Avatar Image" class="rounded-circle"></div>
-                                <div class="media-body">
-                                    <p class="mb-2"><b>Cinthela</b> and <b>6 others</b> sent you <a href="#"
-                                            class="tm-notification-link">product updates</a>.</p>
-                                    <span class="tm-small tm-text-color-secondary">6h ago.</span>
-                                </div>
-                            </div>
+                        </table> 
+
+                    
+          
+                    
+                            </tr>
                         </div>
                     </div>
                 </div>
@@ -243,7 +228,7 @@
    </tr> 
     
     <?php 
-    foreach($listeUsers as $user){
+    foreach($listeUsers as $user) {
             ?> 
     <tr> 
      <td> <?PHP echo $user['dish']; ?></td>
@@ -254,6 +239,15 @@
     <td><?PHP echo $user['date']; ?></td> 
     <td><?PHP echo $user['time']; ?></td> 
         <td> 15 dt</td> 
+         <td style="width: 30px" >
+            <form method="POST" action="archivercommande.php">
+                            <button style="height: : 30px" type="submit" name="inarchiver "class="tm-product-delete-link" >
+                        <i class="fas fa-archive tm-product-delete-icon" ></i></button> 
+                        
+                        <input type="hidden" value=<?PHP echo $user['id']; ?> name="id">
+                    </form>
+
+                </td>
 <?php 
                } 
           ?> 
@@ -267,9 +261,9 @@
         <footer class="tm-footer row tm-mt-small">
             <div class="col-12 font-weight-light">
                 <p class="text-center text-white mb-0 px-4 small">
-                    Copyright &copy; <b>2018</b> All rights reserved. 
+                    Copyright &copy; <b>2021</b> All rights reserved. 
                     
-                    Design: <a rel="nofollow noopener" href="https://templatemo.com" class="tm-footer-link">Template Mo</a>
+                    Design: <a rel="nofollow noopener" href="https://templatemo.com" class="tm-footer-link">Pure Bowl</a>
                 </p>
             </div>
         </footer>
@@ -285,6 +279,24 @@
     <!-- https://getbootstrap.com/ -->
     <script src="../js/tooplate-scripts.js"></script>
     <script>
+        <script src="../js/jquery-3.2.1.min.js"></script>
+  <script src="../js/popper.min.js"></script>
+  <script src="../js/bootstrap.min.js"></script>
+    <!-- ALL PLUGINS -->
+  <script src="../js/jquery.superslides.min.js"></script>
+  <script src="../js/images-loded.min.js"></script>
+  <script src="../js/isotope.min.js"></script>
+  <script src="../js/baguetteBox.min.js"></script>
+  <script src="../js/picker.js"></script>
+  <script src="../js/picker.date.js"></script>
+  <script src="../js/picker.time.js"></script>
+  <script src="../js/legacy.js"></script>
+  <script src="../js/form-validator.min.js"></script>
+    <script src="../js/contact-form-script.js"></script>
+    <script src="../js/custom.js"></script>
+        <script src="../js/progressbar.js"></script>
+
+<script type="text/javascript">
         Chart.defaults.global.defaultFontColor = 'white';
         let ctxLine,
             ctxBar,
