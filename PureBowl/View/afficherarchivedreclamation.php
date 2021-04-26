@@ -1,16 +1,16 @@
 <?PHP
-	include "../Controller/postC.php";
+	include "../Controller/reclamationC.php";
 
-	$postC=new postC();
-	$listeUsers=$postC->afficherpostadmin();
+	$reclamationC=new reclamationC();
+	$listeUsers=$reclamationC->afficherreclamationarchive();
 
 ?>
 
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta charset="UTF-8">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- Add icon library -->
@@ -39,15 +39,15 @@
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <!-- https://getbootstrap.com/ -->
     <link rel="stylesheet" href="../css/templatemo-style.css">
-		<title> Afficher Liste posts </title>
-		<style type="text/css">
+        <title> Afficher Liste reclamations </title>
+        <style type="text/css">
 .myOtherTable { background-color:#85dcc2;border-collapse:collapse;color:#000;font-size:14px; }
 .myOtherTable th { background-color:#3949c6;color:white;width:10%; }
 .myOtherTable td, .myOtherTable th { padding:1px;border:1; }
 </style>
     </head>
     <body id="reportsPage">
-		<div class="" id="home">
+        <div class="" id="home">
         <nav class="navbar navbar-expand-xl">
             <div class="container h-100">
                 <a class="navbar-brand" href="../index1.html">
@@ -125,20 +125,26 @@
             <div class="row">
                 <div class="col">
                     <p class="text-white mt-5 mb-5">Welcome back, <b>Admin</b></p>
-                    <a href="afficherarchivedpost.php"  >See archived posts </a>
+                    <a href="afficherreclamation.php"  >See unarchived reclamations </a>
                     <br>
                 </div>
+                <br>
             </div>
 <br>
+<br>
+<br>
             <table class="table table-hover tm-table-small tm-product-table">
-            	
+                
                 <thead>
                   <tr>
 
                     <th scope="col">ID</th>
-                    <th scope="col">Titre</th>
+                    <th scope="col">Description</th>
                     <th scope="col">Date</th>
-                    <th scope="col" colspan="3"><p align="center">What to do ?</p></th>
+                    <th scope="col">NomCLient</th>
+                    <th scope="col">PhoneCLient</th>
+                    <th scope="col">EmailCLient</th>
+                    <th scope="col" colspan="2"><p align="center">What to do ?</p></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -147,13 +153,17 @@
                 foreach($listeUsers as $user){
             ?>
                     <td><?PHP echo $user['id']; ?></td>
-                    <td class="tm-product-name"><?PHP echo $user['titre']; ?></td>
+                    <td ><?PHP echo $user['description']; ?></td>
                     <td><?PHP echo $user['date']; ?></td>
+                    <td><?PHP echo $user['nomClient']; ?></td>
+                    <td><?PHP echo $user['phoneClient']; ?></td>
+                    <td><?PHP echo $user['emailClient']; ?></td>
+
                     <td style="width: 30px">
                       
                         
-                        <form method="POST" action="supprimerpost.php">
-                        	 <button type="submit" name="supprimer "class="tm-product-delete-link" >
+                        <form method="POST" action="supprimerreclamation.php">
+                             <button type="submit" name="supprimer "class="tm-product-delete-link" >
                         <i class="far fa-trash-alt tm-product-delete-icon"></i></button> 
                         
                         <input type="hidden" value=<?PHP echo $user['id']; ?> name="id">
@@ -162,16 +172,9 @@
                         </form>
                         
                        
-                      	</td >
-                      	<td style="width: 30px">
-                      		<form><button class="tm-product-delete-link">
-                        	<a href="modifierpost.php?id=<?PHP echo $user['id']; ?>"  >
-                        <i class="far fa-edit tm-product-delete-icon" ></i>
-
-                      </a>
-                        </button></form></td>
-                      	<td style="width: 30px" ><form method="POST" action="archiverpost.php">
-                            <button style="height: : 30px" type="submit" name="archiver "class="tm-product-delete-link" >
+                        </td >
+                        <td style="width: 30px" ><form method="POST" action="inarchiverreclamation.php">
+                            <button style="height: : 30px" type="submit" name="inarchiver "class="tm-product-delete-link" >
                         <i class="fas fa-archive tm-product-delete-icon" ></i></button> 
                         
                         <input type="hidden" value=<?PHP echo $user['id']; ?> name="id">
@@ -192,6 +195,6 @@
                 }
             ?>
               </table>
-		
-	</body>
+        
+    </body>
 </html>

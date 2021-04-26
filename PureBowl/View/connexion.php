@@ -29,7 +29,7 @@
                 $_POST['nomClient'],
                 $_POST['emailClient'],
                 $_POST['phoneClient'],
-                $_POST['phoneClient']
+                $etat=1
             );
             $userC->ajouterreclamation($user);
             header('Location:afficherreclamation1.php');
