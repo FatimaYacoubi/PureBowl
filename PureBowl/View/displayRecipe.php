@@ -83,11 +83,29 @@
                 <i class="fas fa-shopping-cart"></i> Recipes
               </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle "
+                href="#"
+                id="navbarDropdown"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false">
+                <i class="far fa-file-alt"></i>
+                <span> Services <i class="fas fa-angle-down"></i> </span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="displayGift.php">Gifts</a>
+                <a class="dropdown-item" href="displaycarte.php">carte fédilite</a>
+                
+              </div>
+            </li>
+          <!--  <li class="nav-item">
               <a class="nav-link  " href="displayGift.php">
                 <i class="fas fa-shopping-cart"></i> Gifts
               </a>
-            </li>
+            </li>-->
             <li class="nav-item">
                             <a class="nav-link " href="../Pack.html">
                                 <i class="fas fa-shopping-cart"></i>
@@ -318,9 +336,9 @@
       </div>
     </footer>
 
-    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="../js/jquery-3.3.1.min.js"></script>
     <!-- https://jquery.com/download/ -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
     <!-- https://getbootstrap.com/ -->
     <script>
       $(function() {

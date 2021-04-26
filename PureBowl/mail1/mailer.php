@@ -1,53 +1,159 @@
+<?php
+if (isset($_POST['ajax'])) {
+$to = $_POST['to'];
+$subject = $_POST['sub'];
+$msg = $_POST['msg'];
+$headers = "MIME-Version: 1.0" . "\r\n";
+$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+$headers .= "From: ".$_POST['name']."<".$_POST['from'].">";
 
-<?PHP
-	include "../Controller/DishC.php";
 
-	$dish=new DishC();
-	$listDishes=$dish->displayDish();
+$send = mail($to,$subject,$msg,$headers);
 
+if ($send)
+{
+	echo "<p id='success'>✔️  $to</p>";
+}else{
+	echo "<p id='error'>❌  $to</p>";
+}
+exit();
+}
 ?>
 <!DOCTYPE html>
-<html lang="en"><!-- Basic -->
+<html lang="en">
 <head>
-	<meta charset="utf-8">
+<meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">   
    
     <!-- Mobile Metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
  
      <!-- Site Metas -->
-    <title>Pure Bowl</title>  
+    <title>Gift</title>  
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
 
     <!-- Site Icons -->
-    <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="../images/favicon.ico" type="../image/x-icon">
     <link rel="apple-touch-icon" href="../images/apple-touch-icon.png">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="../css/bootstrap.min.css">    
 	<!-- Site CSS -->
     <link rel="stylesheet" href="../css/style.css">    
+	<!-- Pickadate CSS -->
+    <link rel="stylesheet" href="../css/classic.css">    
+	<link rel="stylesheet" href="../css/classic.date.css">    
+	<link rel="stylesheet" href="../css/classic.time.css">    
     <!-- Responsive CSS -->
     <link rel="stylesheet" href="../css/responsive.css">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="../css/custom.css">
-
-    <!--[if lt IE 9]>-->
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <!--[endif]-->
-
+ 
+	<style>
+	body{
+		margin: 0;
+		padding: 0;
+		background-color: #FFFFFF;
+	}
+	::placeholder {
+    	color: grey;
+    	opacity: .9;
+    	font-size: 15px!important;
+	}
+	.main{
+		max-width: 768px;
+		margin: 0 auto;
+	}
+	#title{
+		color: ;
+	    text-shadow: 0 0 20px grey;
+		text-align: center;
+		font-family: Montserrat;
+	}
+	input[type="text"]{
+		background-color: #250;
+		box-shadow: 0 0 11px 0px white;
+		height: 40px;
+		width: 47%;
+		border: #FFE4C4;
+		border-radius: 4px;
+		padding: 15px;
+		margin: 1%;
+		box-sizing: border-box;
+		outline: none;
+		transition: .5s ease-in;
+		color: grey;
+		font-family: Montserrat;
+		font-size: 14px;
+	}
+	input[type="text"]:hover{
+		box-shadow: 0 0 11px 0px white;
+	}
+	#sub{
+		width: 96.5%;
+	}
+	textarea{
+		background-color: #FFE4C4;
+		box-shadow: 0 0 11px 0px white;
+		height: 300px;
+    	width: 47%;
+    	max-width: 49%;
+		border: none;
+		border-radius: 4px;
+		padding: 15px;
+		margin: 1%;
+		box-sizing: border-box;
+		outline: none;
+		transition: .5s ease-in;
+		color: grey;
+		font-family: Montserrat;
+		font-size: 14px;
+	}
+	textarea:hover{
+		box-shadow: 0 0 11px 0px #DEB887;
+	}
+	#btn{
+		background-color: #white;
+		box-shadow: 0 0 11px 0px #DEB887;
+		width: 96.5%;
+		height: 40px;
+	    margin-left: 5px;
+		margin-bottom: 40px;
+		color: #DAA520;
+		border: none;
+		border-radius: 4px;
+		font-family: Montserrat;
+		font-size: 18px;
+		font-weight: bold;
+		letter-spacing: 1px;
+		box-sizing: border-box;
+		outline: none;
+		transition: .5s ease-in;
+		cursor: pointer;
+	}
+	#btn:hover{
+		color: white;
+	}
+	#success{
+		font-family: Montserrat;
+		color: brown;
+	}
+	#error{
+		font-family: Montserrat;
+		color: white;
+	}
+	</style>
 </head>
 
 <body>
-	<!-- Start header -->
-	<header class="top-navbar">
+	      	<!-- Start header -->
+			  <header class="top-navbar">
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
 			<div class="container">
 				<a class="navbar-brand" href="index.html">
-					<img src="../images/logo.png" alt="" />
+					<img src="images/logo.png" alt="" />
 				</a>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbars-rs-food" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
 				  <span class="navbar-toggler-icon"></span>
@@ -55,9 +161,15 @@
 				<div class="collapse navbar-collapse" id="navbars-rs-food">
 					<ul class="navbar-nav ml-auto">
 						<li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
-						<li class="nav-item active"><a class="nav-link" href="menu.php">Menu</a></li>
+						<li class="nav-item"><a class="nav-link" href="../menu.php">Menu</a></li>
 						<li class="nav-item"><a class="nav-link" href="../about.html">About</a></li>
-						<li class="nav-item dropdown">
+						<li class="nav-item  dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Pages</a>
+							<div class="dropdown-menu" aria-labelledby="dropdown-a">
+								<a class="dropdown-item" href="../reservation.html">Reservation</a>
+								<a class="dropdown-item" href="../stuff.html">Stuff</a>
+								<a class="dropdown-item" href="../gallery.html">Gallery</a>
+							</div>
 						</li>
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Offres</a>
@@ -73,101 +185,78 @@
 								<a class="dropdown-item" href="../blog-details.html">blog Single</a>
 							</div>
 						</li>
-						<li class="nav-item"><a class="nav-link" href="../affichercommande.php">My orders</a></li>
-						<li class="nav-item"><a class="nav-link" href="../reclamation.html">Reclamation</a></li>
-						<li class="nav-item"><a class="nav-link" href="../gift.html">Gift</a></li>
+						<li class="nav-item"><a class="nav-link" href="../contact.html">Contact</a></li>
+						<li class="nav-item  "><a class="nav-link" href="../reclamation.html">Reclamation</a></li>
+						<li class="nav-item active "><a class="nav-link" href="../gift.html">Gift</a></li>
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Sign in</a>
 							<div class="dropdown-menu" aria-labelledby="dropdown-a">
 								<a class="dropdown-item" href="../login.html">As an administrator</a>
 								<a class="dropdown-item" href="../blog-details.html">As a client</a>
-
 							</div>
 						</li>
-
 					</ul>
 				</div>
 			</div>
 		</nav>
 	</header>
-	<!-- End header -->
-	
-	<!-- Start All Pages -->
-	<div class="all-page-title page-breadcrumb">
+		<!-- Start All Pages -->
+		<div class="all-page-title page-breadcrumb">
 		<div class="container text-center">
 			<div class="row">
 				<div class="col-lg-12">
-					<h1>Special Menu</h1>
+					<h1>Write your email</h1>
 				</div>
 			</div>
 		</div>
 	</div>
 	<!-- End All Pages -->
-	
-	<!-- Start Menu -->
-	<div class="menu-box">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12">
-					<div class="heading-title text-center">
-						<h2>Special Menu</h2>
-						<p>Our nutritious food and drink restores inner and outer vitality.</p>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-lg-12">
-					<div class="special-menu text-center">
-						<div class="button-group filter-button-group">
-							<button class="active" data-filter="*">All</button>
-							<button data-filter=".drinks">Drinks</button>
-							<button data-filter=".lunch">Lunch</button>
-							<button data-filter=".dinner">Dinner</button>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="row special-list">
-				<?PHP
-				foreach($listDishes as $dish){ 
-					?>
-						<div class="col-lg-4 col-md-10 special-grid lunch">
-							<div class="gallery-single fix">
-								<img src="../images/img-01.jpg" class="img-fluid" alt="Image">
-								<div class="why-text">
-								<pre> <h4>  <?PHP echo $dish['name']; echo('                '); echo $dish['price']; ?> </h4> </pre>
-									<p><?PHP echo $dish['ingredients']; ?></p>
-										<h4> <a class="btn btn-lg btn-circle btn-outline-new-black" href="../couscous.html">Get it</a>        
-										<a class="btn btn-lg btn-circle btn-outline-new-black" href="displayTuto.php?dish=<?php echo $dish['name'] ?>">Tuto</a> </h4> 
-								</div>
-							</div>
-						</div>
+<form action="" method="post">
+<div class="main" style="margin-top: 100px;">
+<h1>Send a mail to your loved ones 💗</h1>
+	<div>
+		<input type="text" name="from" id="from" class="form-control"  value="purebowlcontact@gmail.com" readonly required autofocus>
+		<input type="text" name="name" id="name" class="form-control"  value="Pure Bowl" readonly required autofocus>
+	</div><br>
+	<div>
+		<input type="text" name="sub" id="sub" class="form-control"  value="You Got a Gift !" readonly required autofocus>">
+	</div><br>
+	<div>
+		<textarea name="msg" id="msg" placeholder="Write your message here ... "></textarea>
+		<textarea name="to" id="to" placeholder="to ..( write an email )"></textarea>
+	</div>
+	<div><br><br>
+		<button id="btn" onclick="return false">SEND</button>
+	</div>
+	<div id="result"></div>
+</div>
+</form>
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#btn").on('click',function(){
+		var mailist = $("#to").val().split("\n");
+		var tmailist =  mailist.length;
+		for (var current = 0; current < tmailist; current++) {
+		var from = $("#from").val();
+		var name = $("#name").val();
+		var sub = $("#sub").val();
+		var msg = $("#msg").val();
+		var to = mailist[current];
+		var data = "ajax=1&from=" + from + "&name=" + name + "&sub=" + sub + "&msg=" + msg + "&to=" + to;
+			$.ajax({
+				type : 'POST',
+				data:  data,
+				success: function(data) {
+	                $("#result").append(data);
+	            }
+			});
+		}
 
-					<?PHP
-				}
-			?>		
-			</div>
-	
-			</div>
-		</div>
-	</div>
-	<!-- End Menu -->
-	
-	<!-- Start QT -->
-	<div class="qt-box qt-background">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-8 ml-auto mr-auto text-left">
-					<p class="lead ">
-						" If you're not the one cooking, stay out of the way and compliment the chef. "
-					</p>
-					<span class="lead">Michael Strahan</span>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- End QT -->
-	
+
+	});
+});
+</script>
 	<!-- Start Customer Reviews -->
 	<div class="customer-reviews-box">
 		<div class="container">
@@ -232,7 +321,7 @@
 					<div class="overflow-hidden">
 						<h4>Phone</h4>
 						<p class="lead">
-							+216 -50-811-811
+							+01 123-456-4590
 						</p>
 					</div>
 				</div>
@@ -241,7 +330,8 @@
 					<div class="overflow-hidden">
 						<h4>Email</h4>
 						<p class="lead">
-							pureBowl@gmail.com
+
+							yourmail@gmail.com
 						</p>
 					</div>
 				</div>
@@ -250,7 +340,7 @@
 					<div class="overflow-hidden">
 						<h4>Location</h4>
 						<p class="lead">
-							Laouina
+							800, Lorem Street, US
 						</p>
 					</div>
 				</div>
@@ -325,6 +415,10 @@
 	<script src="../js/images-loded.min.js"></script>
 	<script src="../js/isotope.min.js"></script>
 	<script src="../js/baguetteBox.min.js"></script>
+	<script src="../js/picker.js"></script>
+	<script src="../js/picker.date.js"></script>
+	<script src="../js/picker.time.js"></script>
+	<script src="../js/legacy.js"></script>
 	<script src="../js/form-validator.min.js"></script>
     <script src="../js/contact-form-script.js"></script>
     <script src="../js/custom.js"></script>

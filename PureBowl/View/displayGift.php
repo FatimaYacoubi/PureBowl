@@ -146,7 +146,7 @@
 
                     <th scope="col">ID</th>
                     <th scope="col">NAME</th>
-                   
+                    <th scope="col">IMAGE</IMg></th>
                     <th scope="col">DESCRIPTION</th>
                     <th scope="col">PRICE</th>
 
@@ -178,7 +178,7 @@
 						<input type="hidden" value=<?PHP echo $Gift['id']; ?> name="id"  >
 						</form> 					</td>
 					<td>
-						<a herf="modify-Gift.php? id=<?PHP echo $Gift['id']; ?>" class="btn btn-primary btn-block text-uppercase"> modify </a>
+						<a href="modifyGift.php? id=<?PHP echo $Gift['id']; ?>" class="btn btn-primary btn-block text-uppercase"> modify </a>
 					</td>
 				</tr>
 			<?PHP
