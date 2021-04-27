@@ -64,7 +64,7 @@ input.controle:valid + span:before  {
 input.controle:invalid + span:before  {
   content: "\f00d";
   font-family: "FontAwesome";
-  color:#a00;
+  color:rgb(37, 64, 214);
   font-size: 1.5em;
 }
 </style>
@@ -81,16 +81,10 @@ input.controle:invalid + span:before  {
 				</button>
 				<div class="collapse navbar-collapse" id="navbars-rs-food">
 					<ul class="navbar-nav ml-auto">
-						<li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-						<li class="nav-item"><a class="nav-link" href="menu.php">Menu</a></li>
+						<li class="nav-item "><a class="nav-link" href="index.html">Home</a></li>
+						<li class="nav-item"><a class="nav-link" href="View/menu.php">Menu</a></li>
 						<li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
-						<li class="nav-item  dropdown">
-							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Pages</a>
-							<div class="dropdown-menu" aria-labelledby="dropdown-a">
-								<a class="dropdown-item" href="reservation.html">Reservation</a>
-								<a class="dropdown-item" href="stuff.html">Stuff</a>
-								<a class="dropdown-item" href="gallery.html">Gallery</a>
-							</div>
+						<li class="nav-item dropdown">
 						</li>
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Offres</a>
@@ -102,12 +96,12 @@ input.controle:invalid + span:before  {
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Blog</a>
 							<div class="dropdown-menu" aria-labelledby="dropdown-a">
-								<a class="dropdown-item" href="blog.html">blog</a>
-								<a class="dropdown-item" href="blog-details.html">blog Single</a>
+								<a class="dropdown-item" href="View/blog.php">blog</a>
+								<a class="dropdown-item" href="View/nouveauteblog.php">Nouveaute</a>
 							</div>
 						</li>
-						<li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-						<li class="nav-item active "><a class="nav-link" href="reclamation.html">Reclamation</a></li>
+						<li class="nav-item"><a class="nav-link" href="View/affichercommande.php">My orders</a></li>
+						<li class="nav-item active"><a class="nav-link" href="reclamation.html">Reclamation</a></li>
 						<li class="nav-item"><a class="nav-link" href="gift.html">Gift</a></li>
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Sign in</a>
@@ -158,30 +152,29 @@ input.controle:invalid + span:before  {
 									<h3>Tell us what's wrong</h3>
 									<div class="col-md-12">
 										<div class="form-group">
-											<textarea name="description" id="description" cols="30" rows="10" class="form-control" placeholder="Please describe your reclamation"></textarea>
+											<textarea name="description" id="description" cols="30" rows="10" class="form-control" placeholder="Please describe your reclamation" required></textarea>
 											<div class="help-block with-errors"></div>
 										</div>                                 
 									</div>
 									<div class="col-md-12">
 										<div class="form-group">
 											<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script >
-$(document).ready(function(){
+           <script >
+          $(document).ready(function(){
 
-	var dtToday= new Date();
-	var month= dtToday.getMonth()+1;
-	var day= dtToday.getDate();
-	var year=dtToday.getFullYear();
-	if(month<10)
-		month='0'+month.toString();
-	if(day<10)
-		day='0'+day.toString();
-	var maxDate = year+'-'+month+'-'+day;
-$('#dateControl').attr('min',maxDate);
-})
-</script>
-											<input id="dateControl"  name="date" 
-                       placeholder="Please enter the date you want it delivered" type="date" >
+        var dtToday= new Date();
+        var month= dtToday.getMonth()+1;
+        var day= dtToday.getDate();
+        var year=dtToday.getFullYear();
+        if(month<10)
+            month='0'+month.toString();
+        if(day<10)
+        day='0'+day.toString();
+        var maxDate = year+'-'+month+'-'+day;
+        $('#dateControl').attr('value',maxDate);
+            })
+            </script>
+                                <input id="dateControl"  name="date"  type="hidden" >
                       <div class="help-block with-errors"></div>
 										</div>                                 
 									</div>
@@ -191,30 +184,32 @@ $('#dateControl').attr('min',maxDate);
 									<h3>Contact Details</h3>
 									<div class="col-md-12">
 										<div class="form-group">
-											<input type="text"  class="controle" id="nomClient" name="nomClient" required pattern="[0-9a-zA-Z-\.]{3,12}" placeholder="Your Name" required data-error="Please enter your name">
+											<input type="text"  class="controle" id="nomClient" name="nomClient" required pattern="[a-zA-Z-\.]{3,20}" placeholder="Your Name" required data-error="Please enter your name">
 											<div class="help-block with-errors"></div>
 										</div>                                 
 									</div>
 									<div class="col-md-12">
 										<div class="form-group">
-											<input type="text" placeholder="Your Email" id="emailClient" class="controle" name="emailClient" required data-error="Please enter your email">
+											<input type="text" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" placeholder="Your Email(Example@example.com)" id="emailClient" class="controle" name="emailClient"    required data-error="Please enter your email">
 											<div class="help-block with-errors"></div>
 										</div> 
 									</div>
 									<div class="col-md-12">
 										<div class="form-group">
-											<input type="text" placeholder="Your Number" id="phoneClient" class="form-control" name="phoneClient" required data-error="Please enter your Number">
+											<input type="text" placeholder="Your number(8 digits)" id="phoneClient" class="controle" name="phoneClient" required pattern="[0-9]{8}">
 											<div class="help-block with-errors"></div>
 										</div> 
 									</div>
 								</div>
 								<div class="col-md-12">
 									<div class="submit-button text-center">
-										<button class="btn btn-common" id="submit" type="submit"> Place your order</button>
+										<button class="btn btn-common" id="submit" type="submit" > Place your reclamation</button>
+										
 										<div id="msgSubmit" class="h3 text-center hidden"></div> 
 										<div class="clearfix"></div> 
 									</div>
 								</div>
+								<button href="send1.php">wawawa</button>
 							</div>            
 					</div>
 				</div>

@@ -92,7 +92,7 @@ if (isset($_POST["email"]) &&
             </div>
         </div>
 
-    </div>
+    </div> 
     <input class="btn-222" type="submit" value="se connecter" name = "se connecter">
     <input class="btn-222" type="reset" value="Annuler" >
     <br>

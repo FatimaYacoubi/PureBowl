@@ -3,6 +3,8 @@ const  nextBtn  =  document.getElementById('nextBtn');
 const  finishBtn  =  document.getElementById('finishBtn');
 const  content  =  document.getElementById('content');
 const  bullets  =  [...document.querySelectorAll('.bullet')];
+const  login  =  document.getElementById('login');
+
 
 const MAX_STEPS = 4;
 let currentStep = 1;

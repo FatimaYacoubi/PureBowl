@@ -1,6 +1,8 @@
 <?php
 // On prolonge la session
 session_start();
+    require_once 'mail.php'; //fichier lekhor
+
 // On teste si la variable de session existe et contient une valeur
 if(empty($_SESSION['e']))
 {
@@ -18,43 +20,16 @@ if(empty($_SESSION['e']))
 
     <link rel="stylesheet" href="css/style.css"> 
         <link rel="stylesheet" href="css/style1.css">    
-<style>
-            body {
-                height: 200vh;
-                width: 100%;
-                background: rgba(0, 0, 0, 0.5);
-                z-index: 111;
-            }
-            #popup {
-                width: 550px;
-                height: 250px;
-                background-image: url(
-https://images-na.ssl-images-amazon.com/images/I/31Xl85rQxbL._SY355_.png);
-                background-repeat: no-repeat;
-                background-position: center;
-                background-size: cover;
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                box-shadow: 2px 2px 5px 3px white;
-            }
-            #emailId {
-                text-align: center;
-                position: absolute;
-                left: 25%;
-                top: 25%;
-            }
-            .submitId {
-                position: relative;
-                top: 130px;
-                left: 180px;
-            }
-        </style>
     <link rel="stylesheet" href="css/style.css"> 
 </head>
 <body>
-
+  <?php 
+    $mail->setFrom('purebowlcontact@gmail.com', 'Pure Bowl'); //the sender
+    $mail->addAddress( $_SESSION['e']); //reciver
+    $mail->Subject = 'Thank you for Using our service!'; //subject
+    $mail->Body    = 'this is a message telling you dear user that you are now a member of the Pure Bowl world! thank you for trusting us and be sure that we will deliver to your doortep the freshest ingredients'; //el msg bidou
+    $mail->send();
+    ?>  
 <script>
   alert('<?php
 // Il est bien connecté

@@ -152,7 +152,7 @@
                       id="name"
                       name="name"
                       type="text"
-                      value="<?php echo $dish['name']; ?>"
+                      
                       class="form-control validate"
                     />
                   </div>
@@ -165,7 +165,7 @@
                     id="ingredients"
                     name="ingredients"
                     placeholder="Enter the ingredients"
-                    value="<?php echo $dish['ingredients']; ?>"
+                   
                       class="form-control validate"
                       rows="3"
                       required
@@ -181,7 +181,7 @@
                       id="price"
                       name="price"
                       type="text"
-                      value="<?php echo $dish['price']; ?>"
+                      
                       class="form-control validate"
                     />
                     
