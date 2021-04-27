@@ -10,22 +10,25 @@
         isset($_POST["image_offre"]) &&
         isset($_POST["descrip_offre"]) && 
         isset($_POST["type_offre"]) && 
-        isset($_POST["prix_offre"])
+        isset($_POST["prix_offre"])&& 
+        isset($_POST["etat_offre"])
   ){
     if (
             !empty($_POST["nom_offre"]) && 
-            !empty($_POST["image_offre"]) && 
+        !empty($_POST["image_offre"]) && 
             !empty($_POST["descrip_offre"]) && 
             !empty($_POST["type_offre"]) && 
             !empty($_POST["prix_offre"])
-        ) {
+          //  !empty($_POST["etat_offre"])
+        ) { 
             $offer = new offre(
                 $_POST['nom_offre'],
                 $_POST['image_offre'], 
                 $_POST['descrip_offre'],
                 $_POST['type_offre'],
-                $_POST['prix_offre']
-      );
+                $_POST['prix_offre'],
+                $_POST['etat_offre']
+      );  
       
             $offreC->modifierOffre($offer, $_GET['id_offre']);
             header('refresh:5;url=showOffre.php');
@@ -234,7 +237,7 @@
                       <input
                       id="type_offre"
                       name="type_offre"
-                      type="number"
+                      type="text"
                       value="<?php echo $offer['type_offre']; ?>" 
                       class="form-control validate"
                     />
@@ -255,6 +258,22 @@
                             class="form-control validate"
                           />
                         </div>
+                            <div class="row">
+                      <div class="form-group mb-3 col-xs-12 col-sm-6">
+                          <label
+                            for="etat_offre"
+                            >Etat 
+                          </label>
+                          <input
+                            id="etat_offre"
+                            name="etat_offre"
+                            type="text"
+                            class="form-control validate"
+                            data-large-mode="true"
+                          />
+                        </div>
+                        
+                  </div>
                          <div class="form-group mb-3 col-xs-12 col-sm-6">
                           <label
                             for="image_offre"
