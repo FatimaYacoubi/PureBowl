@@ -1,30 +1,14 @@
-v<?php
+<?php
 include_once '../Controller/UtilisateurC.php';
 
-$userC = new UtilisateurC();
+$UtilisateurC = new UtilisateurC();
 $error = "";
 
 if (
-    isset($_POST["idClient"])&&
-    isset($_POST["nom"]) &&
-    isset($_POST["prenom"]) &&
-    isset($_POST["email"]) &&
-    isset($_POST["login"]) &&
-    isset($_POST["password"]) &&
-    isset($_POST["adresse"]) &&
-    isset($_POST["tel"])
+    isset($_POST["idClient"])
 ){
     if (
-        !empty($_POST["idClient"])&&
-        !empty($_POST["nom"]) &&
-        !empty($_POST["prenom"]) &&
-        !empty($_POST["email"]) &&
-        !empty($_POST["login"]) &&
-        !empty($_POST["password"]) &&
-        !empty($_POST["adresse"]) &&
-        !empty($_POST["tel"]) &&
-        (($_POST["tel"]>=20000000) && ($_POST["tel"]<=99999999))&&
-        ($_POST["password"]==$_POST["password1"])
+        !empty($_POST["idClient"])
     ) {
         $user = new utilisateur(
             $_POST['idClient'],
@@ -37,16 +21,11 @@ if (
             $_POST['tel']
         );
 
-        $userC->modifierutilisateur($user, $_GET['idClient']);
+        $UtilisateurC->modifierutilisateur($user, $_GET['idClient']);
         header('Location:index1.php');
     }
-    else if (($_POST["password"]!=$_POST["password1"]) && (($_POST["tel"]<20000000) || ($_POST["tel"]>99999999)))
-        $error = "le numero doit être de 8 chiffres avec 2-9 comme premier chiffre à gauche / le mot de passe doit être le même dans la confirmation";
+    else             $error = "Missing information";
 
-    else if (($_POST["tel"]<20000000) || ($_POST["tel"]>99999999))
-        $error = "le numero doit être de 8 chiffres avec 2-9 comme premier chiffre à gauche";
-    else if ($_POST["password"]!=$_POST["password1"])
-        $error = "le mot de passe doit être le même dans la confirmation";
 }
 
 ?>
@@ -81,7 +60,7 @@ if (
                         <div class="card-body">
                             <?php
                             if (isset($_GET['idClient'])){
-                                $user = $userC->recupererutilisateur($_GET['idClient']);
+                                $user = $UtilisateurC->recupererutilisateur($_GET['idClient']);
 
                                 ?>
                                 <form action="" method="POST" >
@@ -89,7 +68,7 @@ if (
                                         <div class="col-md-5 pr-1">
                                             <div class="form-group">
                                                 <label>CIN</label>
-                                                <input type="text" name="cin" id="cin" value = "<?php echo $user->idClient; ?>" disabled >
+                                                <input type="text" name="idClient" id="idClient" value = "<?php echo $user->idClient; ?>" disabled >
                                             </div>
                                         </div>
                                         <div class="col-md-3 pr-1">
@@ -132,7 +111,7 @@ if (
                                         <div class="col-md-3 pr-1">
                                             <div class="form-group">
                                                 <label>ville</label>
-                                                <input type="text" name="ville" id="ville" value = "<?php echo $user->adresse; ?>">
+                                                <input type="text" name="adresse" id="adresse" value = "<?php echo $user->adresse; ?>">
                                             </div>
                                         </div>
 
@@ -143,17 +122,11 @@ if (
                                             </div>
                                         </div>
 
-                                        <div class="col-lg-12">
-                                            <?php 
-               echo "<td><a href=index1.php>cancel</a> "
-          ?>              <input type="hidden" name="id" value=<?php echo $_GET['idClient'];?>>
-
-                  
-
-                                        
 
                                         <div class="col-lg-12">
-                                            <td><input type="submit" name="update" value="Update" class="btn-222" ></td>
+                                           <button type="submit"  name = "modifer"  class="tm-product-delete-link" > <i class="far fa-edit tm-product-delete-icon" ></i></button>
+                    
+                        <button type="reset" class="tm-product-delete-link"><i class="fas fa-window-close"></i></button>
    
                                         </div>
 

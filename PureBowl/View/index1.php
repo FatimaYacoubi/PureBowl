@@ -1,6 +1,6 @@
 <?php
-  include "../Controller/commandeC.php";
-    include "../Controller/UtilisateurC.php";
+  include_once "../Controller/commandeC.php";
+    include_once"../Controller/UtilisateurC.php";
 
 
   $UtilisateurC=new UtilisateurC();
@@ -186,7 +186,7 @@
                 <td><?PHP echo $user1['login']; ?></td> 
                 <td><?PHP echo $user1['password']; ?></td> 
     <td><?PHP echo $user1['adresse']; ?></td> 
-      <td>          <a href="modifierutilisateur.php?idClient=<?PHP echo $user1['idClient']; ?>"  > 
+      <td>          <a href="updateuser.php?idClient=<?PHP echo $user1['idClient']; ?>"  > 
                        <button class="btn-222" style="color:black">Edit</button>
 
                       </a>

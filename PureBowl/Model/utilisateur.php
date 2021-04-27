@@ -10,8 +10,7 @@
         private  $tel = null;
         private  $role = 'client';
 
-    function __construct(int $idClient, string $nom, string $prenom, string $email, string $login, string $password, string $adresse, int $tel){
-        $this->idClient=$idClient;
+    function __construct( string $nom, string $prenom, string $email, string $login, string $password, string $adresse, string $tel){
         $this->nom=$nom;
         $this->prenom=$prenom;
         $this->email=$email;

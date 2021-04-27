@@ -1,5 +1,5 @@
 <?php
-  class config2 {
+  class config{
     private static $pdo = NULL;
 
     public static function getConnexion() {
