@@ -6,32 +6,35 @@
 
     // create user
     $promos = null;
-
+$date_ac = date('Y-m-d');
+echo $date_ac ;
     // create an instance of the controller
     $promoC = new PromoC();
     if (
         isset($_POST["id_pack"]) && 
         isset($_POST["pourcentage"]) &&
-        isset($_POST["date_deb"]) && 
+   //     isset($_POST["date_deb"]) && 
         isset($_POST["date_fin"]) 
     ) {
         if (
             !empty($_POST["id_pack"]) && 
             !empty($_POST["pourcentage"]) && 
-            !empty($_POST["date_deb"]) && 
+       //    !empty($_POST["date_deb"]) && 
             !empty($_POST["date_fin"]) 
         ) {
             $promos = new promo(
                 $_POST['id_pack'],
                 $_POST['pourcentage'], 
-                $_POST['date_deb'],
+            //    $_POST['date_deb'],
                 $_POST['date_fin']
             );
-
-      
-            $promoC->ajouterPromo($promos);
-            // header('Location:showpromo.php');
-        }
+if ($date_ac >= $_POST['date_fin'])
+{
+   echo "<script>alert ('la date fin doit etre differente de la date actuelle');</script>";}
+   else
+          {  $promoC->ajouterPromo($promos);
+             header('Location:showpromo.php');
+        }}
         else
             $error = "Missing information";
     }
@@ -47,6 +50,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Add Pack - Dashboard HTML Template</title>
+    <script src="verifpromo.js"></script>
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Roboto:400,700"
@@ -203,7 +207,7 @@
                     />
                   
                   </div>
-                  <div class="form-group mb-3">
+             <!--    <div class="form-group mb-3">
                     <label
                       for="date_deb"
                       >date debut</label
@@ -215,7 +219,7 @@
                       class="form-control validate"
                       required
                     />
-                  </div>
+                  </div>  -->
                   <div class="row">
                       <div class="form-group mb-3">
                           <label

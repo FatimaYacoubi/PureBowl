@@ -146,6 +146,7 @@
                       <div class="why-text">
 				<!--	<h5><?PHP echo $offer['id_offre']; ?> </h5>  -->
 				<h2>	<?PHP echo $offer['nom_offre']; ?> </h2>
+				<h3>	<?PHP echo $offer['etat_offre']; ?> </h3>
 					<!-- <td><?PHP echo $offer['image_offre']; ?></td> --> 
 					<p><?PHP echo $offer['descrip_offre']; ?></p>
 					<h4><?PHP echo $offer['type_offre']; ?></h4>
