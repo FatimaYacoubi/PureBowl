@@ -1,34 +1,5 @@
 <?php
-
-  class config {
-    private static $pdo = NULL;
-
-    public static function getConnexion() {
-      if (!isset(self::$pdo)) {
-        try{
-          self::$pdo = new PDO('mysql:host=localhost;dbname=webprojet', 'root', '',
-          [
-            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
-        ]);
-          
-        }catch(Exception $e){
-          die('Erreur: '.$e->getMessage());
-        }
-      }
-      return self::$pdo;
-    }
-  }
-
-  /* 
-$databaseHost = 'localhost';
-$databaseName = 'webprojet';
-$databaseUsername = 'root';
-$databasePassword = '';
-
-$mysqli = mysqli_connect($databaseHost, $databaseUsername, $databasePassword, $databaseName);  */
-
-
+require_once "../config.php";
     require_once '../Model/utilisateur.php';
 
 
@@ -36,7 +7,7 @@ class utilisateurC
 {
     function ajouterutilisateur($Utilisateur){
         $sql="INSERT INTO Compte (idClient,nom,prenom,email,login,password,adresse,tel) 
-			VALUES (:idClient,:nom,:prenom,:email,:login,:password,:adresse,:tel)";
+            VALUES (:idClient,:nom,:prenom,:email,:login,:password,:adresse,:tel)";
         $db = config::getConnexion();
         try{
             $query = $db->prepare($sql);
@@ -88,27 +59,24 @@ class utilisateurC
 
     function modifierutilisateur($utilisateur,$idClient){
         try {
-            $db = config2::getConnexion();
+            $db = config::getConnexion();
             $query = $db->prepare(
-                'UPDATE Compte SET 						 
-		
-					    
-					    nom = :nom,
-						prenom = :prenom,
-						email = :email,
-						login = :login,
-						password = :password,
-						adresse = :adresse,
-						tel = :tel
-						
-					WHERE idClient = :idClient'
+                'UPDATE Compte SET                      nom = :nom,
+                    prenom = :prenom,
+                    email = :email,
+                    login = :login,
+                    password = :password,
+                    adresse = :adresse,
+                    tel = :tel
+                        
+                    WHERE idClient = :idClient'
             );
             $query->execute([
                 'nom' => $utilisateur->getNom(),
                 'prenom' => $utilisateur->getPrenom(),
                 'email' => $utilisateur->getEmail(),
                 'login' => $utilisateur->getLogin(),
-                'password' => $utilisateur->getPassword(),
+            'password' => $utilisateur->getPassword(),
                 'adresse' => $utilisateur->getAdresse(),
                 'tel' => $utilisateur->getTel(),
                 'idClient' => $idClient
@@ -116,6 +84,7 @@ class utilisateurC
             ]);
             echo $query->rowCount() . " records UPDATED successfully <br>";
         } catch (PDOException $e) {
+            echo "Echeeeec";
             $e->getMessage();
         }
     }
@@ -175,4 +144,3 @@ class utilisateurC
         return $message;
     }
 }
-
