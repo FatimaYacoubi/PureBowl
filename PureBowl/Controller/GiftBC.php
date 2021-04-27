@@ -35,21 +35,23 @@
 				$db = config::getConnexion();
 				$query = $db->prepare(
 					'UPDATE gift SET
-                        nom = :nom,	
-					    imageG = :imageG,
+
+					    nom = :nom,	
+						imageG = :imageG,
 						descr = :descr,
 						price = :price
+						
 					WHERE id = :id'
 				);
 				$query->execute([
 
-					'nom' => $Gift->getName(),
+					'nom' => $Gift->getNom(),
 					'imageG' => $Gift->getImage(),
 					'descr' => $Gift->getdesc(),
 					'price' => $Gift->getPrice(),
 					'id' => $id
 				]);
-			//	echo $query->rowCount() . " records UPDATED successfully <br>";
+				echo $query->rowCount() . " records UPDATED successfully <br>";
 			} catch (PDOException $e) {
 				$e->getMessage();
 			}
@@ -93,8 +95,8 @@
 				$query=$db->prepare($sql);
 				$query->execute();
 
-				$Gift=$query->fetch();
-				return $Gift;
+				$gift=$query->fetch();
+				return $gift;
 			}
 			catch (Exception $e){
 				die('Erreur: '.$e->getMessage());
@@ -109,8 +111,8 @@
 				$query=$db->prepare($sql);
 				$query->execute();
 				
-				$Gift= $query->fetch(PDO::FETCH_OBJ);
-				return $Gift;
+				$gift= $query->fetch(PDO::FETCH_OBJ);
+				return $gift;
 			}
 			catch (Exception $e){
 				die('Erreur: '.$e->getMessage());
