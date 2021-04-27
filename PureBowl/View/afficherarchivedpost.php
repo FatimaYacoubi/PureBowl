@@ -170,7 +170,7 @@
                         </button></form></td>
                         <td style="width: 30px" ><form method="POST" action="inarchiverpost.php">
                             <button style="height: : 30px" type="submit" name="inarchiver "class="tm-product-delete-link" >
-                        <i class="fas fa-archive tm-product-delete-icon" ></i></button> 
+                        <i class="far fa-folder-open tm-product-delete-icon"></i></button> 
                         
                         <input type="hidden" value=<?PHP echo $user['id']; ?> name="id">
                     </form>
