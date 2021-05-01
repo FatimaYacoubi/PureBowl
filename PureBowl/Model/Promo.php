@@ -3,15 +3,15 @@
 		private ?int $id_promo = null;
 		private ?int $id_pack = null;
 		private ?int $pourcentage = null;
-		private ?string $date_deb = null;
+		//private ?string $date_deb = null;
 		private ?string $date_fin = null;
 		
 		
-		function __construct(int $id_pack, int $pourcentage, string $date_deb, string $date_fin){
+		function __construct(int $id_pack, int $pourcentage,/* string $date_deb,*/ string $date_fin){
 			
 		   $this->id_pack=$id_pack;
 			$this->pourcentage=$pourcentage;
-			$this->date_deb=$date_deb;
+		//	$this->date_deb=$date_deb;
 			$this->date_fin=$date_fin;
 			
 		}
@@ -25,9 +25,9 @@
 		function getPourcentage(): int{
 			return $this->pourcentage;
 		}
-		function getDate_deb(): string{
+	/*	function getDate_deb(): string{
 			return $this->date_deb;
-		}
+		} */
 		function getDate_fin(): string{
 			return $this->date_fin;
 		}
@@ -39,9 +39,9 @@
 		function setPourcentage(int $pourcentage): void{
 			$this->pourcentage=$pourcentage;
 		}
-		function setDate_deb(string $date_deb): void{
+	/* 	function setDate_deb(string $date_deb): void{
 			$this->date_deb=$date_deb;
-		}
+		}*/
 		function setDate_fin(string $date_fin): void{
 			$this->date_fin=$date_fin;
 		}
