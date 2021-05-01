@@ -9,7 +9,6 @@ $user = null;
 
 $userC = new utilisateurC();
 if (
-    isset($_POST["idClient"]) &&
     isset($_POST["nom"]) &&
     isset($_POST["prenom"]) &&
     isset($_POST["email"]) &&
@@ -20,7 +19,6 @@ if (
     isset($_POST["tel"])
 ) {
     if (
-        !empty($_POST["idClient"]) &&
         !empty($_POST["nom"]) &&
         !empty($_POST["prenom"]) &&
         !empty($_POST["email"]) &&
@@ -33,7 +31,6 @@ if (
 
     ) { 
         $user = new utilisateur(
-            $_POST['idClient'],
             $_POST['nom'],
             $_POST['prenom'],
             $_POST['email'],

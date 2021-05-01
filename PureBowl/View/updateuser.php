@@ -34,7 +34,7 @@
             );
             
             $utilisateurC->modifierutilisateur($user, $_GET['idClient']);
-            header('refresh:5;url=index1.php');
+            header('refresh:1;url=index1.php');
         }
         else
             $error = "Missing information";

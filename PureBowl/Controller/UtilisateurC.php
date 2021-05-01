@@ -6,14 +6,13 @@ require_once "../config.php";
 class utilisateurC
 {
     function ajouterutilisateur($Utilisateur){
-        $sql="INSERT INTO Compte (idClient,nom,prenom,email,login,password,adresse,tel) 
-            VALUES (:idClient,:nom,:prenom,:email,:login,:password,:adresse,:tel)";
+        $sql="INSERT INTO Compte (nom,prenom,email,login,password,adresse,tel) 
+            VALUES (:nom,:prenom,:email,:login,:password,:adresse,:tel)";
         $db = config::getConnexion();
         try{
             $query = $db->prepare($sql);
 
             $query->execute([
-                'idClient' => $Utilisateur->getidClient(),
                 'nom' => $Utilisateur->getNom(),
                 'prenom' => $Utilisateur->getPrenom(),
                 'email' => $Utilisateur->getEmail(),

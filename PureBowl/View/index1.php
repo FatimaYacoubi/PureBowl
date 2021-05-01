@@ -192,7 +192,7 @@
                       </a>
                     </td>
           <td>
-            <form method="POST" action="">
+            <form method="POST" action="supprimeruser.php">
                         <button type="submit" name="supprimer" class="btn-222" id="1" style="color:black" onClick="\return confirm('Are you sure you want to delete?')\"> Delete</button> 
                         
                         <input type="hidden" value=<?PHP echo $user1['idClient']; ?> name="idClient">
