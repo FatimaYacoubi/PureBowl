@@ -3,7 +3,7 @@ require('../vendor/autoload.php');
 $con=mysqli_connect('localhost','root','','webprojet');
 $res=mysqli_query($con,"select * from post where etat=1 ");
 if(mysqli_num_rows($res)>0){
-	$html='<table border="1 " style="border-collapse:collapse ;
+	$html.='<table border="1" style="border-collapse:collapse ;
  border: 3px solid black;
  width: 700px;
  height: 100px;

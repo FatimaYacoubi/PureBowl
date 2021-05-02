@@ -1,3 +1,24 @@
+<?php
+include "../Controller/UtilisateurC.php";
+$utilisateurC=new utilisateurC();
+
+// On prolonge la session
+session_start();
+//fichier lekhor
+
+
+$user=$utilisateurC->recuperercompte($_SESSION['e']);
+	
+
+// On teste si la variable de session existe et contient une valeur
+if(empty($_SESSION['e']))
+{
+	
+    // Si inexistante ou nulle, on redirige vers le formulaire de login
+    header('Location:/View/login.php');
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en"><!-- Basic -->
 <head>
@@ -14,21 +35,21 @@
     <meta name="author" content="">
 
     <!-- Site Icons -->
-    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">    
+    <link rel="stylesheet" href="../css/bootstrap.min.css">    
 	<!-- Site CSS -->
-    <link rel="stylesheet" href="css/style.css">    
+    <link rel="stylesheet" href="../css/style.css">    
 	<!-- Pickadate CSS -->
-    <link rel="stylesheet" href="css/classic.css">    
-	<link rel="stylesheet" href="css/classic.date.css">    
-	<link rel="stylesheet" href="css/classic.time.css">    
+    <link rel="stylesheet" href="../css/classic.css">    
+	<link rel="stylesheet" href="../css/classic.date.css">    
+	<link rel="stylesheet" href="../css/classic.time.css">    
     <!-- Responsive CSS -->
-    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="../css/responsive.css">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/custom.css">
+    <link rel="stylesheet" href="../css/custom.css">
 
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -70,44 +91,45 @@ input.controle:invalid + span:before  {
 </style>
 <body>
         	<!-- Start header -->
+        	
 	<header class="top-navbar">
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
 			<div class="container">
-				<a class="navbar-brand" href="index.html">
-					<img src="images/logo.png" alt="" />
+				<a class="navbar-brand" href="../index.html">
+					<img src="../images/logo.png" alt="" />
 				</a>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbars-rs-food" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
 				  <span class="navbar-toggler-icon"></span>
 				</button>
 				<div class="collapse navbar-collapse" id="navbars-rs-food">
 					<ul class="navbar-nav ml-auto">
-						<li class="nav-item "><a class="nav-link" href="index.html">Home</a></li>
-						<li class="nav-item"><a class="nav-link" href="View/menu.php">Menu</a></li>
-						<li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+						<li class="nav-item "><a class="nav-link" href="../index.html">Home</a></li>
+						<li class="nav-item"><a class="nav-link" href="menu.php">Menu</a></li>
+						<li class="nav-item"><a class="nav-link" href="../about.html">About</a></li>
 						<li class="nav-item dropdown">
 						</li>
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Offres</a>
 							<div class="dropdown-menu" aria-labelledby="dropdown-a">
-								<a class="dropdown-item" href="offre.html">Offre</a>
-								<a class="dropdown-item" href="offre.html">Promotion</a>
+								<a class="dropdown-item" href="../offre.html">Offre</a>
+								<a class="dropdown-item" href="../offre.html">Promotion</a>
 								</div>
 							</li>
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Blog</a>
 							<div class="dropdown-menu" aria-labelledby="dropdown-a">
-								<a class="dropdown-item" href="View/blog.php">blog</a>
-								<a class="dropdown-item" href="View/nouveauteblog.php">Nouveaute</a>
+								<a class="dropdown-item" href="blog.php">blog</a>
+								<a class="dropdown-item" href="nouveauteblog.php">Nouveaute</a>
 							</div>
 						</li>
-						<li class="nav-item"><a class="nav-link" href="View/affichercommande.php">My orders</a></li>
-						<li class="nav-item active"><a class="nav-link" href="reclamation.html">Reclamation</a></li>
-						<li class="nav-item"><a class="nav-link" href="gift.html">Gift</a></li>
+						<li class="nav-item"><a class="nav-link" href="affichercommande.php">My orders</a></li>
+						<li class="nav-item active"><a class="nav-link" href="../reclamation.html">Reclamation</a></li>
+						<li class="nav-item"><a class="nav-link" href="../gift.html">Gift</a></li>
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Sign in</a>
 							<div class="dropdown-menu" aria-labelledby="dropdown-a">
-								<a class="dropdown-item" href="login.html">As an administrator</a>
-								<a class="dropdown-item" href="blog-details.html">As a client</a>
+								<a class="dropdown-item" href="../login.html">As an administrator</a>
+								<a class="dropdown-item" href="../blog-details.html">As a client</a>
 							</div>
 						</li>
 					</ul>
@@ -130,6 +152,7 @@ input.controle:invalid + span:before  {
 	<!-- End All Pages -->
 	
 	<!-- Start Reservation -->
+	
 	<div class="reservation-box">
 		<div class="container">
 			<div class="row">
@@ -143,10 +166,9 @@ input.controle:invalid + span:before  {
 			<div class="row">
 				<div class="col-lg-12 col-sm-12 col-xs-12">
 					<div id="error">
-            <?php echo $error; ?>
         </div>
 					<div class="contact-block">
-						<form action="./View/connexion.php" method="POST">
+						<form action="connexion.php" method="POST">
 							<div class="row">
 								<div class="col-md-6">
 									<h3>Tell us what's wrong</h3>
@@ -184,19 +206,19 @@ input.controle:invalid + span:before  {
 									<h3>Contact Details</h3>
 									<div class="col-md-12">
 										<div class="form-group">
-											<input type="text"  class="controle" id="nomClient" name="nomClient" required pattern="[a-zA-Z-\.]{3,20}" placeholder="Your Name" required data-error="Please enter your name">
+											<input type="text"  class="controle" id="nomClient" name="nomClient" required pattern="[a-zA-Z-\.]{3,20}" placeholder="Your Name" required data-error="Please enter your name" value="<?php echo $user->nom; ?>">
 											<div class="help-block with-errors"></div>
 										</div>                                 
 									</div>
 									<div class="col-md-12">
 										<div class="form-group">
-											<input type="text" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" placeholder="Your Email(Example@example.com)" id="emailClient" class="controle" name="emailClient"    required data-error="Please enter your email">
+											<input type="text" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" placeholder="Your Email(Example@example.com)" id="emailClient" class="controle" name="emailClient"    required data-error="Please enter your email" value="<?PHP echo $_SESSION['e']; ?>">
 											<div class="help-block with-errors"></div>
 										</div> 
 									</div>
 									<div class="col-md-12">
 										<div class="form-group">
-											<input type="text" placeholder="Your number(8 digits)" id="phoneClient" class="controle" name="phoneClient" required pattern="[0-9]{8}">
+											<input type="text" placeholder="Your number(8 digits)" id="phoneClient" class="controle" name="phoneClient" required pattern="[0-9]{8}" value="<?php echo $user->tel; ?>">
 											<div class="help-block with-errors"></div>
 										</div> 
 									</div>
@@ -209,7 +231,6 @@ input.controle:invalid + span:before  {
 										<div class="clearfix"></div> 
 									</div>
 								</div>
-								<button href="send1.php">wawawa</button>
 							</div>            
 					</div>
 				</div>
@@ -368,20 +389,20 @@ input.controle:invalid + span:before  {
 	<a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
 
 	<!-- ALL JS FILES -->
-	<script src="js/jquery-3.2.1.min.js"></script>
-	<script src="js/popper.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
+	<script src="../js/jquery-3.2.1.min.js"></script>
+	<script src="../js/popper.min.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
     <!-- ALL PLUGINS -->
-	<script src="js/jquery.superslides.min.js"></script>
-	<script src="js/images-loded.min.js"></script>
-	<script src="js/isotope.min.js"></script>
-	<script src="js/baguetteBox.min.js"></script>
-	<script src="js/picker.js"></script>
-	<script src="js/picker.date.js"></script>
-	<script src="js/picker.time.js"></script>
-	<script src="js/legacy.js"></script>
-	<script src="js/form-validator.min.js"></script>
-    <script src="js/contact-form-script.js"></script>
-    <script src="js/custom.js"></script>
+	<script src="../js/jquery.superslides.min.js"></script>
+	<script src="../js/images-loded.min.js"></script>
+	<script src="../js/isotope.min.js"></script>
+	<script src="../js/baguetteBox.min.js"></script>
+	<script src="../js/picker.js"></script>
+	<script src="../js/picker.date.js"></script>
+	<script src="../js/picker.time.js"></script>
+	<script src="../js/legacy.js"></script>
+	<script src="../js/form-validator.min.js"></script>
+    <script src="../js/contact-form-script.js"></script>
+    <script src="../js/custom.js"></script>
 </body>
 </html>
