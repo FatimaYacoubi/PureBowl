@@ -3,7 +3,64 @@
 	include "../Controller/offreC.php";
 
 	$offreC=new offreC();
-	$listeOffers=$offreC->afficherOffre();
+
+	
+
+	// $listeOffers=$offreC->afficherOffre();
+	// On détermine sur quelle page on se trouve
+if(isset($_GET['page']) && !empty($_GET['page'])){
+    $currentPage = (int) strip_tags($_GET['page']);
+}else{
+    $currentPage = 1;
+}
+// On se connecte à là base de données
+//require_once('connect.php');
+
+// On détermine le nombre total d'articles
+$sql = 'SELECT COUNT(*) AS nb_offre FROM `offre`;';
+$db = config::getConnexion();
+// On prépare la requête
+$query = $db->prepare($sql);
+
+// On exécute
+$query->execute();
+
+// On récupère le nombre d'articles
+$result = $query->fetch();
+
+$nbArticles = (int) $result['nb_offre'];
+
+// On détermine le nombre d'articles par page
+$parPage = 5;
+
+// On calcule le nombre de pages total
+$pages = ceil($nbArticles / $parPage);
+
+// Calcul du 1er article de la page
+$premier = ($currentPage * $parPage) - $parPage;
+
+$sql = 'SELECT * FROM `offre` ORDER BY `id_offre` DESC LIMIT :premier, :parpage;';
+
+// On prépare la requête
+$query = $db->prepare($sql);
+
+$query->bindValue(':premier', $premier, PDO::PARAM_INT);
+$query->bindValue(':parpage', $parPage, PDO::PARAM_INT);
+
+// On exécute
+$query->execute();
+
+// On récupère les valeurs dans un tableau associatif
+$listeOffers = $query->fetchAll(PDO::FETCH_ASSOC);
+  if ((isset($_POST["recherche"]))&& (isset($_POST["colonne"]))){
+   if (!empty(isset($_POST["recherche"]))){
+    $n=$_POST["colonne"];
+    echo ("colonne = $n " );
+     $listeOffers=$offreC->rechercher($_POST["recherche"],$n);
+   } } 
+
+
+//require_once('close.php');
 
 ?>
 
@@ -95,6 +152,7 @@
 			</div>
 		</nav>
 	</header>
+
 	<!-- End header -->
 	
 	<!-- Start All Pages -->
@@ -108,7 +166,7 @@
 		</div>
 	</div>
 	<!-- End All Pages -->
-	
+
 	<!-- Start Menu -->
 	<div class="menu-box">
 		<div class="container">
@@ -119,20 +177,73 @@
 						<p>Lorem Ipsum is simply dummy text of the printing and typesetting</p>
 					</div>
 				</div>
-			</div>
+			</div> 
+			
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="special-menu text-center">
-						<div class="button-group filter-button-group">
+						<form method="POST" action="">
+						<div class="button-group filter-button-group" >
 							<button class="active" data-filter="*">All</button>
-							<button data-filter=".healthy">healthy</button>
-							<button data-filter=".normal">normal</button>
-							<button data-filter=".vegan">vegan</button>
-							<button data-filter=".promo">promotion</button>
+							<button data-filter=".healthy" value="type_offre">healthy</button>
+							<button data-filter=".normal" value="type_offre" >normal</button>
+							<button data-filter=".vegan" value="type_offre">vegan</button>  
+							 <!-- <input type="submit" name="filtre" value="Valider">
+
+							  <input type="submit" name="type_offre" value="healthy">
+--> 
+                  <!--  <select name="colonne">
+                 <option value="all">ALL</option>
+          <option value="type_offre">HEALTHY</option>
+         <option value="type_offre">VEGAN</option>
+         <option value="type_offre">NORMAL</option>
+        </select>
+          
+-->
+
 						</div>
+							</form>
 					</div>
 				</div>
 			</div>
+		 <form method="POST" action="">
+
+        <select name="colonne"  class="nav-link dropdown-toggle">
+        <option value="all">ALL</option>
+          <option value="nom_offre">NAME</option>
+         <option value="prix_offre">PRICE</option>
+        </select>
+          <input type="text" name="recherche" placeholder="rechercher" class="recherche" style="
+    display: block;
+    background-color: rgba(0,0,0,0.7);
+    color: #fff;
+    border: none;
+    font-size: 19px;
+    line-height: 50px;
+    margin-bottom: 50px;
+    padding: 0 10px;
+   
+    width: 100%;
+    transition: all 0.5s ease-in-out;"> 
+
+          <input type="submit" name="chercher" value="Valider" style="background-color: #d0a772;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 50px;
+    display: block;
+    padding: 0 10px;
+    float: left;
+    width: 100%;
+    border: none;
+    cursor: pointer;
+    transition: all 0.5s ease-in-out;">
+
+
+       </form>
+
+			
+
 				
 <div class="row special-list">
              	<?PHP
@@ -151,6 +262,7 @@
 					<p><?PHP echo $offer['descrip_offre']; ?></p>
 					<h4><?PHP echo $offer['type_offre']; ?></h4>
 					<h4><?PHP echo $offer['prix_offre']; ?></h4>
+					 <h4> <a class="btn btn-lg btn-circle btn-outline-new-black" href="buyoffre.php">Get it</a>  </h4> 
 					</div>
 						 
                   <!--    <a href="#" class="tm-product-delete-link">
@@ -167,6 +279,62 @@
 				}
 			?> 
 				</div>
+
+				<nav>
+                    <ul class="pagination">
+                        <li class="page-item <?= ($currentPage == 1) ? "disabled" : "" ?>" >
+                            <a href="showpack2.php?page=<?= $currentPage - 1 ?>" class="page-link" style="color: #333;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    background: #fff;
+    padding: 12px 40px;
+    border: none;
+    border-radius: 4px;
+    border: 1px solid #e4e4e4;
+    border-radius: 4px;
+    margin: 10px 15px;
+    display: inline-block;">Précédente</a>
+                        </li>
+                        <?php for($page = 1; $page <= $pages; $page++): ?>
+                            <li class="page-item <?= ($currentPage == $page) ? "active" : "" ?>">
+                                <a href="showpack2.php?page=<?= $page ?>" class="page-link" style="color: #333;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    background: #fff;
+    padding: 12px 40px;
+    border: none;
+    border-radius: 4px;
+    border: 1px solid #e4e4e4;
+    border-radius: 4px;
+    margin: 10px 15px;
+    display: inline-block;"><?= $page ?></a>
+                            </li>
+                        <?php endfor ?>
+                        <li class="page-item <?= ($currentPage == $pages) ? "disabled" : "" ?>">
+                            <a href="showpack2.php?page=<?= $currentPage + 1 ?>" class="page-link" style="color: #333;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    background: #fff;
+    padding: 12px 40px;
+    border: none;
+    border-radius: 4px;
+    border: 1px solid #e4e4e4;
+    border-radius: 4px;
+    margin: 10px 15px;
+    display: inline-block;">Suivante</a>
+                        </li>
+                    </ul>
+                </nav>
+			
 		<!--	<div class="row special-list">
 				<div class="col-lg-4 col-md-6 special-grid drinks">
 					<div class="gallery-single fix">
