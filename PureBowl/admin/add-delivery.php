@@ -184,7 +184,7 @@
                     </div>
                     <div class="form-group mb-3">
                         <label for="name" > Salary <span class="error" style="color: orangered">*</span></label >
-                      <input id="salary"  name="salary"  type="text" class="form-control validate" value="<?php echo htmlspecialchars($values['salary']);?>" />
+                      <input id="salary"  name="salary"  type="text" class="form-control validate" value="<?php if(isset($values['salary'])){ echo htmlspecialchars($values['salary']);}?>" />
                         <?php if (in_array('salary', $errors)): ?>
                             <span class="error" style="color: orangered">Missing field</span>
                         <?php endif; ?>

@@ -1,6 +1,7 @@
 <?php
-    include "../config.php";
-    require_once '../Controller/NotificationC.php';
+include $_SERVER['DOCUMENT_ROOT']."/PureBowl/PureBowl/config.php";
+require_once $_SERVER['DOCUMENT_ROOT'].'/PureBowl/PureBowl/Controller/NotificationC.php';
+    
 
     /* Récuperer les message de notification**/
     $notifications = NotificationC::displayNotification();
@@ -147,9 +148,9 @@
                     <div class="col-xl-12 col-lg-12 col-md-12">
                         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" class="tm-edit-delivery-form" method="POST">
                             <div class="form-group mb-3">
-                                <label for="objet" > Object <span class="error" style="color: orangered">*</span></label >
+                                <label for="objet" > Command ID <span class="error" style="color: orangered">*</span></label >
                                 <input id="objet" name="objet" type="text" class="form-control validate"
-                                       value="<?php echo $notification['objet'] ?>" readonly
+                                       value="<?php echo $notification['id_command'] ?>" readonly
                                        style="background-color: #54657d !important;"
                                        />
 

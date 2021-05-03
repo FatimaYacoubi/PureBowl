@@ -1,6 +1,6 @@
 <?PHP
 
-	require_once '../Model/Notification.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/PureBowl/PureBowl/Model/Notification.php';
 	class NotificationC {
 
         function countMessage(){
@@ -47,14 +47,13 @@
 
         function addMessage($message){
 
-            $sql="INSERT INTO notification (objet, message) 
-			VALUES (:objet, :message)";
+            $sql="INSERT INTO notification (id_command, message) 
+			VALUES (:id_command, :message)";
             $db = config::getConnexion();
             try{
                 $query = $db->prepare($sql);
-
                 $query->execute([
-                    'objet' => $message->getObjet(),
+                    'id_command' => $message->getIdCommand(),
                     'message' => $message->getMessage()
 
                 ]);

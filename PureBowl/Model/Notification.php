@@ -1,14 +1,14 @@
 <?PHP
 	class Notification{
 		private  $id ;
-		private $objet;
+		private $idCommand;
 		private $message ;
         // private $time ;
        
 
-        function __construct($objet =null, $message= null){
+        function __construct($idCommand =null, $message= null){
 			
-			$this->objet=$objet;
+			$this->idCommand=$idCommand;
             $this->message = $message;
             // $this->time = date('F j, Y, g:i a');
             
@@ -19,14 +19,14 @@
             return $this->id;
         }
 
-        public function getObjet()
+        public function getIdCommand()
         {
-            return $this->objet;
+            return $this->idCommand;
         }
 
-        public function setObjet($objet)
+        public function setIdCommand($idCommand)
         {
-            $this->objet = $objet;
+            $this->idCommand = $idCommand;
         }
 
         public function getMessage()

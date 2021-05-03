@@ -1,3 +1,28 @@
+<?php
+include "./config.php";
+require_once './Controller/NotificationC.php';
+
+/**
+ * ADD notification action
+ */
+$notificationC = new NotificationC();
+
+if (isset($_POST["sendMessageAction"])and !empty($_POST['id_command'])) {
+    $message = new Notification(
+        $_POST['id_command'],
+        $_POST['message']
+    );
+
+    $result = $notificationC->addMessage($message);
+
+    /* Récuperer les message de notification**/
+    $notifications = NotificationC::displayNotification();
+    $countMessageNotRead = NotificationC::countMessage();
+
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en"><!-- Basic -->
 <head>
@@ -36,40 +61,9 @@
     <![endif]-->
 
 </head>
-<style >
-	input.controle {
-  outline:0;
-  font-size:22px;
-  width:510px;
-}	
-label.label {
-  display:inline-block;
-  width:200px;
-  text-align: right;
-  font-style: italic;
-  margin-right:5px;
-}
-input.controle:valid {
-  border:3px solid #0a0;
-}
-input.controle:invalid {
-  border:3px solid #a00;
-}
-input.controle:valid + span:before  {
-  content: "\f00c";
-  font-family: "FontAwesome";
-  color:#0a0;
-  font-size: 1.5em;
-}	
-input.controle:invalid + span:before  {
-  content: "\f00d";
-  font-family: "FontAwesome";
-  color:#a00;
-  font-size: 1.5em;
-}
-</style>
+
 <body>
-        	<!-- Start header -->
+	<!-- Start header -->
 	<header class="top-navbar">
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
 			<div class="container">
@@ -107,8 +101,8 @@ input.controle:invalid + span:before  {
 							</div>
 						</li>
 						<li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-						<li class="nav-item  "><a class="nav-link" href="reclamation.html">Reclamation</a></li>
-						<li class="nav-item active "><a class="nav-link" href="comment.html">Comments</a></li>
+						<li class="nav-item "><a class="nav-link" href="reclamation.html">Reclamation</a></li>
+						<li class="nav-item active "><a class="nav-link" href="comments.php">Comments</a></li>
 						<li class="nav-item"><a class="nav-link" href="gift.html">Gift</a></li>
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Sign in</a>
@@ -129,7 +123,7 @@ input.controle:invalid + span:before  {
 		<div class="container text-center">
 			<div class="row">
 				<div class="col-lg-12">
-					<h1>Give us your opinion</h1>
+					<h1>Your opinion is important to us</h1>
 				</div>
 			</div>
 		</div>
@@ -142,76 +136,39 @@ input.controle:invalid + span:before  {
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="heading-title text-center">
-						<h2>Reclamation Box</h2>
-						<p>What's wrong with your order </p>
+						<h2>Comments Box</h2>
+						<p>Give us your opinion</p>
 					</div>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-lg-12 col-sm-12 col-xs-12">
-					<div id="error">
-            <?php echo $error; ?>
-        </div>
 					<div class="contact-block">
-						<form action="./View/connexion.php" method="POST">
+                        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" class="tm-edit-delivery-form" method="POST">
 							<div class="row">
-								<div class="col-md-6">
-									<h3>Tell us what's wrong</h3>
+								<div class="col-md-12">
+									<h3>Dear customer, are you satisfied with the delivery person? Are you satisfied with the quality of the order? Leave us your comment here please</h3>
 									<div class="col-md-12">
 										<div class="form-group">
-											<textarea name="description" id="description" cols="30" rows="10" class="form-control" placeholder="Please describe your reclamation"></textarea>
+											<label>Command ID :</label>
+											<input type="text" class="form-control" id="id_command" name="id_command" placeholder="ID Command" required data-error="Please enter your command id">
+											<div class="help-block with-errors"></div>
+										</div>
+									</div>
+									<div class="col-md-12">
+										<div class="form-group">
+											<label>Give us your comment :</label>
+											<textarea name="message" id="description" cols="30" rows="10" class="form-control" placeholder="Please describe your reclamation"></textarea>
 											<div class="help-block with-errors"></div>
 										</div>                                 
 									</div>
-									<div class="col-md-12">
-										<div class="form-group">
-											<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script >
-$(document).ready(function(){
 
-	var dtToday= new Date();
-	var month= dtToday.getMonth()+1;
-	var day= dtToday.getDate();
-	var year=dtToday.getFullYear();
-	if(month<10)
-		month='0'+month.toString();
-	if(day<10)
-		day='0'+day.toString();
-	var maxDate = year+'-'+month+'-'+day;
-$('#dateControl').attr('min',maxDate);
-})
-</script>
-											<input id="dateControl"  name="date" 
-                       placeholder="Please enter the date you want it delivered" type="date" >
-                      <div class="help-block with-errors"></div>
-										</div>                                 
-									</div>
 									
 								</div>
-								<div class="col-md-6">
-									<h3>Contact Details</h3>
-									<div class="col-md-12">
-										<div class="form-group">
-											<input type="text"  class="controle" id="nomClient" name="nomClient" required pattern="[0-9a-zA-Z-\.]{3,12}" placeholder="Your Name" required data-error="Please enter your name">
-											<div class="help-block with-errors"></div>
-										</div>                                 
-									</div>
-									<div class="col-md-12">
-										<div class="form-group">
-											<input type="text" placeholder="Your Email" id="emailClient" class="controle" name="emailClient" required data-error="Please enter your email">
-											<div class="help-block with-errors"></div>
-										</div> 
-									</div>
-									<div class="col-md-12">
-										<div class="form-group">
-											<input type="text" placeholder="Your Number" id="phoneClient" class="form-control" name="phoneClient" required data-error="Please enter your Number">
-											<div class="help-block with-errors"></div>
-										</div> 
-									</div>
-								</div>
+
 								<div class="col-md-12">
 									<div class="submit-button text-center">
-										<button class="btn btn-common" id="submit" type="submit"> Place your order</button>
+                                        <button class="btn btn-common" type="submit" name="sendMessageAction" class="btn btn-primary btn-block text-uppercase">Place your comment</button>
 										<div id="msgSubmit" class="h3 text-center hidden"></div> 
 										<div class="clearfix"></div> 
 									</div>
@@ -224,61 +181,6 @@ $('#dateControl').attr('min',maxDate);
 		</div>
 	</div>
 	<!-- End Reservation -->
-	
-	<!-- Start Customer Reviews -->
-	<div class="customer-reviews-box">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12">
-					<div class="heading-title text-center">
-						<h2>Customer Reviews</h2>
-						<p>Lorem Ipsum is simply dummy text of the printing and typesetting</p>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-8 mr-auto ml-auto text-center">
-					<div id="reviews" class="carousel slide" data-ride="carousel">
-						<div class="carousel-inner mt-4">
-							<div class="carousel-item text-center active">
-								<div class="img-box p-1 border rounded-circle m-auto">
-									<img class="d-block w-100 rounded-circle" src="images/profile-1.jpg" alt="">
-								</div>
-								<h5 class="mt-4 mb-0"><strong class="text-warning text-uppercase">Paul Mitchel</strong></h5>
-								<h6 class="text-dark m-0">Web Developer</h6>
-								<p class="m-0 pt-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eu sem tempor, varius quam at, luctus dui. Mauris magna metus, dapibus nec turpis vel, semper malesuada ante. Idac bibendum scelerisque non non purus. Suspendisse varius nibh non aliquet.</p>
-							</div>
-							<div class="carousel-item text-center">
-								<div class="img-box p-1 border rounded-circle m-auto">
-									<img class="d-block w-100 rounded-circle" src="images/profile-3.jpg" alt="">
-								</div>
-								<h5 class="mt-4 mb-0"><strong class="text-warning text-uppercase">Steve Fonsi</strong></h5>
-								<h6 class="text-dark m-0">Web Designer</h6>
-								<p class="m-0 pt-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eu sem tempor, varius quam at, luctus dui. Mauris magna metus, dapibus nec turpis vel, semper malesuada ante. Idac bibendum scelerisque non non purus. Suspendisse varius nibh non aliquet.</p>
-							</div>
-							<div class="carousel-item text-center">
-								<div class="img-box p-1 border rounded-circle m-auto">
-									<img class="d-block w-100 rounded-circle" src="images/profile-7.jpg" alt="">
-								</div>
-								<h5 class="mt-4 mb-0"><strong class="text-warning text-uppercase">Daniel vebar</strong></h5>
-								<h6 class="text-dark m-0">Seo Analyst</h6>
-								<p class="m-0 pt-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eu sem tempor, varius quam at, luctus dui. Mauris magna metus, dapibus nec turpis vel, semper malesuada ante. Idac bibendum scelerisque non non purus. Suspendisse varius nibh non aliquet.</p>
-							</div>
-						</div>
-						<a class="carousel-control-prev" href="#reviews" role="button" data-slide="prev">
-							<i class="fa fa-angle-left" aria-hidden="true"></i>
-							<span class="sr-only">Previous</span>
-						</a>
-						<a class="carousel-control-next" href="#reviews" role="button" data-slide="next">
-							<i class="fa fa-angle-right" aria-hidden="true"></i>
-							<span class="sr-only">Next</span>
-						</a>
-                    </div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- End Customer Reviews -->
 	
 	<!-- Start Contact info -->
 	<div class="contact-imfo-box">

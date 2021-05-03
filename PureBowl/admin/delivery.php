@@ -122,7 +122,7 @@ if(!empty($_GET['idDeliveryForDelete'])) {
                 <?php
                 foreach ($notifications as $notification){
                    
-                    echo '  <a class="dropdown-item" href="#">'.$notification[ 'objet'].'</a>';
+                    echo '  <a class="dropdown-item"  href="read-notification.php?id='.$notification[ 'id'].'">Command ID:'.$notification[ 'id_command'].'</a>';
                 }
                 ?>
             </div>
