@@ -124,8 +124,24 @@
         <div class="container">
             <div class="row">
                 <div class="col">
-                    <p class="text-white mt-5 mb-5">Welcome back, <b>Admin</b></p>
-                    <a href="afficherarchivedpost.php"  >See archived posts </a>
+                    
+                    <p class="text-white mt-5 mb-5">Welcome back, <b class="text-warning">Admin</b></p>
+                    <table class="table table-hover tm-table-small tm-product-table">
+                        <tr>
+                            <td><a href="afficherarchivedpost.php" class="text-warning" ><h4>See archived posts <i class="fas fa-eye"></i></h4></a></td>
+                            <td>
+                                <a href="statepost.php" class="text-warning"  ><h4>See statistics of Posts's states <i class="fas fa-chart-bar"></i></h4> </a>
+                            </td>
+                            <td>
+                                 <a href="pdfpost.php" class="text-warning" ><h4>Download list of posts as PDF <i class="fa fa-download" aria-hidden="true"></i></h4> </a>
+                            </td>
+                            <td colspan="6" align="center"><a href="sort.php" class="text-warning" ><h4>Search and sort <i class="fas fa-search"></i></h4> </a> </td>
+                        </tr>
+                    </table>
+                    
+                    
+                
+                   
                     <br>
                 </div>
             </div>
@@ -153,8 +169,9 @@
                       
                         
                         <form method="POST" action="supprimerpost.php">
-                        	 <button type="submit" name="supprimer "class="tm-product-delete-link" >
-                        <i class="far fa-trash-alt tm-product-delete-icon"></i></button> 
+                        	 <button type="submit" name="supprimer "class="tm-product-delete-link"onclick="return confirm('Are you sure you want to delete this item definitely?');" >
+                        <i class="far fa-trash-alt tm-product-delete-icon"></i>
+                   </button> Delete
                         
                         <input type="hidden" value=<?PHP echo $user['id']; ?> name="id">
                         
@@ -166,15 +183,14 @@
                       	
                         <td style="width: 30px">
                             <form>
-                            <a href="modifierpost.php?id=<?PHP echo $user['id']; ?>" class="tm-product-delete-link"  >
+                            <a href="modifierpost.php?id=<?PHP echo $user['id']; ?>" class="tm-product-delete-link" onclick="return confirm('Are you sure you want to edit this item ?');" >
                         <i class="far fa-edit tm-product-delete-icon" ></i>
-
-                      </a>
+                      </a><p align="center">Edit</p>
                       </form>
                         </td>
                       	<td style="width: 30px" ><form method="POST" action="archiverpost.php">
-                            <button style="height: : 30px" type="submit" name="archiver "class="tm-product-delete-link" >
-                        <i class="fas fa-archive tm-product-delete-icon" ></i></button> 
+                            <button style="height: : 30px" type="submit" name="archiver "class="tm-product-delete-link"onclick="return confirm('Are you sure you want to archive this item ?');" >
+                        <i class="fas fa-archive tm-product-delete-icon" ></i></button> Archive
                         
                         <input type="hidden" value=<?PHP echo $user['id']; ?> name="id">
                     </form>

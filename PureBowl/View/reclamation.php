@@ -15,7 +15,7 @@ if(empty($_SESSION['e']))
 {
 	
     // Si inexistante ou nulle, on redirige vers le formulaire de login
-    header('Location:/View/login.php');
+    header('Location:login.php');
 }
 
 ?>
@@ -123,7 +123,6 @@ input.controle:invalid + span:before  {
 							</div>
 						</li>
 						<li class="nav-item"><a class="nav-link" href="affichercommande.php">My orders</a></li>
-						<li class="nav-item active"><a class="nav-link" href="../reclamation.html">Reclamation</a></li>
 						<li class="nav-item"><a class="nav-link" href="../gift.html">Gift</a></li>
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Sign in</a>
@@ -203,29 +202,39 @@ input.controle:invalid + span:before  {
 									
 								</div>
 								<div class="col-md-6">
-									<h3>Contact Details</h3>
+									<h2><strong>Contact Details<strong>s</h2>
+									<h3>Username</h3>
 									<div class="col-md-12">
 										<div class="form-group">
 											<input type="text"  class="controle" id="nomClient" name="nomClient" required pattern="[a-zA-Z-\.]{3,20}" placeholder="Your Name" required data-error="Please enter your name" value="<?php echo $user->nom; ?>">
 											<div class="help-block with-errors"></div>
 										</div>                                 
 									</div>
+									<h3>Email</h3>
 									<div class="col-md-12">
 										<div class="form-group">
 											<input type="text" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" placeholder="Your Email(Example@example.com)" id="emailClient" class="controle" name="emailClient"    required data-error="Please enter your email" value="<?PHP echo $_SESSION['e']; ?>">
 											<div class="help-block with-errors"></div>
 										</div> 
 									</div>
+									<h3>Phone Number</h3>
 									<div class="col-md-12">
 										<div class="form-group">
 											<input type="text" placeholder="Your number(8 digits)" id="phoneClient" class="controle" name="phoneClient" required pattern="[0-9]{8}" value="<?php echo $user->tel; ?>">
 											<div class="help-block with-errors"></div>
 										</div> 
 									</div>
+									<h3>Order's number</h3>
+									<div class="col-md-12">
+										<div class="form-group">
+											<input type="text" placeholder="your order's number" id="IDCommande" class="controle" name="IDCommande" required   value=<?php echo $_GET['id'];?>>
+											<div class="help-block with-errors"></div>
+										</div> 
+									</div>
 								</div>
 								<div class="col-md-12">
 									<div class="submit-button text-center">
-										<button class="btn btn-common" id="submit" type="submit" > Place your reclamation</button>
+										<button class="btn btn-common" id="submit" type="submit" > Place your claim</button>
 										
 										<div id="msgSubmit" class="h3 text-center hidden"></div> 
 										<div class="clearfix"></div> 
