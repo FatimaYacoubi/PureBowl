@@ -7,9 +7,8 @@
 		private ?string $person = null;
 		private ?string $date = null;
 		private ?string $time = null;
-		private ?int $etatC = null;
 
-		function __construct(string $dish, string $meat, string $option, string $person, string $date, string $time, int $etatC){
+		function __construct(string $dish, string $meat, string $option, string $person, string $date, string $time){
 			
 			$this->dish=$dish;
 			$this->meat=$meat;
@@ -17,16 +16,13 @@
 			$this->person=$person;
 			$this->date=$date;
 			$this->time=$time;
-			$this->etatC=$etatC;
 
 		}
 		
 		function getId(): int{
 			return $this->id;
 		}
-		function getetatC(): int{
-			return $this->etatC;
-		}
+		
 		function getdish(): string{
 			return $this->dish;
 		}
@@ -49,9 +45,7 @@
 		function setdish(string $dish): void{
 			$this->dish=$dish;
 		}
-		function setetatC(int $etatC): void{
-			$this->etatC=$etatC;
-		}
+		
 		function setmeat(string $meat): void{
 			$this->meat=$meat;
 		}
