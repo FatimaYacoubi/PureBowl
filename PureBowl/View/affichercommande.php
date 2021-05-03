@@ -200,7 +200,19 @@ button:disabled:hover  {
   <!-- End header -->
   
     <main class="container">
+<script type="text/javascript">
+  document.addEventListener('click',hide2)
+function hide2()
+{    if(currentStep===2)
 
+ {document.getElementById("55t").style.display="block";
+ }
+           
+
+               else  document.getElementById("55t").style.display="none";
+               
+}
+</script>
     
 
         <br>
@@ -218,7 +230,7 @@ button:disabled:hover  {
     <div class="bullet">2</div>
   </div>
   <div class="step">
-    <p class="step-text">Your Adress</p>
+    <p class="step-text">Delivery</p>
     <div class="bullet">3</div>
   </div>
   <div class="step">
@@ -245,7 +257,8 @@ button:disabled:hover  {
                 <th> Price </th> 
 
         <th> Edit </th> 
-                <th> Delete </th> 
+                <th> Delete </th>
+                <th> Claim </th> 
 
         
         
@@ -282,6 +295,12 @@ button:disabled:hover  {
                         <input type="hidden" value=<?PHP echo $user['id']; ?> name="id">
                         </form>
           </td>
+           <td>
+                                <a href="reclamation.php?id=<?PHP echo $user['id']; ?>"  > 
+                       <button class="btn-222" style="color:black">Claim</button>
+
+                      </a>
+                    </td>
     </tr> 
 
   <?php 
@@ -303,8 +322,62 @@ button:disabled:hover  {
   <button align="center" id="finishBtn" class="btn-222" color="black">Finish</button>
   </div> 
   </main>
-  
 
+
+
+
+   <form action="ajouterCompte.php" id="55t" method="post" align="center">
+       <div class="row">
+                   <div class="col-md-12">
+            <div class="form-group">
+                            <h1 class="m-b-20"> Commande instantannée</h1>
+                </div> 
+<br>
+        <div class="row">
+                   <div class="col-md-12">
+            <div class="form-group">
+
+
+                        <input name="nom" type="text" placeholder="nom" required="">
+
+
+<BR> </div> </div>
+        <div class="row">
+                   <div class="col-md-12">
+            <div class="form-group">
+
+                        <input name="prenom" type="text" placeholder="prenom" required="">
+                <br> </div> </div>
+                <div class="row">
+                   <div class="col-md-12">
+            <div class="form-group">
+        <input name="email" type="text" pattern=".+@gmail.com|.+@esprit.tn" placeholder="email" required="">
+<br> </div> </div>
+ 
+        <div class="row">
+                   <div class="col-md-12">
+            <div class="form-group">
+                        <input name="login" type="text" placeholder="login" required="">
+<br> </div> </div>
+                       
+        <div class="row">
+                   <div class="col-md-12">
+            <div class="form-group"> <input name="adresse" type="text" placeholder="ville" required="">
+    <br> </div> </div> 
+                       
+        <div class="row">
+                   <div class="col-md-12">
+            <div class="form-group"> 
+              <input name="tel" type="text" placeholder="tel" required="">
+<br> </div> </div>
+
+<div id="aDiv">
+
+        </form> 
+<div align="center"> <?php echo ($error) ?> </div>
+
+
+</div>
   <div class="customer-reviews-box">
     <div class="container">
       <div class="row">

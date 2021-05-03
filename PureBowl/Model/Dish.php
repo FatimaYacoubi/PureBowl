@@ -25,7 +25,7 @@
 			return $this->price;
 		}
 
-		funcion setName(string $name): void{
+		function setName(string $name): void{
 			$this->name=$name;
 		}
 		function setIngredients(string $ingredients): void{

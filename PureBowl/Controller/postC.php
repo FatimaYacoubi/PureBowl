@@ -25,7 +25,7 @@
 		
 		function afficherpost(){
 			
-			$sql="SELECT * FROM post WHERE etat=1 ORDER BY id DESC LIMIT 3 ";
+			$sql="SELECT * FROM post WHERE etat=1 ORDER BY date DESC LIMIT 3 ";
 			$db = config::getConnexion();
 			try{
 				$liste = $db->query($sql);

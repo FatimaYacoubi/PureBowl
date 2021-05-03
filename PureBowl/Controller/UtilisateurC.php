@@ -1,19 +1,18 @@
 <?php
-   include "../config.php";
+require_once "../config.php";
     require_once '../Model/utilisateur.php';
 
 
 class utilisateurC
 {
     function ajouterutilisateur($Utilisateur){
-        $sql="INSERT INTO Compte (idClient,nom,prenom,email,login,password,adresse,tel) 
-			VALUES (:idClient,:nom,:prenom,:email,:login,:password,:adresse,:tel)";
+        $sql="INSERT INTO Compte (nom,prenom,email,login,password,adresse,tel) 
+            VALUES (:nom,:prenom,:email,:login,:password,:adresse,:tel)";
         $db = config::getConnexion();
         try{
             $query = $db->prepare($sql);
 
             $query->execute([
-                'idClient' => $Utilisateur->getidClient(),
                 'nom' => $Utilisateur->getNom(),
                 'prenom' => $Utilisateur->getPrenom(),
                 'email' => $Utilisateur->getEmail(),
@@ -41,7 +40,30 @@ class utilisateurC
             die('Erreur: ' . $e->getMessage());
         }
     }
-
+    function afficherutilisateur1()
+    {
+        $sql = "SELECT * FROM Compte limit 1";
+        $db = config::getConnexion();
+        try {
+            $liste = $db->query($sql);
+            return $liste;
+        } catch (Exception $e) {
+            die('Erreur: ' . $e->getMessage());
+        }
+    }
+    function afficherprofil($email)
+    {
+        $sql = "SELECT FROM Compte where email=:email";
+         $db = config::getConnexion();
+        $req=$db->prepare($sql);
+        $req->bindValue(':email',$email);
+        try{
+            $req->execute();
+        }
+        catch (Exception $e){
+            die('Erreur: '.$e->getMessage());
+        }
+    }
 
 
     function supprimerutilisateur($idClient){
@@ -61,25 +83,22 @@ class utilisateurC
         try {
             $db = config::getConnexion();
             $query = $db->prepare(
-                'UPDATE Compte SET 						 
-		
-					    
-					    nom = :nom,
-						prenom = :prenom,
-						email = :email,
-						login = :login,
-						password = :password,
-						adresse = :adresse,
-						tel = :tel
-						
-					WHERE idClient = :idClient'
+                'UPDATE Compte SET                      nom = :nom,
+                    prenom = :prenom,
+                    email = :email,
+                    login = :login,
+                    password = :password,
+                    adresse = :adresse,
+                    tel = :tel
+                        
+                    WHERE idClient = :idClient'
             );
             $query->execute([
                 'nom' => $utilisateur->getNom(),
                 'prenom' => $utilisateur->getPrenom(),
                 'email' => $utilisateur->getEmail(),
                 'login' => $utilisateur->getLogin(),
-                'password' => $utilisateur->getPassword(),
+            'password' => $utilisateur->getPassword(),
                 'adresse' => $utilisateur->getAdresse(),
                 'tel' => $utilisateur->getTel(),
                 'idClient' => $idClient
@@ -87,6 +106,7 @@ class utilisateurC
             ]);
             echo $query->rowCount() . " records UPDATED successfully <br>";
         } catch (PDOException $e) {
+            echo "Echeeeec";
             $e->getMessage();
         }
     }
@@ -145,5 +165,22 @@ class utilisateurC
         }
         return $message;
     }
-}
+    function recuperercompte($email)
+    {
+       $sql="SELECT * from Compte where email=:email";
+        $db = config::getConnexion();
+        try{
+            $query=$db->prepare($sql);
+            $query->execute([
+                'email'=> $email
+                ]
+            );
 
+            $user = $query->fetch(PDO::FETCH_OBJ);
+            return $user;
+        }
+        catch (Exception $e){
+            die('Erreur: '.$e->getMessage());
+        }
+    }
+}

@@ -5,8 +5,8 @@
 	class offreC {
 		
 		function ajouterOffre($offre){
-			$sql="INSERT INTO offre (nom_offre, image_offre, descrip_offre, type_offre, prix_offre) 
-			VALUES (:nom_offre,:image_offre,:descrip_offre, :type_offre, :prix_offre)";
+			$sql="INSERT INTO offre (nom_offre, image_offre, descrip_offre, type_offre, prix_offre, etat_offre) 
+			VALUES (:nom_offre,:image_offre,:descrip_offre, :type_offre, :prix_offre, :etat_offre)";
 			$db = config::getConnexion();
 			try{
 				$query = $db->prepare($sql);
@@ -16,7 +16,8 @@
 					'image_offre' => $offre->getImage_offre(),
 					'descrip_offre' => $offre->getDescrip_offre(),
 					'type_offre' => $offre->getType_offre(),
-					'prix_offre' => $offre->getPrix_offre()
+					'prix_offre' => $offre->getPrix_offre(),
+					'etat_offre' => $offre->getEtat_offre()
 				]);			
 			}
 			catch (Exception $e){
@@ -58,7 +59,8 @@
 						image_offre = :image_offre,
 						descrip_offre = :descrip_offre,
 						type_offre = :type_offre,
-						prix_offre = :prix_offre
+						prix_offre = :prix_offre,
+						etat_offre = :etat_offre
 					WHERE id_offre = :id_offre'
 				);
 				$query->execute([
@@ -67,6 +69,7 @@
 					'descrip_offre' => $offre->getDescrip_offre(),
 					'type_offre' => $offre->getType_offre(),
 					'prix_offre' => $offre->getPrix_offre(),
+					'etat_offre' => $offre->getEtat_offre(),
 					'id_offre' => $id_offre
 				]);
 				echo $query->rowCount() . " records UPDATED successfully <br>";
@@ -108,7 +111,7 @@
 		}
 		 function rechercher($input,$colonne) {
 		 	if($colonne == "all") 
-		 	{        $sql = "SELECT * from offre WHERE ( nom_offre LIKE \"%$input%\") OR ( id_offre LIKE \"%$input%\") ";
+		 	{        $sql = "SELECT * from offre WHERE ( nom_offre LIKE \"%$input%\") OR ( id_offre LIKE \"%$input%\") OR ( prix_offre LIKE \"%$input%\") ";
             } else {
         $sql = "SELECT * from offre WHERE ( $colonne LIKE \"%$input%\")  "; }
         $db = config::getConnexion();
@@ -123,6 +126,43 @@
 
 
     }
+
+
+    /*	function filtre($input,$colonne) {
+		 		if($colonne == "all") 
+		 	{        $sql = "SELECT * from offre ";
+            } else {
+        $sql = "SELECT * from offre WHERE ( type_offre LIKE \"%$input%\")  "; }
+        $db = config::getConnexion();
+        try { $liste=$db->query($sql); 
+         
+
+            return $liste;
+        }
+        catch (PDOException $e) {
+            $e->getMessage();
+        }
+
+ 
+    }  */
+  /*  function pagination()
+    {
+
+    	$sql = 'SELECT * FROM `offre` ORDER BY `id_offre` DESC LIMIT :premier, :parpage;';
+
+// On prépare la requête
+$query = $db->prepare($sql);
+
+$query->bindValue(':premier', $premier, PDO::PARAM_INT);
+$query->bindValue(':parpage', $parPage, PDO::PARAM_INT);
+
+// On exécute
+$query->execute();
+
+// On récupère les valeurs dans un tableau associatif
+$articles = $query->fetchAll(PDO::FETCH_ASSOC);
+
+    }*/
 
 }
 

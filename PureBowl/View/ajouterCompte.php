@@ -9,7 +9,6 @@ $user = null;
 
 $userC = new utilisateurC();
 if (
-    isset($_POST["idClient"]) &&
     isset($_POST["nom"]) &&
     isset($_POST["prenom"]) &&
     isset($_POST["email"]) &&
@@ -20,7 +19,6 @@ if (
     isset($_POST["tel"])
 ) {
     if (
-        !empty($_POST["idClient"]) &&
         !empty($_POST["nom"]) &&
         !empty($_POST["prenom"]) &&
         !empty($_POST["email"]) &&
@@ -32,8 +30,10 @@ if (
         ($_POST["password"]==$_POST["password1"])
 
     ) { 
+        $_CLIENT['e'] = $_POST["email"];
+        $_CLIENT['l'] = $_POST["login"];
+        $_CLIENT['t'] = $_POST["tel"];
         $user = new utilisateur(
-            $_POST['idClient'],
             $_POST['nom'],
             $_POST['prenom'],
             $_POST['email'],

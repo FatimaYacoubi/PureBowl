@@ -98,7 +98,7 @@
               </a>
             </li>
              <li class="nav-item">
-              <a class="nav-link" href="promo.html">
+              <a class="nav-link" href="../showpromo.php">
                 <i class="far fa-user"></i> Promo
               </a>
             </li>
@@ -134,7 +134,7 @@
 
     <div class="container mt-5">
       <div class="row tm-content-row">
-              <div class="col-sm-12 col-md-12 col-lg-8 col-xl-8 tm-block-col">
+              <div class="col-sm-13 col-md-13 col-lg-13 col-xl-13 tm-block-col">
           <div class="tm-bg-primary-dark tm-block tm-block-products">
 
       
@@ -166,7 +166,7 @@
                     <th scope="col">Menus</th>
                     <th scope="col">Type</th>
                     <th scope="col">Prix</th>
-                     
+                     <th scope="col">Etat</th>
                       
                     
                     <th scope="col"> </th>
@@ -184,10 +184,11 @@
         <td>  <th scope="row"><input type="checkbox" /></th> </td>
 					<td><?PHP echo $offer['id_offre']; ?></td> 
 					<td><?PHP echo $offer['nom_offre']; ?></td>
-					<!-- <td><?PHP echo $offer['image_offre']; ?></td> -->  <td><img src="../imageweb/<?php echo $offer['image_offre'];?>" width="200px" height="200px"></td>
+					<!-- <td><?PHP echo $offer['image_offre']; ?></td> -->  <td> <?php echo $offer['image_offre'];?> </td>
 					<td><?PHP echo $offer['descrip_offre']; ?></td>
 					<td><?PHP echo $offer['type_offre']; ?></td>
 					<td><?PHP echo $offer['prix_offre']; ?></td>
+            <td><?PHP echo $offer['etat_offre']; ?></td>
 					<td></td>
 					<td>
 						 
@@ -202,9 +203,9 @@
 					<td>
 						<a href="modifyOffre.php?id_offre=<?PHP echo $offer['id_offre']; ?>"  class="btn btn-primary btn-block text-uppercase"> Modifier </a>
 					</td>
-          <td>
+        <!--  <td>
             <a href="addpromo.php?id_offre=<?PHP echo $offer['id_offre']; ?>"  class="btn btn-primary btn-block text-uppercase"> Ajouter promo </a>
-          </td>
+          </td> -->
 				</tr>
 			<?PHP
 				}

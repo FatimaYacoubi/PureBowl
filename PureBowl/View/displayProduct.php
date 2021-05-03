@@ -79,12 +79,6 @@
                 <i class="fas fa-shopping-cart"></i> Products
               </a>
             </li>
-
-            <li class="nav-item">
-              <a class="nav-link " href="displayGift.php">
-                <i class="fas fa-shopping-cart"></i> Products
-              </a>
-            </li>
             <li class="nav-item">
                 <a class="nav-link" href="displayRecipe.php">
                   <i class="fas fa-shopping-cart"></i> Recipes
@@ -96,7 +90,11 @@
                                 Pack
                             </a>
               </li>
-          
+            <li class="nav-item">
+                <a class="nav-link " href="../giftBack.html">
+                  <i class="fas fa-shopping-cart"></i> Gifts
+                </a>
+              </li>
 
             <li class="nav-item">
               <a class="nav-link" href="../accounts.html">
