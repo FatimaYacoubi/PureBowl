@@ -142,4 +142,22 @@ class utilisateurC
         }
         return $message;
     }
+    function recuperercompte($email)
+    {
+       $sql="SELECT * from Compte where email=:email";
+        $db = config::getConnexion();
+        try{
+            $query=$db->prepare($sql);
+            $query->execute([
+                'email'=> $email
+                ]
+            );
+
+            $user = $query->fetch(PDO::FETCH_OBJ);
+            return $user;
+        }
+        catch (Exception $e){
+            die('Erreur: '.$e->getMessage());
+        }
+    }
 }

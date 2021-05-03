@@ -30,7 +30,9 @@ echo $date_ac ;
             );
 if ($date_ac >= $_POST['date_fin'])
 {
-   echo "<script>alert ('la date fin doit etre differente de la date actuelle');</script>";}
+   echo "<script>alert ('la date fin doit etre differente et superieur à la date actuelle');</script>";}
+   else if  ( $_POST['pourcentage']>= 100)
+    {echo "<script>alert ('verifier le pourcentage');</script>";}
    else
           {  $promoC->ajouterPromo($promos);
              header('Location:showpromo.php');
@@ -203,6 +205,7 @@ if ($date_ac >= $_POST['date_fin'])
                       name="pourcentage"
                       type="number"
                       class="form-control validate"
+
                       required
                     />
                   

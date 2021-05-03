@@ -127,6 +127,43 @@
 
     }
 
+
+    /*	function filtre($input,$colonne) {
+		 		if($colonne == "all") 
+		 	{        $sql = "SELECT * from offre ";
+            } else {
+        $sql = "SELECT * from offre WHERE ( type_offre LIKE \"%$input%\")  "; }
+        $db = config::getConnexion();
+        try { $liste=$db->query($sql); 
+         
+
+            return $liste;
+        }
+        catch (PDOException $e) {
+            $e->getMessage();
+        }
+
+ 
+    }  */
+  /*  function pagination()
+    {
+
+    	$sql = 'SELECT * FROM `offre` ORDER BY `id_offre` DESC LIMIT :premier, :parpage;';
+
+// On prépare la requête
+$query = $db->prepare($sql);
+
+$query->bindValue(':premier', $premier, PDO::PARAM_INT);
+$query->bindValue(':parpage', $parPage, PDO::PARAM_INT);
+
+// On exécute
+$query->execute();
+
+// On récupère les valeurs dans un tableau associatif
+$articles = $query->fetchAll(PDO::FETCH_ASSOC);
+
+    }*/
+
 }
 
 	?>

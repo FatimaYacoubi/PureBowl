@@ -1,14 +1,45 @@
+<?php
+include "../Controller/offreC.php";
+$offreC=new offreC();
+$listeOffers=$offreC->afficherOffre();
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en"><!-- Basic -->
 <head>
 	<meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">   
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+/* Create two equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 60%;
+  padding: 10px;
+  height: 300px; /* Should be removed. Only for demonstration */
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+</style>
    
     <!-- Mobile Metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
  
      <!-- Site Metas -->
-    <title>Yamifood Restaurant - Responsive HTML5 Template</title>  
+
+
+    <title> Pure Bowl</title>  
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -20,6 +51,11 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">    
 	<!-- Site CSS -->
+
+
+    <link rel="stylesheet" href="css/style.css"> 
+        <link rel="stylesheet" href="css/style1.css">    
+
     <link rel="stylesheet" href="css/style.css">    
 	<!-- Pickadate CSS -->
     <link rel="stylesheet" href="css/classic.css">    
@@ -36,40 +72,9 @@
     <![endif]-->
 
 </head>
-<style >
-	input.controle {
-  outline:0;
-  font-size:22px;
-  width:510px;
-}	
-label.label {
-  display:inline-block;
-  width:200px;
-  text-align: right;
-  font-style: italic;
-  margin-right:5px;
-}
-input.controle:valid {
-  border:3px solid #0a0;
-}
-input.controle:invalid {
-  border:3px solid #a00;
-}
-input.controle:valid + span:before  {
-  content: "\f00c";
-  font-family: "FontAwesome";
-  color:#0a0;
-  font-size: 1.5em;
-}	
-input.controle:invalid + span:before  {
-  content: "\f00d";
-  font-family: "FontAwesome";
-  color:#a00;
-  font-size: 1.5em;
-}
-</style>
+
 <body>
-        	<!-- Start header -->
+	<!-- Start header -->
 	<header class="top-navbar">
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
 			<div class="container">
@@ -81,28 +86,36 @@ input.controle:invalid + span:before  {
 				</button>
 				<div class="collapse navbar-collapse" id="navbars-rs-food">
 					<ul class="navbar-nav ml-auto">
-						<li class="nav-item "><a class="nav-link" href="index.html">Home</a></li>
-						<li class="nav-item"><a class="nav-link" href="View/menu.php">Menu</a></li>
+						<li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+						<li class="nav-item"><a class="nav-link" href="menu.php">Menu</a></li>
 						<li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
-						<li class="nav-item dropdown">
+						<!--
+							<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Pages</a>
+							<div class="dropdown-menu" aria-labelledby="dropdown-a">
+								<a class="dropdown-item" href="reservation.html">Reservation</a>
+								<a class="dropdown-item" href="stuff.html">Stuff</a>
+								<a class="dropdown-item" href="gallery.html">Gallery</a>
+							</div>
 						</li>
+					-->
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Offres</a>
 							<div class="dropdown-menu" aria-labelledby="dropdown-a">
-								<a class="dropdown-item" href="offre.html">Offre</a>
+								<a class="dropdown-item " href="offre.html">Offre</a>
 								<a class="dropdown-item" href="offre.html">Promotion</a>
 								</div>
 							</li>
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Blog</a>
 							<div class="dropdown-menu" aria-labelledby="dropdown-a">
-								<a class="dropdown-item" href="View/blog.php">blog</a>
-								<a class="dropdown-item" href="View/nouveauteblog.php">Nouveaute</a>
+								<a class="dropdown-item" href="blog.html">blog</a>
+								<a class="dropdown-item" href="blog-details.html">blog Single</a>
 							</div>
 						</li>
-						<li class="nav-item"><a class="nav-link" href="View/affichercommande.php">My orders</a></li>
-						<li class="nav-item active"><a class="nav-link" href="reclamation.html">Reclamation</a></li>
-						<li class="nav-item"><a class="nav-link" href="gift.html">Gift</a></li>
+						<li class="nav-item"><a class="nav-link" href="affichercommande.php">My orders</a></li>
+						<li class="nav-item"><a class="nav-link" href="reclamation.html">Reclamation</a></li>
+						<li class="nav-item active "><a class="nav-link" href="gift.html">Gift</a></li>
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Sign in</a>
 							<div class="dropdown-menu" aria-labelledby="dropdown-a">
@@ -117,107 +130,146 @@ input.controle:invalid + span:before  {
 	</header>
 	<!-- End header -->
 	
-	<!-- Start All Pages -->
-	<div class="all-page-title page-breadcrumb">
-		<div class="container text-center">
-			<div class="row">
-				<div class="col-lg-12">
-					<h1>Help us be better</h1>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- End All Pages -->
-	
-	<!-- Start Reservation -->
-	<div class="reservation-box">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12">
-					<div class="heading-title text-center">
-						<h2>Reclamation Box</h2>
-						<p>What's wrong with your order </p>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-lg-12 col-sm-12 col-xs-12">
-					<div id="error">
-            <?php echo $error; ?>
-        </div>
-					<div class="contact-block">
-						<form action="./View/connexion.php" method="POST">
-							<div class="row">
-								<div class="col-md-6">
-									<h3>Tell us what's wrong</h3>
-									<div class="col-md-12">
-										<div class="form-group">
-											<textarea name="description" id="description" cols="30" rows="10" class="form-control" placeholder="Please describe your reclamation" required></textarea>
-											<div class="help-block with-errors"></div>
-										</div>                                 
-									</div>
-									<div class="col-md-12">
-										<div class="form-group">
-											<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-           <script >
-          $(document).ready(function(){
+    <main class="container">
 
-        var dtToday= new Date();
-        var month= dtToday.getMonth()+1;
-        var day= dtToday.getDate();
-        var year=dtToday.getFullYear();
-        if(month<10)
-            month='0'+month.toString();
-        if(day<10)
-        day='0'+day.toString();
-        var maxDate = year+'-'+month+'-'+day;
-        $('#dateControl').attr('value',maxDate);
-            })
-            </script>
-                                <input id="dateControl"  name="date"  type="hidden" >
+      <!-- Left Column / Headphones Image -->
+      <div class="column">
+      	<br>
+      	<br>
+      	<br>
+      	<br><br>
+      	<br>
+      	<br>
+      	<br>
+            <img src="images/choco1.jpg" alt="" width="500"> 
+            
+      </div>
+
+
+      <!-- Right Column -->
+      <div class="right-column">
+
+        <!-- Product Description -->
+        <div class="product-description">
+          <span>COUSCOUS</span>
+        <br>
+      	<br>
+      	<br>
+      	<br>
+          <h1>    </h1>
+          <h1>     </h1>
+          <h1>    </h1>
+          <h1>     </h1>
+            <h1>Couscous</h1>
+            <!-- Product Pricing -->
+        <div class="product-price">
+          <span>15 DT</span>
+        </div>
+          <p>Couscous is the national tunisian dish.
+          when you order this you'll get ; Prepared couscous , couscous salsa , flavorings and meat </p>
+        </div>
+
+        <!-- Product Configuration -->
+        <div class="product-configuration">
+
+          <!-- Product Color -->
+          <div class="row">
+        <div class="col-lg-12 col-sm-12 col-xs-12">
+          <div class="contact-block">
+            <form  action="./mail1/mailer.php" method="POST">
+            	
+
+              <div class="row">
+                <div class="col-md-12">
+                  <h3>Place your order</h3>
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <input id="dish" class="form-control" name="dish"  placeholder="Please enter your dish"type="text" value="" equired data-error="??">
                       <div class="help-block with-errors"></div>
-										</div>                                 
-									</div>
-									
-								</div>
-								<div class="col-md-6">
-									<h3>Contact Details</h3>
-									<div class="col-md-12">
-										<div class="form-group">
-											<input type="text"  class="controle" id="nomClient" name="nomClient" required pattern="[a-zA-Z-\.]{3,20}" placeholder="Your Name" required data-error="Please enter your name">
-											<div class="help-block with-errors"></div>
-										</div>                                 
-									</div>
-									<div class="col-md-12">
-										<div class="form-group">
-											<input type="text" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" placeholder="Your Email(Example@example.com)" id="emailClient" class="controle" name="emailClient"    required data-error="Please enter your email">
-											<div class="help-block with-errors"></div>
-										</div> 
-									</div>
-									<div class="col-md-12">
-										<div class="form-group">
-											<input type="text" placeholder="Your number(8 digits)" id="phoneClient" class="controle" name="phoneClient" required pattern="[0-9]{8}">
-											<div class="help-block with-errors"></div>
-										</div> 
-									</div>
-								</div>
-								<div class="col-md-12">
-									<div class="submit-button text-center">
-										<button class="btn btn-common" id="submit" type="submit" > Place your reclamation</button>
-										
-										<div id="msgSubmit" class="h3 text-center hidden"></div> 
-										<div class="clearfix"></div> 
-									</div>
-								</div>
-								<button href="send1.php">wawawa</button>
-							</div>            
-					</div>
-				</div>
-			</div>
-		</form>
-		</div>
-	</div>
-	<!-- End Reservation -->
+                    </div>                                 
+                  </div>
+
+                 
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <select class="custom-select d-block form-control" name="meat" id="meat" required data-error="Please select your prefered meat">
+                        <option disabled selected>Select Meat Type*</option>
+                        <option value="Chicken">Chicken</option>
+                        <option value="Beef">Beef</option>
+                        <option value="Lamb">Lamb</option>
+                        <option value="Fish">Fish</option>
+                        <option value="Vegetarian">Vegetarian</option>
+                      </select>
+                      <div class="help-block with-errors"></div>
+                    </div> 
+                  </div>
+                   <div class="col-md-12">
+                    <div class="form-group">
+                      <select class="custom-select d-block form-control"  name="option" id="option" required data-error="Please select the options">
+                        <option disabled selected>Select Option*</option>
+                        <option value="Vegetables">Vegetables</option>
+                        <option value="Chickpeas">Chickpeas</option>
+                        <option value="Fava beans">Fava beans</option>
+                        <option value="dried raisins">dried raisins </option>
+                      </select>
+                      <div class="help-block with-errors"></div>
+                    </div> 
+                  </div>  
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <select class="custom-select d-block form-control"  name="person" id="person" required data-error="Please select the number of people">
+                        <option disabled selected>Select Person*</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                      </select>
+                      <div class="help-block with-errors"></div>
+                    </div> 
+                  </div> 
+                  <div class="col-md-12">
+                    <div class="form-group">
+
+
+                      <input id="date" class="datepicker picker__input form-control" name="date" 
+                       placeholder="Please enter the date you want it delivered" type="date" value="">
+                      <div class="help-block with-errors"></div>
+                    </div>                                 
+                  </div>
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <input id="time" class="time form-control picker__input"  name="time" 
+                       placeholder="Please enter the time you want it delivered" type="time" value="" required data-error="Please enter time">
+                      <div class="help-block with-errors"></div>
+                    </div>                                 
+                  </div>
+                  
+                
+
+          <!-- Cable Configuration -->
+ 
+
+            <a href="#"> See the gift * </a>
+          </div>
+        </div> 
+<div class="product-price">
+	           <div class="container"></div>
+
+           <div class="container1"></div>
+
+                     <input type="submit" value="Submit"class="btn-55"> 
+					 <input type="submit" value="send a private message"class="btn-55" > 
+				
+
+            </div>
+      </div> </div>
+  </form>
+    </main> 
+
+
 	
 	<!-- Start Customer Reviews -->
 	<div class="customer-reviews-box">
@@ -238,7 +290,7 @@ input.controle:invalid + span:before  {
 								<div class="img-box p-1 border rounded-circle m-auto">
 									<img class="d-block w-100 rounded-circle" src="images/profile-1.jpg" alt="">
 								</div>
-								<h5 class="mt-4 mb-0"><strong class="text-warning text-uppercase">Paul Mitchel</strong></h5>
+								<h5 class="mt-4 mb-0"><strong class="text-warning text-uppercase">Wajdi Hachana</strong></h5>
 								<h6 class="text-dark m-0">Web Developer</h6>
 								<p class="m-0 pt-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eu sem tempor, varius quam at, luctus dui. Mauris magna metus, dapibus nec turpis vel, semper malesuada ante. Idac bibendum scelerisque non non purus. Suspendisse varius nibh non aliquet.</p>
 							</div>
@@ -246,9 +298,9 @@ input.controle:invalid + span:before  {
 								<div class="img-box p-1 border rounded-circle m-auto">
 									<img class="d-block w-100 rounded-circle" src="images/profile-3.jpg" alt="">
 								</div>
-								<h5 class="mt-4 mb-0"><strong class="text-warning text-uppercase">Steve Fonsi</strong></h5>
-								<h6 class="text-dark m-0">Web Designer</h6>
-								<p class="m-0 pt-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eu sem tempor, varius quam at, luctus dui. Mauris magna metus, dapibus nec turpis vel, semper malesuada ante. Idac bibendum scelerisque non non purus. Suspendisse varius nibh non aliquet.</p>
+								<h5 class="mt-4 mb-0"><strong class="text-warning text-uppercase">Mohamed Hedi Yaacoubi</strong></h5>
+								<h6 class="text-dark m-0">Dentist</h6>
+								<p class="m-0 pt-3">I love this application it helps me alot and the ingredients are the freshest.</p>
 							</div>
 							<div class="carousel-item text-center">
 								<div class="img-box p-1 border rounded-circle m-auto">

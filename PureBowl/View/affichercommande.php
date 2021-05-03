@@ -257,7 +257,8 @@ function hide2()
                 <th> Price </th> 
 
         <th> Edit </th> 
-                <th> Delete </th> 
+                <th> Delete </th>
+                <th> Claim </th> 
 
         
         
@@ -294,6 +295,12 @@ function hide2()
                         <input type="hidden" value=<?PHP echo $user['id']; ?> name="id">
                         </form>
           </td>
+           <td>
+                                <a href="reclamation.php"  > 
+                       <button class="btn-222" style="color:black">Claim</button>
+
+                      </a>
+                    </td>
     </tr> 
 
   <?php 
