@@ -120,9 +120,9 @@ if(!empty($_GET['idDeliveryForDelete'])) {
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <?php
-                foreach ($notifications as $key=>$notification){
+                foreach ($notifications as $notification){
                    
-                    echo '  <a class="dropdown-item" href="read-notification.php?id='.$notification[ 'id'].'"> Message : '.$key.'</a>';
+                    echo '  <a class="dropdown-item" href="#">'.$notification[ 'objet'].'</a>';
                 }
                 ?>
             </div>
