@@ -34,33 +34,35 @@
             );
             
             $utilisateurC->modifierutilisateur($user, $_GET['idClient']);
-            header('refresh:1;url=index1.php');
+            header('refresh:1;url=ProfilUser.php');
         }
         else
             $error = "Missing information";
     }
 
 ?>
-<?php
-// On prolonge la session
-session_start();
-    //fichier lekhor
-
-
-  $UtilisateurC=new UtilisateurC();
-  $listeUsers1=$UtilisateurC->afficherutilisateur();
- 
-// On teste si la variable de session existe et contient une valeur
-if(empty($_SESSION['e']))
-{
-    // Si inexistante ou nulle, on redirige vers le formulaire de login
-    header('Location:/View/login.php');
+<html>
+    <head>
+        <title>Modifier post</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <style>
+.btn {
+  background-color: DodgerBlue;
+  border: none;
+  color: white;
+  padding: 12px 16px;
+  font-size: 16px;
+  cursor: pointer;
 }
-?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>Pure Bowl</title>
+
+/* Darker background on mouse-over */
+.btn:hover {
+  background-color: RoyalBlue;
+}
+</style>
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">   
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -70,14 +72,32 @@ if(empty($_SESSION['e']))
     <link rel="stylesheet" href="../css/style.css"> 
         <link rel="stylesheet" href="../css/style1.css">    
     <link rel="stylesheet" href="../css/style.css"> 
-</head>
-<body>
-<?php
-			if (isset($_GET['idClient'])){
-				$user = $utilisateurC->recupererutilisateur($_GET['idClient']);
-				
-		?>
-		<form action="" method="POST">
+        <title> Afficher Liste posts </title>
+        <style type="text/css">
+.myOtherTable { background-color:#85dcc2;border-collapse:collapse;color:#000;font-size:14px; }
+.myOtherTable th { background-color:#3949c6;color:white;width:10%; }
+.myOtherTable td, .myOtherTable th { padding:1px;border:1; }
+</style>
+    </head>
+    <body >
+
+    
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <p class="text-white mt-5 mb-5">Welcome back, <b>Admin</b></p>
+                </div>
+            </div>
+        <div id="error">
+            <?php echo $error; ?>
+        </div>
+        
+        <?php
+            if (isset($_GET['idClient'])){
+                $user = $utilisateurC->recupererutilisateur($_GET['idClient']);
+                
+        ?>
+        <form action="" method="POST">
             <table class="table table-hover tm-table-small tm-product-table">
                 <tr>
                     
@@ -98,7 +118,7 @@ if(empty($_SESSION['e']))
                     <td>
 
 
-                    	 <input type="text" name="nom" id="nom"  value = "<?php echo $user->nom; ?>" >
+                         <input type="text" name="nom" id="nom"  value = "<?php echo $user->nom; ?>" >
                     </td>
                     <td rowspan="3">
                         <button type="submit"  name = "modifer"  class="tm-product-delete-link" > <i class="far fa-edit tm-product-delete-icon" ></i></button>
@@ -167,4 +187,4 @@ if(empty($_SESSION['e']))
         }
         ?>
     </body>
-    </html>
+</html>

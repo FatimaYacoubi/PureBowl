@@ -6,7 +6,7 @@ session_start();
 
 
   $UtilisateurC=new UtilisateurC();
-  $listeUsers1=$UtilisateurC->afficherutilisateur();
+  $listeUsers1=$UtilisateurC->afficherutilisateur1($_SESSION['e']);
  
 // On teste si la variable de session existe et contient une valeur
 if(empty($_SESSION['e']))
@@ -60,7 +60,6 @@ echo $_SESSION['e'];
 
           <ul class="nav nav-pills nav-stacked">
               <li class="active"><a href="#"> <i class="fa fa-user"></i> Profile</a></li>
-              <li><a href="updateuser1.php"> <i class="fa fa-edit"></i> Edit profile</a></li>
           </ul>
       </div>
   </div>
@@ -72,7 +71,7 @@ echo $_SESSION['e'];
 
               <div class="row">
                   <div class="bio-row">
-                      <p><span>First Name </span><?PHP echo $user1['prenom'];; ?></p>
+                      <p><span>First Name </span><?PHP echo $user1['prenom'];?></p>
                   </div>
                   <div class="bio-row">
                       <p><span>Last Name </span><?PHP echo $user1['nom']; ?></p>
@@ -84,8 +83,20 @@ echo $_SESSION['e'];
                       <p><span>Mobile </span><?PHP echo $user1['tel']; ?></p>
                   </div>
                   <div class="bio-row">
-                      <p><span>Pasword</span><?PHP echo $user1['password']; ?></p>
+                      <p><span>Adresse </span><?PHP echo $user1['adresse']; ?></p>
+                  </div>
+                  <div class="bio-row">
+                      <p><span>Login </span><?PHP echo $user1['login']; ?></p>
+                  </div>
+                  <div class="bio-row">
+                      <p><span>Password</span><?PHP echo $user1['password']; ?></p>
                   </div> 
+                  <a href="updateuser1.php?idClient=<?PHP echo $user1['idClient']; ?>"  > 
+                       <button class="btn-222" style="color:black">Edit</button>
+                                               <input type="hidden" value=<?PHP echo $user1['idClient']; ?> name="idClient">
+
+
+                      </a>
 
 <?php 
                } 

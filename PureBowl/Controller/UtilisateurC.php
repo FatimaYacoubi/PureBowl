@@ -40,7 +40,30 @@ class utilisateurC
             die('Erreur: ' . $e->getMessage());
         }
     }
-
+    function afficherutilisateur1()
+    {
+        $sql = "SELECT * FROM Compte limit 1";
+        $db = config::getConnexion();
+        try {
+            $liste = $db->query($sql);
+            return $liste;
+        } catch (Exception $e) {
+            die('Erreur: ' . $e->getMessage());
+        }
+    }
+    function afficherprofil($email)
+    {
+        $sql = "SELECT FROM Compte where email=:email";
+         $db = config::getConnexion();
+        $req=$db->prepare($sql);
+        $req->bindValue(':email',$email);
+        try{
+            $req->execute();
+        }
+        catch (Exception $e){
+            die('Erreur: '.$e->getMessage());
+        }
+    }
 
 
     function supprimerutilisateur($idClient){
