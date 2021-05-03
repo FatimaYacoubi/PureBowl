@@ -3,6 +3,19 @@
 	require_once '../Model/Delivery.php';
 	class DeliveryC {
 		
+        function countCommand($id){
+            $sql="SELECT COUNT(d.id) as orders FROM commande as c join delivery as d on c.delivery_id = d.id WHERE d.id=".$id;
+            $db = config::getConnexion(); 
+
+            try{
+                $liste = $db->query($sql);
+                return $liste->fetch();
+            }
+            catch (Exception $e){
+                die('Erreur: '.$e->getMessage());
+            }
+
+        }
 			
 		function displayDelivery(){
 
@@ -17,6 +30,35 @@
 				die('Erreur: '.$e->getMessage());
 			}	
 		}
+
+
+        function countMessage(){
+
+            $sql="SELECT * FROM webprojet.notification where ISNULL(status);";
+            $db = config::getConnexion();
+
+            try{
+                $liste = $db->query($sql);
+                return $liste->rowCount();
+            }
+            catch (Exception $e){
+                die('Erreur: '.$e->getMessage());
+            }
+        }
+
+        function displayNotification(){
+
+            $sql="SELECT * FROM notification where ISNULL(status);";
+            $db = config::getConnexion();
+
+            try{
+                $liste = $db->query($sql);
+                return $liste;
+            }
+            catch (Exception $e){
+                die('Erreur: '.$e->getMessage());
+            }
+        }
 
         function displayDeliveryById($id){
 

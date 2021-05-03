@@ -1,17 +1,25 @@
 <?php
 
   require_once '../Controller/ProviderC.php';
+  require_once '../Controller/NotificationC.php';
+
   $providers = ProviderC::displayProvider();
 
-  if(!empty($_GET['idProviderForDelete'])) {
-    $id= trim($_GET['idProviderForDelete']);
-    ProviderC::deleteProvider($id);
+  /* Récuperer les message de notification**/
+  $notifications = NotificationC::displayNotification();
+  $countMessageNotRead = NotificationC::countMessage();
 
-    $pageDeliveryList = $_SERVER['HTTP_HOST'].'PureBowl/PureBowl/admin/provider.php';
+
+if(!empty($_GET['idProviderForDelete'])) {
+    $id= trim($_GET['idProviderForDelete']);
+    $providers = ProviderC::deleteProvider($id);
+
+    $pageProviderList = $_SERVER['HTTP_HOST'].'PureBowl/PureBowl/admin/provider.php';
 
     header("Location: ". 'provider.php');
     exit;
-  }
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -31,6 +39,18 @@
     <link rel="stylesheet" href="../css/bootstrap.min.css" />
     <!-- https://getbootstrap.com/ -->
     <link rel="stylesheet" href="../css/templatemo-style.css">
+
+      <style>
+          .notification .badge {
+              position: absolute;
+              top: 12px;
+              right: 21px;
+              padding: 9px 11px;
+              border-radius: 50%;
+              background: red;
+              color: white;
+          }
+      </style>
     <!--
 	Product Admin CSS Template
 	https://templatemo.com/tm-524-product-admin
@@ -39,9 +59,9 @@
 
   <body id="reportsPage">
     <?php 
-   // include("menu.php"); 
-  ?>
-   <nav class="navbar navbar-expand-xl">
+      //    include("menu.php"); 
+        ?>
+        <nav class="navbar navbar-expand-xl">
 <div class="container h-100">
   <a class="navbar-brand" href="../index1.html">
     <h1 class="tm-site-title mb-0">Product Admin</h1>
@@ -60,76 +80,53 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mx-auto h-100">
-      <li class="nav-item">
-        <a class="nav-link" href="../index1.html">
-          <i class="fas fa-tachometer-alt"></i> Dashboard
-          <span class="sr-only">(current)</span>
-        </a>
-      </li>
-      <li class="nav-item dropdown">
-        <a
-          class="nav-link dropdown-toggle"
-          href="#"
-          id="navbarDropdown"
-          role="button"
-          data-toggle="dropdown"
-          aria-haspopup="true"
-          aria-expanded="false">
-          <i class="far fa-file-alt"></i>
-          <span> Reports <i class="fas fa-angle-down"></i> </span>
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Daily Report</a>
-          <a class="dropdown-item" href="#">Weekly Report</a>
-          <a class="dropdown-item" href="#">Yearly Report</a>
-        </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link " href="../products.html">
-          <i class="fas fa-shopping-cart"></i> Products
-        </a>
-      </li>
-      <li class="nav-item">
+     
+    
 
+      <li class="nav-item">
         <a class="nav-link  " href="delivery.php">
-          <i class="fas fa-truck"></i> Delivery
+          <i class="fas fa-cubes"></i> Delivery
         </a>
       </li>
       <li class="nav-item">
         <a class="nav-link active" href="provider.php">
-          <i class="fas fa-cubes"></i> provider
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link " href="../Pack.html">
-          <i class="fas fa-shopping-cart"></i> Pack
-        </a>
-      </li>
-
-      <li class="nav-item">
-        <a class="nav-link" href="../accounts.html">
-          <i class="far fa-user"></i> Accounts
+          <i class="fas fa-truck"></i> provider
         </a>
       </li>
      
-      <li class="nav-item dropdown">
-        <a
-          class="nav-link dropdown-toggle"
-          href="#"
-          id="navbarDropdown"
-          role="button"
-          data-toggle="dropdown"
-          aria-haspopup="true"
-          aria-expanded="false">
-          <i class="fas fa-cog"></i>
-          <span> Settings <i class="fas fa-angle-down"></i> </span>
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Profile</a>
-          <a class="dropdown-item" href="#">Billing</a>
-          <a class="dropdown-item" href="#">Customize</a>
-        </div>
-      </li>
+        <li class="nav-item">
+            <a class="nav-link " href="add-notification.php">
+                <i class="fas fa-comments"></i> Comments
+            </a>
+        </li>
+        <li class="nav-item dropdown notification">
+            <a
+                    class="nav-link dropdown-toggle"
+                    href="#"
+                    id="navbarDropdown"
+                    role="button"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false">
+                <i class="fas fa-bell" style="margin-top: 30.1%;"></i>
+                <span> Notification
+                    <i class="fas fa-angle-down">
+
+                    </i>
+              <?php if( $countMessageNotRead != 0){
+                  echo '<span class="badge">'.  $countMessageNotRead .'</span>';
+              } ?>
+
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <?php
+                foreach ($notifications as $notification){
+                   
+                    echo '  <a class="dropdown-item" href="#">'.$notification[ 'objet'].'</a>';
+                }
+                ?>
+            </div>
+        </li>
     </ul>
     <ul class="navbar-nav">
       <li class="nav-item">
@@ -149,7 +146,7 @@
               <table class="table table-hover tm-table-small tm-product-table">
                 <thead>
                   <tr>
-                    <th scope="col">&nbsp;</th>
+                  <th scope="col">&nbsp;</th>
                     <th scope="col">NAME</th>
                     <th scope="col">PHONE</th>
                     <th scope="col">CITY</th>
@@ -159,24 +156,30 @@
                 </thead>
                 <tbody>
                 <?php
-                foreach ($providers as $provider){
-
-                    echo ' <tr>
+               // if(isset($deliveries) and !empty($deliveries)){
+                    foreach ($providers as $provider){
+                      echo ' <tr>
+                      <th s cope="row"><img src="upload/'.$provider["image"].'" width="200"/></th>
                     <th scope="row"><input type="checkbox" /></th>
                     <td class="tm-product-name">'.$provider["name"].'</td>
                     <td>'.$provider["num_tel"].'</td>
                     <td>'.$provider["region"].'</td>
                     <td>'.$provider["id"].'</td>
                     <td>
-                    <form action="provider.php" class="tm-delete-provider-form" method="POST">
-                    <a href="provider.php?idProviderForDelete='.$provider[ 'id'].'" class="tm-product-delete-link">
+                    <td>
+                      <a href="delivery.php?idForDelete='.$provider[ 'id'].'" class="tm-product-delete-link">
                         <i class="far fa-trash-alt tm-product-delete-icon"></i>
                       </a>
-                    </form>
+                       <a href="edit-provider.php?id='.$provider[ 'id'].'" class="tm-product-delete-link">
+                        <i class="far fa-edit tm-product-delete-icon"></i>
+                      </a>
                     </td>
                   </tr>';
                 }
+
                 ?>
+
+
                 </tbody>
               </table>
             </div>
@@ -184,9 +187,7 @@
             <a
               href="add-provider.php"
               class="btn btn-primary btn-block text-uppercase mb-3">Add new provider</a>
-              <td>
-                        <input type="submit" value="Modifier" name = "modifer"> 
-                    </td>
+           
           </div>
         </div>
         

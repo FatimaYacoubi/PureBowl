@@ -1,7 +1,14 @@
 <?php
 
   require_once '../Controller/DeliveryC.php';
+  require_once '../Controller/NotificationC.php';
+
   $deliveries = DeliveryC::displayDelivery();
+
+  /* Récuperer les message de notification**/
+  $notifications = NotificationC::displayNotification();
+  $countMessageNotRead = NotificationC::countMessage();
+
 
 if(!empty($_GET['idDeliveryForDelete'])) {
     $id= trim($_GET['idDeliveryForDelete']);
@@ -32,6 +39,18 @@ if(!empty($_GET['idDeliveryForDelete'])) {
     <link rel="stylesheet" href="../css/bootstrap.min.css" />
     <!-- https://getbootstrap.com/ -->
     <link rel="stylesheet" href="../css/templatemo-style.css">
+
+      <style>
+          .notification .badge {
+              position: absolute;
+              top: 12px;
+              right: 21px;
+              padding: 9px 11px;
+              border-radius: 50%;
+              background: red;
+              color: white;
+          }
+      </style>
     <!--
 	Product Admin CSS Template
 	https://templatemo.com/tm-524-product-admin
@@ -61,37 +80,10 @@ if(!empty($_GET['idDeliveryForDelete'])) {
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mx-auto h-100">
-      <li class="nav-item">
-        <a class="nav-link" href="../index1.html">
-          <i class="fas fa-tachometer-alt"></i> Dashboard
-          <span class="sr-only">(current)</span>
-        </a>
-      </li>
-      <li class="nav-item dropdown">
-        <a
-          class="nav-link dropdown-toggle"
-          href="#"
-          id="navbarDropdown"
-          role="button"
-          data-toggle="dropdown"
-          aria-haspopup="true"
-          aria-expanded="false">
-          <i class="far fa-file-alt"></i>
-          <span> Reports <i class="fas fa-angle-down"></i> </span>
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Daily Report</a>
-          <a class="dropdown-item" href="#">Weekly Report</a>
-          <a class="dropdown-item" href="#">Yearly Report</a>
-        </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link " href="../products.html">
-          <i class="fas fa-shopping-cart"></i> Products
-        </a>
-      </li>
-      <li class="nav-item">
+     
+    
 
+      <li class="nav-item">
         <a class="nav-link active " href="delivery.php">
           <i class="fas fa-cubes"></i> Delivery
         </a>
@@ -101,35 +93,40 @@ if(!empty($_GET['idDeliveryForDelete'])) {
           <i class="fas fa-truck"></i> provider
         </a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link " href="../Pack.html">
-          <i class="fas fa-shopping-cart"></i> Pack
-        </a>
-      </li>
+     
+        <li class="nav-item">
+            <a class="nav-link " href="add-notification.php">
+                <i class="fas fa-comments"></i> Comments
+            </a>
+        </li>
+        <li class="nav-item dropdown notification">
+            <a
+                    class="nav-link dropdown-toggle"
+                    href="#"
+                    id="navbarDropdown"
+                    role="button"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false">
+                <i class="fas fa-bell" style="margin-top: 30.1%;"></i>
+                <span> Notification
+                    <i class="fas fa-angle-down">
 
-      <li class="nav-item">
-        <a class="nav-link" href="../accounts.html">
-          <i class="far fa-user"></i> Accounts
-        </a>
-      </li>
-      <li class="nav-item dropdown">
-        <a
-          class="nav-link dropdown-toggle"
-          href="#"
-          id="navbarDropdown"
-          role="button"
-          data-toggle="dropdown"
-          aria-haspopup="true"
-          aria-expanded="false">
-          <i class="fas fa-cog"></i>
-          <span> Settings <i class="fas fa-angle-down"></i> </span>
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Profile</a>
-          <a class="dropdown-item" href="#">Billing</a>
-          <a class="dropdown-item" href="#">Customize</a>
-        </div>
-      </li>
+                    </i>
+              <?php if( $countMessageNotRead != 0){
+                  echo '<span class="badge">'.  $countMessageNotRead .'</span>';
+              } ?>
+
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <?php
+                foreach ($notifications as $notification){
+                   
+                    echo '  <a class="dropdown-item" href="#">'.$notification[ 'objet'].'</a>';
+                }
+                ?>
+            </div>
+        </li>
     </ul>
     <ul class="navbar-nav">
       <li class="nav-item">
@@ -155,6 +152,7 @@ if(!empty($_GET['idDeliveryForDelete'])) {
                     <th scope="col">HOUR START</th>
                     <th scope="col">HOUR END</th>
                     <th scope="col">ID</th>
+                    <th scope="col">Orders</th>
                     <th scope="col">&nbsp;</th>
                   </tr>
                 </thead>
@@ -163,13 +161,19 @@ if(!empty($_GET['idDeliveryForDelete'])) {
                // if(isset($deliveries) and !empty($deliveries)){
                     foreach ($deliveries as $delivery){
 
+                   $ordernumber = DeliveryC::countCommand($delivery["id"]);
+                   
+
                         echo ' <tr>
-                    <th scope="row"><img src="upload/'.$delivery["image"].'" width="200"/></th>
+                    <th s cope="row"><img src="upload/'.$delivery["image"].'" width="150"/></th>
                     <td class="tm-product-name">'.$delivery["name"].'</td>
                     <td>'.$delivery["salary"].'</td>
                     <td>'.$delivery["hour_start"].'</td>
                     <td>'.$delivery["hour_end"].'</td>
                     <td>'.$delivery["id"].'</td>
+                    <td>'.$ordernumber["orders"].'</td>
+                  
+                    
                     <td>
                       <a href="delivery.php?idDeliveryForDelete='.$delivery[ 'id'].'" class="tm-product-delete-link">
                         <i class="far fa-trash-alt tm-product-delete-icon"></i>
@@ -192,9 +196,7 @@ if(!empty($_GET['idDeliveryForDelete'])) {
             <a
               href="add-delivery.php"
               class="btn btn-primary btn-block text-uppercase mb-3">Add new delivery</a>
-            <button class="btn btn-primary btn-block text-uppercase">
-              Delete selected deliveries
-            </button>
+           
           </div>
         </div>
         

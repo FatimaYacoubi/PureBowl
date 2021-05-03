@@ -1,6 +1,6 @@
 <?PHP
 	include "config.php";
-	require_once 'Model/Dish.php';
+	//require_once 'Model/Dish.php';
 
 	class DishC {
 		function addDish($dish){

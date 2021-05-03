@@ -5,7 +5,7 @@
 		private $hour_start ;
 		private $hour_end ;
 		private $salary ;
-        private $image ;
+		private $image ;
 
         function __construct($name =null, $salary= null, $hour_start = null, $hour_end = null, $image = null){
 			
@@ -16,8 +16,6 @@
 			$this->image = $image;
 
 		}
-
-		
 
         public function getId()
         {
@@ -63,6 +61,7 @@
         {
             $this->salary = $salary;
         }
+
         public function getImage()
         {
             return $this->image;
