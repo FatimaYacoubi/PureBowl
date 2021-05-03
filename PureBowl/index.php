@@ -117,7 +117,6 @@ if(isset($_SESSION["cart_products"]) && count($_SESSION["cart_products"])>0)
 							</div>
 						</li>
 						<li class="nav-item"><a class="nav-link" href="View/affichercommande.php">My orders</a></li>
-						<li class="nav-item"><a class="nav-link" href="reclamation.html">Reclamation</a></li>
 						<li class="nav-item"><a class="nav-link" href="gift.html">Gift</a></li>
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Sign in</a>

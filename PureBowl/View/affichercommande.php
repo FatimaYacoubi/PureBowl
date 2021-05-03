@@ -296,7 +296,7 @@ function hide2()
                         </form>
           </td>
            <td>
-                                <a href="reclamation.php"  > 
+                                <a href="reclamation.php?id=<?PHP echo $user['id']; ?>"  > 
                        <button class="btn-222" style="color:black">Claim</button>
 
                       </a>

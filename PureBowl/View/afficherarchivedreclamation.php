@@ -125,7 +125,7 @@
             <div class="row">
                 <div class="col">
                     <p class="text-white mt-5 mb-5">Welcome back, <b>Admin</b></p>
-                    <a href="afficherreclamation.php"  >See unarchived reclamations </a>
+                    <a href="afficherreclamation.php" class="text-warning" ><h4>See unarchived Claims <i class="fas fa-eye"></i></h4></a>
                     <br>
                 </div>
                 <br>
@@ -163,8 +163,8 @@
                       
                         
                         <form method="POST" action="supprimerreclamation.php">
-                             <button type="submit" name="supprimer "class="tm-product-delete-link" >
-                        <i class="far fa-trash-alt tm-product-delete-icon"></i></button> 
+                             <button type="submit" name="supprimer "class="tm-product-delete-link"onclick="return confirm('Are you sure you want to delete this item definitely?');" >
+                        <i class="far fa-trash-alt tm-product-delete-icon"></i></button>Delete 
                         
                         <input type="hidden" value=<?PHP echo $user['id']; ?> name="id">
                         
@@ -174,8 +174,8 @@
                        
                         </td >
                         <td style="width: 30px" ><form method="POST" action="inarchiverreclamation.php">
-                            <button style="height: : 30px" type="submit" name="inarchiver "class="tm-product-delete-link" >
-                        <i class="fas fa-archive tm-product-delete-icon" ></i></button> 
+                            <button style="height: : 30px" type="submit" name="inarchiver "class="tm-product-delete-link"onclick="return confirm('Are you sure you want to unarchive this item ?');" >
+                        <i class="far fa-folder-open tm-product-delete-icon" ></i></button>Unarchive 
                         
                         <input type="hidden" value=<?PHP echo $user['id']; ?> name="id">
                     </form>
