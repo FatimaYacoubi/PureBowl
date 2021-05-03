@@ -1,10 +1,10 @@
 <?PHP
 	include "../Controller/carteFC.php";
 
-	$CarteC=new carteC();
+	$CouponC=new couponC();
 	
-	if (isset($_POST["idC"])){
-		$CarteC->deletecarte($_POST["idC"]);
+	if (isset($_POST["id"])){
+		$CouponC->deletecoupon($_POST["id"]);
 		header('Location:displaycarte.php');
 	}
 

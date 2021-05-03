@@ -1,8 +1,8 @@
 <?PHP
 	include "../Controller/carteFC.php";
 
-	$carteC=new carteC();
-	$listeCartes=$carteC->displaycarte();
+	$couponC=new couponC();
+	$listeCoupons=$couponC->displaycoupon();
 
 ?>
 
@@ -12,7 +12,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>carte Page - Admin HTML Template</title>
+    <title>coupon Page - Admin HTML Template</title>
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Roboto:400,700"
@@ -93,7 +93,7 @@
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="displayGift.php">Gifts</a>
-                <a class="dropdown-item" href="displaycarte.php">carte fédilite</a>
+                <a class="dropdown-item" href="displaycoupon.php">Coupons</a>
                 
               </div>
             </li>
@@ -159,9 +159,10 @@
                   <tr>
                     <th scope="col">&nbsp;</th>
                      
-                    <th scope="col">id </th>
-                    <th scope="col">points Number</th>
-                    <th scope="col">creation date</th>
+                    <th scope="col">Id </th>
+                   
+                    <th scope="col">Discount code</th>
+                    <th scope="col">Price</th>
                     
                     <th scope="col"></th>
 
@@ -172,13 +173,14 @@
              <tbody>
 
              	<?PHP
-				foreach($listeCartes as $carteC){
+				foreach($listeCoupons as $couponC){
 			?>
 			<tr>
       <td></td>
-          <td><?PHP echo $carteC['idC']; ?></td> 
-					<td><?PHP echo $carteC['nbP']; ?></td> 
-					<td><?PHP echo $carteC['dateC']; ?></td>
+          <td><?PHP echo $couponC['id']; ?></td> 
+					<td><?PHP echo $couponC['discount_code']; ?></td> 
+					<td><?PHP echo $couponC['price']; ?></td>
+        
                   
 					<td></td>
 					<td>
@@ -189,10 +191,10 @@
                     
 						<form method="POST" action="deletecarte.php">
 						<input type="submit" name="DELETE" value="DELETE" class="btn btn-primary btn-block text-uppercase">
-						<input type="hidden" value=<?PHP echo $carteC['idC']; ?> name="idC"  >
+						<input type="hidden" value=<?PHP echo $couponC['id']; ?> name="id"  >
 						</form> 					</td>
 					<td>
-						<a href="modifycarte.php? idC=<?PHP echo $carteC['idC']; ?>" class="btn btn-primary btn-block text-uppercase"> Modify </a>
+						<a href="modifycarte.php? id=<?PHP echo $couponC['id']; ?>" class="btn btn-primary btn-block text-uppercase"> Modify </a>
 					</td>
 				</tr>
 			<?PHP
@@ -312,7 +314,7 @@
             <!-- table container -->
           <a
               href="addcarte.php"
-              class="btn btn-primary btn-block text-uppercase mb-3"> Add Carte </a>
+              class="btn btn-primary btn-block text-uppercase mb-3"> Add Coupon </a>
              
           </div>
         </div>

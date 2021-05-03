@@ -5,24 +5,28 @@
     $error = "";
 
     // create user
-    $Carte = null;
+    $Coupon = null;
 
   // create an instance of the controller
-    $CarteC = new carteC();
+  
+    $CouponC = new couponC();
     if (
-        isset($_POST["nbP"]) && 
-        isset($_POST["dateC"])
+      
+        isset($_POST["discount_code"]) &&
+        isset($_POST["price"])
     ) {
         if (
-            !empty($_POST["nbP"]) && 
-            !empty($_POST["dateC"]) 
+           
+            !empty($_POST["discount_code"])&& 
+            !empty($_POST["price"]) 
         ) {
-            $Carte = new carte(
-                $_POST['nbP'],
-                $_POST['dateC']
+            $Coupon = new coupon(
+              
+                $_POST['discount_code'],
+                $_POST['price']
             );
-            $CarteC->addcarte($Carte);
-            header('Location:displaycarte.php');
+            $CouponC-> ajoutercoupon($Coupon);
+            header('refresh:5;url=displaycarte.php');
         }
         else
             $error = "Missing information";
@@ -38,7 +42,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Add Carte</title>
+    <title>Add Coupon</title>
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Roboto:400,700"
@@ -122,7 +126,7 @@
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="displayGift.php">Gifts</a>
-                <a class="dropdown-item" href="displaycarte.php">carte fédilite</a>
+                <a class="dropdown-item" href="displaycarte.php">Coupons</a>
                 
               </div>
             </li>
@@ -130,12 +134,6 @@
             <li class="nav-item">
               <a class="nav-link " href="Pack.html">
                 <i class="fas fa-shopping-cart"></i> Pack
-              </a>
-            </li>
-
-            <li class="nav-item">
-              <a class="nav-link active" href="displayGift.php">
-                <i class="fas fa-shopping-cart"></i> Gift
               </a>
             </li>
 
@@ -180,41 +178,39 @@
           <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
             <div class="row">
               <div class="col-12">
-                <h2 class="tm-block-title d-inline-block">Add Carte</h2>
+                <h2 class="tm-block-title d-inline-block">Add Coupons</h2>
               </div>
             </div>
             <div id="error">
             <?php echo $error; ?>
         </div>
         
-            <div class="row tm-edit-product-row">
+        <div class="row tm-edit-product-row">
               <div class="col-xl-6 col-lg-6 col-md-12">
               <form action="" method="POST">
                   <div class="form-group mb-3">
                     <label
-                      for="nbP"
-                      > Points number
+                      for="discount_code"
+                      > Discount code
                     </label>
                     <input
-                      id="nbP"
-                      name="nbP"
+                      id="discount_code"
+                      name="discount_code"
                       type="text"
                       class="form-control validate"
                       required
                     />
                   </div>
-            
-           
-                  
+
                   <div class="row">
                       <div class="form-group mb-3 col-xs-12 col-sm-6">
                           <label
-                            for="dateC"
-                            >creation date
+                            for="price"
+                            >Price
                           </label>
                           <input
-                            id="dateC"
-                            name="dateC"
+                            id="price"
+                            name="price"
                             type="text"
                             class="form-control validate"
                             data-large-mode="true"
@@ -222,11 +218,15 @@
                         </div>
                         
                   </div>
+           
+                 
+
+                  
                   
               </div>
              
               <div class="col-12">
-                <button type="submit" class="btn btn-primary btn-block text-uppercase">Add Gift</button>
+                <button type="submit" class="btn btn-primary btn-block text-uppercase">Add new coupon</button>
               </div>
             </form>
             </div>

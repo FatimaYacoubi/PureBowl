@@ -1,33 +1,37 @@
 <?PHP
-	class carte{
-		private ?int $idC = null;
-		private ?int $nbP = null;
-		private ?string $dateC = null;
-        
-		function __construct(int $nbP, string $dateC){
+	class coupon{
+		private ?int $id = null;
+	    private ?string $discount_code = null;
+        private ?float $price = null;
+
+		function __construct(string $discount_code, float $price){
 			
-			$this->nbP=$nbP;
-			$this->dateC=$dateC;
+			
+			$this->discount_code=$discount_code;
+			$this->price=$price;
 		
 		}
 		
-		function getId(): int{
-			return $this->idC;
+		function getid(): int{
+			return $this->id;
 		}
-		function getNbP(): int{
-			return $this->nbP;
+		function getcode(): string{
+			return $this->discount_code;
 		}
-		function getdate(): string{
-			return $this->dateC;
+	
+		function getprice(): float{
+			return $this->price;
 		}
 		
 
 		
-		function setNbP(int $nbP): void{
-			$this->ingredients;
+		function setcode(string $discount_code): void{
+			$this->discount_code=$discount_code;
 		}
-		function setdate(string $dateC): void{
-			$this->dateC=$dateC;
+		
+		function setprice(float $price): void{
+			$this->price=$price;
 		}
+		
 	}
 ?>

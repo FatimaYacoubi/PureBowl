@@ -130,30 +130,39 @@
 	
 	</script>
 
-<?PHP
+<div class="row special-list">
+             	<?PHP
 				foreach($listeGift as $Gift){
 			?>
-			<tr>
-      <td></td>
-                    <td><?PHP echo $Gift['id']; ?></td> 
-                    <td><?PHP echo $Gift['nom']; ?></td>
-                    <td> <img src="../images <?PHP echo $Gift['imageG']; ?>" /> </td>  
-					<td><?PHP echo $Gift['descr']; ?></td>
-                    <td><?PHP echo $Gift['price']; ?></td>
-					<td></td>
-					<td>
+			
+				<div class="col-lg-4 col-md-6 special-grid lunch">
+   <!--   <th scope="row"> <input type="checkbox" /></th> -->
+                  <div class="gallery-single fix">
+                   <img src="../images/<?php echo $Gift['imageG'];?>" class="img-fluid"  width="350px" height="200px">
+                      <div class="why-text">
+				<!--	<h5><?PHP echo $Gift['id']; ?> </h5>  -->
+				<h2>	<?PHP echo $Gift['nom']; ?> </h2>
+			
+					<!-- <td><?PHP echo $Gift['imageG']; ?></td> --> 
+					<p><?PHP echo $Gift['descr']; ?></p>
+				
+					<h4><?PHP echo $Gift['price']; ?></h4>
+					</div>
 						 
-            <!-- <a href="#" class="tm-product-delete-link">
+                  <!--    <a href="#" class="tm-product-delete-link">
                         <i class="far fa-trash-alt tm-product-delete-icon"></i>
-             </a>-->
+                      </a> -->
                     
+					</div>	
 						
-					</td>
-				</tr>
+				
+				
+				</div>
+			
 			<?PHP
 				}
 			?> 
-	
+				</div>
 	<!-- Start QT 
 	<div class="qt-box qt-background">
 		<div class="container">

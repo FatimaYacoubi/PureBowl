@@ -2,50 +2,55 @@
 	include "../config.php";
 	require_once '../Model/carteF.php';
 
-	class carteC {
-		function addcarte($carte){
-			$sql="INSERT INTO carte (nbP, dateC) 
-			VALUES (:nbP, :dateC)";
+	class couponC {
+		/*Fonction ajouter */
+		function ajoutercoupon($Coupon)
+		{
+			$sql="INSERT INTO coupon (discount_code, price) 
+			VALUES (:discount_code, :price)";
 			$db = config::getConnexion();
 			try{
 				$query = $db->prepare($sql);
 			
-				$query->execute([
-					'nbP' => $carte->getNbP(),
-					'dateC' => $carte->getdate()
-				
+				$query->execute
+				([
+					'discount_code' => $Coupon->getcode(),
+					'price' => $Coupon->getprice()
 					
-				]);			
+				]);	
+				//echo $query->rowCount() . " records Added successfully <br>";		
 			}
 			catch (Exception $e){
 				echo 'Erreur: '.$e->getMessage();
 			}			
 		}
-		function modifycarte($carte, $idC){
+		function modifycoupon($coupon, $id){
 			try {
 				$db = config::getConnexion();
 				$query = $db->prepare(
-					'UPDATE carte SET 
-						nbP = :nbP, 
-						dateC = :dateC
-						WHERE idC = :idC'
+					'UPDATE coupon SET 
+					 
+						discount_code = :discount_code,
+						price = :price
+						WHERE id = :id'
 				);
 				$query->execute([
-                    'nbP' => $carte->getNbP(),
-					'dateC' => $carte->getdate(),
+                   
+					'discount_code' => $coupon->getcode(),
+					'price' => $coupon->getprice(),
 					
-					'idC' => $idC
+					'id' => $id
 				]);
 				
 			} catch (PDOException $e) {
 				$e->getMessage();
 			}
 		}
-		function deletecarte($idC){
-			$sql="DELETE FROM carte WHERE idC= :idC";
+		function deletecoupon($id){
+			$sql="DELETE FROM coupon WHERE id= :id";
 			$db = config::getConnexion();
 			$req=$db->prepare($sql);
-			$req->bindValue(':idC',$idC);
+			$req->bindValue(':id',$id);
 			try{
 				$req->execute();
 			}
@@ -53,9 +58,9 @@
 				die('Erreur: '.$e->getMessage());
 			}
 		}
-		function displaycarte(){
+		function displaycoupon(){
 			
-			$sql="SELECT * FROM carte";
+			$sql="SELECT * FROM coupon";
 			$db = config::getConnexion();
 			try{
 				$liste = $db->query($sql);
@@ -65,29 +70,30 @@
 				die('Erreur: '.$e->getMessage());
 			}	
 		}
-		function recuperercarte($idC){
-			$sql="SELECT * from carte where idC=$idC";
+		function recuperercoupon($id){
+			$sql="SELECT * from coupon where id=$id";
 			$db = config::getConnexion();
 			try{
 				$query=$db->prepare($sql);
 				$query->execute();
 
-				$carte=$query->fetch();
-				return $carte;
+				$coupon=$query->fetch();
+				return $coupon;
 			}
 			catch (Exception $e){
 				die('Erreur: '.$e->getMessage());
 			}
 		}
-		function recuperercarte1($idC){
-			$sql="SELECT * from carte where idC=$idC";
+		function recuperercoupon1($id)
+{
+			$sql="SELECT * from coupon where id=$id";
 			$db = config::getConnexion();
 			try{
 				$query=$db->prepare($sql);
 				$query->execute();
 				
-				$carte = $query->fetch(PDO::FETCH_OBJ);
-				return $carte;
+				$coupon = $query->fetch(PDO::FETCH_OBJ);
+				return $coupon;
 			}
 			catch (Exception $e){
 				die('Erreur: '.$e->getMessage());

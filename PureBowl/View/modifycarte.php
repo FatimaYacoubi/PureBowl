@@ -2,24 +2,27 @@
   include "../Controller/carteFC.php";
   include_once '../Model/carteF.php';
 
-  $CarteC = new carteC();
+  $CouponC = new couponC();
   $error = "";
   
   if (
-    isset($_POST["nbP"]) && 
-        isset($_POST["dateC"]) 
+   
+        isset($_POST["discount_code"]) &&
+        isset($_POST["price"])  
   ){
     
     if (
-            !empty($_POST["nbP"]) && 
-            !empty($_POST["dateC"]) 
+            
+            !empty($_POST["discount_code"]) &&
+            !empty($_POST["price"]) 
         ) {
-            $Carte = new carte(
-                $_POST['nbP'],
-                $_POST['dateC']
+            $Coupon = new coupon(
+               
+                $_POST['discount_code'],
+                $_POST['price']
       );
       
-            $CarteC->modifycarte($Carte, $_GET['idC']);
+            $CouponC->modifycoupon($Coupon, $_GET['id']);
             header('refresh:5;url=displaycarte.php');
         }
         else
@@ -34,7 +37,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Edit carte - Dashboard Admin Template</title>
+    <title>Edit coupons - Dashboard Admin Template</title>
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Roboto:400,700"
@@ -55,14 +58,14 @@
 
   <body>
      <?php
-      if (isset($_GET['idC'])) {
-        $Carte = $CarteC->recuperercarte($_GET['idC']);
+      if (isset($_GET['id'])) {
+        $Coupon = $CouponC->recuperercoupon($_GET['id']);
         
     ?>
     <nav class="navbar navbar-expand-xl">
       <div class="container h-100">
         <a class="navbar-brand" href="index.html">
-          <h1 class="tm-site-title mb-0">Carte Admin</h1>
+          <h1 class="tm-site-title mb-0">Coupon Admin</h1>
         </a>
         <button
           class="navbar-toggler ml-auto mr-0"
@@ -123,8 +126,8 @@
                 <span> Service <i class="fas fa-angle-down"></i> </span>
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="displayGift.php">Gift</a>
-                <a class="dropdown-item" href="displaycarte.php">carte  </a>
+                <a class="dropdown-item" href="displayGift.php">Gifts</a>
+                <a class="dropdown-item" href="displaycarte.php">Coupons</a>
                
               </div>
             </li>
@@ -180,7 +183,7 @@
           <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
             <div class="row">
               <div class="col-12">
-                <h2 class="tm-block-title d-inline-block">Edit Carte</h2>
+                <h2 class="tm-block-title d-inline-block">Edit Coupons</h2>
               </div>
             </div>
             <div class="row tm-edit-product-row">
@@ -196,49 +199,55 @@
 
                   <div class="form-group mb-3">
                     <label
-                      for="idC"
-                      >id
+                      for="id"
+                      >Id
                     </label>
                     
                     <input
-                      id="idC"
-                      name="idC"
+                      id="id"
+                      name="id"
                       type="text"
-                      value="<?php echo $Carte['idC']; ?>" disabled
+                      value="<?php echo $Coupon['id']; ?>" disabled
                       class="form-control validate"
                     />
                   </div>
 
                   <div class="form-group mb-3">
                     <label
-                      for="nbP"
-                      > points number
+                      for="discount_code"
+                      > Discount code
                     </label>
                     <input
-                      id="nbP"
-                      name="nbP"
+                      id="discount_code"
+                      name="discount_code"
                       type="text"
-                      value="<?php echo $Carte['nbP']; ?>"
+                      value="<?php echo $Coupon['discount_code']; ?>"
                       class="form-control validate"
                     />
                   </div>
 
 
-                  <div class="form-group mb-3">
-                    <label
-                      for="dateC"
-                      >Creation date</label
-                    >
-                     <input
-                      id="dateC"
-                      name="dateC"
-                      type="text"
-                      value="<?php echo $carte['dateC']; ?>"
-                      class="form-control validate"
-                    />
-                    
-                  </div>
                  
+                    
+                  <div class="row">
+                      <div class="form-group mb-3 col-xs-12 col-sm-6">
+                          <label
+                            for="price"
+                            >Price
+                          </label>
+                          <input
+                            id="price"
+                            name="price"
+                            type="text"
+                            value="<?php echo $Coupon['price']; ?>" 
+                            class="form-control validate"
+                            data-large-mode="true"
+                          />
+                        </div>
+                        
+                  </div>
+               
+            
      
              
                       

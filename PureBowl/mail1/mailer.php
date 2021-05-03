@@ -216,6 +216,7 @@ exit();
 <h1>Send a mail to your loved ones 💗</h1>
 	<div>
 		<input type="text" name="from" id="from" class="form-control"  value="purebowlcontact@gmail.com" readonly required autofocus>
+		
 		<input type="text" name="name" id="name" class="form-control"  value="Pure Bowl" readonly required autofocus>
 	</div><br>
 	<div>
@@ -252,7 +253,18 @@ $(document).ready(function(){
 	            }
 			});
 		}
-
+		var lancer="oui";
+	
+	if(document.getElementById("to").value=="")
+	{
+		alert("Vous devez saisir un mail");
+		lancer="non";
+	}
+	else if(document.getElementById("to").value.indexOf("@")==-1 || document.getElementById("to").value.indexOf(".")==-1 || document.getElementById("to").value.indexOf("tn")==-1)
+	{
+		alert("Le mail ne semble pas correct, corrigez-le");
+		lancer="non";
+	}	
 
 	});
 });
