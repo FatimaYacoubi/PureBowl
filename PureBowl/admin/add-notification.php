@@ -126,7 +126,7 @@
                       <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                           <?php
                           foreach ($notifications as $notification){
-                              echo '<a class="dropdown-item" href="read-notification.php?id='.$notification[ 'id'].'">'.$notification[ 'objet'].'</a>';
+                              echo '<a class="dropdown-item" href="read-notification.php?id='.$notification[ 'id'].'">Message : '.$key.'</a>';
                           }
                           ?>
                       </div>

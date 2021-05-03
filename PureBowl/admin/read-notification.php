@@ -1,6 +1,7 @@
 <?php
-    include "../config.php";
-    require_once '../Controller/NotificationC.php';
+    
+    require_once $_SERVER['DOCUMENT_ROOT'].'/PureBowl/PureBowl/Controller/NotificationC.php';
+    include $_SERVER['DOCUMENT_ROOT']."/PureBowl/PureBowl/config.php";
 
     /* Récuperer les message de notification**/
     $notifications = NotificationC::displayNotification();
