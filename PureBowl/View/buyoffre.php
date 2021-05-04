@@ -1,9 +1,8 @@
 <?php
+
 include "../Controller/offreC.php";
 $offreC=new offreC();
 $listeOffers=$offreC->afficherOffre();
-
-
 ?>
 
 <!DOCTYPE html>
@@ -45,26 +44,26 @@ $listeOffers=$offreC->afficherOffre();
     <meta name="author" content="">
 
     <!-- Site Icons -->
-    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">    
+    <link rel="stylesheet" href="../css/bootstrap.min.css">    
 	<!-- Site CSS -->
 
 
-    <link rel="stylesheet" href="css/style.css"> 
-        <link rel="stylesheet" href="css/style1.css">    
+    <link rel="stylesheet" href="../css/style.css"> 
+        <link rel="stylesheet" href="../css/style1.css">    
 
-    <link rel="stylesheet" href="css/style.css">    
+    <link rel="stylesheet" href="../css/style.css">    
 	<!-- Pickadate CSS -->
-    <link rel="stylesheet" href="css/classic.css">    
-	<link rel="stylesheet" href="css/classic.date.css">    
-	<link rel="stylesheet" href="css/classic.time.css">    
+    <link rel="stylesheet" href="../css/classic.css">    
+	<link rel="stylesheet" href="../css/classic.date.css">    
+	<link rel="stylesheet" href="../css/classic.time.css">    
     <!-- Responsive CSS -->
-    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="../css/responsive.css">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/custom.css">
+    <link rel="stylesheet" href="../css/custom.css">
 
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -100,9 +99,9 @@ $listeOffers=$offreC->afficherOffre();
 						</li>
 					-->
 						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Offres</a>
+							<a class="nav-link dropdown-toggle active" href="#" id="dropdown-a" data-toggle="dropdown">Offres</a>
 							<div class="dropdown-menu" aria-labelledby="dropdown-a">
-								<a class="dropdown-item " href="offre.html">Offre</a>
+								<a class="dropdown-item" href="offre.html">Offre</a>
 								<a class="dropdown-item" href="offre.html">Promotion</a>
 								</div>
 							</li>
@@ -115,7 +114,7 @@ $listeOffers=$offreC->afficherOffre();
 						</li>
 						<li class="nav-item"><a class="nav-link" href="affichercommande.php">My orders</a></li>
 						<li class="nav-item"><a class="nav-link" href="reclamation.html">Reclamation</a></li>
-						<li class="nav-item active "><a class="nav-link" href="gift.html">Gift</a></li>
+						<li class="nav-item  "><a class="nav-link" href="Offre.html">Gift</a></li>
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Sign in</a>
 							<div class="dropdown-menu" aria-labelledby="dropdown-a">
@@ -130,8 +129,89 @@ $listeOffers=$offreC->afficherOffre();
 	</header>
 	<!-- End header -->
 	
-    <main class="container">
+<<<<<<< HEAD:PureBowl/View/displaygiftF.php
+	<!-- Start All Pages -->
+	<div class="all-page-title page-breadcrumb">
+		<div class="container text-center">
+			<div class="row">
+				<div class="col-lg-12">
+					<h1>Special Menu</h1>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End All Pages -->
 
+	<!--video part-->
+	<div class="banner">
+	<video autoplay="" muted="" loop="">
+		<source src="images/gift.mp4" type="video/mp4">
+	</video>	
+	<div id="ll"></div>
+	<script type="text/javascript">
+	let ll = document.querySelector('#ll');
+	window.addEventListener('scroll',function(){
+		let value =window.scrollY;
+		bg.style.backgroungSize = 1000 + value*2 +"px";
+	})
+	
+	</script>
+
+<div class="row special-list">
+             	<?PHP
+				foreach($listeGift as $Gift){
+			?>
+			
+				<div class="col-lg-4 col-md-6 special-grid lunch">
+   <!--   <th scope="row"> <input type="checkbox" /></th> -->
+                  <div class="gallery-single fix">
+                   <img src="../images/<?php echo $Gift['imageG'];?>" class="img-fluid"  width="350px" height="200px">
+                      <div class="why-text">
+				<!--	<h5><?PHP echo $Gift['id']; ?> </h5>  -->
+				<h2>	<?PHP echo $Gift['nom']; ?> </h2>
+			
+					<!-- <td><?PHP echo $Gift['imageG']; ?></td> --> 
+					<p><?PHP echo $Gift['descr']; ?></p>
+				
+					<h4><?PHP echo $Gift['price']; ?></h4>
+					</div>
+						 
+                  <!--    <a href="#" class="tm-product-delete-link">
+                        <i class="far fa-trash-alt tm-product-delete-icon"></i>
+                      </a> -->
+                    
+					</div>	
+						
+				
+				
+				</div>
+			
+			<?PHP
+				}
+			?> 
+				</div>
+	<!-- Start QT 
+	<div class="qt-box qt-background">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8 ml-auto mr-auto text-left">
+					<p class="lead ">
+						" If you're not the one cooking, stay out of the way and compliment the chef. "
+					</p>
+					<span class="lead">Michael Strahan</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	 End QT -->
+=======
+    <main class="container">
+<?php
+		 $offreC = new offreC();
+      if (isset($_GET['id_offre'])) {
+        $offer = $offreC->recupererOffre($_GET['id_offre']);
+        
+    ?>
       <!-- Left Column / Headphones Image -->
       <div class="column">
       	<br>
@@ -141,17 +221,17 @@ $listeOffers=$offreC->afficherOffre();
       	<br>
       	<br>
       	<br>
-            <img src="images/choco1.jpg" alt="" width="500"> 
+           <img src="../imageweb/<?php echo $offer['image_offre'];?>" class="img-fluid"  width="350px" height="400px">
             
       </div>
 
 
       <!-- Right Column -->
-      <div class="right-column">
+  <div class="right-column">
 
         <!-- Product Description -->
-        <div class="product-description">
-          <span>COUSCOUS</span>
+       <div class="product-description">
+        
         <br>
       	<br>
       	<br>
@@ -160,31 +240,25 @@ $listeOffers=$offreC->afficherOffre();
           <h1>     </h1>
           <h1>    </h1>
           <h1>     </h1>
-            <h1>Couscous</h1>
+           
             <!-- Product Pricing -->
-        <div class="product-price">
-          <span>15 DT</span>
-        </div>
-          <p>Couscous is the national tunisian dish.
-          when you order this you'll get ; Prepared couscous , couscous salsa , flavorings and meat </p>
-        </div>
-
+       
         <!-- Product Configuration -->
-        <div class="product-configuration">
+         <div class="product-configuration">
 
-          <!-- Product Color -->
-          <div class="row">
+         <!-- Product Color -->
+     <div class="row">
         <div class="col-lg-12 col-sm-12 col-xs-12">
           <div class="contact-block">
-            <form  action="./mail1/mailer.php" method="POST">
+            <form  action="../mail1/mail2.php" method="POST">
             	
 
               <div class="row">
                 <div class="col-md-12">
-                  <h3>Place your order</h3>
+               
                   <div class="col-md-12">
                     <div class="form-group">
-                      <input id="dish" class="form-control" name="dish"  placeholder="Please enter your dish"type="text" value="" equired data-error="??">
+                      <input id="dish" class="form-control" name="dish" =type="text" value="<?PHP echo $offer['nom_offre']; ?>" equired data-error="??">
                       <div class="help-block with-errors"></div>
                     </div>                                 
                   </div>
@@ -192,41 +266,19 @@ $listeOffers=$offreC->afficherOffre();
                  
                   <div class="col-md-12">
                     <div class="form-group">
-                      <select class="custom-select d-block form-control" name="meat" id="meat" required data-error="Please select your prefered meat">
-                        <option disabled selected>Select Meat Type*</option>
-                        <option value="Chicken">Chicken</option>
-                        <option value="Beef">Beef</option>
-                        <option value="Lamb">Lamb</option>
-                        <option value="Fish">Fish</option>
-                        <option value="Vegetarian">Vegetarian</option>
-                      </select>
+                      <input type="text" name="wasf" class="form-control" value="<?PHP echo $offer['descrip_offre']; ?>" readonly required autofocus>
                       <div class="help-block with-errors"></div>
                     </div> 
                   </div>
                    <div class="col-md-12">
                     <div class="form-group">
-                      <select class="custom-select d-block form-control"  name="option" id="option" required data-error="Please select the options">
-                        <option disabled selected>Select Option*</option>
-                        <option value="Vegetables">Vegetables</option>
-                        <option value="Chickpeas">Chickpeas</option>
-                        <option value="Fava beans">Fava beans</option>
-                        <option value="dried raisins">dried raisins </option>
-                      </select>
+                       <input type="text" name="naw3" class="form-control" value="<?PHP echo $offer['type_offre']; ?>" readonly required autofocus>
                       <div class="help-block with-errors"></div>
                     </div> 
                   </div>  
                   <div class="col-md-12">
                     <div class="form-group">
-                      <select class="custom-select d-block form-control"  name="person" id="person" required data-error="Please select the number of people">
-                        <option disabled selected>Select Person*</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                      </select>
+                      <input type="text" name="soum" class="form-control" value="<?PHP echo $offer['prix_offre']; ?>" readonly required autofocus>
                       <div class="help-block with-errors"></div>
                     </div> 
                   </div> 
@@ -234,25 +286,25 @@ $listeOffers=$offreC->afficherOffre();
                     <div class="form-group">
 
 
-                      <input id="date" class="datepicker picker__input form-control" name="date" 
-                       placeholder="Please enter the date you want it delivered" type="date" value="">
                       <div class="help-block with-errors"></div>
                     </div>                                 
                   </div>
                   <div class="col-md-12">
+                  	 <input type="text" name="pro" class="form-control" value="<?PHP echo $offer['etat_offre']; ?>" readonly required autofocus>
                     <div class="form-group">
-                      <input id="time" class="time form-control picker__input"  name="time" 
-                       placeholder="Please enter the time you want it delivered" type="time" value="" required data-error="Please enter time">
+               
                       <div class="help-block with-errors"></div>
                     </div>                                 
                   </div>
                   
-                
+               <?php
+		}
+		 ?>
 
           <!-- Cable Configuration -->
  
 
-            <a href="#"> See the gift * </a>
+         <a href="../mail1/mail2.php"> See the Offre * </a>
           </div>
         </div> 
 <div class="product-price">
@@ -261,15 +313,52 @@ $listeOffers=$offreC->afficherOffre();
            <div class="container1"></div>
 
                      <input type="submit" value="Submit"class="btn-55"> 
-					 <input type="submit" value="send a private message"class="btn-55" > 
+					
 				
 
             </div>
       </div> </div>
   </form>
     </main> 
+<div class="row special-list">
+             	<?PHP
+				foreach($listeOffers as $offer){
+			?>
+			
+				<div class="col-lg-4 col-md-6 special-grid lunch">
+   <!--   <th scope="row"> <input type="checkbox" /></th> -->
+                  <div class="gallery-single fix" style="height: 200px ;">
+                   <img src="../imageweb/<?php echo $offer['image_offre'];?>" class="img-fluid"  width="350px" height="400px">
+                      <div class="why-text">
+				<!--	<h5><?PHP echo $offer['id_offre']; ?> </h5>  -->
+				<h2>	<?PHP echo $offer['nom_offre']; ?> </h2>
+				<h3>	<?PHP echo $offer['etat_offre']; ?> </h3>
+					<!-- <td><?PHP echo $offer['image_offre']; ?></td> --> 
+					<p><?PHP echo $offer['descrip_offre']; ?></p>
+					<h4><?PHP echo $offer['type_offre']; ?></h4>
+					<h4><?PHP echo $offer['prix_offre']; ?></h4>
+					 <h4> <a class="btn btn-lg btn-circle btn-outline-new-black" href="buyoffre.php?id_offre=<?PHP echo $offer['id_offre']; ?>">Get it</a> 
+					 <a class="btn btn-lg btn-circle btn-outline-new-black" href="../mail1/mail2.php?id_offre=<?PHP echo $offer['id_offre']; ?>">Send it to a friend</a> </h4> 
+					  <h4>   </h4>
+					</div>
+						 
+                  <!--    <a href="#" class="tm-product-delete-link">
+                        <i class="far fa-trash-alt tm-product-delete-icon"></i>
+                      </a> -->
+                    
+					</div>	
+						
+				
+				
+				</div>
+			
+			<?PHP
+				}
+			?> 
+				</div>
 
 
+>>>>>>> 4483577afb787f9f4040cf9d9ff5c4fa570a8480:PureBowl/View/buyoffre.php
 	
 	<!-- Start Customer Reviews -->
 	<div class="customer-reviews-box">

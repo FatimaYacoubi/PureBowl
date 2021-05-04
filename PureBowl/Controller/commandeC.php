@@ -52,6 +52,8 @@
 			}	
 		}
 
+	
+
 		function supprimercommande($id){
 			$sql="DELETE FROM commande WHERE id= :id";
 			$db = config::getConnexion();

@@ -6,8 +6,8 @@ require_once "../config.php";
 class utilisateurC
 {
     function ajouterutilisateur($Utilisateur){
-        $sql="INSERT INTO Compte (nom,prenom,email,login,password,adresse,tel) 
-            VALUES (:nom,:prenom,:email,:login,:password,:adresse,:tel)";
+        $sql="INSERT INTO Compte (nom,prenom,email,login,password,adresse,tel,role) 
+            VALUES (:nom,:prenom,:email,:login,:password,:adresse,:tel,:role)";
         $db = config::getConnexion();
         try{
             $query = $db->prepare($sql);
@@ -19,7 +19,8 @@ class utilisateurC
                 'login' => $Utilisateur->getLogin(),
                 'password' => $Utilisateur->getPassword(),
                 'adresse' => $Utilisateur->getAdresse(),
-                'tel' => $Utilisateur->getTel()
+                'tel' => $Utilisateur->getTel(),
+                'role'=>$Utilisateur->getrole()
             ]);
         }
         catch (Exception $e){
