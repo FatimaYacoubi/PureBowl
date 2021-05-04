@@ -30,6 +30,9 @@ if (
         ($_POST["password"]==$_POST["password1"])
 
     ) { 
+        $_CLIENT['e'] = $_POST["email"];
+        $_CLIENT['l'] = $_POST["login"];
+        $_CLIENT['t'] = $_POST["tel"];
         $user = new utilisateur(
             $_POST['nom'],
             $_POST['prenom'],

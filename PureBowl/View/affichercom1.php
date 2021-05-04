@@ -1,9 +1,34 @@
 
 <?PHP
   include "../Controller/commandeC.php";
-
+  require_once ("db.php");
+$db_handle = new DBController();
   $commandeC=new commandeC();
   $listeUsers=$commandeC->affichercommande();
+  switch ($_GET["action"]) {
+    case "show_discount":
+       
+            if (! empty($_POST["discountCode"])) {
+                $priceByCode = $db_handle->runQuery("SELECT price FROM coupon WHERE discount_code='" . $_POST["discountCode"] . "'");
+                
+                if (! empty($priceByCode)) {
+                    foreach ($priceByCode as $key => $value) {
+                        $discountPrice = $priceByCode[$key]["price"];
+                    }
+                    if (! empty($discountPrice) && $discountPrice > $_POST["totalPrice"]) {
+                        $message = "Invalid Discount Coupon";
+                    }
+                } else {
+                    $message = "Invalid Discount Coupon";
+                }
+            }
+         else {
+            $message = "Not applicable. The cart is empty";
+        }
+        break;
+   
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -118,6 +143,9 @@ button:disabled:hover  {
 
    </style>
 <!-- End Styles -->     <title> Pure Bowl</title>  
+<form id="applyDiscountForm" method="post"
+        action="affichercom1.php?action=show_discount"
+        onsubmit="return validate();">
 
    <meta name="keywords" content=""> 
     <meta name="description" content="">
@@ -145,74 +173,9 @@ button:disabled:hover  {
     <!-- Custom CSS -->
     <link rel="stylesheet" href="../css/custom.css">
   </head>
-
-
-
-  <!--<body>
-      <header class="top-navbar">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="container">
-        <a class="navbar-brand" href="../index.html">
-          <img src="../images/logo.png" alt="" />
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbars-rs-food" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbars-rs-food">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
-            <li class="nav-item"><a class="nav-link" href="../menu.php">Menu</a></li>
-            <li class="nav-item active dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Cart</a>
-              <div class="dropdown-menu" aria-labelledby="dropdown-a">
-                <a class="dropdown-item" href="../reservation.html">Your Cart</a>
-                <a class="dropdown-item" href="../stuff.html">Orders History</a>
-              </div>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Offres</a>
-              <div class="dropdown-menu" aria-labelledby="dropdown-a">
-                <a class="dropdown-item" href="../offre.html">Offre</a>
-                <a class="dropdown-item" href="../offre.html">Promotion</a>
-                </div>
-              </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Blog</a>
-              <div class="dropdown-menu" aria-labelledby="dropdown-a">
-                <a class="dropdown-item" href="../blog.html">blog</a>
-                <a class="dropdown-item" href="../blog-details.html">blog Single</a>
-              </div>
-            </li>
-            <li class="nav-item"><a class="nav-link" href="../reclamation.html">Reclamation</a></li>
-            <li class="nav-item"><a class="nav-link" href="../gift.html">Gift</a></li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Sign in</a>
-              <div class="dropdown-menu" aria-labelledby="dropdown-a">
-                <a class="dropdown-item" href="../login.html">As an administrator</a>
-                <a class="dropdown-item" href="../blog-details.html">As a client</a>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-  </header> -->
-  <!-- End header -->
   
     <main class="container">
-<script type="text/javascript">
-  document.addEventListener('click',hide2)
-function hide2()
-{    if(currentStep===2)
 
- {document.getElementById("55t").style.display="block";
- }
-           
-
-               else  document.getElementById("55t").style.display="none";
-               
-}
-</script>
     
 
         <br>
@@ -230,7 +193,7 @@ function hide2()
     <div class="bullet">2</div>
   </div>
   <div class="step">
-    <p class="step-text">Delivery</p>
+    <p class="step-text">Your Adress</p>
     <div class="bullet">3</div>
   </div>
   <div class="step">
@@ -243,14 +206,6 @@ function hide2()
 </div> 
 
   <table align="center" id="orders" style="width:800px; line-height:40px;" class="myOtherTable"> 
-    <tr>
-      <td colspan="3">
-        <a href="statecommande.php"  > 
-                       <button class="btn-222" style="color:black">See stats</button>
-
-                      </a>
-      </td>
-    </tr>
   <tr> 
           </div>
         </div>
@@ -265,8 +220,7 @@ function hide2()
                 <th> Price </th> 
 
         <th> Edit </th> 
-                <th> Delete </th>
-                <th> Claim </th> 
+                <th> Delete </th> 
 
         
         
@@ -303,14 +257,28 @@ function hide2()
                         <input type="hidden" value=<?PHP echo $user['id']; ?> name="id">
                         </form>
           </td>
-           <td>
-                                <a href="reclamation.php?id=<?PHP echo $user['id']; ?>"  > 
-                       <button class="btn-222" style="color:black">Claim</button>
-
-                      </a>
-                    </td>
     </tr> 
-
+    <?php     
+                if (!empty($discountPrice) && $sum > $discountPrice) {
+                    $total_price_after_discount = $sum - $discountPrice;
+            ?>
+                    <tr>
+                        <td colspan="3" align="right">Discount:<input
+                            type="hidden" name="discountPrice"
+                            id="discountPrice"
+                            value="<?php echo $discountPrice; ?>"></td>
+                        <td align="right" colspan="2"><strong><?php echo "$ " . number_format($discountPrice, 2); ?></strong></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" align="right">Total after
+                            Discount:</td>
+                        <td align="right" colspan="2"><strong><?php echo "$ " . number_format($total_price_after_discount, 2); ?></strong></td>
+                        <td></td>
+                    </tr>
+                    <?php 
+                }
+                ?>
   <?php 
                } 
           ?> 
@@ -318,9 +286,26 @@ function hide2()
 
     echo $sum;
             ?></strong> DT</h1>
-
           </div>
         </table> 
+        <div id="discount-grid">
+            <div class="discount-section">
+                <div class="discount-action">
+                    <span id="error-msg-span" class="error-message">
+                    <?php
+                    if (! empty($message)) {
+                        echo $message;
+                    }
+                    ?>
+                    </span> <span></span><input type="text"
+                        class="discount-code" id="discountCode"
+                        name="discountCode" size="15"
+                        placeholder="Enter Coupon Code" /><input
+                        id="btnDiscountAction" type="submit"
+                        value="Apply Discount" class="btnDiscountAction" />
+                </div>
+            </div>
+        </div>
 
    <br>
   <br>
@@ -331,62 +316,8 @@ function hide2()
   <button align="center" id="finishBtn" class="btn-222" color="black">Finish</button>
   </div> 
   </main>
+  </form>
 
-
-
-
-   <form action="ajouterCompte.php" id="55t" method="post" align="center">
-       <div class="row">
-                   <div class="col-md-12">
-            <div class="form-group">
-                            <h1 class="m-b-20"> Commande instantannée</h1>
-                </div> 
-<br>
-        <div class="row">
-                   <div class="col-md-12">
-            <div class="form-group">
-
-
-                        <input name="nom" type="text" placeholder="nom" required="">
-
-
-<BR> </div> </div>
-        <div class="row">
-                   <div class="col-md-12">
-            <div class="form-group">
-
-                        <input name="prenom" type="text" placeholder="prenom" required="">
-                <br> </div> </div>
-                <div class="row">
-                   <div class="col-md-12">
-            <div class="form-group">
-        <input name="email" type="text" pattern=".+@gmail.com|.+@esprit.tn" placeholder="email" required="">
-<br> </div> </div>
- 
-        <div class="row">
-                   <div class="col-md-12">
-            <div class="form-group">
-                        <input name="login" type="text" placeholder="login" required="">
-<br> </div> </div>
-                       
-        <div class="row">
-                   <div class="col-md-12">
-            <div class="form-group"> <input name="adresse" type="text" placeholder="ville" required="">
-    <br> </div> </div> 
-                       
-        <div class="row">
-                   <div class="col-md-12">
-            <div class="form-group"> 
-              <input name="tel" type="text" placeholder="tel" required="">
-<br> </div> </div>
-
-<div id="aDiv">
-
-        </form> 
-<div align="center"> <?php echo ($error) ?> </div>
-
-
-</div>
   <div class="customer-reviews-box">
     <div class="container">
       <div class="row">
@@ -553,3 +484,16 @@ function hide2()
 </body>
 </html>
   
+<script>
+function validate() {
+    var valid= true;
+     if($("#discountCode").val() === "") {
+        valid = false;
+     }
+
+     if(valid == false) {
+         $('#error-msg-span').text("Discount Coupon Required");
+     }
+     return valid;
+}
+</script>

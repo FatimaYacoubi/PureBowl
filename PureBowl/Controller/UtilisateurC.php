@@ -6,8 +6,8 @@ require_once "../config.php";
 class utilisateurC
 {
     function ajouterutilisateur($Utilisateur){
-        $sql="INSERT INTO Compte (nom,prenom,email,login,password,adresse,tel) 
-            VALUES (:nom,:prenom,:email,:login,:password,:adresse,:tel)";
+        $sql="INSERT INTO Compte (nom,prenom,email,login,password,adresse,tel,role) 
+            VALUES (:nom,:prenom,:email,:login,:password,:adresse,:tel,:role)";
         $db = config::getConnexion();
         try{
             $query = $db->prepare($sql);
@@ -19,7 +19,8 @@ class utilisateurC
                 'login' => $Utilisateur->getLogin(),
                 'password' => $Utilisateur->getPassword(),
                 'adresse' => $Utilisateur->getAdresse(),
-                'tel' => $Utilisateur->getTel()
+                'tel' => $Utilisateur->getTel(),
+                'role'=>$Utilisateur->getrole()
             ]);
         }
         catch (Exception $e){
@@ -40,7 +41,30 @@ class utilisateurC
             die('Erreur: ' . $e->getMessage());
         }
     }
-
+    function afficherutilisateur1()
+    {
+        $sql = "SELECT * FROM Compte limit 1";
+        $db = config::getConnexion();
+        try {
+            $liste = $db->query($sql);
+            return $liste;
+        } catch (Exception $e) {
+            die('Erreur: ' . $e->getMessage());
+        }
+    }
+    function afficherprofil($email)
+    {
+        $sql = "SELECT FROM Compte where email=:email";
+         $db = config::getConnexion();
+        $req=$db->prepare($sql);
+        $req->bindValue(':email',$email);
+        try{
+            $req->execute();
+        }
+        catch (Exception $e){
+            die('Erreur: '.$e->getMessage());
+        }
+    }
 
 
     function supprimerutilisateur($idClient){
@@ -141,5 +165,23 @@ class utilisateurC
             $message = " " . $e->getMessage();
         }
         return $message;
+    }
+    function recuperercompte($email)
+    {
+       $sql="SELECT * from Compte where email=:email";
+        $db = config::getConnexion();
+        try{
+            $query=$db->prepare($sql);
+            $query->execute([
+                'email'=> $email
+                ]
+            );
+
+            $user = $query->fetch(PDO::FETCH_OBJ);
+            return $user;
+        }
+        catch (Exception $e){
+            die('Erreur: '.$e->getMessage());
+        }
     }
 }

@@ -1,3 +1,24 @@
+<?php
+include "../Controller/UtilisateurC.php";
+$utilisateurC=new utilisateurC();
+
+// On prolonge la session
+session_start();
+//fichier lekhor
+
+
+$user=$utilisateurC->recuperercompte($_SESSION['e']);
+	
+
+// On teste si la variable de session existe et contient une valeur
+if(empty($_SESSION['e']))
+{
+	
+    // Si inexistante ou nulle, on redirige vers le formulaire de login
+    header('Location:login.php');
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en"><!-- Basic -->
 <head>
@@ -13,81 +34,103 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <!-- Site Icons 
-    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
-	-->
-	<link rel="gift" href="css/animate2.css">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">  
-	<!-- Site CSS -->
-    <link rel="stylesheet" href="css/style.css">
-	    <!-- Responsive CSS -->
-    <link rel="stylesheet" href="css/responsive.css">
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/custom.css">
-	
+    <!-- Site Icons -->
+    <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png">
 
-    <!-- [if lt IE 9] -->
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../css/bootstrap.min.css">    
+	<!-- Site CSS -->
+    <link rel="stylesheet" href="../css/style.css">    
+	<!-- Pickadate CSS -->
+    <link rel="stylesheet" href="../css/classic.css">    
+	<link rel="stylesheet" href="../css/classic.date.css">    
+	<link rel="stylesheet" href="../css/classic.time.css">    
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="../css/responsive.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../css/custom.css">
+
+    <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-   <!-- [endif] -->
-  
+    <![endif]-->
 
- 
 </head>
-
+<style >
+	input.controle {
+  outline:0;
+  font-size:22px;
+  width:510px;
+}	
+label.label {
+  display:inline-block;
+  width:200px;
+  text-align: right;
+  font-style: italic;
+  margin-right:5px;
+}
+input.controle:valid {
+  border:3px solid #0a0;
+}
+input.controle:invalid {
+  border:3px solid #a00;
+}
+input.controle:valid + span:before  {
+  content: "\f00c";
+  font-family: "FontAwesome";
+  color:#0a0;
+  font-size: 1.5em;
+}	
+input.controle:invalid + span:before  {
+  content: "\f00d";
+  font-family: "FontAwesome";
+  color:#a00;
+  font-size: 1.5em;
+}
+</style>
 <body>
-	<!-- Start header -->
-	
+        	<!-- Start header -->
+        	
 	<header class="top-navbar">
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
 			<div class="container">
-				<a class="navbar-brand" href="index.html">
-					<img src="images/logo.png" alt="" />
+				<a class="navbar-brand" href="../index.html">
+					<img src="../images/logo.png" alt="" />
 				</a>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbars-rs-food" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
 				  <span class="navbar-toggler-icon"></span>
 				</button>
 				<div class="collapse navbar-collapse" id="navbars-rs-food">
 					<ul class="navbar-nav ml-auto">
-						<li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-						<li class="nav-item "><a class="nav-link" href="menu.php">Menu</a></li>
-						<li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+						<li class="nav-item "><a class="nav-link" href="../index.html">Home</a></li>
+						<li class="nav-item"><a class="nav-link" href="menu.php">Menu</a></li>
+						<li class="nav-item"><a class="nav-link" href="../about.html">About</a></li>
 						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Pages</a>
-							<div class="dropdown-menu" aria-labelledby="dropdown-a">
-								<a class="dropdown-item" href="reservation.html">Reservation</a>
-								<a class="dropdown-item" href="stuff.html">Stuff</a>
-								<a class="dropdown-item" href="gallery.html">Gallery</a>
-							</div>
 						</li>
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Offres</a>
 							<div class="dropdown-menu" aria-labelledby="dropdown-a">
-								<a class="dropdown-item" href="offre.html">Offre</a>
-								<a class="dropdown-item" href="offre.html">Promotion</a>
+								<a class="dropdown-item" href="../offre.html">Offre</a>
+								<a class="dropdown-item" href="../offre.html">Promotion</a>
 								</div>
 							</li>
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Blog</a>
 							<div class="dropdown-menu" aria-labelledby="dropdown-a">
-								<a class="dropdown-item" href="blog.html">blog</a>
-								<a class="dropdown-item" href="blog-details.html">blog Single</a>
+								<a class="dropdown-item" href="blog.php">blog</a>
+								<a class="dropdown-item" href="nouveauteblog.php">Nouveaute</a>
 							</div>
 						</li>
-						<li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-						<li class="nav-item"><a class="nav-link" href="reclamation.html">Reclamation</a></li>
-						<li class="nav-item active "><a class="nav-link" href="gift.html">Gift</a></li>
+						<li class="nav-item"><a class="nav-link" href="affichercommande.php">My orders</a></li>
+						<li class="nav-item"><a class="nav-link" href="../gift.html">Gift</a></li>
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Sign in</a>
 							<div class="dropdown-menu" aria-labelledby="dropdown-a">
-								<a class="dropdown-item" href="login.html">As an administrator</a>
-								<a class="dropdown-item" href="blog-details.html">As a client</a>
-
+								<a class="dropdown-item" href="../login.html">As an administrator</a>
+								<a class="dropdown-item" href="../blog-details.html">As a client</a>
 							</div>
 						</li>
-
 					</ul>
 				</div>
 			</div>
@@ -100,149 +143,113 @@
 		<div class="container text-center">
 			<div class="row">
 				<div class="col-lg-12">
-					<h1>Special Menu</h1>
+					<h1>Help us be better</h1>
 				</div>
 			</div>
 		</div>
 	</div>
 	<!-- End All Pages -->
-
-	<!--video part-->
-	<div class="banner">
-	<video autoplay="" muted="" loop="">
-		<source src="images/gift.mp4" type="video/mp4">
-	</video>	
-	<div id="ll"></div>
-	<script type="text/javascript">
-	let ll = document.querySelector('#ll');
-	window.addEventListener('scroll',function(){
-		let value =window.scrollY;
-		bg.style.backgroungSize = 1000 + value*2 +"px";
-	})
 	
-	</script>
-
-	<!-- Start Menu -->
-	<div class="menu-box">
+	<!-- Start Reservation -->
+	
+	<div class="reservation-box">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="heading-title text-center">
-						<h2>Our Special Offres </h2>
-						<p>it's not how much we give , but how much love we put into giving.</p>
+						<h2>Reclamation Box</h2>
+						<p>What's wrong with your order </p>
 					</div>
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-lg-12">
-					<div class="special-menu text-center">
-						<div class="button-group filter-button-group">
-							<button class="active" data-filter="*">All</button>
-							<button data-filter=".chocolate">chocolate</button>
-							<button data-filter=".break">Breakfest box</button>
-							<!--<button data-filter=".dinner">Dinner</button>-->
-						</div>
+				<div class="col-lg-12 col-sm-12 col-xs-12">
+					<div id="error">
+        </div>
+					<div class="contact-block">
+						<form action="connexion.php" method="POST">
+							<div class="row">
+								<div class="col-md-6">
+									<h3>Tell us what's wrong</h3>
+									<div class="col-md-12">
+										<div class="form-group">
+											<textarea name="description" id="description" cols="30" rows="10" class="form-control" placeholder="Please describe your reclamation" required></textarea>
+											<div class="help-block with-errors"></div>
+										</div>                                 
+									</div>
+									<div class="col-md-12">
+										<div class="form-group">
+											<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+           <script >
+          $(document).ready(function(){
+
+        var dtToday= new Date();
+        var month= dtToday.getMonth()+1;
+        var day= dtToday.getDate();
+        var year=dtToday.getFullYear();
+        if(month<10)
+            month='0'+month.toString();
+        if(day<10)
+        day='0'+day.toString();
+        var maxDate = year+'-'+month+'-'+day;
+        $('#dateControl').attr('value',maxDate);
+            })
+            </script>
+                                <input id="dateControl"  name="date"  type="hidden" >
+                      <div class="help-block with-errors"></div>
+										</div>                                 
+									</div>
+									
+								</div>
+								<div class="col-md-6">
+									<h2><strong>Contact Details<strong>s</h2>
+									<h3>Username</h3>
+									<div class="col-md-12">
+										<div class="form-group">
+											<input type="text"  class="controle" id="nomClient" name="nomClient" required pattern="[a-zA-Z-\.]{3,20}" placeholder="Your Name" required data-error="Please enter your name" value="<?php echo $user->nom; ?>">
+											<div class="help-block with-errors"></div>
+										</div>                                 
+									</div>
+									<h3>Email</h3>
+									<div class="col-md-12">
+										<div class="form-group">
+											<input type="text" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" placeholder="Your Email(Example@example.com)" id="emailClient" class="controle" name="emailClient"    required data-error="Please enter your email" value="<?PHP echo $_SESSION['e']; ?>">
+											<div class="help-block with-errors"></div>
+										</div> 
+									</div>
+									<h3>Phone Number</h3>
+									<div class="col-md-12">
+										<div class="form-group">
+											<input type="text" placeholder="Your number(8 digits)" id="phoneClient" class="controle" name="phoneClient" required pattern="[0-9]{8}" value="<?php echo $user->tel; ?>">
+											<div class="help-block with-errors"></div>
+										</div> 
+									</div>
+									<h3>Order's number</h3>
+									<div class="col-md-12">
+										<div class="form-group">
+											<input type="text" placeholder="your order's number" id="IDCommande" class="controle" name="IDCommande" required   value=<?php echo $_GET['id'];?>>
+											<div class="help-block with-errors"></div>
+										</div> 
+									</div>
+								</div>
+								<div class="col-md-12">
+									<div class="submit-button text-center">
+										<button class="btn btn-common" id="submit" type="submit" > Place your claim</button>
+										
+										<div id="msgSubmit" class="h3 text-center hidden"></div> 
+										<div class="clearfix"></div> 
+									</div>
+								</div>
+							</div>            
 					</div>
 				</div>
 			</div>
-				
-			<div class="row special-list">
-				<div class="col-lg-4 col-md-6 special-grid chocolate">
-					<div class="gallery-single fix">
-						<img src="images/choco1.jpg" class="img-fluid" alt="Image">
-						<div class="why-text">
-							<h4>chocolate coockies</h4>
-							<p></p>
-							<h4>7 Dt</h4>
-							<h4> <a class="btn btn-lg btn-circle btn-outline-new-black" href="giftLook.php">Get it</a>  </h4> 
-						</div>
-					</div>
-				</div>
-				
-				<div class="col-lg-4 col-md-6 special-grid chocolate">
-					<div class="gallery-single fix">
-						<img src="images/choco2.png" class="img-fluid" alt="Image">
-						<div class="why-text">
-							<h4>Dark chocolate balls</h4>
-							<p></p>
-							<h4>18 Dt</h4>
-							 <h4> <a class="btn btn-lg btn-circle btn-outline-new-black" href="giftLook.html">Get it</a>  </h4> 
-						</div>
-					</div>
-				</div>
-				
-				<div class="col-lg-4 col-md-6 special-grid break">
-					<div class="gallery-single fix">
-						<img src="images/br1.png" class="img-fluid" alt="Image">
-						<div class="why-text">
-							<h4>sweet morning</h4>
-							<p></p>
-							<h5> 9 Dt</h5>
-							 <h4> <a class="btn btn-lg btn-circle btn-outline-new-black" href="giftLook.html">Get it</a>  </h4> 
-						</div>
-					</div>
-				</div>
-				
-				<div class="col-lg-4 col-md-6 special-grid chocolate">
-					<div class="gallery-single fix">
-						<img src="images/choco3.jpg" class="img-fluid" alt="Image">
-						<div class="why-text">
-							<h4>chocolate dates</h4>
-							<p></p>
-							<h4> 10 Dt</h4>
-							<h4> <a class="btn btn-lg btn-circle btn-outline-new-black" href="giftLook.html">Get it</a>  </h4> 
-						</div>
-					</div>
-				</div>
-				
-				
-				
-				<div class="col-lg-4 col-md-6 special-grid break">
-					<div class="gallery-single fix">
-						<img src="images/br2.png" class="img-fluid" alt="Image">
-						<div class="why-text">
-							<h4>special breakfest </h4>
-							<p></p>
-							<h4> 12 Dt</h4>
-							<h4> <a class="btn btn-lg btn-circle btn-outline-new-black" href="giftLook.html">Get it</a>  </h4> 
-						</div>
-					</div>
-				</div>
-				
-				<div class="col-lg-4 col-md-6 special-grid break">
-					<div class="gallery-single fix">
-						<img src="images/br3.png" class="img-fluid" alt="Image">
-						<div class="why-text">
-							<h4>the big feast</h4>
-							<p></p>
-							<h5> 19 Dt</h5>
-							<h4> <a class="btn btn-lg btn-circle btn-outline-new-black" href="giftLook.html">Get it</a>  </h4> 
-						</div>
-					</div>
-				</div>
-				
-	
-			</div>
+		</form>
 		</div>
 	</div>
-	 <!--End Menu -->
+	<!-- End Reservation -->
 	
-	<!-- Start QT 
-	<div class="qt-box qt-background">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-8 ml-auto mr-auto text-left">
-					<p class="lead ">
-						" If you're not the one cooking, stay out of the way and compliment the chef. "
-					</p>
-					<span class="lead">Michael Strahan</span>
-				</div>
-			</div>
-		</div>
-	</div>
-	 End QT -->
-	
-	<!-- Start Customer Reviews 
+	<!-- Start Customer Reviews -->
 	<div class="customer-reviews-box">
 		<div class="container">
 			<div class="row">
@@ -295,8 +302,9 @@
 			</div>
 		</div>
 	</div>
-	 End Customer Reviews -->
-		<!-- Start Contact info 
+	<!-- End Customer Reviews -->
+	
+	<!-- Start Contact info -->
 	<div class="contact-imfo-box">
 		<div class="container">
 			<div class="row">
@@ -330,8 +338,7 @@
 			</div>
 		</div>
 	</div>
-	 End Contact info -->
-	
+	<!-- End Contact info -->
 	
 	<!-- Start Footer -->
 	<footer class="footer-area bg-f">
@@ -360,7 +367,6 @@
 						<form class="subscribe_form">
 							<input name="EMAIL" id="subs-email" class="form_input" placeholder="Email Address..." type="email">
 							<button type="submit" class="submit">SUBSCRIBE</button>
-							
 							<div class="clearfix"></div>
 						</form>
 					</div>
@@ -379,7 +385,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-12">
-						<p class="company-name">All Rights Reserved. &copy; 2021 <a href="#">Pure Bowl</a> Design By : 
+						<p class="company-name">All Rights Reserved. &copy; 2018 <a href="#">Yamifood Restaurant</a> Design By : 
 					<a href="https://html.design/">html design</a></p>
 					</div>
 				</div>
@@ -389,20 +395,23 @@
 	</footer>
 	<!-- End Footer -->
 	
-	
 	<a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
 
 	<!-- ALL JS FILES -->
-	<script src="js/jquery-3.2.1.min.js"></script>
-	<script src="js/popper.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
+	<script src="../js/jquery-3.2.1.min.js"></script>
+	<script src="../js/popper.min.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
     <!-- ALL PLUGINS -->
-	<script src="js/jquery.superslides.min.js"></script>
-	<script src="js/images-loded.min.js"></script>
-	<script src="js/isotope.min.js"></script>
-	<script src="js/baguetteBox.min.js"></script>
-	<script src="js/form-validator.min.js"></script>
-    <script src="js/contact-form-script.js"></script>
-    <script src="js/custom.js"></script>
+	<script src="../js/jquery.superslides.min.js"></script>
+	<script src="../js/images-loded.min.js"></script>
+	<script src="../js/isotope.min.js"></script>
+	<script src="../js/baguetteBox.min.js"></script>
+	<script src="../js/picker.js"></script>
+	<script src="../js/picker.date.js"></script>
+	<script src="../js/picker.time.js"></script>
+	<script src="../js/legacy.js"></script>
+	<script src="../js/form-validator.min.js"></script>
+    <script src="../js/contact-form-script.js"></script>
+    <script src="../js/custom.js"></script>
 </body>
 </html>
