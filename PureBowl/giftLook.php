@@ -105,7 +105,7 @@
 								<a class="dropdown-item" href="blog-details.html">blog Single</a>
 							</div>
 						</li>
-						<li class="nav-item"><a class="nav-link" href="affichercommande.php">My orders</a></li>
+						<li class="nav-item"><a class="nav-link" href="affichercom1.php">My orders</a></li>
 						<li class="nav-item"><a class="nav-link" href="reclamation.html">Reclamation</a></li>
 						<li class="nav-item active "><a class="nav-link" href="gift.html">Gift</a></li>
 						<li class="nav-item dropdown">
@@ -143,7 +143,7 @@
 
         <!-- Product Description -->
         <div class="product-description">
-          <span>COUSCOUS</span>
+          <span>chocolate cookies</span>
         <br>
       	<br>
       	<br>
@@ -152,13 +152,13 @@
           <h1>     </h1>
           <h1>    </h1>
           <h1>     </h1>
-            <h1>Couscous</h1>
+            <h1>chocolate cookies</h1>
             <!-- Product Pricing -->
         <div class="product-price">
-          <span>15 DT</span>
+          <span>7 DT</span>
         </div>
-          <p>Couscous is the national tunisian dish.
-          when you order this you'll get ; Prepared couscous , couscous salsa , flavorings and meat </p>
+          <p>
+			‬‏These Chocolate Cookies are somewhere between a cookie and a brownie. They're soft and chewy withchocolate in every single bite </p>
         </div>
 
         <!-- Product Configuration -->
@@ -168,29 +168,27 @@
           <div class="row">
         <div class="col-lg-12 col-sm-12 col-xs-12">
           <div class="contact-block">
-            <form  action="./mail1/mailer.php" method="POST">
+            <form  action="view/passercommande.php" /*action="./mail1/mailer.php"*/ method="POST">
             	
 
               <div class="row">
                 <div class="col-md-12">
                   <h3>Place your order</h3>
                   <div class="col-md-12">
-                    <div class="form-group">
-                      <input id="dish" class="form-control" name="dish"  placeholder="Please enter your dish"type="text" value="" equired data-error="??">
-                      <div class="help-block with-errors"></div>
-                    </div>                                 
+					<div class="form-group">
+						<input id="dish" class="form-control" name="dish"  placeholder="Please enter your Gift"type="text" value="" equired data-error="??">
+						<div class="help-block with-errors"></div>
+					  </div>                                                           
                   </div>
 
                  
                   <div class="col-md-12">
                     <div class="form-group">
-                      <select class="custom-select d-block form-control" name="meat" id="meat" required data-error="Please select your prefered meat">
-                        <option disabled selected>Select Meat Type*</option>
-                        <option value="Chicken">Chicken</option>
-                        <option value="Beef">Beef</option>
-                        <option value="Lamb">Lamb</option>
-                        <option value="Fish">Fish</option>
-                        <option value="Vegetarian">Vegetarian</option>
+                      <select class="custom-select d-block form-control" name="meat" id="meat" required data-error="Please select your prefered chocolate">
+                        <option disabled selected>Select chocolate Type*</option>
+                        <option value="White">White chocolate</option>
+                        <option value="Dark">Dark chocolate</option>
+                        <option value="Milk">Milk chocolate</option>
                       </select>
                       <div class="help-block with-errors"></div>
                     </div> 
@@ -199,18 +197,17 @@
                     <div class="form-group">
                       <select class="custom-select d-block form-control"  name="option" id="option" required data-error="Please select the options">
                         <option disabled selected>Select Option*</option>
-                        <option value="Vegetables">Vegetables</option>
-                        <option value="Chickpeas">Chickpeas</option>
-                        <option value="Fava beans">Fava beans</option>
-                        <option value="dried raisins">dried raisins </option>
+                        <option value="nuts">with nuts</option>
+                        <option value="berries">with Berries</option>
+                       <option value="fruits">dried fruits </option>
                       </select>
                       <div class="help-block with-errors"></div>
                     </div> 
                   </div>  
                   <div class="col-md-12">
                     <div class="form-group">
-                      <select class="custom-select d-block form-control"  name="person" id="person" required data-error="Please select the number of people">
-                        <option disabled selected>Select Person*</option>
+                      <select class="custom-select d-block form-control"  name="person" id="person" required data-error="Please select the number of people ">
+                        <option disabled selected>for each person one box*</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -225,25 +222,40 @@
                   <div class="col-md-12">
                     <div class="form-group">
 
+						<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+						<script >
+						$(document).ready(function(){
+						
+							var dtToday= new Date();
+							var month= dtToday.getMonth()+1;
+							var day= dtToday.getDate();
+							var year=dtToday.getFullYear();
+							if(month<10)
+								month='0'+month.toString();
+							if(day<10)
+								day='0'+day.toString();
+							var maxDate = year+'-'+month+'-'+day;
+						$('#dateControl').attr('min',maxDate);
+						})
+						</script>
 
-                      <input id="date" class="datepicker picker__input form-control" name="date" 
-                       placeholder="Please enter the date you want it delivered" type="date" value="">
-                      <div class="help-block with-errors"></div>
-                    </div>                                 
-                  </div>
-                  <div class="col-md-12">
-                    <div class="form-group">
-                      <input id="time" class="time form-control picker__input"  name="time" 
-                       placeholder="Please enter the time you want it delivered" type="time" value="" required data-error="Please enter time">
-                      <div class="help-block with-errors"></div>
-                    </div>                                 
-                  </div>
+<input id="dateControl" class="datepicker picker__input form-control" name="date" 
+placeholder="Please enter the date you want it delivered" type="date" value="">
+<div class="help-block with-errors"></div>
+</div>                                 
+</div>
+<div class="col-md-12">
+<div class="form-group">
+<input id="time" class="time form-control picker__input"  name="time" 
+placeholder="Please enter the time you want it delivered" type="time" value="" required data-error="Please enter time">
+<div class="help-block with-errors"></div>
+</div>                                 
+</div>
                   
                 
 
           <!-- Cable Configuration -->
- 
-
+		
             <a href="#"> See the gift * </a>
           </div>
         </div> 
@@ -253,16 +265,38 @@
            <div class="container1"></div>
 
                      <input type="submit" value="Submit"class="btn-55"> 
-					 <input type="submit" value="send a private message"class="btn-55" > 
+					
 				
 
             </div>
       </div> </div>
   </form>
     </main> 
-
-
 	
+	<div class="container1"></div>
+	
+		<div class="contact-block">
+	<form action="./mail1/mailer.php">
+	<!---
+		<input type="submit" value="Go to Google" />
+		</p>-->
+	
+		<div class="product-price">
+			<div class="container"></div>
+
+		<div class="container1"></div>
+		<p align="right">
+				  <input type="submit" value="Send a private mail "class="btn-55"> 
+				 
+		
+	</p>
+		 </div>
+   </div> </div> 
+	</form>
+	</div>
+	
+
+
 	<!-- Start Customer Reviews -->
 	<div class="customer-reviews-box">
 		<div class="container">
