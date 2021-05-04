@@ -126,6 +126,19 @@
 
 
     }
+    		function afficherOffre2(){
+			
+			$sql="SELECT * FROM offre ORDER BY id_offre DESC LIMIT 3 ";
+			$db = config::getConnexion();
+			try{
+				$liste = $db->query($sql);
+				return $liste;
+			}
+			catch (Exception $e){
+				die('Erreur: '.$e->getMessage());
+			}	
+		}
+
 
 
     /*	function filtre($input,$colonne) {
