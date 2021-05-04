@@ -47,8 +47,8 @@
       <body>  
            <br /><br />  
            <div style="width:1500px;">  
-                <h1 align="center" style="color: white">These are the statistics of of meat types of orders</h1> 
-                  <a href="affichercommande.php"><h3  align="center" style="color: orange;">Back</h3></a>
+                <h1 align="center" style="color: white">These are the statistics of meat types of orders</h1> 
+                  <a href="index1.php"><h3  align="center" style="color: orange;">Back</h3></a>
  
                 <br />  
 

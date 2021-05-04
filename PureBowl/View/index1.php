@@ -132,7 +132,13 @@
             <div class="row tm-content-row">
                 <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 tm-block-col">
                     <div class="tm-bg-primary-dark tm-block">
-                        <h2 class="tm-block-title">Latest Hits</h2>
+                        <table>
+                            <tr>
+                                <td>
+                                <a href="statecommande.php" class="text-warning"  ><h4>See statistics of meat types of orders <i class="fas fa-chart-bar"></i></h4> </a>
+                            </td>
+                            </tr>
+                        </table>
                         <canvas id="lineChart"></canvas>
                     </div>
                 </div>
@@ -142,14 +148,7 @@
                         <canvas id="barChart"></canvas>
                     </div>
                 </div>
-                <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 tm-block-col">
-                    <div class="tm-bg-primary-dark tm-block tm-block-taller">
-                        <h2 class="tm-block-title">Storage Information</h2>
-                        <div id="pieChartContainer">
-                            <canvas id="pieChart" class="chartjs-render-monitor" width="200" height="200"></canvas>
-                        </div>                        
-                    </div>
-                </div>                    <div class="col-12 tm-block-col">
+                                <div class="col-12 tm-block-col">
                     <div class="tm-bg-primary-dark tm-block tm-block-taller tm-block-scroll">
                         <h2 class="tm-block-title">Clients info</h2>
                          <table class="table">
