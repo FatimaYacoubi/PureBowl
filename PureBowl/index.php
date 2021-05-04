@@ -6,7 +6,7 @@ include_once("config.php");
 if(empty($_SESSION['e']))
 {
     // Si inexistante ou nulle, on redirige vers le formulaire de login
-    header('Location:/View/login.php');
+    header('Location:View/login.php');
 }
 ?>
 <!DOCTYPE html>
