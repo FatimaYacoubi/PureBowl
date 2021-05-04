@@ -91,7 +91,7 @@
               </a>
             </li>
                <li class="nav-item">
-              <a class="nav-link active" href="promo.html.html">
+              <a class="nav-link active" href="showOffre.php">
                 <i class="far fa-user"></i> Promo
               </a>
             </li>

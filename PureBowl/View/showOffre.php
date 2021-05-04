@@ -2,6 +2,7 @@
 	include "../Controller/offreC.php";
 
 	$offreC=new offreC();
+
 	
   if ((isset($_POST["recherche"]))&& (isset($_POST["colonne"]))){
    if (!empty(isset($_POST["recherche"]))){
@@ -10,6 +11,7 @@
      $listeOffers=$offreC->rechercher($_POST["recherche"],$n);
    } 
   } else {$listeOffers=$offreC->afficherOffre();}
+
 
 ?>
 
@@ -98,7 +100,7 @@
               </a>
             </li>
              <li class="nav-item">
-              <a class="nav-link" href="../showpromo.php">
+              <a class="nav-link" href="showpromo.php">
                 <i class="far fa-user"></i> Promo
               </a>
             </li>
@@ -148,9 +150,10 @@
           <input type="text" name="recherche" placeholder="rechercher" class="recherche"> 
           <input type="submit" name="chercher" value="Valider">
 
-</script>
+
        </form>
-            <div class="tm-product-table-container">
+  
+            <div class="tm-product-table-container"> 
 
               <table class="table table-hover tm-table-small tm-product-table">
                 <thead>
@@ -203,9 +206,9 @@
 					<td>
 						<a href="modifyOffre.php?id_offre=<?PHP echo $offer['id_offre']; ?>"  class="btn btn-primary btn-block text-uppercase"> Modifier </a>
 					</td>
-        <!--  <td>
-            <a href="addpromo.php?id_offre=<?PHP echo $offer['id_offre']; ?>"  class="btn btn-primary btn-block text-uppercase"> Ajouter promo </a>
-          </td> -->
+          <td>
+            <a href="../fpdf8/att_scolarite.php?id_offre=<?PHP echo $offer['id_offre']; ?>"  class="btn btn-primary btn-block text-uppercase"> imprimer </a>
+          </td> 
 				</tr>
 			<?PHP
 				}
@@ -326,9 +329,9 @@
           <a
               href="addOffre.php"
               class="btn btn-primary btn-block text-uppercase mb-3"> Add new pack </a>
-          <button class="btn btn-primary btn-block text-uppercase">
+       <!--   <button class="btn btn-primary btn-block text-uppercase">
               Delete selected packs
-            </button>   </div>
+            </button>  -->  </div>
         </div>
         
       </div>
