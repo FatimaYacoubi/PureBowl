@@ -21,7 +21,7 @@ body {
 }
 </style>
 <style type="text/css">
-.myOtherTable { background-color:#eedfca;border-collapse:collapse;color:#000;font-size:14px; }
+.myOtherTable { background-color:#eedfca;border-collapse:collapse;color:#000;font-size:14px;  }
 .myOtherTable th { background-color:#d0a772;color:white;width:10%; border: 1px solid #fff;
             border-collapse: collapse; }
 .myOtherTable td, .myOtherTable th { padding:1px;border: 1px solid #fff; }
@@ -246,10 +246,14 @@ function hide2()
     <tr>
       <td colspan="6">
         <a href="pdfcommande.php"  > 
-                       <button class="btn-222" style="color:black">download </button>
+                       <button class="btn-222" style="color:black;
+                       width: 450px" >Download as PDF <i class="fa fa-download" aria-hidden="true"></i> </button>
 
                       </a>
       </td>
+      <td colspan="6" align="center"><a href="sortcommande.php" class="btn-222" style="color:black;
+                       width: 400px" ><button class="btn-222" style="color:black;
+                       width: 450px" >Search and sort </button> </a> </td>
     </tr>
   <tr> 
           </div>
