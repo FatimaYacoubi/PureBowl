@@ -12,10 +12,14 @@
            <title>Stats</title>  
            <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>  
            <script type="text/javascript">  
+
            google.charts.load('current', {'packages':['corechart']});  
-           google.charts.setOnLoadCallback(drawChart);  
+
+           google.charts.setOnLoadCallback(drawChart); 
+
            function drawChart()  
            {  
+            
                 var data = google.visualization.arrayToDataTable([  
                           ['Meat', 'Number'],  
                           <?php  
@@ -28,12 +32,15 @@
 
                      ]);  
                 var options = {  
+
                       title: 'Percentage of meat types of orders',  
                       //is3D:true,  
                       pieHole: 0.4  
                      };  
                 var chart = new google.visualization.PieChart(document.getElementById('piechart'));  
                 chart.draw(data, options);  
+
+
            }  
            </script>  
       </head>  
@@ -45,7 +52,8 @@
  
                 <br />  
 
-                <div id="piechart" style="width: 1500px; height: 800px;">
+                <div id="piechart" style="width: 1500px; height: 800px;
+                ">
                   
                 </div>  
            </div>  

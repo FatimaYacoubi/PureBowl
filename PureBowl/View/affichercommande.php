@@ -244,9 +244,9 @@ function hide2()
 
   <table align="center" id="orders" style="width:800px; line-height:40px;" class="myOtherTable"> 
     <tr>
-      <td>
-        <a href="modifiercommande.php?id=<?PHP echo $user['id']; ?>"  > 
-                       <button class="btn-222" style="color:black">Edit</button>
+      <td colspan="3">
+        <a href="statecommande.php"  > 
+                       <button class="btn-222" style="color:black">See stats</button>
 
                       </a>
       </td>
