@@ -252,8 +252,9 @@ $listeOffers = $query->fetchAll(PDO::FETCH_ASSOC);
 			
 				<div class="col-lg-4 col-md-6 special-grid lunch">
    <!--   <th scope="row"> <input type="checkbox" /></th> -->
-                  <div class="gallery-single fix">
-                   <img src="../imageweb/<?php echo $offer['image_offre'];?>" class="img-fluid"  width="350px" height="200px">
+                  <div class="gallery-single fix" style="height: 400px ;
+                     ">
+                   <img src="../imageweb/<?php echo $offer['image_offre'];?>" class="img-fluid"  width="350px" height="400px">
                       <div class="why-text">
 				<!--	<h5><?PHP echo $offer['id_offre']; ?> </h5>  -->
 				<h2>	<?PHP echo $offer['nom_offre']; ?> </h2>
@@ -262,7 +263,9 @@ $listeOffers = $query->fetchAll(PDO::FETCH_ASSOC);
 					<p><?PHP echo $offer['descrip_offre']; ?></p>
 					<h4><?PHP echo $offer['type_offre']; ?></h4>
 					<h4><?PHP echo $offer['prix_offre']; ?></h4>
-					 <h4> <a class="btn btn-lg btn-circle btn-outline-new-black" href="buyoffre.php">Get it</a>  </h4> 
+					 <h4> <a class="btn btn-lg btn-circle btn-outline-new-black" href="buyoffre.php?id_offre=<?PHP echo $offer['id_offre']; ?>">Get it</a> 
+					 <a class="btn btn-lg btn-circle btn-outline-new-black" href="../mail1/mail2.php?id_offre=<?PHP echo $offer['id_offre']; ?>">Send it to a friend</a> </h4> 
+					  <h4>   </h4>
 					</div>
 						 
                   <!--    <a href="#" class="tm-product-delete-link">
