@@ -32,10 +32,10 @@ exit();
 <head>
 <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">   
-   
+
     <!-- Mobile Metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
- 
+
      <!-- Site Metas -->
     <title>Mail</title>  
     <meta name="keywords" content="">
@@ -58,7 +58,7 @@ exit();
     <link rel="stylesheet" href="../css/responsive.css">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="../css/custom.css">
- 
+
 	<style>
 
 	.main{
@@ -115,7 +115,7 @@ exit();
 	}
 	#btn{
 		background-color: #D4B996FF;
-		
+
 		width: 30%;
 		height: 40px;
 	    margin-left: 5px;
@@ -215,7 +215,7 @@ exit();
 <h1>Send your Mail</h1>
 	<div>
 		<input type="text" name="from" id="from"   value="purebowlcontact@gmail.com" readonly required autofocus>
-		
+
 	</div><br>
 	<div>
 		<input type="text" name="sub" id="sub"  value="Recipe Detail" readonly required autofocus>
@@ -235,14 +235,14 @@ exit();
 
 		INGREDIENTS:
 		<?PHP echo $tutoName3; ?>
-		
+
 
 		STEPS:
 		<?PHP echo $tutoName4; ?>
-		
-		
+
+
 		</textarea>
-	
+
 	</div>
 	<div><br><br>
 		<button id="btn" onclick="return false">SEND</button>
@@ -342,7 +342,7 @@ $(document).ready(function(){
 		</div>
 	</div>
 	<!-- End Customer Reviews -->
-	
+
 	<!-- Start Contact info -->
 	<div class="contact-imfo-box">
 		<div class="container">
@@ -379,7 +379,7 @@ $(document).ready(function(){
 		</div>
 	</div>
 	<!-- End Contact info -->
-	
+
 	<!-- Start Footer -->
 	<footer class="footer-area bg-f">
 		<div class="container">
@@ -420,7 +420,7 @@ $(document).ready(function(){
 				</div>
 			</div>
 		</div>
-		
+
 		<div class="copyright">
 			<div class="container">
 				<div class="row">
@@ -431,10 +431,10 @@ $(document).ready(function(){
 				</div>
 			</div>
 		</div>
-		
+
 	</footer>
 	<!-- End Footer -->
-	
+
 	<a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
 
 	<!-- ALL JS FILES -->
@@ -454,4 +454,4 @@ $(document).ready(function(){
     <script src="../js/contact-form-script.js"></script>
     <script src="../js/custom.js"></script>
 </body>
-</html>
+</html> 

@@ -91,7 +91,7 @@
               </a>
             </li>
                <li class="nav-item">
-              <a class="nav-link active" href="promo.html.html">
+              <a class="nav-link active" href="showOffre.php">
                 <i class="far fa-user"></i> Promo
               </a>
             </li>
@@ -126,7 +126,7 @@
     </nav>
     <div class="container mt-5">
       <div class="row tm-content-row">
-        <div class="col-sm-12 col-md-12 col-lg-8 col-xl-8 tm-block-col">
+        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 tm-block-col">
           <div class="tm-bg-primary-dark tm-block tm-block-products">
             <div class="tm-product-table-container">
               <table class="table table-hover tm-table-small tm-product-table">
@@ -137,7 +137,7 @@
                     <th scope="col">ID PROMO</th>
                     <th scope="col">ID PACK</th>
                     <th scope="col">POURCENTAGE</th>
-                    <th scope="col">DATE DEBUT</th>
+                 <!--  <th scope="col">DATE DEBUT</th>  -->
                     <th scope="col">DATE FIN</th>
                     
                     <th scope="col">&nbsp;</th>
@@ -153,7 +153,7 @@
           <td><?PHP echo $promo['id_pack']; ?></td>
       
           <td><?PHP echo $promo['pourcentage']; ?></td>
-          <td><?PHP echo $promo['date_deb']; ?></td>
+     <!--   <td><?PHP echo $promo['date_deb']; ?></td>  -->
           <td><?PHP echo $promo['date_fin']; ?></td>
           <td></td>
           <td>

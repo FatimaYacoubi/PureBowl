@@ -12,11 +12,9 @@
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
-
     <!-- Site Icons -->
     <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" href="../images/apple-touch-icon.png">
-
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="../css/bootstrap.min.css">    
 	<!-- Site CSS -->
@@ -25,7 +23,6 @@
     <link rel="stylesheet" href="../css/responsive.css">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="../css/custom.css">
-
     <!--[if lt IE 9]>-->
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
@@ -33,7 +30,6 @@
 	<link rel="stylesheet" type="text/css" href="print.css" media="print">
  
 </head>
-
 <body>
 	<!-- Start header -->
 	
@@ -58,10 +54,7 @@
 		</nav>
 	</header>
 	<!-- End header -->
-
-
 	
-
 	<!-- Start Menu -->
 	<div class="menu-box">
 		<div class="container">
@@ -139,7 +132,6 @@
 	<!-- End Footer -->
 	
 	<a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
-
 	<!-- ALL JS FILES -->
 	<script src="../js/jquery-3.2.1.min.js"></script>
 	<script src="../js/popper.min.js"></script>
@@ -156,4 +148,4 @@
 <div class="text-center">
         <button onclick="window.print();" class="btn btn-primary" id="print-btn">Print</button>
       </div>
-</html>
+</html> 

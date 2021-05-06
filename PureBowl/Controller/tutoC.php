@@ -1,6 +1,6 @@
 <?PHP
 	include "../config.php";
-	
+
 
 
 	class tutoC {
@@ -19,4 +19,4 @@
         }
 
 
-    }
+    } 

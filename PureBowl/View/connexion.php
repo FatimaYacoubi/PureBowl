@@ -31,6 +31,7 @@
                 $_POST['phoneClient'],
                 $etat=1
             );
+            $user1=$_POST["IDCommande"];
             $userC->ajouterreclamation($user);
             header('Location:afficherreclamation1.php');
         }

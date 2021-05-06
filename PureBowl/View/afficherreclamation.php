@@ -125,7 +125,18 @@
             <div class="row">
                 <div class="col">
                     <p class="text-white mt-5 mb-5">Welcome back, <b>Admin</b></p>
-                    <a href="afficherarchivedreclamation.php"  >See archived reclamations </a>
+                    <table class="table table-hover tm-table-small tm-product-table">
+                        <tr>
+                            <td><a href="afficherarchivedreclamation.php" class="text-warning" ><h4>See archived Claims <i class="fas fa-eye"></i></h4></a></td>
+                            <td>
+                                <a href="statereclamation.php" class="text-warning"  ><h4>See statistics of Claims's states <i class="fas fa-chart-bar"></i></h4> </a>
+                            </td>
+                            <td>
+                                 <a href="pdfreclamation.php" class="text-warning" ><h4>Download list of Claims as PDF <i class="fa fa-download" aria-hidden="true"></i></h4> </a>
+                            </td>
+                            <td colspan="6" align="center"><a href="sortreclamation.php" class="text-warning" ><h4>Search and sort <i class="fas fa-search"></i></h4> </a> </td>
+                        </tr>
+                    </table>
                     <br>
                 </div>
                 <br>
@@ -163,8 +174,8 @@
                       
                         
                         <form method="POST" action="supprimerreclamation.php">
-                             <button type="submit" name="supprimer "class="tm-product-delete-link" >
-                        <i class="far fa-trash-alt tm-product-delete-icon"></i></button> 
+                             <button type="submit" name="supprimer "class="tm-product-delete-link" onclick="return confirm('Are you sure you want to delete this item definitely?');">
+                        <i class="far fa-trash-alt tm-product-delete-icon"></i></button>Delete 
                         
                         <input type="hidden" value=<?PHP echo $user['id']; ?> name="id">
                         
@@ -174,8 +185,8 @@
                        
                         </td >
                         <td style="width: 30px" ><form method="POST" action="archiverreclamation.php">
-                            <button style="height: : 30px" type="submit" name="archiver "class="tm-product-delete-link" >
-                        <i class="fas fa-archive tm-product-delete-icon" ></i></button> 
+                            <button style="height: : 30px" type="submit" name="archiver "class="tm-product-delete-link"onclick="return confirm('Are you sure you want to archive this item?');" >
+                        <i class="fas fa-archive tm-product-delete-icon" ></i></button>Archive 
                         
                         <input type="hidden" value=<?PHP echo $user['id']; ?> name="id">
                     </form>

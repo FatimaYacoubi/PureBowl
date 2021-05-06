@@ -4,26 +4,26 @@
 
   $promoC = new PromoC();
   $error = "";
-  
+
   if (
-    isset($_POST["id_pack"]) && 
-        isset($_POST["pourcentage"]) &&
-        isset($_POST["date_deb"]) && 
-        isset($_POST["date_fin"])
-  ){
+       isset($_POST["id_pack"]) &&
+       isset($_POST["pourcentage"]) &&
+     // isset($_POST["date_deb"]) && 
+       isset($_POST["date_fin"])
+  ){  
     if (
-            !empty($_POST["id_pack"]) && 
-            !empty($_POST["pourcentage"]) && 
-            !empty($_POST["date_deb"]) && 
+           !empty($_POST["id_pack"])  &&
+           !empty($_POST["pourcentage"]) && 
+    //   !empty($_POST["date_deb"]) && 
             !empty($_POST["date_fin"]) 
-        ) {
+        ) { 
             $promo = new promo(
                 $_POST['id_pack'],
                 $_POST['pourcentage'], 
-                $_POST['date_deb'],
+           //  $_POST['date_deb'],
                 $_POST['date_fin']
       );
-      
+        
             $promoC->modifierPromo($promo, $_GET['id_promo']);
             header('refresh:5;url=showpromo.php');
         }
@@ -114,7 +114,7 @@
               </a>
             </li>
              <li class="nav-item">
-                <a class="nav-link active" href="Pack.html">
+                <a class="nav-link active" href="showOffre.php">
                   <i class="fas fa-shopping-cart"></i> Pack
                 </a>
               </li>
@@ -205,7 +205,7 @@
                       type="number"
                       value="<?php echo $promo['id_pack']; ?>"
                       class="form-control validate"
-                      required
+                      
                     />
                   </div>
 
@@ -219,13 +219,13 @@
                       id="pourcentage"
                       name="pourcentage"
                       type="number"
-                      value="<?php echo $promo['pourcentage']; ?>"  disabled
-                      class="form-control validate"
+                      value="<?php echo $promo['pourcentage']; ?>"  
+                      class="form-control validate" 
 
                     />
                     
                   </div>
-                  <div class="form-group mb-3">
+              <!--  <div class="form-group mb-3">
                     <label
                       for="date_deb"
                       >Date Debut</label
@@ -238,10 +238,10 @@
                       class="form-control validate"
                     />
                    
-                  </div>
+                  </div>  -->
      
              
-                        <div class="form-group mb-3 col-xs-12 col-sm-6">
+                        <div class="form-group mb-3">
                           <label
                             for="date_fin"
                             >Date Fin
@@ -251,7 +251,7 @@
                             name="date_fin"
                             type="Date"
                             value="<?php echo $promo['date_fin']; ?>"
-                            class="form-control validate"
+                            class="form-control validate"  
                           />
                         </div>
                         

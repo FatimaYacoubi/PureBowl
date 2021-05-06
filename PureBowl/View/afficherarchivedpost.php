@@ -125,7 +125,7 @@
             <div class="row">
                 <div class="col">
                     <p class="text-white mt-5 mb-5">Welcome back, <b>Admin</b></p>
-                    <a href="afficherpost.php"  >See unarchived posts </a>
+                    <a href="afficherpost.php" class="text-warning" ><h4>See unarchived posts <i class="fas fa-eye"></i></h4></a>
                 </div>
             </div>
 
@@ -151,8 +151,8 @@
                       
                         
                         <form method="POST" action="supprimerpost.php">
-                             <button type="submit" name="supprimer "class="tm-product-delete-link" >
-                        <i class="far fa-trash-alt tm-product-delete-icon"></i></button> 
+                             <button type="submit" name="supprimer "class="tm-product-delete-link"onclick="return confirm('Are you sure you want to delete this item definitely?');" >
+                        <i class="far fa-trash-alt tm-product-delete-icon"></i></button><p align="center">Delete</p>
                         
                         <input type="hidden" value=<?PHP echo $user['id']; ?> name="id">
                         
@@ -161,16 +161,10 @@
                         
                        
                         </td >
-                        <td style="width: 30px">
-                            <form><button class="tm-product-delete-link">
-                            <a href="modifierpost.php?id=<?PHP echo $user['id']; ?>"  >
-                        <i class="far fa-edit tm-product-delete-icon" ></i>
-
-                      </a>
-                        </button></form></td>
+                        
                         <td style="width: 30px" ><form method="POST" action="inarchiverpost.php">
-                            <button style="height: : 30px" type="submit" name="inarchiver "class="tm-product-delete-link" >
-                        <i class="fas fa-archive tm-product-delete-icon" ></i></button> 
+                            <button style="height: : 30px" type="submit" name="inarchiver "class="tm-product-delete-link"onclick="return confirm('Are you sure you want to unarchive this item ?');" >
+                        <i class="far fa-folder-open tm-product-delete-icon"></i></button><p align="center">Unarchive</p> 
                         
                         <input type="hidden" value=<?PHP echo $user['id']; ?> name="id">
                     </form>

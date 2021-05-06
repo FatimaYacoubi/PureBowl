@@ -28,7 +28,6 @@
   </div>
  </div>
 </section>
-
    
 <section id="recipe">
  <div class="container">
@@ -65,14 +64,7 @@
         
   </div>
  </div>
-
-
-
-
-
-
  </section>
-
 <section id="store">
  <div class="container">
   <div class="row">

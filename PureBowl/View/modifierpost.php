@@ -28,7 +28,7 @@
 			);
 			
             $postC->modifierpost($user, $_GET['id']);
-            header('refresh:5;url=afficherpost.php');
+            header('Location:afficherpost.php');
         }
         else
             $error = "Missing information";
@@ -74,8 +74,6 @@
 </style>
 	</head>
 	<body id="reportsPage">
-		<button><a href="afficherpost.php">Retour à la liste</a></button>
-        <hr>
         <div class="" id="home">
         <nav class="navbar navbar-expand-xl">
             <div class="container h-100">
@@ -174,7 +172,7 @@
 		
 		<?php
 			if (isset($_GET['id'])){
-				$user = $postC->recupererreclamation($_GET['id']);
+				$user = $postC->recupererpost($_GET['id']);
 				
 		?>
 		<form action="" method="POST">
@@ -198,7 +196,7 @@
                     <td>
 
 
-                    	<textarea name="description" id="description" cols="90" rows="10"  ><?php echo $user['description']; ?></textarea>
+                    	<textarea name="description" required  id="description" cols="90" rows="10"  ><?php echo $user['description']; ?></textarea>
                     </td>
                     <td rowspan="3">
                         <button type="submit"  name = "modifer"  class="tm-product-delete-link" > <i class="far fa-edit tm-product-delete-icon" ></i></button>
@@ -213,7 +211,7 @@
                         </label>
                     </td>
                     <td>
-                        <input type="text" name="titre" id="titre"  value = "<?php echo $user['titre']; ?>" >
+                        <input type="text" name="titre" id="titre"  value = "<?php echo $user['titre']; ?>" required >
                         <input type="hidden" name="date" id="date" maxlength="20" value = "<?php echo $user['date']; ?>" >
                         <input type="hidden" name="etat" id="etat"  value = "<?php echo $user['etat']; ?>" >
                     </td>
@@ -224,7 +222,7 @@
                         </label>
                     </td>
                     <td>
-                        <input type="file" name="image" id="image"  value = "<?php echo $user['image']; ?>" >
+                        <input type="file" name="image" id="image"  value = "<?php echo $user['image']; ?>" required >
                     </td>
                 </tr>
             </table>

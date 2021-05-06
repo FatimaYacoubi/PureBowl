@@ -4,7 +4,7 @@ include "../Controller/tutoC.php";
 $tutoName = $_GET['dish'];
 $tuto=new tutoC();
 	$affichage=$tuto->displayTuto($tutoName);
-  
+
 
 ?>
 <!DOCTYPE html>
@@ -14,7 +14,7 @@ $tuto=new tutoC();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
      <!-- Mobile Metas -->
      <meta name="viewport" content="width=device-width, initial-scale=1">
- 
+
  <!-- Site Metas -->
    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Food Recipe</title>
@@ -25,7 +25,7 @@ $tuto=new tutoC();
     <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" href="../images/apple-touch-icon.png">
 
-  
+
 	<link href="https://fonts.googleapis.com/css?family=Gotu&display=swap" rel="stylesheet">
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
@@ -47,7 +47,7 @@ $tuto=new tutoC();
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <!--[endif]-->
-	
+
   </head>
 <body>
 <!-- Start header -->
@@ -114,23 +114,23 @@ $tuto=new tutoC();
 				foreach($affichage as $tuto){ 
           	?>
 
-       
+
 
 
 
 <section id="recipe">
  <div class="container">
   <div class="row">
-   
+
    <div class="recipe_detail clearfix">
      <div class="col-sm-12">
-	   
+
 	   <img src="../images/img-01.JPG" class="iw" alt="abc">
 	   <h3 class="text-center"> <?PHP echo $tuto['name']; ?> </h3>
 	 </div>
    </div>
    <div class="recipe_detail_main_inner_1 clearfix">
-		    
+
               <h4 class="heading_2">Duration</h4>
              <p>
              <?PHP echo $tuto['duration']; ?>
@@ -138,25 +138,25 @@ $tuto=new tutoC();
               <h4 class="heading_2">Ingredients </h4>
              <p>
              <?PHP echo $tuto['ingredients']; ?>
-			
+
 			</p>
             <h4 class="heading_2"> STEPS</h4>
              <p>
-              
+
              <?PHP echo $tuto['steps']; ?>
-			
+
 			</p>
-			
-                
-        
+
+
+
   </div>
   </div>
   <div class="text-center">
         <button onclick="window.print();" class="btn btn-lg btn-circle btn-outline-new-black" id="print-btn">Print</button>
          <a class="btn btn-lg btn-circle btn-outline-new-black" href="sendMail.php?dish=<?php echo $tuto['name'] ?>&duration=<?php echo $tuto['duration'] ?>&ingredients=<?php echo $tuto['ingredients'] ?>&steps=<?php echo $tuto['steps'] ?>"> Mailing</a> 
      </div>
-      
- 
+
+
 
 
 </section>
@@ -205,7 +205,7 @@ $tuto=new tutoC();
 				</div>
 			</div>
 		</div>
-		
+
 		<div class="copyright">
 			<div class="container">
 				<div class="row">
@@ -216,10 +216,10 @@ $tuto=new tutoC();
 				</div>
 			</div>
 		</div>
-		
+
 	</footer>
 	<!-- End Footer -->
-	
+
 <script>
 	$(document).ready(function() {
     $('#myCarousel').carousel({

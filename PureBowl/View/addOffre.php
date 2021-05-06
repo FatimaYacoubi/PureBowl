@@ -14,21 +14,24 @@
         isset($_POST["image_offre"]) &&
         isset($_POST["descrip_offre"]) && 
         isset($_POST["type_offre"]) && 
-        isset($_POST["prix_offre"])
+        isset($_POST["prix_offre"]) &&
+       isset($_POST["etat_offre"])
     ) {
         if (
             !empty($_POST["nom_offre"]) && 
             !empty($_POST["image_offre"]) && 
             !empty($_POST["descrip_offre"]) && 
             !empty($_POST["type_offre"]) && 
-            !empty($_POST["prix_offre"])
+            !empty($_POST["prix_offre"]) 
+           // !empty($_POST["etat_offre"]) 
         ) {if( preg_match ( " /^[a-zA-Z]{2,}$/ " , $_POST['nom_offre'] )==1 && preg_match (" /^[a-zA-Z]{2,}$/ ", $_POST['descrip_offre'] )==1  && preg_match ( ' #^[0-9]{3}+$# ', $_POST['prix_offre'])==1 ) {
             $offer = new offre(
                 $_POST['nom_offre'],
                 $_POST['image_offre'], 
                 $_POST['descrip_offre'],
                 $_POST['type_offre'],
-                $_POST['prix_offre']
+                $_POST['prix_offre'],
+                $_POST['etat_offre']
             );
             $offerC->ajouterOffre($offer);
             header('Location:showOffre.php');
@@ -219,9 +222,9 @@
                       name ="type_offre"
                     >
                       <option selected>Select category</option>
-                      <option value="1">Healthy</option>
-                      <option value="2">Vegan</option>
-                      <option value="3">Diabetic</option>
+                      <option value="healthy">Healthy</option>
+                      <option value="vegan">Vegan</option>
+                      <option value="Diabetic">Diabetic</option>
                     </select>
                   </div>
                   <div class="row">
@@ -236,6 +239,23 @@
                             type="text"
                             class="form-control validate"
                             data-large-mode="true"
+                          />
+                        </div>
+                        
+                  </div>
+                  <div class="row">
+                      <div class="form-group mb-3 col-xs-12 col-sm-6">
+                          <label
+                            for="etat_offre"
+                            >Etat 
+                          </label>
+                          <input
+                            id="etat_offre"
+                            name="etat_offre"
+                            type="text"
+                            class="form-control validate"
+                            data-large-mode="true"
+                           
                           />
                         </div>
                         

@@ -49,14 +49,6 @@
             <div class="form-group">
                             <h1 class="m-b-20"> SIGN UP</h1>
                 </div> 
-
-
-        <div class="row">
-                   <div class="col-md-12">
-            <div class="form-group">
-                        <input name="idClient" type="text" placeholder="cin" required=""> </div> </div>
-
-
 <br>
         <div class="row">
                    <div class="col-md-12">
@@ -103,6 +95,7 @@
         <div class="row">
                    <div class="col-md-12">
             <div class="form-group"> <input name="tel" type="text" placeholder="tel" required="">
+
 <br> </div> </div>
 <div id="aDiv">
 

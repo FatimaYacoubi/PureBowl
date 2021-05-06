@@ -7,6 +7,7 @@
 		private ?string $person = null;
 		private ?string $date = null;
 		private ?string $time = null;
+
 		function __construct(string $dish, string $meat, string $option, string $person, string $date, string $time){
 			
 			$this->dish=$dish;
@@ -15,11 +16,13 @@
 			$this->person=$person;
 			$this->date=$date;
 			$this->time=$time;
+
 		}
 		
 		function getId(): int{
 			return $this->id;
 		}
+		
 		function getdish(): string{
 			return $this->dish;
 		}
@@ -42,6 +45,7 @@
 		function setdish(string $dish): void{
 			$this->dish=$dish;
 		}
+		
 		function setmeat(string $meat): void{
 			$this->meat=$meat;
 		}

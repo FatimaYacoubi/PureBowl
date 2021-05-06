@@ -1,9 +1,11 @@
 
 <?PHP
   include "../Controller/commandeC.php";
-
+ 
   $commandeC=new commandeC();
   $listeUsers=$commandeC->affichercommande();
+ 
+
 ?>
 
 <!DOCTYPE html>
@@ -21,7 +23,7 @@ body {
 }
 </style>
 <style type="text/css">
-.myOtherTable { background-color:#eedfca;border-collapse:collapse;color:#000;font-size:14px; }
+.myOtherTable { background-color:#eedfca;border-collapse:collapse;color:#000;font-size:14px;  }
 .myOtherTable th { background-color:#d0a772;color:white;width:10%; border: 1px solid #fff;
             border-collapse: collapse; }
 .myOtherTable td, .myOtherTable th { padding:1px;border: 1px solid #fff; }
@@ -118,6 +120,9 @@ button:disabled:hover  {
 
    </style>
 <!-- End Styles -->     <title> Pure Bowl</title>  
+<form id="applyDiscountForm" method="post"
+        action="affichercom1.php?action=show_discount"
+        onsubmit="return validate();">
 
    <meta name="keywords" content=""> 
     <meta name="description" content="">
@@ -200,7 +205,19 @@ button:disabled:hover  {
   <!-- End header -->
   
     <main class="container">
+<script type="text/javascript">
+  document.addEventListener('click',hide2)
+function hide2()
+{    if(currentStep===2)
 
+ {document.getElementById("55t").style.display="block";
+ }
+           
+
+               else  document.getElementById("55t").style.display="none";
+               
+}
+</script>
     
 
         <br>
@@ -218,7 +235,7 @@ button:disabled:hover  {
     <div class="bullet">2</div>
   </div>
   <div class="step">
-    <p class="step-text">Your Adress</p>
+    <p class="step-text">Delivery</p>
     <div class="bullet">3</div>
   </div>
   <div class="step">
@@ -231,6 +248,18 @@ button:disabled:hover  {
 </div> 
 
   <table align="center" id="orders" style="width:800px; line-height:40px;" class="myOtherTable"> 
+    <tr>
+      <td colspan="6">
+        <a href="pdfcommande.php"  > 
+                       <button class="btn-222" style="color:black;
+                       width: 450px" >Download as PDF <i class="fa fa-download" aria-hidden="true"></i> </button>
+
+                      </a>
+      </td>
+      <td colspan="6" align="center"><a href="sortcommande.php" class="btn-222" style="color:black;
+                       width: 400px" ><button class="btn-222" style="color:black;
+                       width: 450px" >Search and sort </button> </a> </td>
+    </tr>
   <tr> 
           </div>
         </div>
@@ -245,7 +274,8 @@ button:disabled:hover  {
                 <th> Price </th> 
 
         <th> Edit </th> 
-                <th> Delete </th> 
+                <th> Delete </th>
+                <th> Claim </th> 
 
         
         
@@ -282,17 +312,59 @@ button:disabled:hover  {
                         <input type="hidden" value=<?PHP echo $user['id']; ?> name="id">
                         </form>
           </td>
-    </tr> 
+           <td>
+                                <a href="reclamation.php?id=<?PHP echo $user['id']; ?>"  > 
+                       <button class="btn-222" style="color:black">Claim</button>
 
+                      </a>
+                    </td>
+    </tr> 
+   
+             
+                    <tr>
+                        <td colspan="3" align="right">Total after
+                            Discount:</td>
+                        <td></td>
+                        <h1 id="total" align="center" class="btn-55">Votre total est de <strong><?php 
+
+echo $sum;
+        ?></strong> DT</h1>
+                    </tr>
+                    <?php 
+                }
+                ?>
   <?php 
                } 
           ?> 
-        <h1 id="total" align="center" class="btn-55">Votre total est de <strong><?php 
+    <!--    <h1 id="total" align="center" class="btn-55">Votre total est de <strong><?php 
 
     echo $sum;
+<<<<<<< HEAD
+            ?></strong> DT</h1>-->
+=======
             ?></strong> DT</h1>
+
+>>>>>>> d0c0e717c54d9054e53af590093732d6dd27d3e9
           </div>
         </table> 
+        <div id="discount-grid">
+            <div class="discount-section">
+                <div class="discount-action">
+                    <span id="error-msg-span" class="error-message">
+                    <?php
+                    if (! empty($message)) {
+                        echo $message;
+                    }
+                    ?>
+                    </span> <span></span><input type="text"
+                        class="discount-code" id="discountCode"
+                        name="discountCode" size="15"
+                        placeholder="Enter Coupon Code" /><input
+                        id="btnDiscountAction" type="submit"
+                        value="Apply Discount" class="btnDiscountAction" />
+                </div>
+            </div>
+        </div>
 
    <br>
   <br>
@@ -303,8 +375,62 @@ button:disabled:hover  {
   <button align="center" id="finishBtn" class="btn-222" color="black">Finish</button>
   </div> 
   </main>
-  
 
+
+
+
+   <form action="ajouterCompte.php" id="55t" method="post" align="center">
+       <div class="row">
+                   <div class="col-md-12">
+            <div class="form-group">
+                            <h1 class="m-b-20"> Commande instantannée</h1>
+                </div> 
+<br>
+        <div class="row">
+                   <div class="col-md-12">
+            <div class="form-group">
+
+
+                        <input name="nom" type="text" placeholder="nom" required="">
+
+
+<BR> </div> </div>
+        <div class="row">
+                   <div class="col-md-12">
+            <div class="form-group">
+
+                        <input name="prenom" type="text" placeholder="prenom" required="">
+                <br> </div> </div>
+                <div class="row">
+                   <div class="col-md-12">
+            <div class="form-group">
+        <input name="email" type="text" pattern=".+@gmail.com|.+@esprit.tn" placeholder="email" required="">
+<br> </div> </div>
+ 
+        <div class="row">
+                   <div class="col-md-12">
+            <div class="form-group">
+                        <input name="login" type="text" placeholder="login" required="">
+<br> </div> </div>
+                       
+        <div class="row">
+                   <div class="col-md-12">
+            <div class="form-group"> <input name="adresse" type="text" placeholder="ville" required="">
+    <br> </div> </div> 
+                       
+        <div class="row">
+                   <div class="col-md-12">
+            <div class="form-group"> 
+              <input name="tel" type="text" placeholder="tel" required="">
+<br> </div> </div>
+
+<div id="aDiv">
+
+        </form> 
+<div align="center"> <?php echo ($error) ?> </div>
+
+
+</div>
   <div class="customer-reviews-box">
     <div class="container">
       <div class="row">
