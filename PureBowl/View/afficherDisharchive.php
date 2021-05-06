@@ -2,10 +2,9 @@
 	include "../Controller/dishC.php";
 
 	$dishC=new dishC();
-	$listeDishes=$dishC->displayDish();
+    $listeDishes=$dishC-> afficherDisharchive();
 
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -174,7 +173,7 @@
                     <th scope="col">INGREDIENTS</th>
                     <th scope="col">PRICE</th>
                     <th scope="col">ID</th>
-                    <th scope="col">ETAT</th>
+                    <th scope="col">etat</th>
                     
                     <th scope="col"></th>
 
@@ -192,19 +191,16 @@
           <td><?PHP echo $dish['name']; ?></td> 
 					<td><?PHP echo $dish['ingredients']; ?></td> 
 					<td><?PHP echo $dish['price']; ?></td>
-          <td><?PHP echo $dish['id']; ?></td>
-          <td><?PHP echo $dish['etat']; ?></td>
-                      
+                    <td><?PHP echo $dish['id']; ?></td>
+                    <td><?PHP echo $dish['etat']; ?></td>
 					<td></td>
 					<td>
 						 
-            <!-- 
-              
-              <a href="#" class="tm-product-delete-link">
+            <!-- <a href="#" class="tm-product-delete-link">
                         <i class="far fa-trash-alt tm-product-delete-icon"></i>
              </a>-->
                     
-						 <form method="POST" action="deleteDish.php">
+						<form method="POST" action="deleteDish.php">
                              <button type="submit" name="supprimer "class="tm-product-delete-link" >
                         <i class="far fa-trash-alt tm-product-delete-icon"></i></button> 
                         
@@ -212,27 +208,28 @@
                         
 
                         </form>
-                        		
-      			</td>
-            
-         
+                        				
+      	</td>
           <td>
 
-            <form method="POST" action="archiverDish.php">
-                            <button style="height: : 30px" type="submit" name="archiver "class="tm-product-delete-link" >
-                        <i class="fas fa-archive tm-product-delete-icon" ></i></button> 
-                        
-                        <input type="hidden" value=<?PHP echo $dish['id']; ?> name="id">
-             </form>
-            </td>
-            <td>
+       <form method="POST" action="inarchiverDish.php">
+                <button style="height: : 30px" type="submit" name="inarchiver "class="tm-product-delete-link" >
+            <i class="fas fa-archive tm-product-delete-icon" ></i></button> 
+            
+            <input type="hidden" value=<?PHP echo $dish['id']; ?> name="id">
+ </form>
+</td>
+           
+          
+          
+          
+          <td>
 						<a href="modifydish.php? id=<?PHP echo $dish['id']; ?>" class="btn btn-primary btn-block text-uppercase"> Modify </a>
 					</td>
 				</tr>
 			<?PHP
 				}
 			?> 
-       
                <!--   <tr>
                     <th scope="row"><input type="checkbox" /></th>
                     <td class="tm-pack-name">SIMPLE</td>
@@ -346,12 +343,12 @@
             </div>
             <!-- table container -->
           <a
-              href="addProduct.php" 
-              class="btn btn-primary btn-block text-uppercase"> Add Dish </a>
+              href="addProduct.php"
+              class="btn btn-primary btn-block text-uppercase mb-3"> Add Dish </a>
               <a
               id="btn"
-              href="afficherDisharchive.php"
-              class="container"> >>Archived dishes </a>
+              href="displayProduct.php"
+              class="container"> >>Dishes </a>
              
           </div>
           

@@ -4,8 +4,8 @@
 
 	class DishC {
 		function addDish($dish){
-			$sql="INSERT INTO dishes (name, ingredients, price) 
-			VALUES (:name, :ingredients, :price)";
+			$sql="INSERT INTO dishes (name, ingredients, price,etat) 
+			VALUES (:name, :ingredients, :price,1)";
 			$db = config::getConnexion();
 			try{
 				$query = $db->prepare($sql);
@@ -14,6 +14,7 @@
 					'name' => $dish->getName(),
 					'ingredients' => $dish->getIngredients(),
 					'price' => $dish->getPrice()
+				
 					
 				]);			
 			}
@@ -30,12 +31,15 @@
 						ingredients = :ingredients,
 						price = :price
 						
+						
 					WHERE id = :id'
 				);
 				$query->execute([
 					'name' => $dish->getName(),
 					'ingredients' => $dish->getIngredients(),
 					'price' => $dish->getPrice(),
+					
+					
 					
 					'id' => $id
 				]);
@@ -58,7 +62,7 @@
 		}
 		function displayDish(){
 			
-			$sql="SELECT * FROM dishes";
+			$sql="SELECT * FROM dishes  WHERE etat=1 ";
 			$db = config::getConnexion();
 			try{
 				$liste = $db->query($sql);
@@ -77,6 +81,44 @@
 
 				$dish=$query->fetch();
 				return $dish;
+			}
+			catch (Exception $e){
+				die('Erreur: '.$e->getMessage());
+			}
+		}
+		function afficherDisharchive(){
+			
+			$sql="SELECT * FROM dishes WHERE etat=0";
+			$db = config::getConnexion();
+			try{
+				$liste = $db->query($sql);
+				return $liste;
+			}
+			catch (Exception $e){
+				die('Erreur: '.$e->getMessage());
+			}	
+		}
+		function archiverDish($id){
+			
+			$sql="UPDATE dishes SET etat = '0' WHERE id= :id";
+			$db = config::getConnexion();
+			$req=$db->prepare($sql);
+			$req->bindValue(':id',$id);
+			try{
+				$req->execute();
+			}
+			catch (Exception $e){
+				die('Erreur: '.$e->getMessage());
+			}
+		}
+		function inarchiverDish($id){
+			
+			$sql="UPDATE dishes SET etat = '1' WHERE id= :id";
+			$db = config::getConnexion();
+			$req=$db->prepare($sql);
+			$req->bindValue(':id',$id);
+			try{
+				$req->execute();
 			}
 			catch (Exception $e){
 				die('Erreur: '.$e->getMessage());
