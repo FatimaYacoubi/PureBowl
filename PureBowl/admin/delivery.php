@@ -94,11 +94,7 @@ if(!empty($_GET['idDeliveryForDelete'])) {
         </a>
       </li>
      
-        <li class="nav-item">
-            <a class="nav-link " href="add-notification.php">
-                <i class="fas fa-comments"></i> Comments
-            </a>
-        </li>
+       
         <li class="nav-item dropdown notification">
             <a
                     class="nav-link dropdown-toggle"

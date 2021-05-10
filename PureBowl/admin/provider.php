@@ -94,11 +94,7 @@ if(!empty($_GET['idProviderForDelete'])) {
         </a>
       </li>
      
-        <li class="nav-item">
-            <a class="nav-link " href="add-notification.php">
-                <i class="fas fa-comments"></i> Comments
-            </a>
-        </li>
+       
         <li class="nav-item dropdown notification">
             <a
                     class="nav-link dropdown-toggle"
@@ -159,7 +155,7 @@ if(!empty($_GET['idProviderForDelete'])) {
                // if(isset($deliveries) and !empty($deliveries)){
                     foreach ($providers as $provider){
                       echo ' <tr>
-                      <th s cope="row"><img src="upload/'.$provider["image"].'" width="200"/></th>
+                      <th s cope="row"><img src="upload/'.$provider["image"].'" width="150"/></th>
                     <th scope="row"><input type="checkbox" /></th>
                     <td class="tm-product-name">'.$provider["name"].'</td>
                     <td>'.$provider["num_tel"].'</td>
