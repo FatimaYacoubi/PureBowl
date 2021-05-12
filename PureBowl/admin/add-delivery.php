@@ -207,6 +207,22 @@
                             <span class="error" style="color: orangered">Invalid time slot</span>
                         <?php endif; ?>
                     </div>
+                     <!--- ================== Bouton Captcha ================================== ---->
+                    <div class="form-group mb-3">
+                            <label for="hour_start">Captcha Code <span class="error" style="color: orangered">*</span></label>
+                            <div class="input-group">
+                                <input name="captcha_code" id="captcha_code" type="text" class="form-control" aria-describedby="basic-addon2">
+                                <div class="input-group-append">
+                                    <span class="input-group-text" id="basic-addon2">
+                                        <img src="imageCaptcha.php" id="captcha_image" style="width: 10em"/></span>
+                                </div>
+                                <img src="ok.png" id="check_ok" style="width: 2.5em;display: none" />
+                            </div>
+                            <span id="error_captcha_code" style="color: orangered; display: none;">Enter valide captcha code</span>
+                    </div>
+                    <a id="captchaValidation" class="btn btn-primary btn-block text-uppercase">Verify code first</a>
+                    <!--- ================== Bouton Captcha ================================== ---->
+                    
               </div>
                 <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
                     <div class="tm-product-img-dummy mx-auto">
@@ -222,7 +238,7 @@
 
                 </div>
                 <div class="col-12">
-                <button type="submit" name="someAction" class="btn btn-primary btn-block text-uppercase">Add Delivery Now</button>
+                <button type="submit" id="someAction" name="someAction" class="btn btn-primary btn-block text-uppercase" style="display: none">Add Delivery Now</button>
               </div>
                 </form>
 
@@ -252,6 +268,48 @@
         $("#expire_date").datepicker();
       });
     </script>
+     <!--- ================== Script js Captcha ================================== ---->
+     <script>
+      $(document).ready(function(){
+          //verifier si le champ captcha est vide quand
+          // on clique sur le lien de validation captchaValidation
+          $('#captchaValidation').click(function(){
+              var code = $('#captcha_code').val();
+             //si le champ captcha est vide afficher le message d'erreur
+              if(code == '')
+              {
+                  $("#error_captcha_code").show();
+              }
+              else
+              {
+                  //sinon fair un appel ajax du fichier check_code php
+                  // qui vérifie le code saisi
+                  $.ajax({
+                      url:"check_code.php",
+                      method:"POST",
+                      data:{code:code},
+                      success:function(data)
+                      {
+                          //vérifier le retour de la validation dans le fichier check_code.ph
+                          if(data == 'code_valid')
+                          {
+                              $("#error_captcha_code").hide();
+                              $('#captchaValidation').hide();
+                              $("#someAction").show();
+                              $("#check_ok").show();
+                          }
+                          else
+                          {
+                              alert('Invalid Code');
+                          }
+                      }
+                  });
+              }
+          });
+
+      });
+  </script>
+  <!--- ================== script js Captcha ================================== ---->
     <script src="ajaxFiles/uploadImage.js"></script>
   </body>
 </html>
