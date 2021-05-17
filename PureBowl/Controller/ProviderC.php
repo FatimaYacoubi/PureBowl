@@ -64,8 +64,8 @@
 
 
         function addProvider($provider){
-            $sql="INSERT INTO provider (name, region, num_tel) 
-			VALUES (:name, :region, :num_tel)";
+            $sql="INSERT INTO provider (name, region, num_tel, image) 
+			VALUES (:name, :region, :num_tel, :image)";
             $db = config::getConnexion();
             try{
                 $query = $db->prepare($sql);
@@ -73,7 +73,8 @@
                 $query->execute([
                     'name' => $provider->getName(),
                     'region' => $provider->getRegion(),
-                    'num_tel' => $provider->getNumTel()
+                    'num_tel' => $provider->getNumTel(),
+                    'image' => $provider->getImage()
 
                 ]);
                 return 1;

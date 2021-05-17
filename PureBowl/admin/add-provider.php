@@ -29,9 +29,10 @@
     if (isset($_POST["someAction"]) and empty($errors)) {
         $provider = new Provider(
             $_POST['name'],
-            $_POST['num_tel'],
             $_POST['region'],
+            $_POST['num_tel'],
             $_POST['fileName']
+            
         );
 
         $result = $providerC->addProvider($provider);
@@ -114,9 +115,7 @@
                       </a>
                   </li>
                  
-                  <li class="nav-item">
-            <a class="nav-link " href="add-notification.php">
-                <i class="fas fa-comments"></i> Comments
+                  
             </a>
         </li>
         <li class="nav-item dropdown notification">
@@ -178,21 +177,38 @@
                             <span class="error" style="color: orangered">Missing field</span>
                         <?php endif; ?>
                     </div>
-                    <div class="form-group mb-3">
-                        <label for="name" > num_tel <span class="error" style="color: orangered">*</span></label >
-                      <input id="num_tel"  name="num_tel"  type="text" class="form-control validate" value="<?php echo htmlspecialchars($values['num_tel']);?>" />
-                        <?php if (in_array('num_tel', $errors)): ?>
-                            <span class="error" style="color: orangered">Missing field</span>
-                        <?php endif; ?>
-                    </div>
+                   
                     <div class="form-group mb-3">
                         <label for="name" > region <span class="error" style="color: orangered">*</span></label >
-                      <input id="region"  name="region"  type="text" class="form-control validate" value="<?php echo htmlspecialchars($values['region']);?>" />
+                      <input id="region"  name="region"  type="text" class="form-control validate" value="<?php if(isset($values['region'])){ echo htmlspecialchars($values['region']);}?>" />
                         <?php if (in_array('region', $errors)): ?>
                             <span class="error" style="color: orangered">Missing field</span>
                         <?php endif; ?>
                     </div>
-                    
+
+                    <div class="form-group mb-3">
+                        <label for="name" > num_tel <span class="error" style="color: orangered">*</span></label >
+                      <input id="num_tel"  name="num_tel"  type="text" class="form-control validate" value="<?php if(isset($values['num_tel'])){ echo htmlspecialchars($values['num_tel']);}?>" />
+                        <?php if (in_array('num_tel', $errors)): ?>
+                            <span class="error" style="color: orangered">Missing field</span>
+                        <?php endif; ?>
+                    </div>
+                     <!--- ================== Bouton Captcha ================================== ---->
+                     <div class="form-group mb-3">
+                            <label for="hour_start">Captcha Code <span class="error" style="color: orangered">*</span></label>
+                            <div class="input-group">
+                                <input name="captcha_code" id="captcha_code" type="text" class="form-control" aria-describedby="basic-addon2">
+                                <div class="input-group-append">
+                                    <span class="input-group-text" id="basic-addon2">
+                                        <img src="imageCaptcha.php" id="captcha_image" style="width: 10em"/></span>
+                                </div>
+                                <img src="ok.png" id="check_ok" style="width: 2.5em;display: none" />
+                            </div>
+                            <span id="error_captcha_code" style="color: orangered; display: none;">Enter valide captcha code</span>
+                    </div>
+                    <a id="captchaValidation" class="btn btn-primary btn-block text-uppercase">Verify code first</a>
+                    <!--- ================== Bouton Captcha ================================== ---->
+
               </div>
                 <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
                     <div class="tm-product-img-dummy mx-auto">
@@ -204,11 +220,12 @@
                         <input type="button" class="btn btn-primary btn-block mx-auto" value="UPLOAD PRODUCT IMAGE *" onclick="uploadFile();" />
 
                     </div>
-                    <input  id="fileName"  name="fileName"  type="text" value=""  class="form-control validate"  style="display: none"/>
+                    <input  id="fileName"  name="fileName"  type="text" value=""  class="form-control validate"  />
 
                 </div>
                 <div class="col-12">
-                <button type="submit" name="someAction" class="btn btn-primary btn-block text-uppercase">Add Delivery Now</button>
+                
+                <button type="submit" id="someAction" name="someAction" class="btn btn-primary btn-block text-uppercase" style="display: none">Add Provider Now</button>
               </div>
                 </form>
 
@@ -238,6 +255,48 @@
         $("#expire_date").datepicker();
       });
     </script>
+     <!--- ================== Script js Captcha ================================== ---->
+     <script>
+      $(document).ready(function(){
+          //verifier si le champ captcha est vide quand
+          // on clique sur le lien de validation captchaValidation
+          $('#captchaValidation').click(function(){
+              var code = $('#captcha_code').val();
+             //si le champ captcha est vide afficher le message d'erreur
+              if(code == '')
+              {
+                  $("#error_captcha_code").show();
+              }
+              else
+              {
+                  //sinon fair un appel ajax du fichier check_code php
+                  // qui vérifie le code saisi
+                  $.ajax({
+                      url:"check_code.php",
+                      method:"POST",
+                      data:{code:code},
+                      success:function(data)
+                      {
+                          //vérifier le retour de la validation dans le fichier check_code.ph
+                          if(data == 'code_valid')
+                          {
+                              $("#error_captcha_code").hide();
+                              $('#captchaValidation').hide();
+                              $("#someAction").show();  // id=# fi jquery
+                              $("#check_ok").show();
+                          }
+                          else
+                          {
+                              alert('Invalid Code');
+                          }
+                      }
+                  });
+              }
+          });
+
+      });
+  </script>
+  <!--- ================== script js Captcha ================================== ---->
     <script src="ajaxFiles/uploadImage.js"></script>
   </body>
 </html>

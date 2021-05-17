@@ -1,22 +1,22 @@
 <?php
 
-  require_once '../Controller/ProviderC.php';
+  require_once '../Controller/DeliveryC.php';
   require_once '../Controller/NotificationC.php';
 
-  $providers = ProviderC::displayProvider();
+  $deliveries = DeliveryC::displayDelivery();
 
   /* Récuperer les message de notification**/
   $notifications = NotificationC::displayNotification();
   $countMessageNotRead = NotificationC::countMessage();
 
 
-if(!empty($_GET['idProviderForDelete'])) {
-    $id= trim($_GET['idProviderForDelete']);
-    $providers = ProviderC::deleteProvider($id);
+if(!empty($_GET['idDeliveryForDelete'])) {
+    $id= trim($_GET['idDeliveryForDelete']);
+    $deliveries = DeliveryC::deleteDelivery($id);
 
-    $pageProviderList = $_SERVER['HTTP_HOST'].'PureBowl/PureBowl/admin/provider.php';
+    $pageDeliveryList = $_SERVER['HTTP_HOST'].'PureBowl/PureBowl/admin/delivery.php';
 
-    header("Location: ". 'provider.php');
+    header("Location: ". 'delivery.php');
     exit;
 }
 
@@ -84,12 +84,12 @@ if(!empty($_GET['idProviderForDelete'])) {
     
 
       <li class="nav-item">
-        <a class="nav-link  " href="delivery.php">
+        <a class="nav-link active " href="delivery.php">
           <i class="fas fa-cubes"></i> Delivery
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link active" href="provider.php">
+        <a class="nav-link " href="provider.php">
           <i class="fas fa-truck"></i> provider
         </a>
       </li>
@@ -118,7 +118,7 @@ if(!empty($_GET['idProviderForDelete'])) {
                 <?php
                 foreach ($notifications as $notification){
                    
-                    echo '  <a class="dropdown-item" href="#">'.$notification[ 'objet'].'</a>';
+                    echo '  <a class="dropdown-item"  href="read-notification.php?id='.$notification[ 'id'].'">Command ID:'.$notification[ 'id_command'].'</a>';
                 }
                 ?>
             </div>
@@ -142,35 +142,44 @@ if(!empty($_GET['idProviderForDelete'])) {
               <table class="table table-hover tm-table-small tm-product-table">
                 <thead>
                   <tr>
-                  <th scope="col">&nbsp;</th>
+                    <th scope="col">&nbsp;</th>
                     <th scope="col">NAME</th>
-                    <th scope="col">CITY</th>
-                    <th scope="col">PHONE</th>
+                    <th scope="col">SALARY</th>
+                    <th scope="col">HOUR START</th>
+                    <th scope="col">HOUR END</th>
                     <th scope="col">ID</th>
+                    <th scope="col">Orders</th>
                     <th scope="col">&nbsp;</th>
                   </tr>
                 </thead>
                 <tbody>
                 <?php
                // if(isset($deliveries) and !empty($deliveries)){
-                    foreach ($providers as $provider){
-                      echo ' <tr>
-                      <th s cope="row"><img src="upload/'.$provider["image"].'" width="150"/></th>
+                    foreach ($deliveries as $delivery){
+
+                   $ordernumber = DeliveryC::countCommand($delivery["id"]);
+                   
+
+                        echo ' <tr>
+                    <th s cope="row"><img src="upload/'.$delivery["image"].'" width="150"/></th>
+                    <td class="tm-product-name">'.$delivery["name"].'</td>
+                    <td>'.$delivery["salary"].'</td>
+                    <td>'.$delivery["hour_start"].'</td>
+                    <td>'.$delivery["hour_end"].'</td>
+                    <td>'.$delivery["id"].'</td>
+                    <td>'.$ordernumber["orders"].'</td>
+                  
                     
-                    <td class="tm-product-name">'.$provider["name"].'</td>
-                    <td>'.$provider["region"].'</td>
-                    <td>'.$provider["num_tel"].'</td>            
-                    <td>'.$provider["id"].'</td>
                     <td>
-                    <td>
-                      <a href="delivery.php?idForDelete='.$provider[ 'id'].'" class="tm-product-delete-link">
+                      <a href="delivery.php?idDeliveryForDelete='.$delivery[ 'id'].'" class="tm-product-delete-link">
                         <i class="far fa-trash-alt tm-product-delete-icon"></i>
                       </a>
-                       <a href="edit-provider.php?id='.$provider[ 'id'].'" class="tm-product-delete-link">
+                       <a href="edit-delivery.php?id='.$delivery[ 'id'].'" class="tm-product-delete-link">
                         <i class="far fa-edit tm-product-delete-icon"></i>
                       </a>
                     </td>
                   </tr>';
+                  //  }
                 }
 
                 ?>
@@ -181,8 +190,8 @@ if(!empty($_GET['idProviderForDelete'])) {
             </div>
             <!-- table container -->
             <a
-              href="add-provider.php"
-              class="btn btn-primary btn-block text-uppercase mb-3">Add new provider</a>
+              href="add-delivery.php"
+              class="btn btn-primary btn-block text-uppercase mb-3">Add new delivery</a>
            
           </div>
         </div>

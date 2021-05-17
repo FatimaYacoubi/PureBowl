@@ -3,7 +3,7 @@
 //créer une image code en php
 
 //demarrer la session
-session_start(); //  pour stocker des donnes
+session_start();
 
 //générer un code aléatoire (random)
 $random_alpha = md5(rand());

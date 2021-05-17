@@ -11,12 +11,12 @@
 
 
 if(!empty($_GET['idDeliveryForDelete'])) {
-    $id= trim($_GET['idDeliveryForDelete']);
+    $id= trim($_GET['idDeliveryForDelete']);  // trim pour verifier les espace d'une chaine 
     $deliveries = DeliveryC::deleteDelivery($id);
 
     $pageDeliveryList = $_SERVER['HTTP_HOST'].'PureBowl/PureBowl/admin/delivery.php';
 
-    header("Location: ". 'delivery.php');
+    header("Location: ". 'delivery.php'); // bich yarja url mrgl
     exit;
 }
 

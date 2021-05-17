@@ -2,15 +2,15 @@
 function uploadFile() {
 
     var files = document.getElementById("fileInput").files;
-    if(files.length > 0 ){ // verifier si la photo existe 
+    if(files.length > 0 ){
 
-        var formData = new FormData(); // formdata 
+        var formData = new FormData();
 
         formData.append("file", files[0]);
 
-        var xhttp = new XMLHttpRequest();   // pour faire appele ajax 
+        var xhttp = new XMLHttpRequest();
 
-        // Set POST method and ajax file path et initialiser notre requete 
+        // Set POST method and ajax file path
         xhttp.open("POST", "ajaxFiles/uploadImage.php", true);
 
         // call on request changes state

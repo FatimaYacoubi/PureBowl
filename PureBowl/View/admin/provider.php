@@ -144,8 +144,8 @@ if(!empty($_GET['idProviderForDelete'])) {
                   <tr>
                   <th scope="col">&nbsp;</th>
                     <th scope="col">NAME</th>
-                    <th scope="col">CITY</th>
                     <th scope="col">PHONE</th>
+                    <th scope="col">CITY</th>
                     <th scope="col">ID</th>
                     <th scope="col">&nbsp;</th>
                   </tr>
@@ -156,10 +156,10 @@ if(!empty($_GET['idProviderForDelete'])) {
                     foreach ($providers as $provider){
                       echo ' <tr>
                       <th s cope="row"><img src="upload/'.$provider["image"].'" width="150"/></th>
-                    
+                    <th scope="row"><input type="checkbox" /></th>
                     <td class="tm-product-name">'.$provider["name"].'</td>
+                    <td>'.$provider["num_tel"].'</td>
                     <td>'.$provider["region"].'</td>
-                    <td>'.$provider["num_tel"].'</td>            
                     <td>'.$provider["id"].'</td>
                     <td>
                     <td>

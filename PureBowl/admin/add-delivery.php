@@ -30,7 +30,7 @@
      * ADD delivery action
      */
     $deliveryC = new DeliveryC();
-    if (isset($_POST["someAction"]) and empty($errors)) {
+    if (isset($_POST["someAction"]) and empty($errors)) { /**isset = existe si appui sur bouton add  */
         $delivery = new Delivery(
             $_POST['name'],
             $_POST['salary'],
@@ -118,9 +118,7 @@
                       </a>
                   </li>
                  
-                  <li class="nav-item">
-            <a class="nav-link " href="add-notification.php">
-                <i class="fas fa-comments"></i> Comments
+                 
             </a>
         </li>
         <li class="nav-item dropdown notification">
@@ -230,7 +228,7 @@
                         <i class="fas fa-cloud-upload-alt tm-upload-icon" onclick="document.getElementById('fileInput').click();" ></i>
                     </div>
                     <div class="custom-file mt-3 mb-3">
-                        <input id="fileInput" type="file" style="display:none;" />
+                        <input id="fileInput" type="file" style="display:none;" />  
                         <input type="button" class="btn btn-primary btn-block mx-auto" value="UPLOAD PRODUCT IMAGE *" onclick="uploadFile();" />
 
                     </div>
@@ -295,7 +293,7 @@
                           {
                               $("#error_captcha_code").hide();
                               $('#captchaValidation').hide();
-                              $("#someAction").show();
+                              $("#someAction").show();  // id=# fi jquery
                               $("#check_ok").show();
                           }
                           else

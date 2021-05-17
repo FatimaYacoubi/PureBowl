@@ -11,7 +11,6 @@
 		function __construct( $name =null, $region = null, $num_tel = null, $image = null){
 			
 			$this->name=$name;
-			$this->name=$name;
 			$this->region=$region;
 			$this->num_tel = $num_tel;
             $this->image = $image;

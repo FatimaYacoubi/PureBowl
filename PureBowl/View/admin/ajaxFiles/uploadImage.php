@@ -1,4 +1,4 @@
-<?php // fonction deplace l'image du bureau au siteweb si avec succes 7ot true 
+<?php
 
 if(isset($_FILES['file']['name'])){
     // file name
@@ -9,7 +9,7 @@ if(isset($_FILES['file']['name'])){
 
     // file extension
     $file_extension = pathinfo($location, PATHINFO_EXTENSION);
-    $file_extension = strtolower($file_extension); // forcer en miniscule
+    $file_extension = strtolower($file_extension);
 
     // Valid extensions
     $valid_ext = array("jpg","png","jpeg");
@@ -17,7 +17,7 @@ if(isset($_FILES['file']['name'])){
     $response = 0;
     if(in_array($file_extension,$valid_ext)){
         // Upload file
-        if(move_uploaded_file($_FILES['file']['tmp_name'],$location)){  // fonction defenie de^macer une fichier telecharger 
+        if(move_uploaded_file($_FILES['file']['tmp_name'],$location)){
             $response = 1;
         }
     }

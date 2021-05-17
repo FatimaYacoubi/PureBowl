@@ -51,7 +51,7 @@
      */
     if (isset($_GET["id"])){
         $idDelivery = $_GET["id"];
-        $currentDelivery = $deliveryC->displayDeliveryById($idDelivery); // tafficher les donneé m3ebin
+        $currentDelivery = $deliveryC->displayDeliveryById($idDelivery);
     }
 
 ?>
