@@ -1,21 +1,18 @@
-
 <?PHP
   include "../Controller/commandeC.php";
- 
+
   $commandeC=new commandeC();
   $listeUsers=$commandeC->affichercommande();
- 
-
 ?>
 <?php
 session_start();
-include_once("config.php");
+include_once("../config.php");
 
 // On teste si la variable de session existe et contient une valeur
 if(empty($_SESSION['e']))
 {
     // Si inexistante ou nulle, on redirige vers le formulaire de login
-    header('Location:View/login.php');
+    header('Location:login.php');
 }
 ?>
 
@@ -131,9 +128,6 @@ button:disabled:hover  {
 
    </style>
 <!-- End Styles -->     <title> Pure Bowl</title>  
-<form id="applyDiscountForm" method="post"
-        action="affichercom1.php?action=show_discount"
-        onsubmit="return validate();">
 
    <meta name="keywords" content=""> 
     <meta name="description" content="">
@@ -216,19 +210,7 @@ button:disabled:hover  {
   <!-- End header -->
   
     <main class="container">
-<script type="text/javascript">
-  document.addEventListener('click',hide2)
-function hide2()
-{    if(currentStep===2)
 
- {document.getElementById("55t").style.display="block";
- }
-           
-
-               else  document.getElementById("55t").style.display="none";
-               
-}
-</script>
     
 
         <br>
@@ -330,68 +312,24 @@ function hide2()
                       </a>
                     </td>
     </tr> 
-   
-             
-                    <tr>
-                        <td colspan="3" align="right">Total after
-                            Discount:</td>
-                        <td></td>
-                        <h1 id="total" align="center" class="btn-55">Votre total est de <strong><?php 
 
-echo $sum;
-        ?></strong> DT</h1>
-                    </tr>
-                    <?php 
-                }
-                ?>
   <?php 
                } 
           ?> 
-    <!--    <h1 id="total" align="center" class="btn-55">Votre total est de <strong><?php 
+        <h1 id="total" align="center" class="btn-55">Votre total est de <strong><?php 
 
     echo $sum;
-<<<<<<< HEAD
-            ?></strong> DT</h1>-->
-=======
             ?></strong> DT</h1>
 
->>>>>>> d0c0e717c54d9054e53af590093732d6dd27d3e9
           </div>
         </table> 
-        <div id="discount-grid">
-            <div class="discount-section">
-                <div class="discount-action">
-                    <span id="error-msg-span" class="error-message">
-                    <?php
-                    if (! empty($message)) {
-                        echo $message;
-                    }
-                    ?>
-                    </span> <span></span><input type="text"
-                        class="discount-code" id="discountCode"
-                        name="discountCode" size="15"
-                        placeholder="Enter Coupon Code" /><input
-                        id="btnDiscountAction" type="submit"
-                        value="Apply Discount" class="btnDiscountAction" />
-                </div>
-            </div>
-        </div>
 
    <br>
   <br>
-  
-  <div class="step">
-  <button align="center" id="previousBtn" class="btn-222">Previous</button>
-  <button align="center" id="nextBtn"class="btn-222">Next</button>
-  <button align="center" id="finishBtn" class="btn-222" color="black">Finish</button>
-  </div> 
-  </main>
+   <form action="ajouterCompte.php" id="commande" method="post"  align="center">
+            <main class="container">
 
-
-
-
-   <form action="ajouterCompte.php" id="55t" method="post" align="center">
-       <div class="row">
+        <div class="row">
                    <div class="col-md-12">
             <div class="form-group">
                             <h1 class="m-b-20"> Commande instantannée</h1>
@@ -405,43 +343,53 @@ echo $sum;
                         <input name="nom" type="text" placeholder="nom" required="">
 
 
-<BR> </div> </div>
+<BR> </div> </div> </div> 
         <div class="row">
                    <div class="col-md-12">
             <div class="form-group">
 
                         <input name="prenom" type="text" placeholder="prenom" required="">
-                <br> </div> </div>
+                 </div> </div>  </div> 
                 <div class="row">
                    <div class="col-md-12">
             <div class="form-group">
         <input name="email" type="text" pattern=".+@gmail.com|.+@esprit.tn" placeholder="email" required="">
-<br> </div> </div>
+<br> </div> </div> </div> 
  
         <div class="row">
                    <div class="col-md-12">
             <div class="form-group">
                         <input name="login" type="text" placeholder="login" required="">
-<br> </div> </div>
+<br> </div> </div> </div> 
                        
         <div class="row">
                    <div class="col-md-12">
             <div class="form-group"> <input name="adresse" type="text" placeholder="ville" required="">
-    <br> </div> </div> 
+    <br> </div> </div> </div> 
                        
         <div class="row">
                    <div class="col-md-12">
             <div class="form-group"> 
               <input name="tel" type="text" placeholder="tel" required="">
-<br> </div> </div>
+<br> </div>  </div> </div> 
 
-<div id="aDiv">
+</main> 
 
         </form> 
-<div align="center"> <?php echo ($error) ?> </div>
+
+  <div class="step">
+  <button align="center" id="previousBtn" class="btn-222">Previous</button>
+  <button align="center" id="nextBtn"class="btn-222">Next</button>
+  <button align="center" id="finishBtn" class="btn-222" color="black">Finish</button>
+  </div> 
+ 
+</main>
 
 
-</div>
+
+  
+
+</div>  
   <div class="customer-reviews-box">
     <div class="container">
       <div class="row">
@@ -605,6 +553,6 @@ echo $sum;
     <script src="../js/custom.js"></script>
         <script src="../js/progressbar.js"></script>
 
-</body>
-</html>
-  
+   </body>
+  </html>
+
