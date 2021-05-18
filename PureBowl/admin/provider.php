@@ -118,7 +118,7 @@ if(!empty($_GET['idProviderForDelete'])) {
                 <?php
                 foreach ($notifications as $notification){
                    
-                    echo '  <a class="dropdown-item" href="#">'.$notification[ 'objet'].'</a>';
+                  echo '  <a class="dropdown-item"  href="read-notification.php?id='.$notification[ 'id'].'">Command ID:'.$notification[ 'id_command'].'</a>';
                 }
                 ?>
             </div>
@@ -163,7 +163,7 @@ if(!empty($_GET['idProviderForDelete'])) {
                     <td>'.$provider["id"].'</td>
                     <td>
                     <td>
-                      <a href="delivery.php?idForDelete='.$provider[ 'id'].'" class="tm-product-delete-link">
+                      <a href="provider.php?idProviderForDelete='.$provider[ 'id'].'" class="tm-product-delete-link">
                         <i class="far fa-trash-alt tm-product-delete-icon"></i>
                       </a>
                        <a href="edit-provider.php?id='.$provider[ 'id'].'" class="tm-product-delete-link">
@@ -203,12 +203,6 @@ if(!empty($_GET['idProviderForDelete'])) {
     <!-- https://jquery.com/download/ -->
     <script src="../js/bootstrap.min.js"></script>
     <!-- https://getbootstrap.com/ -->
-    <script>
-      $(function() {
-        $(".tm-product-name").on("click", function() {
-          window.location.href = "edit-product.html";
-        });
-      });
-    </script>
+    
   </body>
 </html>
