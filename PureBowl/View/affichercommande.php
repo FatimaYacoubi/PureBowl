@@ -5,6 +5,17 @@
   $commandeC=new commandeC();
   $listeUsers=$commandeC->affichercommande();
 ?>
+<?php
+session_start();
+include_once("config.php");
+
+// On teste si la variable de session existe et contient une valeur
+if(empty($_SESSION['e']))
+{
+    // Si inexistante ou nulle, on redirige vers le formulaire de login
+    header('Location:View/login.php');
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en"><!-- Basic -->
