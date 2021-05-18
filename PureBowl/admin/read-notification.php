@@ -1,6 +1,6 @@
 <?php
-include $_SERVER['DOCUMENT_ROOT']."/PureBowl/PureBowl/config.php";
-require_once $_SERVER['DOCUMENT_ROOT'].'/PureBowl/PureBowl/Controller/NotificationC.php';
+include "../config.php";
+require_once '../Controller/NotificationC.php';
     
 
     /* Récuperer les message de notification**/

@@ -1,7 +1,7 @@
-<?PHP
-
+<?php
 require_once "../config.php";
     require_once '../Model/Notification.php';
+
 	class NotificationC {
 
         function countMessage(){

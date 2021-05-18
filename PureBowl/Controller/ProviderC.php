@@ -89,8 +89,8 @@
             $db = config::getConnexion();
             $sql = "UPDATE provider SET 
                                name=:name, 
-                               num_tel=:num_tel,
-                               region=:region,                              
+                               region=:region,
+                               num_tel=:num_tel,                              
                                image=:image  
                                WHERE id=:id";
 
@@ -99,9 +99,9 @@
 
                 $query->execute([
                     'id' => $provider["id"],
-                    'num_tel' => $provider["num_tel"],
+                    'name' => $provider["name"],
                     'region' => $provider["region"],
-                    
+                    'num_tel' => $provider["num_tel"],               
                     'image' => $provider["image"]
 
                 ]);

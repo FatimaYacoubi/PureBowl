@@ -1,6 +1,6 @@
 <?php
-include "./config.php";
-require_once './Controller/NotificationC.php';
+include "../config.php";
+require_once '../Controller/NotificationC.php';
 
 /**
  * ADD notification action
@@ -39,21 +39,21 @@ if (isset($_POST["sendMessageAction"])and !empty($_POST['id_command'])) {
     <meta name="author" content="">
 
     <!-- Site Icons -->
-    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">    
+    <link rel="stylesheet" href="../css/bootstrap.min.css">    
 	<!-- Site CSS -->
-    <link rel="stylesheet" href="css/style.css">    
+    <link rel="stylesheet" href="../css/style.css">    
 	<!-- Pickadate CSS -->
-    <link rel="stylesheet" href="css/classic.css">    
-	<link rel="stylesheet" href="css/classic.date.css">    
-	<link rel="stylesheet" href="css/classic.time.css">    
+    <link rel="stylesheet" href="../css/classic.css">    
+	<link rel="stylesheet" href="../css/classic.date.css">    
+	<link rel="stylesheet" href="../css/classic.time.css">    
     <!-- Responsive CSS -->
-    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="../css/responsive.css">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/custom.css">
+    <link rel="stylesheet" href="../css/custom.css">
 
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -101,8 +101,7 @@ if (isset($_POST["sendMessageAction"])and !empty($_POST['id_command'])) {
 							</div>
 						</li>
 						<li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-						<li class="nav-item "><a class="nav-link" href="reclamation.html">Reclamation</a></li>
-						<li class="nav-item active "><a class="nav-link" href="comments.php">Comments</a></li>
+						<li class="nav-item active "><a class="nav-link" href="comment.php">Comments</a></li>
 						<li class="nav-item"><a class="nav-link" href="gift.html">Gift</a></li>
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Sign in</a>
