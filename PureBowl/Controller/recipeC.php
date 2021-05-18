@@ -47,22 +47,25 @@
 			}
 		}
 		function modifyRecipe($recipe, $idR){
+
+			
+			
 			try {
 				$db = config::getConnexion();
 				$query = $db->prepare(
 					'UPDATE recipes SET 
 						duration = :duration, 
 						steps = :steps,
+						id = :id
 					
 						
 					WHERE idR = :idR'
 				);
 				$query->execute([
 					'duration' => $recipe->getDuration(),
-					'price' => $recipe->getPrice(),
-					
-					
-					'idR' => $id
+					'steps' => $recipe->getSteps(),
+					'id' => $recipe->getId(),
+					'idR' => $idR
 				]);
 				
 			} catch (PDOException $e) {

@@ -12,19 +12,22 @@
     if (
         isset($_POST["name"]) && 
         isset($_POST["ingredients"]) &&
-        isset($_POST["price"]) 
+        isset($_POST["price"]) &&
+        isset($_POST["etat"]) 
         
     ) {
         if (
             !empty($_POST["name"]) && 
             !empty($_POST["ingredients"]) &&
-            !empty($_POST["price"])
+            !empty($_POST["price"])&&
+            !empty($_POST["etat"])
             
         ) {
             $dish = new dish(
                 $_POST['name'],
                 $_POST['ingredients'],
-                $_POST['price']
+                $_POST['price'],
+                $_POST['etat']
                 
             );
             $dishC->adddish($dish);
@@ -128,6 +131,8 @@
                     <input
                       id="name"
                       name="name"
+                      placeholder="Enter the dish name"
+                      pattern="[A-Z a-z]*"
                       type="text"
                       class="form-control validate"
                       required
@@ -141,6 +146,8 @@
                     <textarea id="ingredients"
                     name="ingredients" 
                       class="form-control validate"
+                      pattern="[A-Z a-z]*"
+                      placeholder="Enter the ingredients"
                       rows="3"
                       required
                     ></textarea>
@@ -153,7 +160,25 @@
                     <input
                       id="price"
                       name="price"
-                      type="text"
+                      type="number"
+                      placeholder="Enter the price"
+                      min="0"
+                      step="0.1"
+                      class="form-control validate"
+                      required
+                    />
+                  </div>
+                  <div class="form-group mb-3">
+                    <label
+                      for="etat"
+                      >ETAT
+                    </label>
+                    <input
+                      id="etat"
+                      name="etat"
+                      type="number"
+                      min="1"
+                      max="1"
                       class="form-control validate"
                       required
                     />
