@@ -1,6 +1,7 @@
 <?PHP
 
-require_once $_SERVER['DOCUMENT_ROOT'].'/PureBowl/PureBowl/Model/Notification.php';
+require_once "../config.php";
+    require_once '../Model/Notification.php';
 	class NotificationC {
 
         function countMessage(){
