@@ -30,6 +30,7 @@
   </head>
 
   <body id="reportsPage">
+    
     <nav class="navbar navbar-expand-xl">
       <div class="container h-100">
         <a class="navbar-brand" href="index1.html">
@@ -73,6 +74,8 @@
                 <a class="dropdown-item" href="#">Yearly Report</a>
               </div>
             </li>
+            
+            
             <li class="nav-item">
               <a class="nav-link " href="displayProduct.php">
                 <i class="fas fa-shopping-cart"></i> Products
@@ -110,6 +113,7 @@
                 <i class="far fa-user"></i> Promo
               </a>
             </li>
+            
             <li class="nav-item dropdown">
               <a
                 class="nav-link dropdown-toggle"
@@ -171,15 +175,19 @@
           <td><?PHP echo $recipe['id']; ?></td>
 					<td></td>
 					<td>
-						 
+          
             <!-- <a href="#" class="tm-product-delete-link">
                         <i class="far fa-trash-alt tm-product-delete-icon"></i>
              </a>-->
                     
-						<form method="POST" action="deleteRecipe.php">
-						<input type="submit" name="DELETE" value="DELETE" class="btn btn-primary btn-block text-uppercase">
-						<input type="hidden" value=<?PHP echo $recipe['idR']; ?> name="idR"  >
-						</form> 					</td>
+             <form method="POST" action="deleteRecipe.php">
+                             <button type="submit" name="supprimer "class="tm-product-delete-link" >
+                        <i class="far fa-trash-alt tm-product-delete-icon"></i></button> 
+                        
+                        <input type="hidden" value=<?PHP echo $recipe['idR']; ?> name="idR">
+                        
+
+                        </form> 					</td>
 					<td>
 						<a href="modifyRecipe.php?idR=<?PHP echo $recipe['idR']; ?>" class="btn btn-primary btn-block text-uppercase"> Modify </a>
 					</td>

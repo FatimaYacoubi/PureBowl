@@ -1,9 +1,22 @@
 
 <?PHP
   include "../Controller/commandeC.php";
-
+ 
   $commandeC=new commandeC();
   $listeUsers=$commandeC->affichercommande();
+ 
+
+?>
+<?php
+session_start();
+include_once("config.php");
+
+// On teste si la variable de session existe et contient une valeur
+if(empty($_SESSION['e']))
+{
+    // Si inexistante ou nulle, on redirige vers le formulaire de login
+    header('Location:View/login.php');
+}
 ?>
 
 <!DOCTYPE html>
@@ -118,6 +131,9 @@ button:disabled:hover  {
 
    </style>
 <!-- End Styles -->     <title> Pure Bowl</title>  
+<form id="applyDiscountForm" method="post"
+        action="affichercom1.php?action=show_discount"
+        onsubmit="return validate();">
 
    <meta name="keywords" content=""> 
     <meta name="description" content="">
@@ -314,17 +330,52 @@ function hide2()
                       </a>
                     </td>
     </tr> 
+   
+             
+                    <tr>
+                        <td colspan="3" align="right">Total after
+                            Discount:</td>
+                        <td></td>
+                        <h1 id="total" align="center" class="btn-55">Votre total est de <strong><?php 
 
+echo $sum;
+        ?></strong> DT</h1>
+                    </tr>
+                    <?php 
+                }
+                ?>
   <?php 
                } 
           ?> 
-        <h1 id="total" align="center" class="btn-55">Votre total est de <strong><?php 
+    <!--    <h1 id="total" align="center" class="btn-55">Votre total est de <strong><?php 
 
     echo $sum;
+<<<<<<< HEAD
+            ?></strong> DT</h1>-->
+=======
             ?></strong> DT</h1>
 
+>>>>>>> d0c0e717c54d9054e53af590093732d6dd27d3e9
           </div>
         </table> 
+        <div id="discount-grid">
+            <div class="discount-section">
+                <div class="discount-action">
+                    <span id="error-msg-span" class="error-message">
+                    <?php
+                    if (! empty($message)) {
+                        echo $message;
+                    }
+                    ?>
+                    </span> <span></span><input type="text"
+                        class="discount-code" id="discountCode"
+                        name="discountCode" size="15"
+                        placeholder="Enter Coupon Code" /><input
+                        id="btnDiscountAction" type="submit"
+                        value="Apply Discount" class="btnDiscountAction" />
+                </div>
+            </div>
+        </div>
 
    <br>
   <br>

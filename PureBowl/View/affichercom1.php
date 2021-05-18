@@ -2,7 +2,7 @@
 <?PHP
   include "../Controller/commandeC.php";
   require_once ("db.php");
-$db_handle = new DBController();
+  $db_handle = new DBController();
   $commandeC=new commandeC();
   $listeUsers=$commandeC->affichercommande();
   switch ($_GET["action"]) {
@@ -22,9 +22,7 @@ $db_handle = new DBController();
                     $message = "Invalid Discount Coupon";
                 }
             }
-         else {
-            $message = "Not applicable. The cart is empty";
-        }
+       
         break;
    
 }

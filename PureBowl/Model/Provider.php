@@ -5,14 +5,15 @@
 		private $name;
 		private $region ;
 		private $num_tel ;
+        private $image ;
 
         
-		function __construct( $name =null, $region = null, $num_tel = null){
+		function __construct( $name =null, $region = null, $num_tel = null, $image = null){
 			
-			$this->name=$name;
 			$this->name=$name;
 			$this->region=$region;
 			$this->num_tel = $num_tel;
+            $this->image = $image;
 		}
 
         public function getId()
@@ -47,4 +48,13 @@
         {
             $this->num_tel = $num_tel;
         }
+        public function getImage()
+        {
+            return $this->image;
+        }
+        public function setImage($image)
+        {
+            $this->image = $image;
+        }
+
 	}
