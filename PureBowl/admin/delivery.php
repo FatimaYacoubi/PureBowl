@@ -96,6 +96,7 @@ if(!empty($_GET['idDeliveryForDelete'])) {
      
        
         <li class="nav-item dropdown notification">
+
             <a
                     class="nav-link dropdown-toggle"
                     href="#"
@@ -105,7 +106,7 @@ if(!empty($_GET['idDeliveryForDelete'])) {
                     aria-haspopup="true"
                     aria-expanded="false">
                 <i class="fas fa-bell" style="margin-top: 30.1%;"></i>
-                <span> Notification
+                 Notification
                     <i class="fas fa-angle-down">
 
                     </i>
@@ -122,6 +123,7 @@ if(!empty($_GET['idDeliveryForDelete'])) {
                 }
                 ?>
             </div>
+          
         </li>
     </ul>
     <ul class="navbar-nav">
@@ -153,6 +155,7 @@ if(!empty($_GET['idDeliveryForDelete'])) {
                   </tr>
                 </thead>
                 <tbody>
+
                 <?php
                // if(isset($deliveries) and !empty($deliveries)){
                     foreach ($deliveries as $delivery){
@@ -167,7 +170,10 @@ if(!empty($_GET['idDeliveryForDelete'])) {
                     <td>'.$delivery["hour_start"].'</td>
                     <td>'.$delivery["hour_end"].'</td>
                     <td>'.$delivery["id"].'</td>
-                    <td>'.$ordernumber["orders"].'</td>
+					<td>'.$ordernumber["orders"].'</td>
+					
+                   
+                    
                   
                     
                     <td>
@@ -179,6 +185,7 @@ if(!empty($_GET['idDeliveryForDelete'])) {
                       </a>
                     </td>
                   </tr>';
+
                   //  }
                 }
 
