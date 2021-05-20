@@ -13,21 +13,12 @@ document.addEventListener('click',hide2)
 function hide2()
 {    if(currentStep===2)
 
- {document.getElementById("55t").style.display="block";
+ {document.getElementById("commande").style.display="block";
  }
            
 
-               else  document.getElementById("55t").style.display="none";
+               else  document.getElementById("commande").style.display="none";
                
-}
-document.addEventListener('click',hide1)
-function hide1()
-{    if(currentStep===1)
-    { document.getElementById("orders").style.display="block";
-          document.getElementById("total").style.display="block"; }
-
-               else { document.getElementById("orders").style.display="none";
-               document.getElementById("total").style.display="none";}
 }
 
 

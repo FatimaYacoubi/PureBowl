@@ -106,7 +106,7 @@ exit();
 		box-sizing: border-box;
 		outline: none;
 		transition: .5s ease-in;
-		color: brown;
+		color: black;
 		font-family: Montserrat;
 		font-size: 14px;
 	}
@@ -160,7 +160,7 @@ exit();
 				<div class="collapse navbar-collapse" id="navbars-rs-food">
 					<ul class="navbar-nav ml-auto">
 						<li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
-						<li class="nav-item active "><a class="nav-link" href="../menu.php">Menu</a></li>
+						<li class="nav-item active "><a class="nav-link" href="menu.php">Menu</a></li>
 						<li class="nav-item"><a class="nav-link" href="../about.html">About</a></li>
 						<li class="nav-item  dropdown">
 							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Pages</a>
@@ -224,8 +224,8 @@ exit();
 		<input type="text" name="to" id="to" placeholder="to ..( write an email )">
 	</div><br>
 	<div>
-		<textarea name="msg" id="msg" placeholder="Write your message here ... ">
-
+		<textarea name="msg" id="msg" placeholder="Write your message here ... "  readonly required autofocus>
+		
 		NAME:
 		<?PHP echo $tutoName1; ?>	
 
@@ -271,6 +271,18 @@ $(document).ready(function(){
 	            }
 			});
 		}
+		var lancer="oui";
+	
+	if(document.getElementById("to").value=="")
+	{
+		alert("insert mail!");
+		lancer="non";
+	}
+	else if(document.getElementById("to").value.indexOf("@")==-1 || document.getElementById("to").value.indexOf(".")==-1)
+	{
+		alert("You have entered an invalid e-mail adress ,please try again");
+		lancer="non";
+	}
 
 
 	});

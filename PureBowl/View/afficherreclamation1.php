@@ -1,9 +1,18 @@
 <?PHP
 	include "../Controller/reclamationC.php";
 require_once '../mail1.php';
+include_once("../config.php");
 	$reclamationC=new reclamationC();
 	$listeUsers=$reclamationC->afficherreclamation();
+session_start();
 
+
+// On teste si la variable de session existe et contient une valeur
+if(empty($_SESSION['e']))
+{
+    // Si inexistante ou nulle, on redirige vers le formulaire de login
+    header('Location:login.php');
+}
 ?>
 
 <!DOCTYPE html>
@@ -72,7 +81,7 @@ require_once '../mail1.php';
 	<?php 
      //fichier lekhor
     $mail->setFrom('purebowlcontact@gmail.com', 'Pure Bowl'); //the sender
-    $mail->addAddress('mohamedaziz.cherif@esprit.tn'); //reciver
+    $mail->addAddress( $_SESSION['e']); //reciver
     $mail->Subject = 'Thank you for submitting your reclamation!'; //subject
     $mail->Body    = 'We are sorry that you had this bad experience but a request detailing what you found wrong is sent to our team t review it ! thank you for your feedback and for helping us better Pure Bowl!'; //el msg bidou
     $mail->send();
