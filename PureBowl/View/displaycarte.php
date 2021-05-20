@@ -27,13 +27,25 @@
   Product Admin CSS Template
   https://templatemo.com/tm-524-product-admin
   -->
+      <!-- //lined-icons--> 
+      <script src="../js/Chart.js"></script>
+    <script src="https://raw.githack.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
+<style>
+div.c {
+  position: absolute;
+  left: 860px;
+  width: 500px;
+  height: 700px;
+  border: 3px solid orange;
+} 
+</style>
   </head>
 
   <body id="reportsPage">
     <nav class="navbar navbar-expand-xl">
       <div class="container h-100">
         <a class="navbar-brand" href="index1.html">
-          <h1 class="tm-site-title mb-0">Dishes</h1>
+          <h1 class="tm-site-title mb-0">Services</h1>
         </a>
         <button
           class="navbar-toggler ml-auto mr-0"
@@ -93,7 +105,7 @@
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="displayGift.php">Gifts</a>
-                <a class="dropdown-item" href="displaycoupon.php">Coupons</a>
+                <a class="dropdown-item" href="displaycarte.php">Coupons</a>
                 
               </div>
             </li>
@@ -149,12 +161,76 @@
         </div>
       </div>
     </nav>
+  
+       <!-- final affichage de stat -->
+    <div class="charts">
+                    <div class="c">
+						<div class="charts-grids widget"id="pdf">
+
+							<h4 class="title">Stat of coupon prices</h4>
+              <br>
+            
+            </br>
+              <button onclick="PPDDFF()" class="btn btn-xs btn-primary btn-block"> Export as PDF</button>
+              <br>
+            
+              </br>
+              
+							<canvas  id="pie" width="922" height="813" style="width: 738px; height: 651px;"> </canvas>
+						</div>
+					</div>
+
+                    <?php
+                    $pdo=config::getConnexion();
+                    $query= $pdo ->prepare("select count(price)as nombre,price from coupon GROUP by price");
+
+                    $query->execute();
+                     $stat = $query->fetchAll();
+
+                    ?>
+
+
+                    <script>
+
+								var pieData = [
+                                    <?php
+
+                                    foreach($stat as $count) {
+
+
+                                        echo "{value:".$count['nombre'].",";
+                                        echo "color:'rgb(",rand (0,255 ),",",rand (0,255 ), ",",rand (0,255 ),")',";
+                                        echo "label: '",$count['price'], "'},";
+
+
+
+                                    }
+                                            ?>
+
+
+
+									];
+
+
+							new Chart(document.getElementById("pie").getContext("2d")).Pie(pieData);
+
+							</script>
+              <script>
+            function PPDDFF() {
+              const element = document.getElementById("pdf");
+              html2pdf()
+              .from(element)
+              .save();
+
+
+            }
+            </script>
     <div class="container mt-5">
       <div class="row tm-content-row">
-        <div class="col-sm-12 col-md-12 col-lg-8 col-xl-8 tm-block-col">
+        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-8 tm-block-col">
           <div class="tm-bg-primary-dark tm-block tm-block-products">
             <div class="tm-product-table-container">
-              <table class="table table-hover tm-table-small tm-product-table">
+              <table  class="table table-hover tm-table-small tm-product-table">
                 <thead>
                   <tr>
                     <th scope="col">&nbsp;</th>
@@ -188,152 +264,57 @@
             <!-- <a href="#" class="tm-product-delete-link">
                         <i class="far fa-trash-alt tm-product-delete-icon"></i>
              </a>-->
-                    
+          
 						<form method="POST" action="deletecarte.php">
 						<input type="submit" name="DELETE" value="DELETE" class="btn btn-primary btn-block text-uppercase">
 						<input type="hidden" value=<?PHP echo $couponC['id']; ?> name="id"  >
+            
 						</form> 					</td>
-					<td>
+					
+          <td>
 						<a href="modifycarte.php? id=<?PHP echo $couponC['id']; ?>" class="btn btn-primary btn-block text-uppercase"> Modify </a>
 					</td>
 				</tr>
+   
 			<?PHP
 				}
 			?> 
-               <!--   <tr>
-                    <th scope="row"><input type="checkbox" /></th>
-                    <td class="tm-pack-name">SIMPLE</td>
-                    <td>150Dt</td>
-                    <td>tarte/ salade/ penne au saumon / soupe/ couscous </td>
-                    <td>011</td>
-                    <td>
-                      <a href="#" class="tm-product-delete-link">
-                        <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row"><input type="checkbox" /></th>
-                    <td class="tm-product-name">Lablebi</td>
-                    <td>9 Dt</td>
-                    <td>soupe Hrissa/ soupe vinaigre blanc/ chiches secs/ oueifs/ pains/ huile</td>
-                    <td>012</td>
-                    <td>
-                      <a href="#" class="tm-product-delete-link">
-                        <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row"><input type="checkbox" /></th>
-                    <td class="tm-product-name">Mloukhiya</td>
-                    <td>11 Dt</td>
-                    <td>hile d'olive/ viande boeuf/ oignon/ feuilles de laurier/ poudre </td>
-                    <td>013</td>
-                    <td>
-                      <a href="#" class="tm-product-delete-link">
-                        <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row"><input type="checkbox" /></th>
-                    <td class="tm-product-name">Chorba</td>
-                    <td>10 Dt</td>
-                    <td>tomate/ oignon/ gingembre/ poivre/ viande de boeuf  </td>
-                    <td>014</td>
-                    <td>
-                      <a href="#" class="tm-product-delete-link">
-                        <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row"><input type="checkbox" /></th>
-                    <td class="tm-product-name">Kammounia</td>
-                    <td>15 Dt</td>
-                    <td>oignon/ tomate/ piment/ gousse d'ail/ tabel</td>
-                    <td>015</td>
-                    <td>
-                      <a href="#" class="tm-product-delete-link">
-                        <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row"><input type="checkbox" /></th>
-                    <td class="tm-product-name">Ojja</td>
-                    <td>12 Dt</td>
-                    <td>tomate/ merguez/ ouefs/ poivron vert </td>
-                    <td>016</td>
-                    <td>
-                      <a href="#" class="tm-product-delete-link">
-                        <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row"><input type="checkbox" /></th>
-                    <td class="tm-product-name">Grilled chicken</td>
-                    <td>35 Dt</td>
-                    <td>poulet/ guile d'olive/ thym séché/ romarin séché/ citron/ ail haché</td>
-                    <td>017</td>
-                    <td>
-                      <a href="#" class="tm-product-delete-link">
-                        <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row"><input type="checkbox" /></th>
-                    <td class="tm-product-name">Seafood pasta</td>
-                    <td>40.900 Dt</td>
-                    <td>fruits de mer/huile d'olive/ vin blanc sec/ail/tomate/sel</td>
-                    <td>018</td>
-                    <td>
-                      <a href="#" class="tm-product-delete-link">
-                        <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row"><input type="checkbox" /></th>
-                    <td class="tm-product-name">Fruity juice</td>
-                    <td>13 Dt</td>
-                    <td>pommes ou banane ou peche ou orange </td>
-                    <td>019</td>
-                    <td>
-                      <a href="#" class="tm-product-delete-link">
-                        <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                      </a>
-                    </td>
-                  </tr> -->
+             
                 </tbody> 
               </table>
             </div>
             <!-- table container -->
           <a
-              href="addcarte.php"
+              href="addcarte1.php"
               class="btn btn-primary btn-block text-uppercase mb-3"> Add Coupon </a>
+
+              <a href="csv.php">
+<button type="button" class="btn btn-info">Exporter xls</button></a>
+
              
           </div>
         </div>
         
       </div>
     </div>
+  
+
+
+
+                
     <footer class="tm-footer row tm-mt-small">
       <div class="col-12 font-weight-light">
         <p class="text-center text-white mb-0 px-4 small">
-          Copyright &copy; <b>2018</b> All rights reserved. 
+          Copyright &copy; <b>2021</b> All rights reserved. 
           
           Design: <a rel="nofollow noopener" href="https://templatemo.com" class="tm-footer-link">Template Mo</a>
         </p>
       </div>
     </footer>
 
-    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="../js/jquery-3.3.1.min.js"></script>
     <!-- https://jquery.com/download/ -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
     <!-- https://getbootstrap.com/ -->
     <script>
       $(function() {

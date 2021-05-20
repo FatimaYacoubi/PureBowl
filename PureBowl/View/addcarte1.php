@@ -26,7 +26,7 @@
                 $_POST['price']
             );
             $CouponC-> ajoutercoupon($Coupon);
-            header('refresh:5;url=displaycarte.php');
+            header('refresh:2;url=displaycarte.php');
         }
         else
             $error = "Missing information";
@@ -65,7 +65,7 @@
     <nav class="navbar navbar-expand-xl">
       <div class="container h-100">
         <a class="navbar-brand" href="index.html">
-          <h1 class="tm-site-title mb-0">Carte Admin</h1>
+          <h1 class="tm-site-title mb-0">Coupon</h1>
         </a>
         <button
           class="navbar-toggler ml-auto mr-0"
@@ -184,24 +184,25 @@
             <div id="error">
             <?php echo $error; ?>
         </div>
-        
+
         <div class="row tm-edit-product-row">
               <div class="col-xl-6 col-lg-6 col-md-12">
               <form action="" method="POST">
                   <div class="form-group mb-3">
                     <label
                       for="discount_code"
-                      > Discount code
+                      > Get coupon here
                     </label>
                     <input
                       id="discount_code"
                       name="discount_code"
                       type="text"
                       class="form-control validate"
-                      required
+                      readonly="readonly"
+                     
                     />
                   </div>
-
+                  <center><button type="button" class="btn btn-primary" id="generate">Generate Coupon</button>
                   <div class="row">
                       <div class="form-group mb-3 col-xs-12 col-sm-6">
                           <label
@@ -218,6 +219,41 @@
                         </div>
                         
                   </div>
+           
+                 
+
+                  
+                  
+              </div>
+        
+   <!--     <form method="POST" action="">
+				<div class="form-group">
+					<label>Get coupon here</label>
+					<input type="text" class="form-control" name="coupon" id="coupon" required="required" readonly="readonly"/>
+				</div>
+				<center><button type="button" class="btn btn-primary" id="generate">Generate Coupon</button>
+				<br /><br />
+        <div class="row">
+                      <div class="form-group mb-3 col-xs-12 col-sm-6">
+                          <label
+                            for="price"
+                            >Price
+                          </label>
+                          <input
+                            id="price"
+                            name="price"
+                            type="text"
+                            class="form-control validate"
+                            data-large-mode="true"
+                          />
+                        </div>
+                        
+                  </div>
+			
+			</form>-->
+      
+
+                 
            
                  
 
@@ -243,13 +279,25 @@
         </p>
         </div>
     </footer> 
+  
 
-    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="../js/jquery-3.3.1.min.js"></script>
     <!-- https://jquery.com/download/ -->
     <script src="jquery-ui-datepicker/jquery-ui.min.js"></script>
     <!-- https://jqueryui.com/download/ -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
     <!-- https://getbootstrap.com/ -->
+    <script type="text/javascript">
+	$(document).ready(function(){
+		$('#generate').on('click', function(){
+			$.get("generate.php", function(data){
+				$('#discount_code').val(data);
+			});
+			$(this).attr("disabled", "disabled");
+			$('#submit').show();
+		});
+	});
+</script>	
     <script>
       $(function() {
         $("#expire_date").datepicker();
