@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css?family=Arbutus+Slab');
+@import url('https://fonts.googleapis.com/css?family=Athiti:400,500,600');
+
+/*------------------------------------------------------------------
+    IMPORT FILES
+-------------------------------------------------------------------*/
+
+@import url(animate.css);
+@import url(font-awesome.min.css);
+@import url(superslides.css);
+@import url(baguetteBox.min.css);
+.btn-7{
+	width:400px; 
+	height: 50px;
+border: none;
+color: black; 
+border-radius: 2px; 
+box-shadow: inset 0 0 0 0 #d0a772;
+transition: ease-out 0.5s; 
+font-size: 1rem; 
+}
+.btn-7:hover
+{ box-shadow:inset 700px 0 0 0 #d0a772;  }
