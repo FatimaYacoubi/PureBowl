@@ -1,9 +1,12 @@
 <?php
 include_once '../Model/utilisateur.php';
 include_once '../Controller/utilisateurC.php';
-
+include_once '../vendor1/autoload.php';
 
 $error = "";
+$sid="AC1b3a7febca8e82c798902a2fbb91542a";
+$token="b52b4a25a74a225a7f1d4880c1c755a7";
+$client=new Twilio\Rest\Client($sid,$token);
 
 $user = null;
 
@@ -47,6 +50,15 @@ if (
         );
 
         $userC->ajouterutilisateur($user);
+        $num="+216".$_POST['tel'];
+
+        $client->messages->create(
+            // Where to send a text message (your cell phone?)
+            $num,
+            array(
+                'from' => "+13852360879",
+                'body' => 'Bienvenue dans notre site PureBowl'
+            ));
         header('Location:login.php');
     }
 

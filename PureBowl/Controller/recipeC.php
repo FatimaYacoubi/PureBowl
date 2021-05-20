@@ -5,8 +5,8 @@
 	class recipeC {
 		
 		function addRecipe($recipe){
-			$sql="INSERT INTO recipes (duration, steps,id) 
-			VALUES (:duration,:steps,:id)";
+			$sql="INSERT INTO recipes (duration, steps,name) 
+			VALUES (:duration,:steps,:name)";
 			$db = config::getConnexion();
 			try{
 				$query = $db->prepare($sql);
@@ -14,7 +14,7 @@
 				$query->execute([
 					'duration' => $recipe->getDuration(),
 					'steps' => $recipe->getSteps(),
-					'id' => $recipe->getId()
+					'name' => $recipe->getName()
 				]);			
 			}
 			catch (Exception $e){
@@ -56,7 +56,7 @@
 					'UPDATE recipes SET 
 						duration = :duration, 
 						steps = :steps,
-						id = :id
+						name = :name
 					
 						
 					WHERE idR = :idR'
@@ -64,7 +64,7 @@
 				$query->execute([
 					'duration' => $recipe->getDuration(),
 					'steps' => $recipe->getSteps(),
-					'id' => $recipe->getId(),
+					'name' => $recipe->getName(),
 					'idR' => $idR
 				]);
 				

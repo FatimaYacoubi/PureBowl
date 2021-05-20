@@ -172,8 +172,8 @@
                     <th scope="col">FOOD & DRINKS </th>
                     <th scope="col">INGREDIENTS</th>
                     <th scope="col">PRICE</th>
-                    <th scope="col">ID</th>
-                    <th scope="col">etat</th>
+                    
+                   <!-- <th scope="col">etat</th>-->
                     
                     <th scope="col"></th>
 
@@ -191,8 +191,8 @@
           <td><?PHP echo $dish['name']; ?></td> 
 					<td><?PHP echo $dish['ingredients']; ?></td> 
 					<td><?PHP echo $dish['price']; ?></td>
-                    <td><?PHP echo $dish['id']; ?></td>
-                    <td><?PHP echo $dish['etat']; ?></td>
+                    
+                  <!--  <td><?PHP echo $dish['etat']; ?></td>-->
 					<td></td>
 					<td>
 						 
@@ -204,7 +204,7 @@
                              <button type="submit" name="supprimer "class="tm-product-delete-link" >
                         <i class="far fa-trash-alt tm-product-delete-icon"></i></button> 
                         
-                        <input type="hidden" value=<?PHP echo $dish['id']; ?> name="id">
+                        <input type="hidden" value=<?PHP echo $dish['name']; ?> name="name">
                         
 
                         </form>
@@ -216,7 +216,7 @@
                 <button style="height: : 30px" type="submit" name="inarchiver "class="tm-product-delete-link" >
             <i class="fas fa-archive tm-product-delete-icon" ></i></button> 
             
-            <input type="hidden" value=<?PHP echo $dish['id']; ?> name="id">
+            <input type="hidden" value=<?PHP echo $dish['name']; ?> name="name">
  </form>
 </td>
            
@@ -224,7 +224,7 @@
           
           
           <td>
-						<a href="modifydish.php? id=<?PHP echo $dish['id']; ?>" class="btn btn-primary btn-block text-uppercase"> Modify </a>
+						<a href="modifydish.php? name=<?PHP echo $dish['name']; ?>" class="btn btn-primary btn-block text-uppercase"> Modify </a>
 					</td>
 				</tr>
 			<?PHP

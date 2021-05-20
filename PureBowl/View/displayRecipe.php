@@ -156,7 +156,7 @@
                     <th scope="col">ID </th>
                     <th scope="col">DURATION</th>
                     <th scope="col">STEPS</th>
-                    <th scope="col">ID dish</th>
+                    <th scope="col">Name</th>
 
                     <th scope="col">&nbsp;</th>
                   </tr>
@@ -172,7 +172,7 @@
           <td><?PHP echo $recipe['idR']; ?></td> 
 					<td><?PHP echo $recipe['duration']; ?></td> 
 					<td><?PHP echo $recipe['steps']; ?></td>
-          <td><?PHP echo $recipe['id']; ?></td>
+          <td><?PHP echo $recipe['name']; ?></td>
 					<td></td>
 					<td>
           

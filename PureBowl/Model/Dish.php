@@ -1,6 +1,6 @@
 <?PHP
 	class Dish{
-		private ?int $id = null;
+		
 		private ?string $name = null;
 		private ?string $ingredients = null;
 		private ?float $price = null;
@@ -14,9 +14,7 @@
 			$this->etat=$etat;
 		}
 		
-		function getId(): int{
-			return $this->id;
-		}
+		
 		function getName(): string{
 			return $this->name;
 		}

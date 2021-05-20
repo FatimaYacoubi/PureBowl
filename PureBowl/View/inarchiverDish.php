@@ -3,8 +3,8 @@
 
     $dishC=new dishC();
     
-    if (isset($_POST["id"])){
-        $dishC->inarchiverDish($_POST["id"]);
+    if (isset($_POST["name"])){
+        $dishC->inarchiverDish($_POST["name"]);
         header('Location:afficherDisharchive.php');
     }
 
