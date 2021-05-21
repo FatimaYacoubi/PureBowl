@@ -1,7 +1,6 @@
 <?PHP
   include "../Controller/commandeC.php";
-  require_once ("db.php");
-  $db_handle = new DBController();
+
   $commandeC=new commandeC();
   $listeUsers=$commandeC->affichercommande();
   
@@ -66,7 +65,7 @@ if(empty($_SESSION['e']))
       <header class="top-navbar">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container">
-        <a class="navbar-brand" href="index.html">
+        <a class="navbar-brand" href="../index.php">
           <img src="../images/logo.png" alt="" />
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbars-rs-food" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
@@ -74,7 +73,7 @@ if(empty($_SESSION['e']))
         </button>
         <div class="collapse navbar-collapse" id="navbars-rs-food">
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item active"><a class="nav-link" href="../index.php">Home</a></li>
+            <li class="nav-item "><a class="nav-link" href="../index.php">Home</a></li>
             <li class="nav-item"><a class="nav-link" href="menu.php">Menu</a></li>
             <li class="nav-item"><a class="nav-link" href="showpack2.php">Offre</a></li>
 
@@ -86,10 +85,10 @@ if(empty($_SESSION['e']))
                 <a class="dropdown-item" href="nouveauteblog.php">Nouveaute</a>
               </div>
             </li>
-            <li class="nav-item"><a class="nav-link" href="affichercommande.php">Cart</a></li>
+            <li class="nav-item active"><a class="nav-link" href="affichercommande.php">Cart</a></li>
             <li class="nav-item  "><a class="nav-link" href="comment.php">Comment</a></li>
             <li class="nav-item"><a class="nav-link" href="gift.php">Gift</a></li>
-            <li class="nav-item"><a class="nav-link" href="../about.html">About</a></li>
+            <li class="nav-item"><a class="nav-link" href="../about.php">About</a></li>
 
             <?php
 // On teste si la variable de session existe et contient une valeur
@@ -208,17 +207,13 @@ echo '<li class="nav-item dropdown">
                         <input type="hidden" value=<?PHP echo $user['id']; ?> name="id">
                         </form>
                                   </td>  
-                               
                                   <td>
                                     <a href="reclamation.php?id=<?PHP echo $user['id']; ?>"  > 
                        <button class="btn-222" style="color:black">Claim</button>
 
                       </a>
-                   
                                   </td>
-                     
                                 </tr> 
-
                                </table> 
                               
                    
@@ -477,7 +472,7 @@ echo '<li class="nav-item dropdown">
     
   </footer>
   <!-- End Footer -->
-
+  
   <a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
 
   <!-- ALL JS FILES -->

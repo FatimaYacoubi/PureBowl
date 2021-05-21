@@ -135,8 +135,8 @@ $listeOffers = $query->fetchAll(PDO::FETCH_ASSOC);
 						</li>
 						<li class="nav-item"><a class="nav-link" href="affichercommande.php">Cart</a></li>
 						<li class="nav-item  "><a class="nav-link" href="comment.php">Comment</a></li>
-						<li class="nav-item"><a class="nav-link" href="../gift.html">Gift</a></li>
-						<li class="nav-item"><a class="nav-link" href="../about.html">About</a></li>
+						<li class="nav-item"><a class="nav-link" href="gift.php">Gift</a></li>
+						<li class="nav-item"><a class="nav-link" href="../about.php">About</a></li>
 
 						<?php
 // On teste si la variable de session existe et contient une valeur
