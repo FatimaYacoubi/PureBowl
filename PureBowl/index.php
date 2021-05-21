@@ -92,7 +92,7 @@ else
 echo '<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Account</a>
 							<div class="dropdown-menu" aria-labelledby="dropdown-a">
-								<a class="dropdown-item" href="view/login.php">logout</a>
+								<a class="dropdown-item" href="view/logout.php">logout</a>
 								<a class="dropdown-item" href="view/inscription.php">Register</a>
 							</div>
 						</li>';

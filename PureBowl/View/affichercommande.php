@@ -1,8 +1,34 @@
 <?PHP
   include "../Controller/commandeC.php";
-
+  require_once ("db.php");
+  $db_handle = new DBController();
   $commandeC=new commandeC();
   $listeUsers=$commandeC->affichercommande();
+<<<<<<< HEAD
+  switch ($_GET["action"]) {
+    case "show_discount":
+       
+            if (! empty($_POST["discountCode"])) {
+                $priceByCode = $db_handle->runQuery("SELECT price FROM coupon WHERE discount_code='" . $_POST["discountCode"] . "'");
+                
+                if (! empty($priceByCode)) {
+                    foreach ($priceByCode as $key => $value) {
+                        $discountPrice = $priceByCode[$key]["price"];
+                    }
+                    if (! empty($discountPrice) && $discountPrice > $_POST["totalPrice"]) {
+                        $message = "Invalid Discount Coupon";
+                    }
+                } else {
+                    $message = "Invalid Discount Coupon";
+                }
+            }
+       
+        break;
+   
+}
+=======
+  
+>>>>>>> 9c21cc005eeebb57c48c1bc49c7c9cd97ab3b7d1
 ?>
 
 <?php
@@ -26,7 +52,70 @@ if(empty($_SESSION['e']))
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
+<<<<<<< HEAD
+
+.bullet.completed  {
+  color:  white;
+  background-color:  #c39c6a;
+}
+
+div.a{
+  
+}
+
+.bullet.completed::after {
+  content: '';
+  position: absolute;
+  right: -150px;
+  bottom: 10px;
+  height: 1px;
+  width: 100px;
+  background-color: #b08f63;
+}
+
+/* Base styles and helper stuff */
+.hidden  {
+  display:  none;
+}
+ 
+button  {
+  padding:  5px  10px;
+  border:  1px  solid  black;
+  transition:  250ms background-color;
+}
+
+button:hover  {
+  cursor:  pointer;
+  background-color:  black;
+  color:  white;
+}
+
+button:disabled:hover  {
+  opacity:  0.6;
+  cursor:  not-allowed;
+}
+
+.text-center  {
+  text-align:  center;
+}
+  
+.container  {
+  max-width:  800px;
+  margin:  0  auto;
+  margin-top:  50px;
+  padding:  40px;
+}
+
+
+   </style>
+=======
+>>>>>>> 9c21cc005eeebb57c48c1bc49c7c9cd97ab3b7d1
 <!-- End Styles -->     <title> Pure Bowl</title>  
+<form id="applyDiscountForm" method="post"
+	
+        action="affichercommande.php?action=show_discount"
+
+        onsubmit="return validate();">
 
    <meta name="keywords" content=""> 
     <meta name="description" content="">
@@ -60,51 +149,59 @@ if(empty($_SESSION['e']))
   <body>
       <header class="top-navbar">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="container">
-        <a class="navbar-brand" href="../index.html">
-          <img src="../images/logo.png" alt="" />
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbars-rs-food" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbars-rs-food">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
-            <li class="nav-item"><a class="nav-link" href="../menu.php">Menu</a></li>
-            <li class="nav-item active dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Cart</a>
-              <div class="dropdown-menu" aria-labelledby="dropdown-a">
-                <a class="dropdown-item" href="../reservation.html">Your Cart</a>
-                <a class="dropdown-item" href="../stuff.html">Orders History</a>
-              </div>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Offres</a>
-              <div class="dropdown-menu" aria-labelledby="dropdown-a">
-                <a class="dropdown-item" href="../offre.html">Offre</a>
-                <a class="dropdown-item" href="../offre.html">Promotion</a>
-                </div>
-              </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Blog</a>
-              <div class="dropdown-menu" aria-labelledby="dropdown-a">
-                <a class="dropdown-item" href="../blog.html">blog</a>
-                <a class="dropdown-item" href="../blog-details.html">blog Single</a>
-              </div>
-            </li>
-            <li class="nav-item"><a class="nav-link" href="../reclamation.html">Reclamation</a></li>
-            <li class="nav-item"><a class="nav-link" href="../gift.html">Gift</a></li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Sign in</a>
-              <div class="dropdown-menu" aria-labelledby="dropdown-a">
-                <a class="dropdown-item" href="../login.html">As an administrator</a>
-                <a class="dropdown-item" href="../blog-details.html">As a client</a>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+			<div class="container">
+				<a class="navbar-brand" href="index.html">
+					<img src="../images/logo.png" alt="" />
+				</a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbars-rs-food" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
+				  <span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbars-rs-food">
+					<ul class="navbar-nav ml-auto">
+						<li class="nav-item active"><a class="nav-link" href="../index.php">Home</a></li>
+						<li class="nav-item"><a class="nav-link" href="menu.php">Menu</a></li>
+						<li class="nav-item"><a class="nav-link" href="showpack2.php">Offre</a></li>
+
+						
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Blog</a>
+							<div class="dropdown-menu" aria-labelledby="dropdown-a">
+								<a class="dropdown-item" href="blog.php">blog</a>
+								<a class="dropdown-item" href="nouveauteblog.php">Nouveaute</a>
+							</div>
+						</li>
+						<li class="nav-item"><a class="nav-link" href="affichercommande.php">Cart</a></li>
+						<li class="nav-item  "><a class="nav-link" href="comment.php">Comment</a></li>
+						<li class="nav-item"><a class="nav-link" href="../gift.html">Gift</a></li>
+						<li class="nav-item"><a class="nav-link" href="../about.html">About</a></li>
+
+						<?php
+// On teste si la variable de session existe et contient une valeur
+if(empty($_SESSION['e']))
+{
+    // Si inexistante ou nulle, on redirige vers le formulaire de login
+    echo '<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Account</a>
+							<div class="dropdown-menu" aria-labelledby="dropdown-a">
+								<a class="dropdown-item" href="../login.php">login</a>
+								<a class="dropdown-item" href="../inscription.php">Register</a>
+							</div>
+						</li>';
+}
+else
+echo '<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Account</a>
+							<div class="dropdown-menu" aria-labelledby="dropdown-a">
+								<a class="dropdown-item" href="../logout.php">logout</a>
+								<a class="dropdown-item" href="../inscription.php">Register</a>
+							</div>
+						</li>';
+?>
+						
+					</ul>
+				</div>
+			</div>
+		</nav>
   </header> -->
   <!-- End header -->
   
@@ -136,45 +233,33 @@ if(empty($_SESSION['e']))
 <div id="main">  
 </div>
 </div> 
-
-  <table align="center" id="orders" style="width:800px; line-height:40px;" class="myOtherTable"> 
-     <tr>
-      <td colspan="6">
-        <a href="pdfcommande.php"  > 
-                       <button class="btn-7" style="color:black;
-                       width: 450px" >Download as PDF <i class="fa fa-download" aria-hidden="true"></i> </button>
+<table align="center">
+	<tr>
+		<th>
+			<a href="pdfcommande.php"  > 
+                       <button class="btn-7" style="color:black 
+                       " ><p style="font-size:15px;">Download as PDF </p><i class="fa fa-download" aria-hidden="true"></i> </button>
 
                       </a>
-      </td>
-      <td colspan="6" align="center"><a href="sortcommande.php" class="btn-7" style="color:black;
-                       width: 400px" ><button class="btn-7" style="color:black;
-                       width: 450px" >Search and sort </button> </a> </td>
-    </tr>
-  <tr> 
-          </div>
-        </div>
-      </div>
-     </tr colspan="8">> 
-        <th>Order </th> 
-        <th> Meat Type </th> 
-        <th> Option </th> 
-        <th> People </th> 
-        <th> Date</th> 
-        <th> Time </th> 
-                <th> Price </th> 
-
-        <th> Edit </th> 
-                <th> Delete </th>
-                <th> Claim </th> 
-
+		</th>
+	</tr>
+</table>
+<table id="employee_data" align="center" style="width:1200px; line-height:40px;" class="myOtherTable">  
+                          <thead>  
+                               <tr>  
+                                    <th >Order</th>  
+                                    <th> Meat Type </th> 
+                                    <th> Option </th> 
+                                    <th> People </th> 
+                                    <th> Date</th> 
+                                    <th> Time </th>
+                                    <th>prix</th>
+                                    <th ><p align="center">What to do ?</p></th>
         
-        
-    
-           
-          
-   </tr> 
-    
-    <?php 
+
+                               </tr>  
+                          </thead>  
+                          <?php 
     $sum=0;
     foreach($listeUsers as $user){
       $sum +=15;
@@ -186,33 +271,73 @@ if(empty($_SESSION['e']))
     <td><?PHP echo $user['option']; ?></td> 
     <td><?PHP echo $user['person']; ?></td> 
     <td><?PHP echo $user['date']; ?></td> 
-    <td><?PHP echo $user['time']; ?></td> 
-        <td> 15 dt</td> 
+    <td><?PHP echo $user['time']; ?></td>
 
-              <td>
-                                <a href="modifiercommande.php?id=<?PHP echo $user['id']; ?>"  > 
+    <td> 15</td>
+    <td>
+                               <table>
+                               	<tr>
+                               		<td>
+                               			<a href="modifiercommande.php?id=<?PHP echo $user['id']; ?>"  > 
                        <button class="btn-222" style="color:black">Edit</button>
 
                       </a>
-                    </td>
-          <td>
-            <form method="POST" action="supprimercommande.php">
+                               		</td>
+                               		<td>
+                               			<form method="POST" action="supprimercommande.php">
                         <button type="submit" name="supprimer" class="btn-222" id="1" style="color:black" onClick="\return confirm('Are you sure you want to delete?')\"> Delete</button> 
                         
                         <input type="hidden" value=<?PHP echo $user['id']; ?> name="id">
                         </form>
+<<<<<<< HEAD
           </td>
-           <td>
-                                <a href="reclamation.php?id=<?PHP echo $user['id']; ?>"  > 
-                       <button class="btn-222" style="color:black">Claim</button>
-
-                      </a>
-                    </td>
-    </tr> 
-
+        
+    <?php     
+                if (!empty($discountPrice) && $sum > $discountPrice) {
+                    $total_price_after_discount = $sum - $discountPrice;
+            ?>
+                    <tr>
+                        <td colspan="3" align="right">Discount:<input
+                            type="hidden" name="discountPrice"
+                            id="discountPrice"
+                            value="<?php echo $discountPrice; ?>"></td>
+                        <td align="right" colspan="2"><strong><?php echo "$ " . number_format($discountPrice, 2); ?></strong></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" align="right">Total after
+                            Discount:</td>
+                        <td align="right" colspan="2"><strong><?php echo "$ " . number_format($total_price_after_discount, 2); ?></strong></td>
+                        <td></td>
+                    </tr>
+                    <?php 
+                }
+                ?>
   <?php 
                } 
           ?> 
+          <td>
+                                <a href="reclamation.php?id=<?PHP echo $user['id']; ?>"  > 
+=======
+                               		</td>
+                               		<td>
+                               			<a href="reclamation.php?id=<?PHP echo $user['id']; ?>"  > 
+>>>>>>> 9c21cc005eeebb57c48c1bc49c7c9cd97ab3b7d1
+                       <button class="btn-222" style="color:black">Claim</button>
+
+                      </a>
+                               		</td>
+                               	</tr>
+                               </table> 
+                   
+            
+         
+                                
+                    </td>
+</tr>
+
+<<<<<<< HEAD
+ 
         <h1 id="total" align="center" class="btn-55">Votre total est de <strong><?php 
 
     echo $sum;
@@ -220,7 +345,40 @@ if(empty($_SESSION['e']))
 
           </div>
         </table> 
+        <div id="discount-grid">
+            <div class="discount-section">
+                <div class="discount-action">
+                    <span id="error-msg-span" class="error-message">
+                    <?php
+                    if (! empty($message)) {
+                        echo $message;
+                    }
+                    ?>
+                    </span> <span></span><input type="text"
+                        class="discount-code" id="discountCode"
+                        name="discountCode" size="15"
+                        placeholder="Enter Coupon Code" /><input
+                        id="btnDiscountAction" type="submit"
+                        value="Apply Discount" class="btnDiscountAction" />
+                </div>
+            </div>
+        </div>
 
+   <br>
+  <br>
+=======
+<?php 
+}
+?>
+<h1 id="total" align="center" class="btn-55">Votre total est de <strong><?php 
+
+    echo $sum;
+            ?></strong> DT</h1>
+                     </table>
+   
+  
+  
+>>>>>>> 9c21cc005eeebb57c48c1bc49c7c9cd97ab3b7d1
    <form action="ajouterCompte.php" id="commande" method="post"  align="center">
             <main class="container">
 
@@ -316,7 +474,7 @@ if(empty($_SESSION['e']))
               </div>
               <div class="carousel-item text-center">
                 <div class="img-box p-1 border rounded-circle m-auto">
-                  <img class="d-block w-100 rounded-circle" src="images/profile-7.jpg" alt="">
+                  <img class="d-block w-100 rounded-circle" src="../images/profile-7.jpg" alt="">
                 </div>
                 <h5 class="mt-4 mb-0"><strong class="text-warning text-uppercase">Daniel vebar</strong></h5>
                 <h6 class="text-dark m-0">Seo Analyst</h6>
@@ -426,7 +584,19 @@ if(empty($_SESSION['e']))
     
   </footer>
   <!-- End Footer -->
-  
+  <script>
+function validate() {
+    var valid= true;
+     if($("#discountCode").val() === "") {
+        valid = false;
+     }
+
+     if(valid == false) {
+         $('#error-msg-span').text("Discount Coupon Required");
+     }
+     return valid;
+}
+</script>
   <a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
 
   <!-- ALL JS FILES -->
@@ -447,7 +617,22 @@ if(empty($_SESSION['e']))
     <script src="../js/custom.js"></script>
                 <script src="../js/hide.js"></script>
 
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>  
+           <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />  
+           <script src="https://code.jquery.com/jquery-3.5.1.js"></script>  
+           <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>      
+           <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css" />
+    
+          
    </body>
   </html>
+<<<<<<< HEAD
 
+ 
+=======
+  <script>  
+$(document).ready(function(){  
+      $('#employee_data').DataTable();  
+ });  
+ </script>
+>>>>>>> 9c21cc005eeebb57c48c1bc49c7c9cd97ab3b7d1
