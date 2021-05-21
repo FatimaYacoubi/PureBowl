@@ -83,19 +83,25 @@ if(!empty($_GET['idProviderForDelete'])) {
      
     
 
-      <li class="nav-item">
-        <a class="nav-link  " href="delivery.php">
+     <li class="nav-item">
+        <a class="nav-link " href="delivery.php">
           <i class="fas fa-cubes"></i> Delivery
         </a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item active">
         <a class="nav-link active" href="provider.php">
           <i class="fas fa-truck"></i> provider
         </a>
       </li>
+      <li class="nav-item">
+                      <a class="nav-link  " href="affectation.php">
+                        <i class="fas fa-box"></i> affectation
+                             </a>
+                    </li>
      
        
         <li class="nav-item dropdown notification">
+
             <a
                     class="nav-link dropdown-toggle"
                     href="#"
@@ -105,7 +111,7 @@ if(!empty($_GET['idProviderForDelete'])) {
                     aria-haspopup="true"
                     aria-expanded="false">
                 <i class="fas fa-bell" style="margin-top: 30.1%;"></i>
-                <span> Notification
+                 Notification
                     <i class="fas fa-angle-down">
 
                     </i>
@@ -118,10 +124,11 @@ if(!empty($_GET['idProviderForDelete'])) {
                 <?php
                 foreach ($notifications as $notification){
                    
-                  echo '  <a class="dropdown-item"  href="read-notification.php?id='.$notification[ 'id'].'">Command ID:'.$notification[ 'id_command'].'</a>';
+                    echo '  <a class="dropdown-item"  href="read-notification.php?id='.$notification[ 'id'].'">Command ID:'.$notification[ 'id_command'].'</a>';
                 }
                 ?>
             </div>
+          
         </li>
     </ul>
     <ul class="navbar-nav">

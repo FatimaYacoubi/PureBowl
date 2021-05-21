@@ -1,24 +1,27 @@
 <?php
+   require_once '../Controller/affectationC.php';
+   require_once '../Controller/DeliveryC.php';
+   require_once '../Controller/NotificationC.php';
 
-  require_once '../Controller/DeliveryC.php';
-  require_once '../Controller/NotificationC.php';
-
-  $deliveries = DeliveryC::displayDelivery();
-
+  $commandes = affectationC::affichercommande();
+  $delivery=DeliveryC::displayDelivery();
   /* Récuperer les message de notification**/
   $notifications = NotificationC::displayNotification();
   $countMessageNotRead = NotificationC::countMessage();
 
+  if(isset($_POST["submit"]))
+  {
+ 
+    $iddev = $_POST["iddev"];
+    $idc = $_POST["idcommande"];
+    
+   
+    DeliveryC::setDelivery($idc,$iddev);
+    
+    header("Location: ". 'commandeBack.php'); // bich yarja url mrgl
+    
+  }
 
-if(!empty($_GET['idDeliveryForDelete'])) {
-    $id= trim($_GET['idDeliveryForDelete']);  // trim pour verifier les espace d'une chaine 
-    $deliveries = DeliveryC::deleteDelivery($id);
-
-    $pageDeliveryList = $_SERVER['HTTP_HOST'].'PureBowl/PureBowl/admin/delivery.php';
-
-    header("Location: ". 'delivery.php'); // bich yarja url mrgl
-    exit;
-}
 
 ?>
 
@@ -94,7 +97,8 @@ if(!empty($_GET['idDeliveryForDelete'])) {
         </a>
       </li>
      
-       <li class="nav-item">
+       
+        <li class="nav-item">
                       <a class="nav-link  " href="affectation.php">
                         <i class="fas fa-box"></i> affectation
                              </a>
@@ -149,48 +153,77 @@ if(!empty($_GET['idDeliveryForDelete'])) {
               <table class="table table-hover tm-table-small tm-product-table">
                 <thead>
                   <tr>
-                    <th scope="col">&nbsp;</th>
-                    <th scope="col">NAME</th>
-                    <th scope="col">SALARY</th>
-                    <th scope="col">HOUR START</th>
-                    <th scope="col">HOUR END</th>
-                    <th scope="col">ID</th>
-                    <th scope="col">Orders</th>
-                    <th scope="col">&nbsp;</th>
+                    
+                    <th scope="col">idcommande</th>
+                    <th scope="col">iddelivery</th>
+                   
+                    
                   </tr>
                 </thead>
                 <tbody>
-
                 <?php
-               // if(isset($deliveries) and !empty($deliveries)){
-                    foreach ($deliveries as $delivery){
+               // if(isset($commandes) and !empty($commandes)){
+                    foreach ($commandes as $commande){
 
-                   $ordernumber = DeliveryC::countCommand($delivery["id"]);
+                  
                    
 
                         echo ' <tr>
-                    <th s cope="row"><img src="upload/'.$delivery["image"].'" width="150"/></th>
-                    <td class="tm-product-name">'.$delivery["name"].'</td>
-                    <td>'.$delivery["salary"].'</td>
-                    <td>'.$delivery["hour_start"].'</td>
-                    <td>'.$delivery["hour_end"].'</td>
-                    <td>'.$delivery["id"].'</td>
-					<td>'.$ordernumber["orders"].'</td>
-					
-                   
                     
-                  
                     
-                    <td>
-                      <a href="delivery.php?idDeliveryForDelete='.$delivery[ 'id'].'" class="tm-product-delete-link">
-                        <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                      </a>
-                       <a href="edit-delivery.php?id='.$delivery[ 'id'].'" class="tm-product-delete-link">
-                        <i class="far fa-edit tm-product-delete-icon"></i>
-                      </a>
-                    </td>
-                  </tr>';
+                    <td>'.$commande["id"].'</td>';
+                    if($commande["delivery_id"]==NULL){
+	              echo  '<td>
+                
+                
+<button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal">
+  pass to 
+</button>
 
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">pass the order to:</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <form action="'.htmlspecialchars($_SERVER["PHP_SELF"]).'"method="POST">
+     <input name="idcommande" type="text" class="form-control" hidden value='.$commande["id"].' >
+     <select name="iddev" class="form-select" aria-label="Default select example">
+  <option disabled selected>select delivery</option>  ';
+     foreach ($delivery as $d){
+
+ echo '<option value='.$d["id"].'>'.$d["name"].'</option>';
+
+
+     };
+    echo '  
+    
+    </select>
+    </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button name="submit" type="submit" class="btn btn-primary">Save changes</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+  '              
+                
+                
+                
+                .'</td>';
+                  }else{
+               echo  	'<td>'.$commande["delivery_id"].'</td>';
+}
+                  
+                                
+              '</tr>';
                   //  }
                 }
 
@@ -201,9 +234,6 @@ if(!empty($_GET['idDeliveryForDelete'])) {
               </table>
             </div>
             <!-- table container -->
-            <a
-              href="add-delivery.php"
-              class="btn btn-primary btn-block text-uppercase mb-3">Add new delivery</a>
            
           </div>
         </div>
