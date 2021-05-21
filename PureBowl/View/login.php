@@ -87,18 +87,18 @@ if (isset($_POST["email"]) &&
 
                    <div class="col-md-12">
             <div class="form-group">
-                <label>Mot de passe</label>
+                <label>Password</label>
                 <br>
-                <input align="center" type="password" name="password" class="form-control" placeholder="Mot de passe">
+                <input align="center" type="password" name="password" class="form-control" placeholder="Password">
             </div>
         </div>
 
     </div> 
-    <input class="btn-222" type="submit" value="se connecter" name = "se connecter">
-    <input class="btn-222" type="reset" value="Annuler" >
+    <input class="btn-222" type="submit" value="login" name = "se connecter">
+    <input class="btn-222" type="reset" value="Cancel" >
     <br>
-    Vous n'avez pas un compte ?
-    <a href="inscription.php">S'inscrire</a>
+    New? Sign up - it's FREE!
+    <a href="inscription.php">Sign up</a>
     <script>
   alert('<?php
 // Il est bien connecté

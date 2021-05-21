@@ -21,6 +21,36 @@
   background-attachment: fixed;
   background-size: 100% 100%;
 }
+input.controle {
+  outline:0;
+  font-size:14px;
+  width:250px;
+} 
+label.label {
+  display:inline-block;
+  width:200px;
+  text-align: right;
+  font-style: italic;
+  margin-right:5px;
+}
+input.controle:valid {
+  border:3px solid #0a0;
+}
+input.controle:invalid {
+  border:3px solid #a00;
+}
+input.controle:valid + span:before  {
+  content: "\f00c";
+  font-family: "FontAwesome";
+  color:#0a0;
+  font-size: 1.5em;
+} 
+input.controle:invalid + span:before  {
+  content: "\f00d";
+  font-family: "FontAwesome";
+  color:#a00;
+  font-size: 1.5em;
+}
 
 </style>
     <link rel="stylesheet" href="../css/style.css"> 
@@ -55,7 +85,7 @@
             <div class="form-group">
 
 
-                        <input name="nom" type="text" placeholder="nom" required="">
+                        <input name="nom" type="text" placeholder="nom" required pattern="[a-zA-Z-\.]{3,20}" class="controle">
 
 
 <BR> </div> </div>
@@ -63,46 +93,46 @@
                    <div class="col-md-12">
             <div class="form-group">
 
-                        <input name="prenom" type="text" placeholder="prenom" required="">
+                        <input name="prenom" type="text" placeholder="prenom" class="controle" required pattern="[a-zA-Z-\.]{3,20}">
                 <br> </div> </div>
                 <div class="row">
                    <div class="col-md-12">
             <div class="form-group">
-        <input name="email" type="text" pattern=".+@gmail.com|.+@esprit.tn" placeholder="email" required="">
+        <input name="email" type="text" class="controle" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" placeholder="email" required="">
 <br> </div> </div>
  
         <div class="row">
                    <div class="col-md-12">
             <div class="form-group">
-                        <input name="login" type="text" placeholder="login" required="">
+                        <input name="login" type="text" placeholder="login" required="" class="controle">
 <br> </div> </div>
                       
         <div class="row">
                    <div class="col-md-12">
-            <div class="form-group">  <input name="password" type="password" placeholder="password" required="">
+            <div class="form-group">  <input name="password" type="password" placeholder="password" required="" class="controle">
 <br> </div> </div>
 <div class="row">
                    <div class="col-md-12">
             <div class="form-group">
-                <input name="password1" type="password" placeholder=" confirmer password" required="">
+                <input name="password1" type="password" placeholder=" confirmer password" required="" class="controle">
                 <br> </div> </div>
                        
         <div class="row">
                    <div class="col-md-12">
-            <div class="form-group"> <input name="adresse" type="text" placeholder="ville" required="">
+            <div class="form-group"> <input name="adresse" type="text" placeholder="ville" required="" class="controle" pattern="[a-zA-Z-\.]{3,20}">
     <br> </div> </div>
                        
         <div class="row">
                    <div class="col-md-12">
-            <div class="form-group"> <input name="tel" type="text" placeholder="tel" required="">
+            <div class="form-group"> <input name="tel" type="text" placeholder="tel" required pattern="[0-9]{8}" class="controle">
 
 <br> </div> </div>
 <div id="aDiv">
 
-                        <button type="submit" class="btn-222" id="form-submit" >créer</button>
+                        <button type="submit" class="btn-222" id="form-submit" >Create</button>
     <br>
 
-                        <button type="reset" class="btn-222" >annuler</button>
+                        <button type="reset" class="btn-222" >Cancel</button>
         <br> </div>
         </form>
 <div align="center"> <?php echo ($error) ?> </div>
