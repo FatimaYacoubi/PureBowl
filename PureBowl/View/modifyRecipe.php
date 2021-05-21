@@ -9,20 +9,21 @@
     isset($_POST["duration"]) && 
         
         isset($_POST["steps"]) &&
-        isset($_POST["id"]) 
+        isset($_POST["name"]) 
   ){
+  
     if (
             !empty($_POST["duration"]) && 
          
             !empty($_POST["steps"]) &&
-            !empty($_POST["id"]) 
+            !empty($_POST["name"]) 
           
         ) {
             $recipe = new recipe(
                 $_POST['duration'],
             
                 $_POST['steps'],
-                $_POST['id']
+                $_POST['name']
               
       );
       
@@ -41,7 +42,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Modify recipe - Dashboard Admin Template</title>
+    <title>Modify Recipe - Dashboard Admin Template</title>
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Roboto:400,700"
@@ -88,7 +89,7 @@
             
             
             
-            <li class="nav-item">
+          <li class="nav-item">
               <a class="nav-link active" href="displayRecipe.php">
                 <i class="fas fa-shopping-cart"></i> Recipes
               </a>
@@ -114,7 +115,7 @@
           <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
             <div class="row">
               <div class="col-12">
-                <h2 class="tm-block-title d-inline-block">Modify recipe</h2>
+                <h2 class="tm-block-title d-inline-block">Modify Recipe</h2>
               </div>
             </div>
             <div class="row tm-edit-product-row">
@@ -146,7 +147,7 @@
                   <div class="form-group mb-3">
                     <label
                       for="duration"
-                      >DURATION
+                      >Duration
                     </label>
                     <input
                       id="duration"
@@ -156,23 +157,36 @@
                       class="form-control validate"
                     />
                   </div>
-
-
                   <div class="form-group mb-3">
                     <label
                       for="steps"
-                      >STEPS</label
+                      >Steps</label
+                    >
+                    <textarea
+                    id="steps"
+                    name="steps"
+                    placeholder="writhe the steps"
+                   
+                      class="form-control validate"
+                      rows="3"
+                      required
+                    ></textarea>
+                  </div>
+
+                  <div class="form-group mb-3">
+                    <label
+                      for="name"
+                      >Name</label
                     >
                      <input
-                      id="steps"
-                      name="steps"
+                      id="name"
+                      name="name"
                       type="text"
-                    
                       class="form-control validate"
                     />
                     
                   </div>
-                 
+                  
 
                   
     
@@ -180,7 +194,24 @@
                   </div>
                   
               </div>
-     
+          <!--    <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
+                <div class="tm-product-img-edit mx-auto">
+                  <img src="../imageweb <?php echo $offer['image_offre'];?>" alt="Product image" class="img-fluid d-block mx-auto">
+                  <i
+                    class="fas fa-cloud-upload-alt tm-upload-icon"
+                    onclick="document.getElementById('fileInput').click();"
+                  ></i>
+                </div>
+                <div class="custom-file mt-3 mb-3">
+                  <input id="fileInput" type="file" style="display:none;" />
+                  <input
+                    type="button"
+                    class="btn btn-primary btn-block mx-auto"
+                    value="CHANGE IMAGE NOW"
+                    onclick="document.getElementById('fileInput').click();"
+                  />
+                </div>
+              </div> -->
               <div class="col-12">
                 <button type="submit" class="btn btn-primary btn-block text-uppercase">Update Now</button>
               </div>

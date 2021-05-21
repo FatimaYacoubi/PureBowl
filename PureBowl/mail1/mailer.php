@@ -223,7 +223,7 @@ exit();
 		<input type="text" name="sub" id="sub" class="form-control"  value="You Got a Gift !" readonly required autofocus>">
 	</div><br>
 	<div>
-		<textarea name="msg" id="msg" placeholder="Write your message here ... "></textarea>
+		<textarea name="msg" id="msg" placeholder="Write</textarea>
 		<textarea name="to" id="to" placeholder="to ..( write an email )"></textarea>
 	</div>
 	<div><br><br>

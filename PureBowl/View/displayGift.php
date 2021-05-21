@@ -1,6 +1,5 @@
 <?PHP
 	include "../Controller/GiftBC.php";
-
 	$GiftC=new giftC();
 	$listeGift=$GiftC->displayGift();
 
@@ -27,6 +26,28 @@
   Product Admin CSS Template
   https://templatemo.com/tm-524-product-admin
   -->
+      <!-- //lined-icons--> 
+      <script src="../js/Chart.js"></script>
+    <script src="https://raw.githack.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
+  <style>
+  div.a {
+    position: absolute;
+  left: 600px;
+  width: 1600px;
+  height: 700px;
+  border: 3px solid orange;
+}
+
+div.c {
+  position: absolute;
+  left: 50px;
+  width: 500px;
+  height: 700px;
+  border: 3px solid orange;
+} 
+</style>
+?>
+
   </head>
 
   <body id="reportsPage">
@@ -83,10 +104,23 @@
                 <i class="fas fa-shopping-cart"></i> Recipes
               </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link active " href="displayGift.php">
-                <i class="fas fa-shopping-cart"></i> Gifts
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle active"
+                href="#"
+                id="navbarDropdown"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false">
+                <i class="far fa-file-alt"></i>
+                <span> Services <i class="fas fa-angle-down"></i> </span>
               </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="displayGift.php">Gifts</a>
+                <a class="dropdown-item" href="displaycarte.php">Coupons</a>
+                
+              </div>
             </li>
             <li class="nav-item">
                             <a class="nav-link " href="../Pack.html">
@@ -134,24 +168,59 @@
         </div>
       </div>
     </nav>
+    
+
+
+ 
     <div class="container mt-5">
       <div class="row tm-content-row">
         <div class="col-sm-12 col-md-12 col-lg-8 col-xl-8 tm-block-col">
           <div class="tm-bg-primary-dark tm-block tm-block-products">
             <div class="tm-product-table-container">
+            <input type="text" name="search_plante" id="search_plante" class="form-control" placeholder="Rercher"/>
+            <script>
+                  $(document).ready(function() {
+                    $('#search_plante').keyup(function() {
+                      search_table($(this).val());
+                    });
+
+                    function search_table(value) {
+                      $('#customers tr').each(function() {
+                        var found = 'false';
+                        $(this).each(function() {
+                          if ($(this).text().toLowerCase().indexOf(value.toLowerCase()) >= 0) {
+                            found = 'true';
+                          }
+                        });
+                        if (found == 'true') {
+                          $(this).show();
+                        } else {
+                          $(this).hide();
+                        }
+                      });
+                    }
+                  });
+                </script>
               <table class="table table-hover tm-table-small tm-product-table">
+ 
+
                 <thead>
                   <tr>
+     
                     <th scope="col">&nbsp;</th>
 
                     <th scope="col">ID</th>
                     <th scope="col">NAME</th>
-                   
+                    <th scope="col">IMAGE</th>
                     <th scope="col">DESCRIPTION</th>
                     <th scope="col">PRICE</th>
 
                     <th scope="col">&nbsp;</th>
                   </tr>
+                  <?php 
+	$GiftC=new giftC();
+	$listeGift=$GiftC->displayGift();
+                        ?>
                   <tr></tr>
                 </thead>
              <tbody>
@@ -184,118 +253,14 @@
 			<?PHP
 				}
 			?> 
-               <!--   <tr>
-                    <th scope="row"><input type="checkbox" /></th>
-                    <td class="tm-pack-name">SIMPLE</td>
-                    <td>150Dt</td>
-                    <td>tarte/ salade/ penne au saumon / soupe/ couscous </td>
-                    <td>011</td>
-                    <td>
-                      <a href="#" class="tm-product-delete-link">
-                        <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row"><input type="checkbox" /></th>
-                    <td class="tm-product-name">Lablebi</td>
-                    <td>9 Dt</td>
-                    <td>soupe Hrissa/ soupe vinaigre blanc/ chiches secs/ oueifs/ pains/ huile</td>
-                    <td>012</td>
-                    <td>
-                      <a href="#" class="tm-product-delete-link">
-                        <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row"><input type="checkbox" /></th>
-                    <td class="tm-product-name">Mloukhiya</td>
-                    <td>11 Dt</td>
-                    <td>hile d'olive/ viande boeuf/ oignon/ feuilles de laurier/ poudre </td>
-                    <td>013</td>
-                    <td>
-                      <a href="#" class="tm-product-delete-link">
-                        <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row"><input type="checkbox" /></th>
-                    <td class="tm-product-name">Chorba</td>
-                    <td>10 Dt</td>
-                    <td>tomate/ oignon/ gingembre/ poivre/ viande de boeuf  </td>
-                    <td>014</td>
-                    <td>
-                      <a href="#" class="tm-product-delete-link">
-                        <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row"><input type="checkbox" /></th>
-                    <td class="tm-product-name">Kammounia</td>
-                    <td>15 Dt</td>
-                    <td>oignon/ tomate/ piment/ gousse d'ail/ tabel</td>
-                    <td>015</td>
-                    <td>
-                      <a href="#" class="tm-product-delete-link">
-                        <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row"><input type="checkbox" /></th>
-                    <td class="tm-product-name">Ojja</td>
-                    <td>12 Dt</td>
-                    <td>tomate/ merguez/ ouefs/ poivron vert </td>
-                    <td>016</td>
-                    <td>
-                      <a href="#" class="tm-product-delete-link">
-                        <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row"><input type="checkbox" /></th>
-                    <td class="tm-product-name">Grilled chicken</td>
-                    <td>35 Dt</td>
-                    <td>poulet/ guile d'olive/ thym séché/ romarin séché/ citron/ ail haché</td>
-                    <td>017</td>
-                    <td>
-                      <a href="#" class="tm-product-delete-link">
-                        <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row"><input type="checkbox" /></th>
-                    <td class="tm-product-name">Seafood pasta</td>
-                    <td>40.900 Dt</td>
-                    <td>fruits de mer/huile d'olive/ vin blanc sec/ail/tomate/sel</td>
-                    <td>018</td>
-                    <td>
-                      <a href="#" class="tm-product-delete-link">
-                        <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row"><input type="checkbox" /></th>
-                    <td class="tm-product-name">Fruity juice</td>
-                    <td>13 Dt</td>
-                    <td>pommes ou banane ou peche ou orange </td>
-                    <td>019</td>
-                    <td>
-                      <a href="#" class="tm-product-delete-link">
-                        <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                      </a>
-                    </td>
-                  </tr> -->
+     
                 </tbody> 
+                
               </table>
+              
             </div>
             <!-- table container -->
+            
           <a
               href="add-Gift.php"
               class="btn btn-primary btn-block text-uppercase mb-3"> Add Gift </a>
@@ -304,20 +269,153 @@
         </div>
         
       </div>
-    </div>
-    <footer class="tm-footer row tm-mt-small">
-      <div class="col-12 font-weight-light">
-        <p class="text-center text-white mb-0 px-4 small">
-          Copyright &copy; <b>2021</b> All rights reserved. 
-          
-          Design: <a rel="nofollow noopener" href="https://templatemo.com" class="tm-footer-link">Template Mo</a>
-        </p>
-      </div>
-    </footer>
+    </div>-->
+      <div class="charts">
+                    <div class="c">
+						<div class="charts-grids widget"id="pdf">
 
-    <script src="js/jquery-3.3.1.min.js"></script>
+							<h4 class="title">Stat of coupon prices</h4>
+            
+              <br>
+            
+              </br>
+              
+						
+            	<canvas  id="pie" width="922" height="813" style="width: 500px; height: 400px;"> </canvas>
+              <button onclick="PPDDFF()" class="btn btn-xs btn-primary btn-block"> Export as PDF</button>
+            </div>
+					</div>
+
+                   <?php
+                    $pdo=config::getConnexion();
+                    $query= $pdo ->prepare("select count(nom)as nombre,nom from gift GROUP by nom");
+
+                    $query->execute();
+                     $stat = $query->fetchAll();
+
+                    ?>
+
+
+                    <script>
+
+								var pieData = [
+                                <?php
+
+                                  foreach($stat as $count) {
+
+
+                                     echo "{value:".$count['nombre'].",";
+                                      echo "color:'rgb(",rand (0,255 ),",",rand (0,255 ), ",",rand (0,255 ),")',";
+                                      echo "label: '",$count['nom'], "'},";
+
+
+
+                                  }
+                                            ?>
+
+
+
+									];
+
+
+							new Chart(document.getElementById("pie").getContext("2d")).Pie(pieData);
+             
+							</script>
+              <script>
+              
+            function PPDDFF() {
+              const element = document.getElementById("pdf");
+              html2pdf()
+              .from(element)
+              .save();
+
+
+            }
+            </script>
+ 
+    <div class="a">
+                                                     <div class="col-md-4 w3l-char">
+
+ 						<div class="charts-grids widget">
+ 							<h4 class="title">statistique</h4>
+ 							<canvas id="bar" width="680" height="600" style="width: 544px; height: 480px;"> </canvas>
+               <button onclick="PPDDFF()" class="btn btn-xs btn-primary btn-block"> Export as PDF</button>
+ 						</div>
+ 					</div>
+
+          <!-- debut de la premiere stat sur les reclamations -->
+
+                               <?php
+
+                                $query= $pdo ->prepare("select count(price)as nombre,price from gift GROUP by price");
+                                $query->execute();
+                                 $bar = $query->fetchAll();
+                                 (string)$lables="[";
+                                 (string)$valuess='[';
+
+                                 foreach($bar as $choix) {
+                                 $lables .= "'".$choix['price']."'".",";
+                                 $valuess.="'".(int)$choix['nombre']."'".",";
+
+
+
+                                 }
+                                   $lables.=']';
+                                   $valuess.=']';
+
+
+
+                               ?>
+
+
+                               <script>
+                               var barChartData = {
+           									<?php echo "labels :".$lables.",";?>
+           									datasets : [
+           										{
+           											<?php echo "fillColor :'rgb(",rand (0,255 ),",",rand (0,255 ), ",",rand (0,255 ),")',";
+                                 echo "strokeColor :'rgba(",rand (0,255 ),",",rand (0,255 ), ",",rand (0,255 ),")',";
+           											 ?>
+           											highlightFill: "#e74c3c",
+           											highlightStroke: "#e74c3c",
+           											<?php echo "data :".$valuess.",";?>
+           										},
+
+           									]
+
+           								};
+
+
+                           new  Chart(document.getElementById("bar").getContext("2d")).Bar(barChartData);
+</script>
+<script>      const element = document.getElementById("pdf");
+              html2pdf()
+              .from(element)
+              .save();
+
+
+            }</script>
+                          
+
+
+           							</script>
+                        <br></br>
+                        <br></br>
+                        <br></br>
+                        <br></br>
+                        <br></br>
+                        <br></br>
+                        <br></br>
+                        <br></br>
+                        <br></br>
+                      </div>
+
+              <!--fin stat1 reclamation -->
+          
+           
+    <script src="../js/jquery-3.3.1.min.js"></script>
     <!-- https://jquery.com/download/ -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
     <!-- https://getbootstrap.com/ -->
     <script>
       $(function() {

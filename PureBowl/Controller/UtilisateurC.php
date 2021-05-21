@@ -28,7 +28,20 @@ class utilisateurC
         }
     }
 
-
+    public function afficherCompteDetail(int $rech1)
+    {
+        $sql="select * from Compte where idClient=".$rech1."";
+        
+        $db = config::getConnexion();
+        try{
+            $liste = $db->query($sql);
+            return $liste;
+        }
+        catch(Exception $e){
+            die('Erreur: '.$e->getMessage());
+        }
+    }
+    
 
     function afficherutilisateur()
     {

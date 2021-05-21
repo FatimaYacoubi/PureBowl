@@ -3,6 +3,19 @@
 	require_once '../Model/Delivery.php';
 	class DeliveryC {
 		
+        function countCommand($id){
+            $sql="SELECT COUNT(d.id) as orders FROM commande as c join delivery as d on c.delivery_id = d.id WHERE d.id=".$id;
+            $db = config::getConnexion(); 
+
+            try{
+                $liste = $db->query($sql);
+                return $liste->fetch();
+            }
+            catch (Exception $e){
+                die('Erreur: '.$e->getMessage());
+            }
+
+        }
 			
 		function displayDelivery(){
 
@@ -19,9 +32,52 @@
 		}
 
 
+        function countMessage(){
+
+            $sql="SELECT * FROM webprojet.notification where ISNULL(status);";
+            $db = config::getConnexion();
+
+            try{
+                $liste = $db->query($sql);
+                return $liste->rowCount();
+            }
+            catch (Exception $e){
+                die('Erreur: '.$e->getMessage());
+            }
+        }
+
+        function displayNotification(){
+
+            $sql="SELECT * FROM notification where ISNULL(status);";
+            $db = config::getConnexion();
+
+            try{
+                $liste = $db->query($sql);
+                return $liste;
+            }
+            catch (Exception $e){
+                die('Erreur: '.$e->getMessage());
+            }
+        }
+
+        function displayDeliveryById($id){
+
+            $sql="SELECT * FROM delivery where id=".$id;
+            $db = config::getConnexion();
+
+            try{
+                $liste = $db->query($sql);
+                return $liste->fetch();
+            }
+            catch (Exception $e){
+                die('Erreur: '.$e->getMessage());
+            }
+        }
+
+
         function addDelivery($delivery){
-            $sql="INSERT INTO delivery (name, salary, hour_start, hour_end) 
-			VALUES (:name, :salary, :hour_start, :hour_end)";
+            $sql="INSERT INTO delivery (name, salary, hour_start, hour_end, image) 
+			VALUES (:name, :salary, :hour_start, :hour_end, :image)";
             $db = config::getConnexion();
             try{
                 $query = $db->prepare($sql);
@@ -30,50 +86,100 @@
                     'name' => $delivery->getName(),
                     'salary' => $delivery->getSalary(),
                     'hour_start' => $delivery->getHourStart(),
-                    'hour_end' => $delivery->getHourEnd()
+                    'hour_end' => $delivery->getHourEnd(),
+                    'image' => $delivery->getImage()
 
                 ]);
+                return 1;
             }
             catch (Exception $e){
                 echo 'Erreur: '.$e->getMessage();
             }
         }
-        function deleteDelivery($id){
-			$sql="DELETE FROM delivery WHERE id= :id";
-			$db = config::getConnexion();
-			$req=$db->prepare($sql);
-			$req->bindValue(':id',$id);
-			try{
-				$req->execute();
-			}
-			catch (Exception $e){
-				die('Erreur: '.$e->getMessage());
-			}
-		}
-		function modifierOffre($delivery, $id){
-			try {
-				$db = config::getConnexion();
-				$query = $db->prepare(
-					'UPDATE delivery SET 
-						name = :name, 
-						hour_start = :hour_start,
-						hour_end = :hour_end,
-						salary = :salary,
-						
-					WHERE id_offre = :id_offre'
-				);
-				$query->execute([
-					'name' => $offre->getName(),
-					'hour_start' => $offre->getHourStart(),
-					'hour_end' => $offre->getHourEnd(),
-					'salary' => $offre->getSalary(),				
-					'id' => $id
-				]);
-				echo $query->rowCount() . " records UPDATED successfully <br>";
-			} catch (PDOException $e) {
-				$e->getMessage();
-			}
-		}
 
+        function updateDelivery($delivery){
+
+            $db = config::getConnexion();
+            $sql = "UPDATE delivery SET 
+                               name=:name, 
+                               salary=:salary,
+                               hour_start=:hour_start, 
+                               hour_end=:hour_end,
+                               image=:image  
+                               WHERE id=:id";
+
+            try{
+                $query= $db->prepare($sql);
+
+                $query->execute([
+                    'id' => $delivery["id"],
+                    'name' => $delivery["name"],
+                    'salary' => $delivery["salary"],
+                    'hour_start' => $delivery["hour_start"],
+                    'hour_end' => $delivery["hour_end"],
+                    'image' => $delivery["image"]
+
+                ]);
+                return 1 ;
+
+            } catch (Exception $e){
+                echo 'Erreur: '.$e->getMessage();
+            }
+        }
+
+        /**
+         * Fonction pour verifier s'il exsite des commandes
+         * pour un delivery id specifié en faisant une jointure entre
+         * delivery et commande
+         */
+        function existCommandDelivery($id)
+        {
+
+            $sql="SELECT * FROM delivery  
+                 INNER JOIN  commande ON commande.delivery_id = delivery.id
+                 WHERE delivery.id = ".$id;
+
+            $db = config::getConnexion();
+
+            try{
+                $liste= $db->query($sql);
+                return $liste->fetch();
+            }
+            catch (Exception $e){
+                die('Erreur: '.$e->getMessage());
+            }
+        }
+        
+        /**
+         * Verifier si le delivery possede des commandes
+         * si oui supprimer le delivery et les commandes via la jointure
+         * sinon supprimer simplement le delivery
+         */
+        function deleteDelivery($id)
+        {
+            // self indique qu'on va appeler une fonction dans la classe courante
+             $exist = self::existCommandDelivery($id);
+             
+
+             if($exist){
+                 $sql="SET FOREIGN_KEY_CHECKS=0; 
+                       DELETE delivery  , commande  
+                       FROM delivery  
+                       INNER JOIN  commande ON commande.delivery_id = delivery.id
+                       WHERE delivery.id = :id";
+             }else{
+                 $sql="DELETE FROM delivery WHERE delivery.id = :id";
+             }
+
+            $db = config::getConnexion();
+            try{
+                $query = $db->prepare($sql);
+                $query->bindValue(":id", $id);
+                $query->execute();
+            }
+            catch (Exception $e){
+                echo 'Erreur: '.$e->getMessage();
+            }
+        }
 	}
 

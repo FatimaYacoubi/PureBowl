@@ -6,16 +6,18 @@
   $error = "";
   
   if (
-    isset($_POST["name"]) && 
+          isset($_POST["name"]) && 
         
         isset($_POST["ingredients"]) &&
         isset($_POST["price"]) 
+        
   ){
     if (
             !empty($_POST["name"]) && 
          
             !empty($_POST["ingredients"]) &&
-            !empty($_POST["price"]) 
+            !empty($_POST["price"])
+        
           
         ) {
             $dish = new dish(
@@ -23,10 +25,11 @@
             
                 $_POST['ingredients'],
                 $_POST['price']
+               
               
       );
       
-            $dishC->modifyDish($dish, $_GET['id']);
+            $dishC->modifyDish($dish, $_GET['name']);
             header('refresh:5;url=displayProduct.php');
         }
         else
@@ -62,8 +65,8 @@
 
   <body>
      <?php
-      if (isset($_GET['id'])) {
-        $dish = $dishC->recupererDish($_GET['id']);
+      if (isset($_GET['name'])) {
+        $dish = $dishC->recupererDish($_GET['name']);
         
     ?>
     <nav class="navbar navbar-expand-xl">
@@ -128,21 +131,7 @@
      
     <form action="" method="POST" >
 
-                  <div class="form-group mb-3">
-                    <label
-                      for="id"
-                      >DISH ID
-                    </label>
-                    
-                    <input
-                      id="id"
-                      name="id"
-                      type="text"
-                      value="<?php echo $dish['id']; ?>" disabled
-                      class="form-control validate"
-                    />
-                  </div>
-
+                  
                   <div class="form-group mb-3">
                     <label
                       for="name"
@@ -154,6 +143,8 @@
                       type="text"
                       value="<?php echo $dish['name']; ?>"
                       class="form-control validate"
+                      disabled
+
                     />
                   </div>
                   <div class="form-group mb-3">

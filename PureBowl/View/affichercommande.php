@@ -1,9 +1,20 @@
-
 <?PHP
   include "../Controller/commandeC.php";
 
   $commandeC=new commandeC();
   $listeUsers=$commandeC->affichercommande();
+?>
+
+<?php
+session_start();
+include_once("../config.php");
+
+// On teste si la variable de session existe et contient une valeur
+if(empty($_SESSION['e']))
+{
+    // Si inexistante ou nulle, on redirige vers le formulaire de login
+    header('Location:login.php');
+}
 ?>
 
 <!DOCTYPE html>
@@ -12,111 +23,9 @@
   <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">   
     <meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-body {
-  background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQa9E8MLs_rO4scn2FKCw_CTgT3AGITGfBAAm5Nt_uWOHPznHX0r13hnQ2uIhRXt9ngEpw&usqp=CAU');
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: 100% 100%;
-}
-</style>
-<style type="text/css">
-.myOtherTable { background-color:#eedfca;border-collapse:collapse;color:#000;font-size:14px; }
-.myOtherTable th { background-color:#d0a772;color:white;width:10%; border: 1px solid #fff;
-            border-collapse: collapse; }
-.myOtherTable td, .myOtherTable th { padding:1px;border: 1px solid #fff; }
-</style>
-<style>
-.rectangle {
-  height: 300px;
-  width: 300px;
-  background-color: #b68e5a;
-}
- #stepProgressBar  {
-  display:  flex;
-  justify-content:  space-between;
-  align-items:  flex-end;
-  width:  700px;
-  margin:  0  auto;
-  margin-bottom:  40px;
-}
-
-.step  {
-text-align:  center;
-}
-
-.step-text  {
-margin-bottom:  10px;
-color:  #585555;
-size: 50px;
-}
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-.bullet {
-  border: 1px solid #c39c6a;
-  height: 20px;
-  width: 20px;
-  border-radius: 100%;
-  color: #c39c6a;
-  display: inline-block;
-  position: relative;
-  transition: background-color 500ms;
-  line-height:20px;
-}
-
-
-.bullet.completed  {
-  color:  white;
-  background-color:  #c39c6a;
-}
-
-
-
-.bullet.completed::after {
-  content: '';
-  position: absolute;
-  right: -150px;
-  bottom: 10px;
-  height: 1px;
-  width: 100px;
-  background-color: #b08f63;
-}
-
-/* Base styles and helper stuff */
-.hidden  {
-  display:  none;
-}
- 
-button  {
-  padding:  5px  10px;
-  border:  1px  solid  black;
-  transition:  250ms background-color;
-}
-
-button:hover  {
-  cursor:  pointer;
-  background-color:  black;
-  color:  white;
-}
-
-button:disabled:hover  {
-  opacity:  0.6;
-  cursor:  not-allowed;
-}
-
-.text-center  {
-  text-align:  center;
-}
-  
-.container  {
-  max-width:  800px;
-  margin:  0  auto;
-  margin-top:  50px;
-  padding:  40px;
-}
-
-
-   </style>
 <!-- End Styles -->     <title> Pure Bowl</title>  
 
    <meta name="keywords" content=""> 
@@ -130,12 +39,15 @@ button:disabled:hover  {
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="../css/bootstrap.min.css">    
   <!-- Site CSS -->
+    <link rel="stylesheet" href="../css/affichercommande.css"> 
 
 
     <link rel="stylesheet" href="../css/style.css"> 
         <link rel="stylesheet" href="../css/style2.css">    
 
-    <link rel="stylesheet" href="../css/style.css">    
+    <link rel="stylesheet" href="../css/style.css">  
+        <link rel="stylesheet" href="../css/style3.css">    
+  
   <!-- Pickadate CSS -->
     <link rel="stylesheet" href="../css/classic.css">    
   <link rel="stylesheet" href="../css/classic.date.css">    
@@ -145,10 +57,7 @@ button:disabled:hover  {
     <!-- Custom CSS -->
     <link rel="stylesheet" href="../css/custom.css">
   </head>
-
-
-
-  <!--<body>
+  <body>
       <header class="top-navbar">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container">
@@ -200,24 +109,10 @@ button:disabled:hover  {
   <!-- End header -->
   
     <main class="container">
-<script type="text/javascript">
-  document.addEventListener('click',hide2)
-function hide2()
-{    if(currentStep===2)
-
- {document.getElementById("55t").style.display="block";
- }
-           
-
-               else  document.getElementById("55t").style.display="none";
-               
-}
-</script>
-    
-
-        <br>
-        <br>
-        <br><br>
+<br>
+<br>
+<br>
+<br>
         
 
         <div id="stepProgressBar">
@@ -243,13 +138,17 @@ function hide2()
 </div> 
 
   <table align="center" id="orders" style="width:800px; line-height:40px;" class="myOtherTable"> 
-    <tr>
-      <td colspan="3">
-        <a href="statecommande.php"  > 
-                       <button class="btn-222" style="color:black">See stats</button>
+     <tr>
+      <td colspan="6">
+        <a href="pdfcommande.php"  > 
+                       <button class="btn-7" style="color:black;
+                       width: 450px" >Download as PDF <i class="fa fa-download" aria-hidden="true"></i> </button>
 
                       </a>
       </td>
+      <td colspan="6" align="center"><a href="sortcommande.php" class="btn-7" style="color:black;
+                       width: 400px" ><button class="btn-7" style="color:black;
+                       width: 450px" >Search and sort </button> </a> </td>
     </tr>
   <tr> 
           </div>
@@ -322,25 +221,12 @@ function hide2()
           </div>
         </table> 
 
-   <br>
-  <br>
-  
-  <div class="step">
-  <button align="center" id="previousBtn" class="btn-222">Previous</button>
-  <button align="center" id="nextBtn"class="btn-222">Next</button>
-  <button align="center" id="finishBtn" class="btn-222" color="black">Finish</button>
-  </div> 
-  </main>
+   <form action="ajouterCompte.php" id="commande" method="post"  align="center">
+            <main class="container">
 
-
-
-
-   <form action="ajouterCompte.php" id="55t" method="post" align="center">
-       <div class="row">
-                   <div class="col-md-12">
-            <div class="form-group">
-                            <h1 class="m-b-20"> Commande instantannée</h1>
-                </div> 
+      
+                            <h1> Commande instantannée</h1>
+               
 <br>
         <div class="row">
                    <div class="col-md-12">
@@ -350,43 +236,54 @@ function hide2()
                         <input name="nom" type="text" placeholder="nom" required="">
 
 
-<BR> </div> </div>
+<BR> </div> </div> </div> 
         <div class="row">
                    <div class="col-md-12">
             <div class="form-group">
 
                         <input name="prenom" type="text" placeholder="prenom" required="">
-                <br> </div> </div>
+                 </div> </div>  </div> 
                 <div class="row">
                    <div class="col-md-12">
             <div class="form-group">
         <input name="email" type="text" pattern=".+@gmail.com|.+@esprit.tn" placeholder="email" required="">
-<br> </div> </div>
+<br> </div> </div> </div> 
  
         <div class="row">
                    <div class="col-md-12">
             <div class="form-group">
                         <input name="login" type="text" placeholder="login" required="">
-<br> </div> </div>
+<br> </div> </div> </div> 
                        
         <div class="row">
                    <div class="col-md-12">
             <div class="form-group"> <input name="adresse" type="text" placeholder="ville" required="">
-    <br> </div> </div> 
+    <br> </div> </div> </div> 
                        
         <div class="row">
                    <div class="col-md-12">
             <div class="form-group"> 
               <input name="tel" type="text" placeholder="tel" required="">
-<br> </div> </div>
+<br> </div>  </div> </div> 
 
-<div id="aDiv">
+</main> 
 
         </form> 
-<div align="center"> <?php echo ($error) ?> </div>
+<br>
+
+  <div class="step">
+  <button align="center" id="previousBtn" class="btn-222">Previous</button>
+  <button align="center" id="nextBtn"class="btn-222">Next</button>
+  <button align="center" id="finishBtn" class="btn-222" color="black">Finish</button>
+  </div> 
+ 
+</main>
 
 
-</div>
+
+  
+
+</div>  
   <div class="customer-reviews-box">
     <div class="container">
       <div class="row">
@@ -548,8 +445,9 @@ function hide2()
   <script src="../js/form-validator.min.js"></script>
     <script src="../js/contact-form-script.js"></script>
     <script src="../js/custom.js"></script>
-        <script src="../js/progressbar.js"></script>
+                <script src="../js/hide.js"></script>
 
-</body>
-</html>
-  
+
+   </body>
+  </html>
+

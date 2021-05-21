@@ -6,7 +6,7 @@ include_once("config.php");
 if(empty($_SESSION['e']))
 {
     // Si inexistante ou nulle, on redirige vers le formulaire de login
-    header('Location:/View/login.php');
+    header('Location:View/login.php');
 }
 ?>
 <!DOCTYPE html>
@@ -46,45 +46,6 @@ if(empty($_SESSION['e']))
 
 <body>
 
-	<?php
-if(isset($_SESSION["cart_products"]) && count($_SESSION["cart_products"])>0)
-{
-	echo '<div class="cart-view-table-front" id="view-cart">';
-	echo '<h3>Your Shopping Cart</h3>';
-	echo '<form method="post" action="cart_update.php">';
-	echo '<table width="100%"  cellpadding="6" cellspacing="0">';
-	echo '<tbody>';
-
-	$total =0;
-	$b = 0;
-	foreach ($_SESSION["cart_products"] as $cart_itm)
-	{
-		$dish = $cart_itm["dish"];
-		$person = $cart_itm["person"];
-		$Tprice = $cart_itm["Tprice"];
-		$id = $cart_itm["id"];
-		$bg_color = ($b++%2==1) ? 'odd' : 'even'; //zebra stripe
-		echo '<tr class="'.$bg_color.'">';
-		echo '<td>Qty <input type="text" size="2" maxlength="2" name="person['.$id.']" value="'.$person.'" /></td>';
-		echo '<td>'.$dish.'</td>';
-		echo '<td><input type="checkbox" name="remove_code[]" value="'.$id.'" /> Remove</td>';
-		echo '</tr>';
-		$subtotal = ($Tprice * $person);
-		$total = ($total + $subtotal);
-	}
-	echo '<td colspan="4">';
-	echo '<button type="submit">Update</button><a href="view_cart.php" class="button">Checkout</a>';
-	echo '</td>';
-	echo '</tbody>';
-	echo '</table>';
-	
-	$current_url = urlencode($url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
-	echo '<input type="hidden" name="return_url" value="'.$current_url.'" />';
-	echo '</form>';
-	echo '</div>';
-
-}
-?>
 	<!-- Start header -->
 	<header class="top-navbar">
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -97,18 +58,11 @@ if(isset($_SESSION["cart_products"]) && count($_SESSION["cart_products"])>0)
 				</button>
 				<div class="collapse navbar-collapse" id="navbars-rs-food">
 					<ul class="navbar-nav ml-auto">
-						<li class="nav-item active"><a class="nav-link" href="index.html">Home</a></li>
+						<li class="nav-item active"><a class="nav-link" href="index.php">Home</a></li>
 						<li class="nav-item"><a class="nav-link" href="View/menu.php">Menu</a></li>
-						<li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
-						<li class="nav-item dropdown">
-						</li>
-						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Offres</a>
-							<div class="dropdown-menu" aria-labelledby="dropdown-a">
-								<a class="dropdown-item" href="offre.html">Offre</a>
-								<a class="dropdown-item" href="offre.html">Promotion</a>
-								</div>
-							</li>
+						<li class="nav-item"><a class="nav-link" href="view/showpack2.php">Offre</a></li>
+
+						
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Blog</a>
 							<div class="dropdown-menu" aria-labelledby="dropdown-a">
@@ -116,15 +70,34 @@ if(isset($_SESSION["cart_products"]) && count($_SESSION["cart_products"])>0)
 								<a class="dropdown-item" href="View/nouveauteblog.php">Nouveaute</a>
 							</div>
 						</li>
-						<li class="nav-item"><a class="nav-link" href="View/affichercommande.php">My orders</a></li>
+						<li class="nav-item"><a class="nav-link" href="View/affichercommande.php">Cart</a></li>
+						<li class="nav-item  "><a class="nav-link" href="view/comment.php">Comment</a></li>
 						<li class="nav-item"><a class="nav-link" href="gift.html">Gift</a></li>
-						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Sign in</a>
+						<li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+
+						<?php
+// On teste si la variable de session existe et contient une valeur
+if(empty($_SESSION['e']))
+{
+    // Si inexistante ou nulle, on redirige vers le formulaire de login
+    echo '<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Account</a>
 							<div class="dropdown-menu" aria-labelledby="dropdown-a">
-								<a class="dropdown-item" href="login.html">As an administrator</a>
-								<a class="dropdown-item" href="blog-details.html">As a client</a>
+								<a class="dropdown-item" href="view/login.php">login</a>
+								<a class="dropdown-item" href="view/inscription.php">Register</a>
 							</div>
-						</li>
+						</li>';
+}
+else
+echo '<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Account</a>
+							<div class="dropdown-menu" aria-labelledby="dropdown-a">
+								<a class="dropdown-item" href="view/login.php">logout</a>
+								<a class="dropdown-item" href="view/inscription.php">Register</a>
+							</div>
+						</li>';
+?>
+						
 					</ul>
 				</div>
 			</div>
@@ -263,8 +236,8 @@ if(isset($_SESSION["cart_products"]) && count($_SESSION["cart_products"])>0)
 						<img src="images/img-02.jpg" class="img-fluid" alt="Image">
 						<div class="why-text">
 							<h4>Lablebi        </h4>
-							<p>Homemade bizertin pasta.</p>
-							<p><a class="btn btn-lg btn-circle btn-outline-new-white" href="reservation.html">Get it</a></p>
+							<p>Stew with tasty meet and chickpeas.</p>
+							<p><a class="btn btn-lg btn-circle btn-outline-new-white" href="lablebi.php">add</a></p>
 
 							
 						</div>
@@ -277,7 +250,7 @@ if(isset($_SESSION["cart_products"]) && count($_SESSION["cart_products"])>0)
 						<div class="why-text">
 							<h4>Mloukhia        </h4>
 							<p>A traditional Tunisian dish made out of mloukhia powder.</p>
-							<p><a class="btn btn-lg btn-circle btn-outline-new-white" href="reservation.html">Get it</a></p>
+							<p><a class="btn btn-lg btn-circle btn-outline-new-white" href="mloukhia.php">ADD</a></p>
 						</div>
 					</div>
 				</div>
@@ -288,7 +261,7 @@ if(isset($_SESSION["cart_products"]) && count($_SESSION["cart_products"])>0)
 						<div class="why-text">
 							<h4>Chorba          </h4>
 							<p>A tunisian Soup.</p>
-							<p><a class="btn btn-lg btn-circle btn-outline-new-white" href="reservation.html">Get it</a></p>
+							<p><a class="btn btn-lg btn-circle btn-outline-new-white" href="chorba.php">Add</a></p>
 							
 							
 						</div>
@@ -302,7 +275,7 @@ if(isset($_SESSION["cart_products"]) && count($_SESSION["cart_products"])>0)
 							
 							<h4>Kamounia          </h4>
 							<p>A Tunisian dish starring an array of organ meats.</p>
-							<p><a class="btn btn-lg btn-circle btn-outline-new-white" href="reservation.html">Get it</a></p>
+							<p><a class="btn btn-lg btn-circle btn-outline-new-white" href="kamounia.php">add</a></p>
 						</div>
 					</div>
 				</div>
@@ -312,8 +285,8 @@ if(isset($_SESSION["cart_products"]) && count($_SESSION["cart_products"])>0)
 						<img src="images/img-06.jpg" class="img-fluid" alt="Image">
 						<div class="why-text">
 							<h4>Ojja         </h4>
-							<p>Homemade italian pasta.</p>
-							<p><a class="btn btn-lg btn-circle btn-outline-new-white" href="reservation.html">Get it</a></p>
+							<p>Tasty Tunisian Spicy stew.</p>
+							<p><a class="btn btn-lg btn-circle btn-outline-new-white" href="Ojja.php">Add</a></p>
 					</div>
 				</div>
 			</div>

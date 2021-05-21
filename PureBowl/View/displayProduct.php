@@ -27,6 +27,31 @@
   Product Admin CSS Template
   https://templatemo.com/tm-524-product-admin
   -->
+  <style>
+#btn{
+		
+		
+		width: 30%;
+		height: 40px;
+	    margin-left: 5px;
+		margin-bottom: 40px;
+		color: grey;
+		border: none;
+		border-radius: 4px;
+		font-family: Montserrat;
+		font-size: 18px;
+		font-weight: bold;
+		letter-spacing: 1px;
+		box-sizing: border-box;
+		outline: none;
+		transition: .5s ease-in;
+		cursor: pointer;
+	}
+	#btn:hover{
+		color: orange;
+	}
+
+    </style>
   </head>
 
   <body id="reportsPage">
@@ -148,7 +173,9 @@
                     <th scope="col">FOOD & DRINKS </th>
                     <th scope="col">INGREDIENTS</th>
                     <th scope="col">PRICE</th>
-                    <th scope="col">ID</th>
+                    
+                    <!-- <th scope="col">ETAT</th>-->
+                    
                     <th scope="col"></th>
 
                     <th scope="col">&nbsp;</th>
@@ -165,25 +192,47 @@
           <td><?PHP echo $dish['name']; ?></td> 
 					<td><?PHP echo $dish['ingredients']; ?></td> 
 					<td><?PHP echo $dish['price']; ?></td>
-                    <td><?PHP echo $dish['id']; ?></td>
+        
+          <!--  <td><?PHP echo $dish['etat']; ?></td> -->
+                      
 					<td></td>
 					<td>
 						 
-            <!-- <a href="#" class="tm-product-delete-link">
+            <!-- 
+              
+              <a href="#" class="tm-product-delete-link">
                         <i class="far fa-trash-alt tm-product-delete-icon"></i>
              </a>-->
                     
-						<form method="POST" action="deleteDish.php">
-						<input type="submit" name="DELETE" value="DELETE" class="btn btn-primary btn-block text-uppercase">
-						<input type="hidden" value=<?PHP echo $dish['id']; ?> name="id"  >
-						</form> 					</td>
-					<td>
-						<a href="modifydish.php? id=<?PHP echo $dish['id']; ?>" class="btn btn-primary btn-block text-uppercase"> Modify </a>
+						 <form method="POST" action="deleteDish.php">
+                             <button type="submit" name="supprimer "class="tm-product-delete-link" onclick="return confirm('Are you sure you want to delete this item definitely?');">
+                        <i class="far fa-trash-alt tm-product-delete-icon"></i></button> 
+                        
+                        <input type="hidden" value=<?PHP echo $dish['name']; ?> name="name">
+                        
+
+                        </form>
+                        		
+      			</td>
+            
+         
+          <td>
+
+            <form method="POST" action="archiverDish.php">
+                            <button style="height: : 30px" type="submit" name="archiver "class="tm-product-delete-link" >
+                        <i class="fas fa-archive tm-product-delete-icon" ></i></button> 
+                        
+                        <input type="hidden" value=<?PHP echo $dish['name']; ?> name="name">
+             </form>
+            </td>
+            <td>
+						<a href="modifydish.php? name=<?PHP echo $dish['name']; ?>" class="btn btn-primary btn-block text-uppercase"> Modify </a>
 					</td>
 				</tr>
 			<?PHP
 				}
 			?> 
+       
                <!--   <tr>
                     <th scope="row"><input type="checkbox" /></th>
                     <td class="tm-pack-name">SIMPLE</td>
@@ -297,10 +346,16 @@
             </div>
             <!-- table container -->
           <a
-              href="addProduct.php"
-              class="btn btn-primary btn-block text-uppercase mb-3"> Add Dish </a>
+              href="addProduct.php" 
+              class="btn btn-primary btn-block text-uppercase"> Add Dish </a>
+              <a
+              id="btn"
+              href="afficherDisharchive.php"
+              class="container"> >>Archived dishes </a>
              
           </div>
+          
+          
         </div>
         
       </div>
