@@ -159,6 +159,19 @@
         </div>
       </div>
     </nav>
+    <div class="container">
+            <div class="row">
+                <div class="col">
+                    
+                    <table class="table table-hover tm-table-small tm-product-table">
+                        <tr>
+                            <td><a 
+                            id="btn"  href="displayProduct.php"  ><h4> <i class="fa fa-arrow-circle-right" ></i> Dishes <i class="fas fa-eye"></i></h4></a></td>
+
+                        </tr>
+                    </table>
+                </div>
+            </div>
     <div class="container mt-5">
       <div class="row tm-content-row">
         <div class="col-sm-12 col-md-12 col-lg-8 col-xl-8 tm-block-col">
@@ -220,12 +233,16 @@
  </form>
 </td>
            
+<td style="width: 30px">
+                            <form>
+                            <a href="modifydish.php? name=<?PHP echo $dish['name']; ?>" class="tm-product-delete-link" onclick="return confirm('Are you sure you want to edit this item ?');" >
+                        <i class="far fa-edit tm-product-delete-icon" ></i>
+                      </a>
+                      </form>
+                        </td>
           
           
           
-          <td>
-						<a href="modifydish.php? name=<?PHP echo $dish['name']; ?>" class="btn btn-primary btn-block text-uppercase"> Modify </a>
-					</td>
 				</tr>
 			<?PHP
 				}
@@ -342,13 +359,11 @@
               </table>
             </div>
             <!-- table container -->
-          <a
-              href="addProduct.php"
-              class="btn btn-primary btn-block text-uppercase mb-3"> Add Dish </a>
-              <a
+        
+             <!-- <a
               id="btn"
               href="displayProduct.php"
-              class="container"> >>Dishes </a>
+              class="container"> >>Dishes </a> -->
              
           </div>
           

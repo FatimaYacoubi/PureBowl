@@ -1,34 +1,9 @@
 <?PHP
   include "../Controller/commandeC.php";
-  require_once ("db.php");
-  $db_handle = new DBController();
+
   $commandeC=new commandeC();
   $listeUsers=$commandeC->affichercommande();
-<<<<<<< HEAD
-  switch ($_GET["action"]) {
-    case "show_discount":
-       
-            if (! empty($_POST["discountCode"])) {
-                $priceByCode = $db_handle->runQuery("SELECT price FROM coupon WHERE discount_code='" . $_POST["discountCode"] . "'");
-                
-                if (! empty($priceByCode)) {
-                    foreach ($priceByCode as $key => $value) {
-                        $discountPrice = $priceByCode[$key]["price"];
-                    }
-                    if (! empty($discountPrice) && $discountPrice > $_POST["totalPrice"]) {
-                        $message = "Invalid Discount Coupon";
-                    }
-                } else {
-                    $message = "Invalid Discount Coupon";
-                }
-            }
-       
-        break;
-   
-}
-=======
   
->>>>>>> 9c21cc005eeebb57c48c1bc49c7c9cd97ab3b7d1
 ?>
 
 <?php
@@ -40,7 +15,10 @@ if(empty($_SESSION['e']))
 {
     // Si inexistante ou nulle, on redirige vers le formulaire de login
     header('Location:login.php');
+
+
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -52,70 +30,7 @@ if(empty($_SESSION['e']))
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-<<<<<<< HEAD
-
-.bullet.completed  {
-  color:  white;
-  background-color:  #c39c6a;
-}
-
-div.a{
-  
-}
-
-.bullet.completed::after {
-  content: '';
-  position: absolute;
-  right: -150px;
-  bottom: 10px;
-  height: 1px;
-  width: 100px;
-  background-color: #b08f63;
-}
-
-/* Base styles and helper stuff */
-.hidden  {
-  display:  none;
-}
- 
-button  {
-  padding:  5px  10px;
-  border:  1px  solid  black;
-  transition:  250ms background-color;
-}
-
-button:hover  {
-  cursor:  pointer;
-  background-color:  black;
-  color:  white;
-}
-
-button:disabled:hover  {
-  opacity:  0.6;
-  cursor:  not-allowed;
-}
-
-.text-center  {
-  text-align:  center;
-}
-  
-.container  {
-  max-width:  800px;
-  margin:  0  auto;
-  margin-top:  50px;
-  padding:  40px;
-}
-
-
-   </style>
-=======
->>>>>>> 9c21cc005eeebb57c48c1bc49c7c9cd97ab3b7d1
 <!-- End Styles -->     <title> Pure Bowl</title>  
-<form id="applyDiscountForm" method="post"
-	
-        action="affichercommande.php?action=show_discount"
-
-        onsubmit="return validate();">
 
    <meta name="keywords" content=""> 
     <meta name="description" content="">
@@ -149,59 +64,59 @@ button:disabled:hover  {
   <body>
       <header class="top-navbar">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-			<div class="container">
-				<a class="navbar-brand" href="index.html">
-					<img src="../images/logo.png" alt="" />
-				</a>
-				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbars-rs-food" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
-				  <span class="navbar-toggler-icon"></span>
-				</button>
-				<div class="collapse navbar-collapse" id="navbars-rs-food">
-					<ul class="navbar-nav ml-auto">
-						<li class="nav-item active"><a class="nav-link" href="../index.php">Home</a></li>
-						<li class="nav-item"><a class="nav-link" href="menu.php">Menu</a></li>
-						<li class="nav-item"><a class="nav-link" href="showpack2.php">Offre</a></li>
+      <div class="container">
+        <a class="navbar-brand" href="../index.php">
+          <img src="../images/logo.png" alt="" />
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbars-rs-food" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbars-rs-food">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item "><a class="nav-link" href="../index.php">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="menu.php">Menu</a></li>
+            <li class="nav-item"><a class="nav-link" href="showpack2.php">Offre</a></li>
 
-						
-						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Blog</a>
-							<div class="dropdown-menu" aria-labelledby="dropdown-a">
-								<a class="dropdown-item" href="blog.php">blog</a>
-								<a class="dropdown-item" href="nouveauteblog.php">Nouveaute</a>
-							</div>
-						</li>
-						<li class="nav-item"><a class="nav-link" href="affichercommande.php">Cart</a></li>
-						<li class="nav-item  "><a class="nav-link" href="comment.php">Comment</a></li>
-						<li class="nav-item"><a class="nav-link" href="../gift.html">Gift</a></li>
-						<li class="nav-item"><a class="nav-link" href="../about.html">About</a></li>
+            
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Blog</a>
+              <div class="dropdown-menu" aria-labelledby="dropdown-a">
+                <a class="dropdown-item" href="blog.php">blog</a>
+                <a class="dropdown-item" href="nouveauteblog.php">Nouveaute</a>
+              </div>
+            </li>
+            <li class="nav-item active"><a class="nav-link" href="affichercommande.php">Cart</a></li>
+            <li class="nav-item  "><a class="nav-link" href="comment.php">Comment</a></li>
+            <li class="nav-item"><a class="nav-link" href="gift.php">Gift</a></li>
+            <li class="nav-item"><a class="nav-link" href="../about.php">About</a></li>
 
-						<?php
+            <?php
 // On teste si la variable de session existe et contient une valeur
 if(empty($_SESSION['e']))
 {
     // Si inexistante ou nulle, on redirige vers le formulaire de login
     echo '<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Account</a>
-							<div class="dropdown-menu" aria-labelledby="dropdown-a">
-								<a class="dropdown-item" href="../login.php">login</a>
-								<a class="dropdown-item" href="../inscription.php">Register</a>
-							</div>
-						</li>';
+              <a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Account</a>
+              <div class="dropdown-menu" aria-labelledby="dropdown-a">
+                <a class="dropdown-item" href="login.php">login</a>
+                <a class="dropdown-item" href="inscription.php">Register</a>
+              </div>
+            </li>';
 }
 else
 echo '<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Account</a>
-							<div class="dropdown-menu" aria-labelledby="dropdown-a">
-								<a class="dropdown-item" href="../logout.php">logout</a>
-								<a class="dropdown-item" href="../inscription.php">Register</a>
-							</div>
-						</li>';
+              <a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Account</a>
+              <div class="dropdown-menu" aria-labelledby="dropdown-a">
+                <a class="dropdown-item" href="logout.php">logout</a>
+                <a class="dropdown-item" href="inscription.php">Register</a>
+              </div>
+            </li>';
 ?>
-						
-					</ul>
-				</div>
-			</div>
-		</nav>
+            
+          </ul>
+        </div>
+      </div>
+    </nav>
   </header> -->
   <!-- End header -->
   
@@ -232,17 +147,19 @@ echo '<li class="nav-item dropdown">
 </div> <div class="step">
 <div id="main">  
 </div>
-</div> 
+</div>
+<div id="orders">
+
 <table align="center">
-	<tr>
-		<th>
-			<a href="pdfcommande.php"  > 
+  <tr>
+    <th>
+      <a href="pdfcommande.php"  > 
                        <button class="btn-7" style="color:black 
                        " ><p style="font-size:15px;">Download as PDF </p><i class="fa fa-download" aria-hidden="true"></i> </button>
 
                       </a>
-		</th>
-	</tr>
+    </th>
+  </tr>
 </table>
 <table id="employee_data" align="center" style="width:1200px; line-height:40px;" class="myOtherTable">  
                           <thead>  
@@ -276,59 +193,29 @@ echo '<li class="nav-item dropdown">
     <td> 15</td>
     <td>
                                <table>
-                               	<tr>
-                               		<td>
-                               			<a href="modifiercommande.php?id=<?PHP echo $user['id']; ?>"  > 
+                                <tr>
+                                  <td>
+                                    <a href="modifiercommande.php?id=<?PHP echo $user['id']; ?>"  > 
                        <button class="btn-222" style="color:black">Edit</button>
 
                       </a>
-                               		</td>
-                               		<td>
-                               			<form method="POST" action="supprimercommande.php">
+                                  </td>
+                                  <td>
+                                    <form method="POST" action="supprimercommande.php">
                         <button type="submit" name="supprimer" class="btn-222" id="1" style="color:black" onClick="\return confirm('Are you sure you want to delete?')\"> Delete</button> 
                         
                         <input type="hidden" value=<?PHP echo $user['id']; ?> name="id">
                         </form>
-<<<<<<< HEAD
-          </td>
-        
-    <?php     
-                if (!empty($discountPrice) && $sum > $discountPrice) {
-                    $total_price_after_discount = $sum - $discountPrice;
-            ?>
-                    <tr>
-                        <td colspan="3" align="right">Discount:<input
-                            type="hidden" name="discountPrice"
-                            id="discountPrice"
-                            value="<?php echo $discountPrice; ?>"></td>
-                        <td align="right" colspan="2"><strong><?php echo "$ " . number_format($discountPrice, 2); ?></strong></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td colspan="3" align="right">Total after
-                            Discount:</td>
-                        <td align="right" colspan="2"><strong><?php echo "$ " . number_format($total_price_after_discount, 2); ?></strong></td>
-                        <td></td>
-                    </tr>
-                    <?php 
-                }
-                ?>
-  <?php 
-               } 
-          ?> 
-          <td>
-                                <a href="reclamation.php?id=<?PHP echo $user['id']; ?>"  > 
-=======
-                               		</td>
-                               		<td>
-                               			<a href="reclamation.php?id=<?PHP echo $user['id']; ?>"  > 
->>>>>>> 9c21cc005eeebb57c48c1bc49c7c9cd97ab3b7d1
+                                  </td>  
+                                  <td>
+                                    <a href="reclamation.php?id=<?PHP echo $user['id']; ?>"  > 
                        <button class="btn-222" style="color:black">Claim</button>
 
                       </a>
-                               		</td>
-                               	</tr>
+                                  </td>
+                                </tr> 
                                </table> 
+                              
                    
             
          
@@ -336,49 +223,23 @@ echo '<li class="nav-item dropdown">
                     </td>
 </tr>
 
-<<<<<<< HEAD
- 
-        <h1 id="total" align="center" class="btn-55">Votre total est de <strong><?php 
-
-    echo $sum;
-            ?></strong> DT</h1>
-
-          </div>
-        </table> 
-        <div id="discount-grid">
-            <div class="discount-section">
-                <div class="discount-action">
-                    <span id="error-msg-span" class="error-message">
-                    <?php
-                    if (! empty($message)) {
-                        echo $message;
-                    }
-                    ?>
-                    </span> <span></span><input type="text"
-                        class="discount-code" id="discountCode"
-                        name="discountCode" size="15"
-                        placeholder="Enter Coupon Code" /><input
-                        id="btnDiscountAction" type="submit"
-                        value="Apply Discount" class="btnDiscountAction" />
-                </div>
-            </div>
-        </div>
-
-   <br>
-  <br>
-=======
 <?php 
 }
 ?>
-<h1 id="total" align="center" class="btn-55">Votre total est de <strong><?php 
+  
+<h3 id="total" align="center" class="btn-55">Votre total est de <strong><?php 
 
     echo $sum;
-            ?></strong> DT</h1>
+            ?></strong> DT</h3>
                      </table>
+                     <a href="coupon.php"  > 
+                       <button class="btn-7" style="color:black 
+                       " ><p style="font-size:15px;">coupon </p><i class="fa fa-download" aria-hidden="true"></i> </button>
+
+                      </a>
    
   
-  
->>>>>>> 9c21cc005eeebb57c48c1bc49c7c9cd97ab3b7d1
+  </div>
    <form action="ajouterCompte.php" id="commande" method="post"  align="center">
             <main class="container">
 
@@ -428,7 +289,34 @@ echo '<li class="nav-item dropdown">
 
         </form> 
 <br>
-
+ <div id="delivery">
+   <table class="myOtherTable">
+<div class="container">
+    <tr>
+      <th> Delivery Person</th>
+      <th> Name and Number</th>
+    <th>Estimated Delivery time
+    </th>
+    </tr>
+    <tr>
+      <td>
+        <img src="../images/livreur1.jpg" alt="">
+      </td>
+      <td>
+        Sahar Zouari +21655228866
+      </td>
+<td>
+  In 30 minutes
+</td>
+   </tr>
+ </div>
+ </table>
+</div>
+<div id="payment" align="center">
+<h2>You can only Pay Cash , Please Press "Finish" to make your order!</h2>
+<h4> New Payment methods will be available soon</h4>
+<h5> Pure Bowl's team thanks you</h5>
+</div>
   <div class="step">
   <button align="center" id="previousBtn" class="btn-222">Previous</button>
   <button align="center" id="nextBtn"class="btn-222">Next</button>
@@ -584,19 +472,7 @@ echo '<li class="nav-item dropdown">
     
   </footer>
   <!-- End Footer -->
-  <script>
-function validate() {
-    var valid= true;
-     if($("#discountCode").val() === "") {
-        valid = false;
-     }
-
-     if(valid == false) {
-         $('#error-msg-span').text("Discount Coupon Required");
-     }
-     return valid;
-}
-</script>
+  
   <a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
 
   <!-- ALL JS FILES -->
@@ -626,13 +502,11 @@ function validate() {
           
    </body>
   </html>
-<<<<<<< HEAD
+  <script>
 
- 
-=======
+</script>
   <script>  
 $(document).ready(function(){  
       $('#employee_data').DataTable();  
  });  
  </script>
->>>>>>> 9c21cc005eeebb57c48c1bc49c7c9cd97ab3b7d1

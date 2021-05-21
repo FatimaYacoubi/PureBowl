@@ -5,27 +5,6 @@ $tutoName1 = $_GET['dish'];
 $tutoName2 = $_GET['duration'];
 $tutoName3 = $_GET['ingredients'];
 $tutoName4 = $_GET['steps'];
-
-
-if (isset($_POST['ajax'])) {
-$to = $_POST['to'];
-$subject = $_POST['sub'];
-$msg = $_POST['msg'];
-$headers = "MIME-Version: 1.0" . "\r\n";
-$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-$headers .= "From: ".$_POST['from']."<".$_POST['from'].">";
-
-
-$send = mail($to,$subject,$msg,$headers);
-
-if ($send)
-{
-	echo "<p id='success'>✔️  $to</p>";
-}else{
-	echo "<p id='error'>❌  $to</p>";
-}
-exit();
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -145,7 +124,6 @@ exit();
 	}
 	</style>
 </head>
-
 <body>
 	      	<!-- Start header -->
 			  <header class="top-navbar">
@@ -210,23 +188,27 @@ exit();
 		</div>
 	</div>
 	<!-- End All Pages -->
-<form action="" method="post">
-<div class="main" style="margin-top: 100px;">
-<h1>Send your Mail</h1>
-	<div>
-		<input type="text" name="from" id="from"   value="purebowlcontact@gmail.com" readonly required autofocus>
 
-	</div><br>
-	<div>
-		<input type="text" name="sub" id="sub"  value="Recipe Detail" readonly required autofocus>
-	</div><br>
-	<div>
-		<input type="text" name="to" id="to" placeholder="to ..( write an email )">
-	</div><br>
-	<div>
-		<textarea name="msg" id="msg" placeholder="Write your message here ... "  readonly required autofocus>
-		
-		NAME:
+
+<form method="POST" enctype="multipart/form-data" action="send-mail.php">
+<div class="main" style="margin-top: 100px;">
+<h1>Send your Mail  <i class="fa fa-envelope" aria-hidden="true"></i> </h1>
+    <p>
+    
+    <input type="text" name="receiver" placeholder="to ..( write an email )">
+    </p>
+ 
+   
+    
+    <input type="text" name="subject" value="Recipe Detail" readonly required autofocus> 
+   
+ 
+    <p>
+    
+    <textarea name="message">
+
+
+                 NAME:
 		<?PHP echo $tutoName1; ?>	
 
 		DURATION:
@@ -241,55 +223,19 @@ exit();
 		<?PHP echo $tutoName4; ?>
 
 
-		</textarea>
-
-	</div>
-	<div><br><br>
-		<button id="btn" onclick="return false">SEND</button>
-	</div>
-	<div id="result"></div>
+    </textarea>
+    </p>
+ 
+    <p>
+    Select file:
+    <input type="file" name="file">
+    </p>
+  
+    <input   id="btn"type="submit">
 </div>
 </form>
-<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-<script type="text/javascript">
-$(document).ready(function(){
-	$("#btn").on('click',function(){
-		var mailist = $("#to").val().split("\n");
-		var tmailist =  mailist.length;
-		for (var current = 0; current < tmailist; current++) {
-		var from = $("#from").val();
-		var name = $("#name").val();
-		var sub = $("#sub").val();
-		var msg = $("#msg").val();
-		var to = mailist[current];
-		var data = "ajax=1&from=" + from + "&sub=" + sub + "&msg=" + msg + "&to=" + to;
-			$.ajax({
-				type : 'POST',
-				data:  data,
-				success: function(data) {
-	                $("#result").append(data);
-	            }
-			});
-		}
-		var lancer="oui";
-	
-	if(document.getElementById("to").value=="")
-	{
-		alert("insert mail!");
-		lancer="non";
-	}
-	else if(document.getElementById("to").value.indexOf("@")==-1 || document.getElementById("to").value.indexOf(".")==-1)
-	{
-		alert("You have entered an invalid e-mail adress ,please try again");
-		lancer="non";
-	}
-
-
-	});
-});
-</script>
-	<!-- Start Customer Reviews -->
-	<div class="customer-reviews-box">
+<!-- Start Customer Reviews -->
+<div class="customer-reviews-box">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12">

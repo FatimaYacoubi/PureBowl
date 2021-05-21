@@ -3,12 +3,7 @@
 session_start();
 
 // On teste si la variable de session existe et contient une valeur
-if(empty($_SESSION['e']))
-{
-    // Si inexistante ou nulle, on redirige vers le formulaire de login
-    header('Location:login.php');
-}
-	include "../Controller/offreC.php";
+include "../Controller/offreC.php";
 
 	$offreC=new offreC();
 
@@ -140,8 +135,8 @@ $listeOffers = $query->fetchAll(PDO::FETCH_ASSOC);
 						</li>
 						<li class="nav-item"><a class="nav-link" href="affichercommande.php">Cart</a></li>
 						<li class="nav-item  "><a class="nav-link" href="comment.php">Comment</a></li>
-						<li class="nav-item"><a class="nav-link" href="../gift.html">Gift</a></li>
-						<li class="nav-item"><a class="nav-link" href="../about.html">About</a></li>
+						<li class="nav-item"><a class="nav-link" href="gift.php">Gift</a></li>
+						<li class="nav-item"><a class="nav-link" href="../about.php">About</a></li>
 
 						<?php
 // On teste si la variable de session existe et contient une valeur
@@ -160,7 +155,7 @@ else
 echo '<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Account</a>
 							<div class="dropdown-menu" aria-labelledby="dropdown-a">
-								<a class="dropdown-item" href="login.php">logout</a>
+								<a class="dropdown-item" href="logout.php">logout</a>
 								<a class="dropdown-item" href="inscription.php">Register</a>
 							</div>
 						</li>';
