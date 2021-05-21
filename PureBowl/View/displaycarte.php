@@ -30,6 +30,7 @@
       <!-- //lined-icons--> 
       <script src="../js/Chart.js"></script>
     <script src="https://raw.githack.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
+    <script src="../js/sort.js"></script>
 <style>
 div.c {
   position: absolute;
@@ -38,6 +39,23 @@ div.c {
   height: 700px;
   border: 3px solid orange;
 } 
+#customers th.headerSortUp{
+   background-image:url("../images/up.png") ;
+   background-color: #3399FF;
+   background-repeat:no-repeat;
+   background-position: center right;
+
+
+ }
+ #customers th.headerSortDown{
+   background-image:url("../images/down.png") ;
+   background-color: #3399FF;
+
+   background-repeat:no-repeat;
+   background-position: center right;
+
+
+ }
 </style>
   </head>
 
@@ -225,13 +243,20 @@ div.c {
 
             }
             </script>
-    <div class="container mt-5">
+               <script>
+
+$(document).ready(function() {
+  $('#customers').tablesorter();
+
+});
+  </script>
+  <div class="container mt-5">
       <div class="row tm-content-row">
         <div class="col-sm-12 col-md-12 col-lg-12 col-xl-8 tm-block-col">
           <div class="tm-bg-primary-dark tm-block tm-block-products">
             <div class="tm-product-table-container">
               <table  class="table table-hover tm-table-small tm-product-table">
-                <thead>
+              <!  <thead>
                   <tr>
                     <th scope="col">&nbsp;</th>
                      

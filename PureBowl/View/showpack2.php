@@ -3,16 +3,11 @@
 session_start();
 
 // On teste si la variable de session existe et contient une valeur
-if(empty($_SESSION['e']))
-{
-    // Si inexistante ou nulle, on redirige vers le formulaire de login
-    header('Location:login.php');
-}
-	include "../Controller/offreC.php";
+include "../Controller/offreC.php";
 
 	$offreC=new offreC();
 
-	
+
 
 	// $listeOffers=$offreC->afficherOffre();
 	// On détermine sur quelle page on se trouve
@@ -65,7 +60,13 @@ $listeOffers = $query->fetchAll(PDO::FETCH_ASSOC);
     $n=$_POST["colonne"];
     echo ("colonne = $n " );
      $listeOffers=$offreC->rechercher($_POST["recherche"],$n);
-   } } 
+   } }
+   	 if (isset($_POST["trier"])){
+   	 	$listeOffers=$offreC->afficheroffretri();
+   	 } 
+
+
+
 
 
 //require_once('close.php');
@@ -120,9 +121,9 @@ $listeOffers = $query->fetchAll(PDO::FETCH_ASSOC);
 				</button>
 				<div class="collapse navbar-collapse" id="navbars-rs-food">
 					<ul class="navbar-nav ml-auto">
-						<li class="nav-item active"><a class="nav-link" href="../index.php">Home</a></li>
+						<li class="nav-item "><a class="nav-link" href="../index.php">Home</a></li>
 						<li class="nav-item"><a class="nav-link" href="menu.php">Menu</a></li>
-						<li class="nav-item"><a class="nav-link" href="showpack2.php">Offre</a></li>
+						<li class="nav-item active"><a class="nav-link" href="showpack2.php">Offre</a></li>
 
 						
 						<li class="nav-item dropdown">
@@ -134,8 +135,8 @@ $listeOffers = $query->fetchAll(PDO::FETCH_ASSOC);
 						</li>
 						<li class="nav-item"><a class="nav-link" href="affichercommande.php">Cart</a></li>
 						<li class="nav-item  "><a class="nav-link" href="comment.php">Comment</a></li>
-						<li class="nav-item"><a class="nav-link" href="../gift.html">Gift</a></li>
-						<li class="nav-item"><a class="nav-link" href="../about.html">About</a></li>
+						<li class="nav-item"><a class="nav-link" href="gift.php">Gift</a></li>
+						<li class="nav-item"><a class="nav-link" href="../about.php">About</a></li>
 
 						<?php
 // On teste si la variable de session existe et contient une valeur
@@ -154,7 +155,7 @@ else
 echo '<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Account</a>
 							<div class="dropdown-menu" aria-labelledby="dropdown-a">
-								<a class="dropdown-item" href="login.php">logout</a>
+								<a class="dropdown-item" href="logout.php">logout</a>
 								<a class="dropdown-item" href="inscription.php">Register</a>
 							</div>
 						</li>';
@@ -196,7 +197,7 @@ echo '<li class="nav-item dropdown">
 				<div class="col-lg-12">
 					<div class="special-menu text-center">
 						<form method="POST" action="">
-						<div class="button-group filter-button-group" >
+						<!--<div class="button-group filter-button-group" >
 							<button class="active" data-filter="*">All</button>
 							<button data-filter=".healthy" value="type_offre">healthy</button>
 							<button data-filter=".normal" value="type_offre" >normal</button>
@@ -220,7 +221,18 @@ echo '<li class="nav-item dropdown">
 				</div>
 			</div>
 		 <form method="POST" action="">
-
+ <input type="submit" name="trier" value="trier selon prix" style="background-color: #d0a772;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 50px;
+    display: block;
+    padding: 0 10px;
+    float: left;
+    width: 100%;
+    border: none;
+    cursor: pointer;
+    transition: all 0.5s ease-in-out;">
         <select name="colonne"  class="nav-link dropdown-toggle">
         <option value="all">ALL</option>
           <option value="nom_offre">NAME</option>

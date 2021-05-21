@@ -37,15 +37,15 @@
             header('Location:showOffre.php');
         }
         else {
-            echo "<br>";echo "<br>";echo "<br>";echo "<br>";echo "<br>";echo "<br>";echo "<br>" ;echo "<br>";
-            if(preg_match ( " /^[a-zA-Z]{2,}$/ " , $_POST['nom_offre'] )==0){echo 'Le nom doit contenir que des lettres '; echo "<br>";}
-            if(preg_match ( " /^[a-zA-Z]{2,}$/ " , $_POST['descrip_offre'] )==0){echo 'La Description doit contenir que des lettres '; echo "<br>";}
+            echo "<br>";echo "<br>";
+            if(preg_match ( " /^[a-zA-Z]{2,}$/ " , $_POST['nom_offre'] )==0){  echo ' <script> alert ("Le nom doit contenir que des lettres") </script>'; }
+            if(preg_match ( " /^[a-zA-Z]{2,}$/ " , $_POST['descrip_offre'] )==0){echo '<script> alert ("La Description doit contenir que des lettres") </script> '; }
            
-            if(preg_match ( " /^[0-9]{}$/ " , $_POST['prix_offre'] )==0){echo 'Le prix doit contenir 3  chiffres '; echo "<br>";}
+            if(preg_match ( " /^[0-9]{}$/ " , $_POST['prix_offre'] )==0){echo  '<script> alert ("Le prix doit contenir 3  chiffres ") </script>'; }
             
           }
       }
-      else{echo "<br>";echo "<br>";echo "<br>";echo "<br>";echo "<br>";echo "<br>";echo "<br>" ;echo "<br>";
+      else{echo "<br>" ;echo "<br>";
             echo "Missing information";}
     }
 
