@@ -25,6 +25,7 @@ if (isset($_POST["email"]) &&
         }}
     else
         $message = "Missing information";}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -98,6 +99,12 @@ if (isset($_POST["email"]) &&
     <br>
     Vous n'avez pas un compte ?
     <a href="inscription.php">S'inscrire</a>
+    <script>
+  alert('<?php
+// Il est bien connecté
+echo 'You must be connected  '
+?>');
+</script>
     
    </div>  </div>
 

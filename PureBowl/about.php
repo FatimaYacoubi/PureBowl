@@ -1,3 +1,11 @@
+<?php
+session_start();
+include_once("config.php");
+
+// On teste si la variable de session existe et contient une valeur
+
+
+?>
 <!DOCTYPE html>
 <html lang="en"><!-- Basic -->
 <head>
@@ -8,7 +16,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
  
      <!-- Site Metas -->
-    <title>Yamifood Restaurant - Responsive HTML5 Template</title>  
+    <title>About PureBowl</title>  
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -46,45 +54,51 @@
 				</button>
 				<div class="collapse navbar-collapse" id="navbars-rs-food">
 					<ul class="navbar-nav ml-auto">
-						<li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-						<li class="nav-item"><a class="nav-link" href="menu.php">Menu</a></li>
-						<li class="nav-item active"><a class="nav-link" href="about.html">About</a></li>
-						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Pages</a>
-							<div class="dropdown-menu" aria-labelledby="dropdown-a">
-								<a class="dropdown-item" href="reservation.html">Reservation</a>
-								<a class="dropdown-item" href="stuff.html">Stuff</a>
-								<a class="dropdown-item" href="gallery.html">Gallery</a>
-							</div>
-						</li>
-						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Offres</a>
-							<div class="dropdown-menu" aria-labelledby="dropdown-a">
-								<a class="dropdown-item" href="offre.html">Offre</a>
-								<a class="dropdown-item" href="offre.html">Promotion</a>
-								</div>
-							</li>
+						<li class="nav-item "><a class="nav-link" href="index.php">Home</a></li>
+						<li class="nav-item"><a class="nav-link" href="view/menu.php">Menu</a></li>
+						<li class="nav-item"><a class="nav-link" href="view/showpack2.php">Offre</a></li>
+
+						
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Blog</a>
 							<div class="dropdown-menu" aria-labelledby="dropdown-a">
-								<a class="dropdown-item" href="blog.html">blog</a>
-								<a class="dropdown-item" href="blog-details.html">blog Single</a>
+								<a class="dropdown-item" href="view/blog.php">blog</a>
+								<a class="dropdown-item" href="view/nouveauteblog.php">Nouveaute</a>
 							</div>
 						</li>
-						<li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-						<li class="nav-item"><a class="nav-link" href="reclamation.html">Reclamation</a></li>
+						<li class="nav-item"><a class="nav-link" href="view/affichercommande.php">Cart</a></li>
+						<li class="nav-item  "><a class="nav-link" href="view/comment.php">Comment</a></li>
 						<li class="nav-item"><a class="nav-link" href="gift.html">Gift</a></li>
-						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Sign in</a>
+						<li class="nav-item active"><a class="nav-link" href="about.php">About</a></li>
+
+						<?php
+// On teste si la variable de session existe et contient une valeur
+if(empty($_SESSION['e']))
+{
+    // Si inexistante ou nulle, on redirige vers le formulaire de login
+    echo '<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Account</a>
 							<div class="dropdown-menu" aria-labelledby="dropdown-a">
-								<a class="dropdown-item" href="login.html">As an administrator</a>
-								<a class="dropdown-item" href="blog-details.html">As a client</a>
+								<a class="dropdown-item" href="login.php">login</a>
+								<a class="dropdown-item" href="inscription.php">Register</a>
 							</div>
-						</li>
+						</li>';
+}
+else
+echo '<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Account</a>
+							<div class="dropdown-menu" aria-labelledby="dropdown-a">
+								<a class="dropdown-item" href="logout.php">logout</a>
+								<a class="dropdown-item" href="inscription.php">Register</a>
+							</div>
+						</li>';
+?>
+						
 					</ul>
 				</div>
 			</div>
 		</nav>
+
 	</header>
 	<!-- End header -->
 	
@@ -109,7 +123,7 @@
 				</div>
 				<div class="col-lg-6 col-md-6 text-center">
 					<div class="inner-column">
-						<h1>Welcome To <span>Yamifood Restaurant</span></h1>
+						<h1>Welcome To <span>PureBowl</span></h1>
 						<h4>Little Story</h4>
 						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque auctor suscipit feugiat. Ut at pellentesque ante, sed convallis arcu. Nullam facilisis, eros in eleifend luctus, odio ante sodales augue, eget lacinia lectus erat et sem. </p>
 						<p>Sed semper orci sit amet porta placerat. Etiam quis finibus eros. Sed aliquam metus lorem, a pellentesque tellus pretium a. Nulla placerat elit in justo vestibulum, et maximus sem pulvinar.</p>

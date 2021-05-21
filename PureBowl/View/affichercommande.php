@@ -15,7 +15,10 @@ if(empty($_SESSION['e']))
 {
     // Si inexistante ou nulle, on redirige vers le formulaire de login
     header('Location:login.php');
+
+
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -95,8 +98,8 @@ if(empty($_SESSION['e']))
     echo '<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Account</a>
 							<div class="dropdown-menu" aria-labelledby="dropdown-a">
-								<a class="dropdown-item" href="../login.php">login</a>
-								<a class="dropdown-item" href="../inscription.php">Register</a>
+								<a class="dropdown-item" href="login.php">login</a>
+								<a class="dropdown-item" href="inscription.php">Register</a>
 							</div>
 						</li>';
 }
@@ -104,8 +107,8 @@ else
 echo '<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Account</a>
 							<div class="dropdown-menu" aria-labelledby="dropdown-a">
-								<a class="dropdown-item" href="../logout.php">logout</a>
-								<a class="dropdown-item" href="../inscription.php">Register</a>
+								<a class="dropdown-item" href="logout.php">logout</a>
+								<a class="dropdown-item" href="inscription.php">Register</a>
 							</div>
 						</li>';
 ?>
