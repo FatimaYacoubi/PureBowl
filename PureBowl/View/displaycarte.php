@@ -200,7 +200,7 @@ div.c {
 
                     <?php
                     $pdo=config::getConnexion();
-                    $query= $pdo ->prepare("select count(meat)as nombre,meat from commande GROUP by id");
+                    $query= $pdo ->prepare("select count(price)as nombre,price from coupon GROUP by price");
 
                     $query->execute();
                      $stat = $query->fetchAll();
@@ -218,7 +218,7 @@ div.c {
 
                                         echo "{value:".$count['nombre'].",";
                                         echo "color:'rgb(",rand (0,255 ),",",rand (0,255 ), ",",rand (0,255 ),")',";
-                                        echo "label: '",$count['meat'], "'},";
+                                        echo "label: '",$count['price'], "'},";
 
 
 
