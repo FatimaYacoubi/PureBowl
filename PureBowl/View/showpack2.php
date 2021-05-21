@@ -12,7 +12,7 @@ if(empty($_SESSION['e']))
 
 	$offreC=new offreC();
 
-	
+
 
 	// $listeOffers=$offreC->afficherOffre();
 	// On détermine sur quelle page on se trouve
@@ -65,7 +65,13 @@ $listeOffers = $query->fetchAll(PDO::FETCH_ASSOC);
     $n=$_POST["colonne"];
     echo ("colonne = $n " );
      $listeOffers=$offreC->rechercher($_POST["recherche"],$n);
-   } } 
+   } }
+   	 if (isset($_POST["trier"])){
+   	 	$listeOffers=$offreC->afficheroffretri();
+   	 } 
+
+
+
 
 
 //require_once('close.php');
@@ -196,7 +202,7 @@ echo '<li class="nav-item dropdown">
 				<div class="col-lg-12">
 					<div class="special-menu text-center">
 						<form method="POST" action="">
-						<div class="button-group filter-button-group" >
+						<!--<div class="button-group filter-button-group" >
 							<button class="active" data-filter="*">All</button>
 							<button data-filter=".healthy" value="type_offre">healthy</button>
 							<button data-filter=".normal" value="type_offre" >normal</button>
@@ -220,7 +226,18 @@ echo '<li class="nav-item dropdown">
 				</div>
 			</div>
 		 <form method="POST" action="">
-
+ <input type="submit" name="trier" value="trier selon prix" style="background-color: #d0a772;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 50px;
+    display: block;
+    padding: 0 10px;
+    float: left;
+    width: 100%;
+    border: none;
+    cursor: pointer;
+    transition: all 0.5s ease-in-out;">
         <select name="colonne"  class="nav-link dropdown-toggle">
         <option value="all">ALL</option>
           <option value="nom_offre">NAME</option>
