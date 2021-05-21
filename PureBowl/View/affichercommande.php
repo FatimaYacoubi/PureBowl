@@ -266,13 +266,13 @@ echo '<li class="nav-item dropdown">
                                 type="hidden" name="discountPrice"
                                 id="discountPrice"
                                 value="<?php echo $discountPrice; ?>"></td>
-                           <td align="right" colspan="1"><strong><?php echo "$ " . number_format($discountPrice, 2); ?></strong></td>
+                           <td align="right" colspan="1"><strong><?php echo "dt " . number_format($discountPrice, 2); ?></strong></td>
                             <td></td>
                         </tr>
                         <tr>
                             <td colspan="1" align="right">Total after
                                 Discount:</td>
-                            <td align="right" colspan="1"><strong><?php echo "$ " . number_format($total_price_after_discount, 2); ?></strong></td>
+                            <td align="right" colspan="1"><strong><?php echo "st " . number_format($total_price_after_discount, 2); ?></strong></td>
                             <td></td>
                         </tr>      <?php 
                     }
