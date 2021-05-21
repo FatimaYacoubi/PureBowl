@@ -8,8 +8,8 @@ const  login  =  document.getElementById('login');
 
 const MAX_STEPS = 4;
 let currentStep = 1;
-
-document.addEventListener('click',hide2)
+document.addEventListener('click',hide1);
+document.addEventListener('click',hide2);
 function hide2()
 {    if(currentStep===2)
 
@@ -17,8 +17,19 @@ function hide2()
  }
            
 
-               else  document.getElementById("commande").style.display="none";
+               else  document.getElementById("commande").style.display="block";
                
+}
+
+function hide1()
+{    if(currentStep===1)
+    { document.getElementById("orders").style.display="block";
+          document.getElementById("total").style.display="block";
+           }
+
+               else { document.getElementById("orders").style.display="none";
+               document.getElementById("total").style.display="none";
+             }
 }
 
 

@@ -1,10 +1,18 @@
 
 <?PHP
+session_start();
+
+// On teste si la variable de session existe et contient une valeur
+if(empty($_SESSION['e']))
+{
+    // Si inexistante ou nulle, on redirige vers le formulaire de login
+    header('Location:login.php');
+}
 	include "../Controller/offreC.php";
 
 	$offreC=new offreC();
 
-	
+
 
 	// $listeOffers=$offreC->afficherOffre();
 	// On détermine sur quelle page on se trouve
@@ -57,7 +65,13 @@ $listeOffers = $query->fetchAll(PDO::FETCH_ASSOC);
     $n=$_POST["colonne"];
     echo ("colonne = $n " );
      $listeOffers=$offreC->rechercher($_POST["recherche"],$n);
-   } } 
+   } }
+   	 if (isset($_POST["trier"])){
+   	 	$listeOffers=$offreC->afficheroffretri();
+   	 } 
+
+
+
 
 
 //require_once('close.php');
@@ -80,8 +94,8 @@ $listeOffers = $query->fetchAll(PDO::FETCH_ASSOC);
     <meta name="author" content="">
 
     <!-- Site Icons -->
-    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="../css/bootstrap.min.css">    
@@ -104,49 +118,54 @@ $listeOffers = $query->fetchAll(PDO::FETCH_ASSOC);
 	<header class="top-navbar">
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
 			<div class="container">
-				<a class="navbar-brand" href="index.html">
-					<img src="images/logo.png" alt="" />
+				<a class="navbar-brand" href="../index.php">
+					<img src="../images/logo.png" alt="" />
 				</a>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbars-rs-food" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
 				  <span class="navbar-toggler-icon"></span>
 				</button>
 				<div class="collapse navbar-collapse" id="navbars-rs-food">
 					<ul class="navbar-nav ml-auto">
-						<li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-						<li class="nav-item "><a class="nav-link" href="menu.php">Menu</a></li>
-						<li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
-						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Pages</a>
-							<div class="dropdown-menu" aria-labelledby="dropdown-a">
-								<a class="dropdown-item" href="reservation.html">Reservation</a>
-								<a class="dropdown-item" href="stuff.html">Stuff</a>
-								<a class="dropdown-item" href="gallery.html">Gallery</a>
-							</div>
-						</li>
-						<li class="nav-item active dropdown">
-							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Offres</a>
-							<div class="dropdown-menu" aria-labelledby="dropdown-a">
-								<a class="dropdown-item" href="offre.html">Offre</a>
-								<a class="dropdown-item" href="offre.html">Promotion</a>
-								</div>
-							</li>
+						<li class="nav-item active"><a class="nav-link" href="../index.php">Home</a></li>
+						<li class="nav-item"><a class="nav-link" href="menu.php">Menu</a></li>
+						<li class="nav-item"><a class="nav-link" href="showpack2.php">Offre</a></li>
+
+						
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Blog</a>
 							<div class="dropdown-menu" aria-labelledby="dropdown-a">
-								<a class="dropdown-item" href="blog.html">blog</a>
-								<a class="dropdown-item" href="blog-details.html">blog Single</a>
+								<a class="dropdown-item" href="blog.php">blog</a>
+								<a class="dropdown-item" href="nouveauteblog.php">Nouveaute</a>
 							</div>
 						</li>
-						<li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-						<li class="nav-item"><a class="nav-link" href="reclamation.html">Reclamation</a></li>
-						<li class="nav-item"><a class="nav-link" href="gift.html">Gift</a></li>
-						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Sign in</a>
+						<li class="nav-item"><a class="nav-link" href="affichercommande.php">Cart</a></li>
+						<li class="nav-item  "><a class="nav-link" href="comment.php">Comment</a></li>
+						<li class="nav-item"><a class="nav-link" href="../gift.html">Gift</a></li>
+						<li class="nav-item"><a class="nav-link" href="../about.html">About</a></li>
+
+						<?php
+// On teste si la variable de session existe et contient une valeur
+if(empty($_SESSION['e']))
+{
+    // Si inexistante ou nulle, on redirige vers le formulaire de login
+    echo '<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Account</a>
 							<div class="dropdown-menu" aria-labelledby="dropdown-a">
-								<a class="dropdown-item" href="login.html">As an administrator</a>
-								<a class="dropdown-item" href="blog-details.html">As a client</a>
+								<a class="dropdown-item" href="login.php">login</a>
+								<a class="dropdown-item" href="inscription.php">Register</a>
 							</div>
-						</li>
+						</li>';
+}
+else
+echo '<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Account</a>
+							<div class="dropdown-menu" aria-labelledby="dropdown-a">
+								<a class="dropdown-item" href="login.php">logout</a>
+								<a class="dropdown-item" href="inscription.php">Register</a>
+							</div>
+						</li>';
+?>
+						
 					</ul>
 				</div>
 			</div>
@@ -183,7 +202,7 @@ $listeOffers = $query->fetchAll(PDO::FETCH_ASSOC);
 				<div class="col-lg-12">
 					<div class="special-menu text-center">
 						<form method="POST" action="">
-						<div class="button-group filter-button-group" >
+						<!--<div class="button-group filter-button-group" >
 							<button class="active" data-filter="*">All</button>
 							<button data-filter=".healthy" value="type_offre">healthy</button>
 							<button data-filter=".normal" value="type_offre" >normal</button>
@@ -207,7 +226,18 @@ $listeOffers = $query->fetchAll(PDO::FETCH_ASSOC);
 				</div>
 			</div>
 		 <form method="POST" action="">
-
+ <input type="submit" name="trier" value="trier selon prix" style="background-color: #d0a772;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 50px;
+    display: block;
+    padding: 0 10px;
+    float: left;
+    width: 100%;
+    border: none;
+    cursor: pointer;
+    transition: all 0.5s ease-in-out;">
         <select name="colonne"  class="nav-link dropdown-toggle">
         <option value="all">ALL</option>
           <option value="nom_offre">NAME</option>
@@ -607,16 +637,16 @@ $listeOffers = $query->fetchAll(PDO::FETCH_ASSOC);
 	<a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
 
 	<!-- ALL JS FILES -->
-	<script src="js/jquery-3.2.1.min.js"></script>
-	<script src="js/popper.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
+	<script src="../js/jquery-3.2.1.min.js"></script>
+	<script src="../js/popper.min.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
     <!-- ALL PLUGINS -->
-	<script src="js/jquery.superslides.min.js"></script>
-	<script src="js/images-loded.min.js"></script>
-	<script src="js/isotope.min.js"></script>
-	<script src="js/baguetteBox.min.js"></script>
-	<script src="js/form-validator.min.js"></script>
-    <script src="js/contact-form-script.js"></script>
-    <script src="js/custom.js"></script>
+	<script src="../js/jquery.superslides.min.js"></script>
+	<script src="../js/images-loded.min.js"></script>
+	<script src="../js/isotope.min.js"></script>
+	<script src="../js/baguetteBox.min.js"></script>
+	<script src="../js/form-validator.min.js"></script>
+    <script src="../js/contact-form-script.js"></script>
+    <script src="../js/custom.js"></script>
 </body>
 </html>

@@ -4,6 +4,7 @@
   $db_handle = new DBController();
   $commandeC=new commandeC();
   $listeUsers=$commandeC->affichercommande();
+<<<<<<< HEAD
   switch ($_GET["action"]) {
     case "show_discount":
        
@@ -25,7 +26,11 @@
         break;
    
 }
+=======
+  
+>>>>>>> 9c21cc005eeebb57c48c1bc49c7c9cd97ab3b7d1
 ?>
+
 <?php
 session_start();
 include_once("../config.php");
@@ -44,58 +49,10 @@ if(empty($_SESSION['e']))
   <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">   
     <meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-body {
-  background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQa9E8MLs_rO4scn2FKCw_CTgT3AGITGfBAAm5Nt_uWOHPznHX0r13hnQ2uIhRXt9ngEpw&usqp=CAU');
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: 100% 100%;
-}
-</style>
-<style type="text/css">
-.myOtherTable { background-color:#eedfca;border-collapse:collapse;color:#000;font-size:14px;  }
-.myOtherTable th { background-color:#d0a772;color:white;width:10%; border: 1px solid #fff;
-            border-collapse: collapse; }
-.myOtherTable td, .myOtherTable th { padding:1px;border: 1px solid #fff; }
-</style>
-<style>
-.rectangle {
-  height: 300px;
-  width: 300px;
-  background-color: #b68e5a;
-}
- #stepProgressBar  {
-  display:  flex;
-  justify-content:  space-between;
-  align-items:  flex-end;
-  width:  700px;
-  margin:  0  auto;
-  margin-bottom:  40px;
-}
-
-.step  {
-text-align:  center;
-}
-
-.step-text  {
-margin-bottom:  10px;
-color:  #585555;
-size: 50px;
-}
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-.bullet {
-  border: 1px solid #c39c6a;
-  height: 20px;
-  width: 20px;
-  border-radius: 100%;
-  color: #c39c6a;
-  display: inline-block;
-  position: relative;
-  transition: background-color 500ms;
-  line-height:20px;
-}
-
+<<<<<<< HEAD
 
 .bullet.completed  {
   color:  white;
@@ -151,6 +108,8 @@ button:disabled:hover  {
 
 
    </style>
+=======
+>>>>>>> 9c21cc005eeebb57c48c1bc49c7c9cd97ab3b7d1
 <!-- End Styles -->     <title> Pure Bowl</title>  
 <form id="applyDiscountForm" method="post"
 	
@@ -169,12 +128,15 @@ button:disabled:hover  {
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="../css/bootstrap.min.css">    
   <!-- Site CSS -->
+    <link rel="stylesheet" href="../css/affichercommande.css"> 
 
 
     <link rel="stylesheet" href="../css/style.css"> 
         <link rel="stylesheet" href="../css/style2.css">    
 
-    <link rel="stylesheet" href="../css/style.css">    
+    <link rel="stylesheet" href="../css/style.css">  
+        <link rel="stylesheet" href="../css/style3.css">    
+  
   <!-- Pickadate CSS -->
     <link rel="stylesheet" href="../css/classic.css">    
   <link rel="stylesheet" href="../css/classic.date.css">    
@@ -184,67 +146,70 @@ button:disabled:hover  {
     <!-- Custom CSS -->
     <link rel="stylesheet" href="../css/custom.css">
   </head>
-
-
-
-  <!--<body>
+  <body>
       <header class="top-navbar">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="container">
-        <a class="navbar-brand" href="../index.html">
-          <img src="../images/logo.png" alt="" />
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbars-rs-food" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbars-rs-food">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
-            <li class="nav-item"><a class="nav-link" href="../menu.php">Menu</a></li>
-            <li class="nav-item active dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Cart</a>
-              <div class="dropdown-menu" aria-labelledby="dropdown-a">
-                <a class="dropdown-item" href="../reservation.html">Your Cart</a>
-                <a class="dropdown-item" href="../stuff.html">Orders History</a>
-              </div>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Offres</a>
-              <div class="dropdown-menu" aria-labelledby="dropdown-a">
-                <a class="dropdown-item" href="../offre.html">Offre</a>
-                <a class="dropdown-item" href="../offre.html">Promotion</a>
-                </div>
-              </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Blog</a>
-              <div class="dropdown-menu" aria-labelledby="dropdown-a">
-                <a class="dropdown-item" href="../blog.html">blog</a>
-                <a class="dropdown-item" href="../blog-details.html">blog Single</a>
-              </div>
-            </li>
-            <li class="nav-item"><a class="nav-link" href="../reclamation.html">Reclamation</a></li>
-            <li class="nav-item"><a class="nav-link" href="../gift.html">Gift</a></li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Sign in</a>
-              <div class="dropdown-menu" aria-labelledby="dropdown-a">
-                <a class="dropdown-item" href="../login.html">As an administrator</a>
-                <a class="dropdown-item" href="../blog-details.html">As a client</a>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+			<div class="container">
+				<a class="navbar-brand" href="index.html">
+					<img src="../images/logo.png" alt="" />
+				</a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbars-rs-food" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
+				  <span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbars-rs-food">
+					<ul class="navbar-nav ml-auto">
+						<li class="nav-item active"><a class="nav-link" href="../index.php">Home</a></li>
+						<li class="nav-item"><a class="nav-link" href="menu.php">Menu</a></li>
+						<li class="nav-item"><a class="nav-link" href="showpack2.php">Offre</a></li>
+
+						
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Blog</a>
+							<div class="dropdown-menu" aria-labelledby="dropdown-a">
+								<a class="dropdown-item" href="blog.php">blog</a>
+								<a class="dropdown-item" href="nouveauteblog.php">Nouveaute</a>
+							</div>
+						</li>
+						<li class="nav-item"><a class="nav-link" href="affichercommande.php">Cart</a></li>
+						<li class="nav-item  "><a class="nav-link" href="comment.php">Comment</a></li>
+						<li class="nav-item"><a class="nav-link" href="../gift.html">Gift</a></li>
+						<li class="nav-item"><a class="nav-link" href="../about.html">About</a></li>
+
+						<?php
+// On teste si la variable de session existe et contient une valeur
+if(empty($_SESSION['e']))
+{
+    // Si inexistante ou nulle, on redirige vers le formulaire de login
+    echo '<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Account</a>
+							<div class="dropdown-menu" aria-labelledby="dropdown-a">
+								<a class="dropdown-item" href="../login.php">login</a>
+								<a class="dropdown-item" href="../inscription.php">Register</a>
+							</div>
+						</li>';
+}
+else
+echo '<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Account</a>
+							<div class="dropdown-menu" aria-labelledby="dropdown-a">
+								<a class="dropdown-item" href="../logout.php">logout</a>
+								<a class="dropdown-item" href="../inscription.php">Register</a>
+							</div>
+						</li>';
+?>
+						
+					</ul>
+				</div>
+			</div>
+		</nav>
   </header> -->
   <!-- End header -->
   
     <main class="container">
-
-    
-
-        <br>
-        <br>
-        <br><br>
+<br>
+<br>
+<br>
+<br>
         
 
         <div id="stepProgressBar">
@@ -268,45 +233,33 @@ button:disabled:hover  {
 <div id="main">  
 </div>
 </div> 
-
-  <table align="center" id="orders" style="width:800px; line-height:40px;" class="myOtherTable"> 
-    <tr>
-      <td colspan="6">
-        <a href="pdfcommande.php"  > 
-                       <button class="btn-222" style="color:black;
-                       width: 450px" >Download as PDF <i class="fa fa-download" aria-hidden="true"></i> </button>
+<table align="center">
+	<tr>
+		<th>
+			<a href="pdfcommande.php"  > 
+                       <button class="btn-7" style="color:black 
+                       " ><p style="font-size:15px;">Download as PDF </p><i class="fa fa-download" aria-hidden="true"></i> </button>
 
                       </a>
-      </td>
-      <td colspan="6" align="center"><a href="sortcommande.php" class="btn-222" style="color:black;
-                       width: 400px" ><button class="btn-222" style="color:black;
-                       width: 450px" >Search and sort </button> </a> </td>
-    </tr>
-  <tr> 
-          </div>
-        </div>
-      </div>
-     </tr colspan="8">> 
-        <th>Order </th> 
-        <th> Meat Type </th> 
-        <th> Option </th> 
-        <th> People </th> 
-        <th> Date</th> 
-        <th> Time </th> 
-                <th> Price </th> 
-
-        <th> Edit </th> 
-                <th> Delete </th>
-                <th> Claim </th> 
-
+		</th>
+	</tr>
+</table>
+<table id="employee_data" align="center" style="width:1200px; line-height:40px;" class="myOtherTable">  
+                          <thead>  
+                               <tr>  
+                                    <th >Order</th>  
+                                    <th> Meat Type </th> 
+                                    <th> Option </th> 
+                                    <th> People </th> 
+                                    <th> Date</th> 
+                                    <th> Time </th>
+                                    <th>prix</th>
+                                    <th ><p align="center">What to do ?</p></th>
         
-        
-    
-           
-          
-   </tr> 
-    
-    <?php 
+
+                               </tr>  
+                          </thead>  
+                          <?php 
     $sum=0;
     foreach($listeUsers as $user){
       $sum +=15;
@@ -318,21 +271,25 @@ button:disabled:hover  {
     <td><?PHP echo $user['option']; ?></td> 
     <td><?PHP echo $user['person']; ?></td> 
     <td><?PHP echo $user['date']; ?></td> 
-    <td><?PHP echo $user['time']; ?></td> 
-        <td> 15 dt</td> 
+    <td><?PHP echo $user['time']; ?></td>
 
-              <td>
-                                <a href="modifiercommande.php?id=<?PHP echo $user['id']; ?>"  > 
+    <td> 15</td>
+    <td>
+                               <table>
+                               	<tr>
+                               		<td>
+                               			<a href="modifiercommande.php?id=<?PHP echo $user['id']; ?>"  > 
                        <button class="btn-222" style="color:black">Edit</button>
 
                       </a>
-                    </td>
-          <td>
-            <form method="POST" action="supprimercommande.php">
+                               		</td>
+                               		<td>
+                               			<form method="POST" action="supprimercommande.php">
                         <button type="submit" name="supprimer" class="btn-222" id="1" style="color:black" onClick="\return confirm('Are you sure you want to delete?')\"> Delete</button> 
                         
                         <input type="hidden" value=<?PHP echo $user['id']; ?> name="id">
                         </form>
+<<<<<<< HEAD
           </td>
         
     <?php     
@@ -361,12 +318,25 @@ button:disabled:hover  {
           ?> 
           <td>
                                 <a href="reclamation.php?id=<?PHP echo $user['id']; ?>"  > 
+=======
+                               		</td>
+                               		<td>
+                               			<a href="reclamation.php?id=<?PHP echo $user['id']; ?>"  > 
+>>>>>>> 9c21cc005eeebb57c48c1bc49c7c9cd97ab3b7d1
                        <button class="btn-222" style="color:black">Claim</button>
 
                       </a>
+                               		</td>
+                               	</tr>
+                               </table> 
+                   
+            
+         
+                                
                     </td>
-    </tr> 
+</tr>
 
+<<<<<<< HEAD
  
         <h1 id="total" align="center" class="btn-55">Votre total est de <strong><?php 
 
@@ -396,14 +366,25 @@ button:disabled:hover  {
 
    <br>
   <br>
+=======
+<?php 
+}
+?>
+<h1 id="total" align="center" class="btn-55">Votre total est de <strong><?php 
+
+    echo $sum;
+            ?></strong> DT</h1>
+                     </table>
+   
+  
+  
+>>>>>>> 9c21cc005eeebb57c48c1bc49c7c9cd97ab3b7d1
    <form action="ajouterCompte.php" id="commande" method="post"  align="center">
             <main class="container">
 
-        <div class="row">
-                   <div class="col-md-12">
-            <div class="form-group">
-                            <h1 class="m-b-20"> Commande instantannée</h1>
-                </div> 
+      
+                            <h1> Commande instantannée</h1>
+               
 <br>
         <div class="row">
                    <div class="col-md-12">
@@ -446,6 +427,7 @@ button:disabled:hover  {
 </main> 
 
         </form> 
+<br>
 
   <div class="step">
   <button align="center" id="previousBtn" class="btn-222">Previous</button>
@@ -492,7 +474,7 @@ button:disabled:hover  {
               </div>
               <div class="carousel-item text-center">
                 <div class="img-box p-1 border rounded-circle m-auto">
-                  <img class="d-block w-100 rounded-circle" src="images/profile-7.jpg" alt="">
+                  <img class="d-block w-100 rounded-circle" src="../images/profile-7.jpg" alt="">
                 </div>
                 <h5 class="mt-4 mb-0"><strong class="text-warning text-uppercase">Daniel vebar</strong></h5>
                 <h6 class="text-dark m-0">Seo Analyst</h6>
@@ -633,9 +615,24 @@ function validate() {
   <script src="../js/form-validator.min.js"></script>
     <script src="../js/contact-form-script.js"></script>
     <script src="../js/custom.js"></script>
-        <script src="../js/progressbar.js"></script>
+                <script src="../js/hide.js"></script>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>  
+           <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />  
+           <script src="https://code.jquery.com/jquery-3.5.1.js"></script>  
+           <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>      
+           <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css" />
+    
+          
    </body>
   </html>
+<<<<<<< HEAD
 
  
+=======
+  <script>  
+$(document).ready(function(){  
+      $('#employee_data').DataTable();  
+ });  
+ </script>
+>>>>>>> 9c21cc005eeebb57c48c1bc49c7c9cd97ab3b7d1

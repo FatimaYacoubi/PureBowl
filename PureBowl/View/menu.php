@@ -38,6 +38,7 @@
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <!--[endif]-->
+	<script async defer crossorigin="anonymous" src="https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v10.0" nonce="lzRpfdmx"></script>
 
 </head>
 
@@ -139,6 +140,7 @@
 									<h4> <a class="btn btn-lg btn-circle btn-outline-new-black" href="../couscous.html">Get it</a>        
 										<a class="btn btn-lg btn-circle btn-outline-new-black" href="displayTuto.php?dish=<?php echo $dish['name'] ?>">Tuto</a> </h4> 
 								</div>
+								<div class="fb-share-button" data-href="http://localhost/purebowl/PureBowl/View/displayTuto.php?dish=lasagne" data-layout="button_count" data-size="large"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2FlisteP.php%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Partager</a></div>
 							</div>
 						</div>
 

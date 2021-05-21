@@ -3,8 +3,8 @@
 
     $dishC=new dishC();
     
-    if (isset($_POST["id"])){
-        $dishC->archiverDish($_POST["id"]);
+    if (isset($_POST["name"])){
+        $dishC->archiverDish($_POST["name"]);
         header('Location:displayProduct.php');
     }
 

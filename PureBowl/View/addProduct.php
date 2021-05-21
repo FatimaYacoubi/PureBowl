@@ -13,21 +13,21 @@
         isset($_POST["name"]) && 
         isset($_POST["ingredients"]) &&
         isset($_POST["price"]) &&
-        isset($_POST["etat"]) 
+        1
         
     ) {
         if (
             !empty($_POST["name"]) && 
             !empty($_POST["ingredients"]) &&
             !empty($_POST["price"])&&
-            !empty($_POST["etat"])
+            1
             
         ) {
             $dish = new dish(
                 $_POST['name'],
                 $_POST['ingredients'],
                 $_POST['price'],
-                $_POST['etat']
+                1
                 
             );
             $dishC->adddish($dish);
@@ -168,7 +168,7 @@
                       required
                     />
                   </div>
-                  <div class="form-group mb-3">
+                 <!-- <div class="form-group mb-3">
                     <label
                       for="etat"
                       >ETAT
@@ -182,7 +182,7 @@
                       class="form-control validate"
                       required
                     />
-                  </div>
+                  </div>-->
                  
                   
                         

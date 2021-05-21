@@ -3,14 +3,14 @@
 		private ?int $idR= null;
 		private ?string $duration = null;
 		private ?string $steps = null;
-		private ?int $id = null;
+		private ?string $name = null;
 		
 		
-		function __construct( string $duration, string $steps,int $id){
+		function __construct( string $duration, string $steps,string $name){
 			
 			$this->duration=$duration;
 			$this->steps=$steps;
-			$this->id=$id;
+			$this->name=$name;
 		}
 		
 		function getIdR(): int{
@@ -22,8 +22,8 @@
 		function getSteps(): string{
 			return $this->steps;
 		}
-		function getId(): int{
-			return $this->id;
+		function getName(): string{
+			return $this->name;
 		}
 		function setIdR(int $idR): void{
 			$this->idR=$idR;
@@ -34,8 +34,8 @@
 		function setSteps(string $steps): void{
 			$this->steps=$steps;
 		}
-        function setId(int $id): void{
-			$this->id=$id;
+        function setName(string $name): void{
+			$this->name=$name;
 		}
 		
 	}

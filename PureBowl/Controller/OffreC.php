@@ -111,7 +111,7 @@
 		}
 		 function rechercher($input,$colonne) {
 		 	if($colonne == "all") 
-		 	{        $sql = "SELECT * from offre WHERE ( nom_offre LIKE \"%$input%\") OR ( id_offre LIKE \"%$input%\") OR ( prix_offre LIKE \"%$input%\") ";
+		 	{        $sql = "SELECT * from offre WHERE ( nom_offre LIKE \"%$input%\") OR ( id_offre LIKE \"%$input%\") OR ( prix_offre LIKE \"%$input%\") OR ( type_offre LIKE \"%$input%\") ";
             } else {
         $sql = "SELECT * from offre WHERE ( $colonne LIKE \"%$input%\")  "; }
         $db = config::getConnexion();
@@ -138,6 +138,20 @@
 				die('Erreur: '.$e->getMessage());
 			}	
 		}
+
+
+	public function afficheroffretri()
+    {  $sql= " SELECT * FROM offre order by prix_offre " ; 
+      $db = config ::getConnexion();
+      try{
+        $listeoffre = $db->query($sql);
+        return $listeoffre ;
+
+      } catch (Exception $e) {die ('erreur : '.$e->getMessage());}
+    
+     
+
+    }
 
 
 

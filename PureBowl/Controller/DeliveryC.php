@@ -127,8 +127,50 @@
             }
         }
 
-        function deleteDelivery($id){
-            $sql="DELETE FROM delivery WHERE id= :id";
+        /**
+         * Fonction pour verifier s'il exsite des commandes
+         * pour un delivery id specifié en faisant une jointure entre
+         * delivery et commande
+         */
+        function existCommandDelivery($id)
+        {
+
+            $sql="SELECT * FROM delivery  
+                 INNER JOIN  commande ON commande.delivery_id = delivery.id
+                 WHERE delivery.id = ".$id;
+
+            $db = config::getConnexion();
+
+            try{
+                $liste= $db->query($sql);
+                return $liste->fetch();
+            }
+            catch (Exception $e){
+                die('Erreur: '.$e->getMessage());
+            }
+        }
+        
+        /**
+         * Verifier si le delivery possede des commandes
+         * si oui supprimer le delivery et les commandes via la jointure
+         * sinon supprimer simplement le delivery
+         */
+        function deleteDelivery($id)
+        {
+            // self indique qu'on va appeler une fonction dans la classe courante
+             $exist = self::existCommandDelivery($id);
+             
+
+             if($exist){
+                 $sql="SET FOREIGN_KEY_CHECKS=0; 
+                       DELETE delivery  , commande  
+                       FROM delivery  
+                       INNER JOIN  commande ON commande.delivery_id = delivery.id
+                       WHERE delivery.id = :id";
+             }else{
+                 $sql="DELETE FROM delivery WHERE delivery.id = :id";
+             }
+
             $db = config::getConnexion();
             try{
                 $query = $db->prepare($sql);

@@ -22,37 +22,38 @@
 				echo 'Erreur: '.$e->getMessage();
 			}			
 		}
-		function modifydish($dish, $id){
+		function modifydish($dish, $name){
 			try {
 				$db = config::getConnexion();
 				$query = $db->prepare(
 					'UPDATE dishes SET 
-						name = :name, 
+						 
 						ingredients = :ingredients,
+						
 						price = :price
 						
 						
-					WHERE id = :id'
+					where name = :name '
 				);
 				$query->execute([
-					'name' => $dish->getName(),
+					
 					'ingredients' => $dish->getIngredients(),
 					'price' => $dish->getPrice(),
 					
 					
 					
-					'id' => $id
+					'name' => $name
 				]);
 				
 			} catch (PDOException $e) {
 				$e->getMessage();
 			}
 		}
-		function deleteDish($id){
-			$sql="DELETE FROM dishes WHERE id= :id";
+		function deleteDish($name){
+			$sql="DELETE FROM dishes WHERE name= :name";
 			$db = config::getConnexion();
 			$req=$db->prepare($sql);
-			$req->bindValue(':id',$id);
+			$req->bindValue(':name',$name);
 			try{
 				$req->execute();
 			}
@@ -72,8 +73,8 @@
 				die('Erreur: '.$e->getMessage());
 			}	
 		}
-		function recupererDish($id){
-			$sql="SELECT * from dishes where id=$id";
+		function recupererDish($name){
+			$sql="SELECT * from dishes where name=$name";
 			$db = config::getConnexion();
 			try{
 				$query=$db->prepare($sql);
@@ -98,12 +99,12 @@
 				die('Erreur: '.$e->getMessage());
 			}	
 		}
-		function archiverDish($id){
+		function archiverDish($name){
 			
-			$sql="UPDATE dishes SET etat = '0' WHERE id= :id";
+			$sql="UPDATE dishes SET etat = '0' WHERE name= :name";
 			$db = config::getConnexion();
 			$req=$db->prepare($sql);
-			$req->bindValue(':id',$id);
+			$req->bindValue(':name',$name);
 			try{
 				$req->execute();
 			}
@@ -111,12 +112,12 @@
 				die('Erreur: '.$e->getMessage());
 			}
 		}
-		function inarchiverDish($id){
+		function inarchiverDish($name){
 			
-			$sql="UPDATE dishes SET etat = '1' WHERE id= :id";
+			$sql="UPDATE dishes SET etat = '1' WHERE name= :name";
 			$db = config::getConnexion();
 			$req=$db->prepare($sql);
-			$req->bindValue(':id',$id);
+			$req->bindValue(':name',$name);
 			try{
 				$req->execute();
 			}
@@ -124,8 +125,8 @@
 				die('Erreur: '.$e->getMessage());
 			}
 		}
-		function recupererDish1($id){
-			$sql="SELECT * from dishes where id=$id";
+		function recupererDish1($name){
+			$sql="SELECT * from dishes where name=$name";
 			$db = config::getConnexion();
 			try{
 				$query=$db->prepare($sql);

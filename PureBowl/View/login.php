@@ -98,6 +98,7 @@ if (isset($_POST["email"]) &&
     <br>
     Vous n'avez pas un compte ?
     <a href="inscription.php">S'inscrire</a>
+    
    </div>  </div>
 
 </form>

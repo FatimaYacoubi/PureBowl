@@ -12,19 +12,19 @@
     if (
         isset($_POST["duration"]) && 
         isset($_POST["steps"]) &&
-        isset($_POST["id"]) 
+        isset($_POST["name"]) 
         
     ) {
         if (
             !empty($_POST["duration"]) && 
             !empty($_POST["steps"]) &&
-            !empty($_POST["id"])
+            !empty($_POST["name"])
             
         ) {
             $recipe = new recipe(
                 $_POST['duration'],
                 $_POST['steps'],
-                $_POST['id']
+                $_POST['name']
                 
             );
             $recipeC->addRecipe($recipe);
@@ -147,12 +147,12 @@
                   </div>
                   <div class="form-group mb-3">
                     <label
-                      for="id"
-                      >ID dish
+                      for="name"
+                      >Name
                     </label>
                     <input
-                      id="id"
-                      name="id"
+                      id="name"
+                      name="name"
                       type="text"
                       class="form-control validate"
                       required
