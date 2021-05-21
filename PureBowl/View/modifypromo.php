@@ -1,7 +1,7 @@
 <?php
   include "../Controller/PromoC.php";
   include_once '../Model/Promo.php';
-
+$date_ac = date('Y-m-d');
   $promoC = new PromoC();
   $error = "";
 
@@ -23,10 +23,16 @@
            //  $_POST['date_deb'],
                 $_POST['date_fin']
       );
+            if ($date_ac >= $_POST['date_fin'])
+{
+   echo "<script>alert ('la date fin doit etre differente et superieur à la date actuelle');</script>";}
+   else if  ( $_POST['pourcentage']>= 100)
+    {echo "<script>alert ('verifier le pourcentage');</script>";}
+  else {
         
             $promoC->modifierPromo($promo, $_GET['id_promo']);
             header('refresh:5;url=showpromo.php');
-        }
+        }}
         else
             $error = "Missing information";
   }
@@ -205,7 +211,7 @@
                       type="number"
                       value="<?php echo $promo['id_pack']; ?>"
                       class="form-control validate"
-                      
+                      readonly required autofocus
                     />
                   </div>
 
@@ -221,6 +227,7 @@
                       type="number"
                       value="<?php echo $promo['pourcentage']; ?>"  
                       class="form-control validate" 
+                      readonly required autofocus
 
                     />
                     
