@@ -126,9 +126,9 @@ $listeOffers = $query->fetchAll(PDO::FETCH_ASSOC);
 				</button>
 				<div class="collapse navbar-collapse" id="navbars-rs-food">
 					<ul class="navbar-nav ml-auto">
-						<li class="nav-item active"><a class="nav-link" href="../index.php">Home</a></li>
+						<li class="nav-item "><a class="nav-link" href="../index.php">Home</a></li>
 						<li class="nav-item"><a class="nav-link" href="menu.php">Menu</a></li>
-						<li class="nav-item"><a class="nav-link" href="showpack2.php">Offre</a></li>
+						<li class="nav-item active"><a class="nav-link" href="showpack2.php">Offre</a></li>
 
 						
 						<li class="nav-item dropdown">
