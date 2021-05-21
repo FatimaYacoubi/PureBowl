@@ -185,7 +185,7 @@ if(empty($_SESSION['e']))
                   <h3>Place your order</h3>
                   <div class="col-md-12">
                     <div class="form-group">
-                      <input id="dish" class="form-control" name="dish"  placeholder="Please enter your dish"type="text" value="" equired data-error="??">
+                      <input id="dish" class="form-control" name="dish"  placeholder="Please enter your dish"type="hidden" value="couscous" equired data-error="??">
                       <div class="help-block with-errors"></div>
                     </div>                                 
                   </div>
@@ -233,6 +233,8 @@ if(empty($_SESSION['e']))
                   </div> 
                   <div class="col-md-12">
                     <div class="form-group">
+                    	 <input id="Tprice" class="form-control" name="Tprice"  placeholder="Please enter your dish"type="hidden" value="15" equired data-error="??">
+
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script >

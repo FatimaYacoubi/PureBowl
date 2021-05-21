@@ -209,7 +209,7 @@ echo '<li class="nav-item dropdown">
 <br>
 <br>
 <br>
-<br>
+<br> 
         
 
         <div id="stepProgressBar">
@@ -233,6 +233,9 @@ echo '<li class="nav-item dropdown">
 <div id="main">  
 </div>
 </div> 
+
+
+<div id="orders">
 <table align="center">
 	<tr>
 		<th>
@@ -243,7 +246,7 @@ echo '<li class="nav-item dropdown">
                       </a>
 		</th>
 	</tr>
-</table>
+</table> 
 <table id="employee_data" align="center" style="width:1200px; line-height:40px;" class="myOtherTable">  
                           <thead>  
                                <tr>  
@@ -336,6 +339,7 @@ echo '<li class="nav-item dropdown">
                     </td>
 </tr>
 
+<<<<<<< Updated upstream
 <<<<<<< HEAD
  
         <h1 id="total" align="center" class="btn-55">Votre total est de <strong><?php 
@@ -367,14 +371,18 @@ echo '<li class="nav-item dropdown">
    <br>
   <br>
 =======
+=======
+
+>>>>>>> Stashed changes
 <?php 
 }
 ?>
-<h1 id="total" align="center" class="btn-55">Votre total est de <strong><?php 
+<h3 id="total" align="center" class="btn-55">Votre total est de <strong><?php 
 
     echo $sum;
-            ?></strong> DT</h1>
+            ?></strong> DT</h3>
                      </table>
+                   </div> 
    
   
   
@@ -429,6 +437,24 @@ echo '<li class="nav-item dropdown">
         </form> 
 <br>
 
+<div id="delivery">
+<table  class="myOtherTable">
+  <thead>
+  <tr><th align="center"> Delivery Person </th>
+  <th align="center"> Expected time of delivery</th> </tr>
+  <tr><td> <img src="../images/livreur1.png" alt="" /> </td>
+  <td> in 30 minutes </td> </tr>
+  </thead>
+  </table>
+  </div>
+<div id="payment">
+	<div class="container" align="center">
+	<h2>For the moment You can Only pay in Cash</h2>
+		<h4> New payment methods will be available</h4>
+		<h5>Pure Bowl's team thanks you! </h5>
+
+</div>
+</div>
   <div class="step">
   <button align="center" id="previousBtn" class="btn-222">Previous</button>
   <button align="center" id="nextBtn"class="btn-222">Next</button>
@@ -599,7 +625,8 @@ function validate() {
 </script>
   <a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
 
-  <!-- ALL JS FILES -->
+  <!-- ALL JS FILES -->                <script src="../js/hide.js"></script>
+
   <script src="../js/jquery-3.2.1.min.js"></script>
   <script src="../js/popper.min.js"></script>
   <script src="../js/bootstrap.min.js"></script>
@@ -615,7 +642,6 @@ function validate() {
   <script src="../js/form-validator.min.js"></script>
     <script src="../js/contact-form-script.js"></script>
     <script src="../js/custom.js"></script>
-                <script src="../js/hide.js"></script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>  
            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />  
