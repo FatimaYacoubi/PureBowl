@@ -27,37 +27,17 @@ function hide1()
  function hide2()
  {
   if(currentStep===1)
-    {document.getElementById("commande").style.display="none";
-   document.getElementById("delivery").style.display="none";
-    document.getElementById("payment").style.display="none";
-}
-}
-
-
+    document.getElementById("commande").style.display="none"
+ }
  document.addEventListener('click',hide3);
+
 function hide3()
 {
   if(currentStep===2)
-    {document.getElementById("commande").style.display="block";
-      document.getElementById("delivery").style.display="none";}
-
-  else    { document.getElementById("commande").style.display="none";
- document.getElementById("delivery").style.display="block";}
+    document.getElementById("commande").style.display="block"
+  else     document.getElementById("commande").style.display="none"
 
  }
-document.addEventListener('click',hide4);
-function hide4()
-{if(currentStep===3)
-    document.getElementById("delivery").style.display="block";
-  else     document.getElementById("delivery").style.display="none";
-}
-
-document.addEventListener('click',hide5);
-function hide5()
-{if(currentStep===4)
-    document.getElementById("payment").style.display="block";
-  else     document.getElementById("payment").style.display="none";
-}
 
 
 nextBtn.addEventListener('click',  ()  =>  {
@@ -86,5 +66,5 @@ previousBtn.addEventListener('click',  ()  =>  {
 });
 
 finishBtn.addEventListener('click',  ()  =>  {
-    alert('Your delivery is in its way!');
+    location.reload();
 });
