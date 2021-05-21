@@ -1,30 +1,9 @@
 <?PHP
   include "../Controller/commandeC.php";
-  require_once ("db.php");
-  $db_handle = new DBController();
+
   $commandeC=new commandeC();
   $listeUsers=$commandeC->affichercommande();
-  switch ($_GET["action"]) {
-    case "show_discount":
-       
-            if (! empty($_POST["discountCode"])) {
-                $priceByCode = $db_handle->runQuery("SELECT price FROM coupon WHERE discount_code='" . $_POST["discountCode"] . "'");
-                
-                if (! empty($priceByCode)) {
-                    foreach ($priceByCode as $key => $value) {
-                        $discountPrice = $priceByCode[$key]["price"];
-                    }
-                    if (! empty($discountPrice) && $discountPrice > $_POST["totalPrice"]) {
-                        $message = "Invalid Discount Coupon";
-                    }
-                } else {
-                    $message = "Invalid Discount Coupon";
-                }
-            }
-       
-        break;
-          }
-          ini_set('error_reporting', E_ALL);
+  
 ?>
 
 <?php
@@ -52,11 +31,7 @@ if(empty($_SESSION['e']))
 
 
 <!-- End Styles -->     <title> Pure Bowl</title>  
-<form id="applyDiscountForm" method="post"
-	
-        action="affichercommande.php?action=show_discount"
 
-        onsubmit="return validate();">
    <meta name="keywords" content=""> 
     <meta name="description" content="">
     <meta name="author" content="">
@@ -112,7 +87,7 @@ if(empty($_SESSION['e']))
             </li>
             <li class="nav-item"><a class="nav-link" href="affichercommande.php">Cart</a></li>
             <li class="nav-item  "><a class="nav-link" href="comment.php">Comment</a></li>
-            <li class="nav-item"><a class="nav-link" href="gift.php">Gift</a></li>
+            <li class="nav-item"><a class="nav-link" href="../gift.html">Gift</a></li>
             <li class="nav-item"><a class="nav-link" href="../about.html">About</a></li>
 
             <?php
@@ -232,17 +207,13 @@ echo '<li class="nav-item dropdown">
                         <input type="hidden" value=<?PHP echo $user['id']; ?> name="id">
                         </form>
                                   </td>  
-                               
                                   <td>
                                     <a href="reclamation.php?id=<?PHP echo $user['id']; ?>"  > 
                        <button class="btn-222" style="color:black">Claim</button>
 
                       </a>
-                   
                                   </td>
-                     
                                 </tr> 
-
                                </table> 
                               
                    
@@ -255,54 +226,11 @@ echo '<li class="nav-item dropdown">
 <?php 
 }
 ?>
-   <?php     
-                    
-                    if (!empty($discountPrice) && $sum > $discountPrice) {
-                        $total_price_after_discount = $sum - $discountPrice;
-                        
-                ?>
-                        <tr>
-                            <td colspan="1" align="right">Discount:<input
-                                type="hidden" name="discountPrice"
-                                id="discountPrice"
-                                value="<?php echo $discountPrice; ?>"></td>
-                           <td align="right" colspan="1"><strong><?php echo "Dt " . number_format($discountPrice, 2); ?></strong></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td colspan="1" align="right">Total after
-                                Discount:</td>
-                            <td align="right" colspan="1"><strong><?php echo "Dt " . number_format($total_price_after_discount, 2); ?></strong></td>
-                            <td></td>
-                        </tr>      <?php 
-                    }
-                    ?>
-                      <?php 
-                   
-              ?> 
 <h3 id="total" align="center" class="btn-55">Votre total est de <strong><?php 
 
     echo $sum;
             ?></strong> DT</h3>
                      </table>
-                     <div id="discount-grid">
-            <div class="discount-section">
-                <div class="discount-action">
-                    <span id="error-msg-span" class="error-message">
-                    <?php
-                    if (! empty($message)) {
-                        echo $message;
-                    }
-                    ?>
-                    </span> <span></span><input type="text"
-                        class="discount-code" id="discountCode"
-                        name="discountCode" size="15"
-                        placeholder="Enter Coupon Code" /><input
-                        id="btnDiscountAction" type="submit"
-                        value="Apply Discount" class="btnDiscountAction" />
-                </div>
-            </div>
-        </div>
    
   
   </div>
@@ -538,7 +466,7 @@ echo '<li class="nav-item dropdown">
     
   </footer>
   <!-- End Footer -->
-
+  
   <a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
 
   <!-- ALL JS FILES -->
@@ -568,19 +496,6 @@ echo '<li class="nav-item dropdown">
           
    </body>
   </html>
-  <script>
-function validate() {
-    var valid= true;
-     if($("#discountCode").val() === "") {
-        valid = false;
-     }
-
-     if(valid == false) {
-         $('#error-msg-span').text("Discount Coupon Required");
-     }
-     return valid;
-}
-</script>
   <script>  
 $(document).ready(function(){  
       $('#employee_data').DataTable();  
