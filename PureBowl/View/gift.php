@@ -1,8 +1,21 @@
+<<<<<<< HEAD
+
+<?PHP
+	include "../Controller/GiftBC.php";
+
+	$giftC =new giftC ();
+
+	
+  
+ $listeGifts=$giftC->displayGift();
+
+=======
 <?php
 session_start();
 include_once("../config.php");
 
 // On teste si la variable de session existe et contient une valeur
+>>>>>>> cd99a938f35e821f6a70cab08f569dcf878a4e00
 
 ?>
 <!DOCTYPE html>
@@ -157,6 +170,43 @@ echo '<li class="nav-item dropdown">
 			</div>
 				
 			<div class="row special-list">
+<<<<<<< HEAD
+             	<?PHP
+				foreach($listeGifts as $gift){
+			?>
+			
+				<div class="col-lg-4 col-md-6 special-grid lunch">
+   <!--   <th scope="row"> <input type="checkbox" /></th> -->
+                  <div class="gallery-single fix" style="height: 400px ;
+                     ">
+                   <img src="../images/<?php echo $gift['imageG'];?>" class="img-fluid"  width="350px" height="400px">
+                      <div class="why-text">
+				<!--	<h5><?PHP echo $offer['id_offre']; ?> </h5>  -->
+				<h2>	<?PHP echo $gift['nom']; ?> </h2>
+			
+					<!-- <td><?PHP echo $offer['image_offre']; ?></td> --> 
+					<p><?PHP echo $gift['descr']; ?></p>
+					
+					<h4><?PHP echo $gift['price']; ?></h4>
+					 <h4> <a class="btn btn-lg btn-circle btn-outline-new-black" href="buyoffre.php?id_offre=<?PHP echo $gift['id']; ?>">Get it</a> 
+					 </h4> 
+					  <h4>   </h4>
+					</div>
+						 
+                  <!--    <a href="#" class="tm-product-delete-link">
+                        <i class="far fa-trash-alt tm-product-delete-icon"></i>
+                      </a> -->
+                    
+					</div>	
+						
+				
+				
+				</div>
+			
+			<?PHP
+				}
+			?> 
+=======
 				<div class="col-lg-4 col-md-6 special-grid chocolate">
 					<div class="gallery-single fix">
 						<img src="../images/choco1.jpg" class="img-fluid" alt="Image">
@@ -229,8 +279,8 @@ echo '<li class="nav-item dropdown">
 							<h4> <a class="btn btn-lg btn-circle btn-outline-new-black" href="giftLook.html">Get it</a>  </h4> 
 						</div>
 					</div>
+>>>>>>> cd99a938f35e821f6a70cab08f569dcf878a4e00
 				</div>
-				
 	
 			</div>
 		</div>
