@@ -3,6 +3,9 @@
 
   $commandeC=new commandeC();
   $listeUsers=$commandeC->affichercommande();
+  $connect = mysqli_connect("localhost", "root", "", "webprojet");  
+ $query ="SELECT * FROM post ORDER BY id DESC";  
+ $result = mysqli_query($connect, $query);
 ?>
 
 <?php
@@ -136,45 +139,33 @@ if(empty($_SESSION['e']))
 <div id="main">  
 </div>
 </div> 
-
-  <table align="center" id="orders" style="width:800px; line-height:40px;" class="myOtherTable"> 
-     <tr>
-      <td colspan="6">
-        <a href="pdfcommande.php"  > 
-                       <button class="btn-7" style="color:black;
-                       width: 450px" >Download as PDF <i class="fa fa-download" aria-hidden="true"></i> </button>
+<table align="center">
+	<tr>
+		<th>
+			<a href="pdfcommande.php"  > 
+                       <button class="btn-7" style="color:black 
+                       " ><p style="font-size:15px;">Download as PDF </p><i class="fa fa-download" aria-hidden="true"></i> </button>
 
                       </a>
-      </td>
-      <td colspan="6" align="center"><a href="sortcommande.php" class="btn-7" style="color:black;
-                       width: 400px" ><button class="btn-7" style="color:black;
-                       width: 450px" >Search and sort </button> </a> </td>
-    </tr>
-  <tr> 
-          </div>
-        </div>
-      </div>
-     </tr colspan="8">> 
-        <th>Order </th> 
-        <th> Meat Type </th> 
-        <th> Option </th> 
-        <th> People </th> 
-        <th> Date</th> 
-        <th> Time </th> 
-                <th> Price </th> 
-
-        <th> Edit </th> 
-                <th> Delete </th>
-                <th> Claim </th> 
-
+		</th>
+	</tr>
+</table>
+<table id="employee_data" align="center" style="width:1200px; line-height:40px;" class="myOtherTable">  
+                          <thead>  
+                               <tr>  
+                                    <th >Order</th>  
+                                    <th> Meat Type </th> 
+                                    <th> Option </th> 
+                                    <th> People </th> 
+                                    <th> Date</th> 
+                                    <th> Time </th>
+                                    <th>prix</th>
+                                    <th ><p align="center">What to do ?</p></th>
         
-        
-    
-           
-          
-   </tr> 
-    
-    <?php 
+
+                               </tr>  
+                          </thead>  
+                          <?php 
     $sum=0;
     foreach($listeUsers as $user){
       $sum +=15;
@@ -186,41 +177,51 @@ if(empty($_SESSION['e']))
     <td><?PHP echo $user['option']; ?></td> 
     <td><?PHP echo $user['person']; ?></td> 
     <td><?PHP echo $user['date']; ?></td> 
-    <td><?PHP echo $user['time']; ?></td> 
-        <td> 15 dt</td> 
+    <td><?PHP echo $user['time']; ?></td>
 
-              <td>
-                                <a href="modifiercommande.php?id=<?PHP echo $user['id']; ?>"  > 
+    <td> 15</td>
+    <td>
+                               <table>
+                               	<tr>
+                               		<td>
+                               			<a href="modifiercommande.php?id=<?PHP echo $user['id']; ?>"  > 
                        <button class="btn-222" style="color:black">Edit</button>
 
                       </a>
-                    </td>
-          <td>
-            <form method="POST" action="supprimercommande.php">
+                               		</td>
+                               		<td>
+                               			<form method="POST" action="supprimercommande.php">
                         <button type="submit" name="supprimer" class="btn-222" id="1" style="color:black" onClick="\return confirm('Are you sure you want to delete?')\"> Delete</button> 
                         
                         <input type="hidden" value=<?PHP echo $user['id']; ?> name="id">
                         </form>
-          </td>
-           <td>
-                                <a href="reclamation.php?id=<?PHP echo $user['id']; ?>"  > 
+                               		</td>
+                               		<td>
+                               			<a href="reclamation.php?id=<?PHP echo $user['id']; ?>"  > 
                        <button class="btn-222" style="color:black">Claim</button>
 
                       </a>
+                               		</td>
+                               	</tr>
+                               </table> 
+                   
+            
+         
+                                
                     </td>
-    </tr> 
+</tr>
 
-  <?php 
-               } 
-          ?> 
-        <h1 id="total" align="center" class="btn-55">Votre total est de <strong><?php 
+<?php 
+}
+?>
+<h1 id="total" align="center" class="btn-55">Votre total est de <strong><?php 
 
     echo $sum;
             ?></strong> DT</h1>
-
-          </div>
-        </table> 
-
+                     </table>
+   
+  
+  
    <form action="ajouterCompte.php" id="commande" method="post"  align="center">
             <main class="container">
 
@@ -316,7 +317,7 @@ if(empty($_SESSION['e']))
               </div>
               <div class="carousel-item text-center">
                 <div class="img-box p-1 border rounded-circle m-auto">
-                  <img class="d-block w-100 rounded-circle" src="images/profile-7.jpg" alt="">
+                  <img class="d-block w-100 rounded-circle" src="../images/profile-7.jpg" alt="">
                 </div>
                 <h5 class="mt-4 mb-0"><strong class="text-warning text-uppercase">Daniel vebar</strong></h5>
                 <h6 class="text-dark m-0">Seo Analyst</h6>
@@ -447,7 +448,17 @@ if(empty($_SESSION['e']))
     <script src="../js/custom.js"></script>
                 <script src="../js/hide.js"></script>
 
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>  
+           <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />  
+           <script src="https://code.jquery.com/jquery-3.5.1.js"></script>  
+           <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>      
+           <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css" />
+    
+          
    </body>
   </html>
-
+  <script>  
+$(document).ready(function(){  
+      $('#employee_data').DataTable();  
+ });  
+ </script>
