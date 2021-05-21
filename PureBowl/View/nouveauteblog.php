@@ -5,6 +5,13 @@
 	$listeUsers=$postC->afficherpost();
 
 ?>
+<?php
+session_start();
+include_once("../config.php");
+
+// On teste si la variable de session existe et contient une valeur
+
+?>
 <!DOCTYPE html>
 <html lang="en"><!-- Basic -->
 <head>
@@ -44,47 +51,59 @@
 	<!-- Start header -->
 	<header class="top-navbar">
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
-			<div class="container">
-				<a class="navbar-brand" href="../index.html">
-					<img src="../images/logo.png" alt="" />
-				</a>
-				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbars-rs-food" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
-				  <span class="navbar-toggler-icon"></span>
-				</button>
-				<div class="collapse navbar-collapse" id="navbars-rs-food">
-					<ul class="navbar-nav ml-auto">
-						<li class="nav-item "><a class="nav-link" href="../index.html">Home</a></li>
-						<li class="nav-item"><a class="nav-link" href="../View/menu.php">Menu</a></li>
-						<li class="nav-item"><a class="nav-link" href="../about.html">About</a></li>
-						<li class="nav-item dropdown">
-						</li>
-						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Offres</a>
-							<div class="dropdown-menu" aria-labelledby="dropdown-a">
-								<a class="dropdown-item" href="../offre.html">Offre</a>
-								<a class="dropdown-item" href="../offre.html">Promotion</a>
-								</div>
-							</li>
-						<li class="nav-item active dropdown">
-							<a class="nav-link dropdown-toggle " href="#" id="dropdown-a" data-toggle="dropdown">Blog</a>
-							<div class="dropdown-menu" aria-labelledby="dropdown-a">
-								<a class="dropdown-item " href="blog.php">blog</a>
-								<a class="dropdown-item active" href="nouveauteblog.php">Nouveaute</a>
-							</div>
-						</li>
-						<li class="nav-item"><a class="nav-link" href="affichercommande.php">My orders</a></li>
-						<li class="nav-item"><a class="nav-link" href="../gift.html">Gift</a></li>
-						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Sign in</a>
-							<div class="dropdown-menu" aria-labelledby="dropdown-a">
-								<a class="dropdown-item" href="../login.html">As an administrator</a>
-								<a class="dropdown-item" href="../blog-details.html">As a client</a>
-							</div>
-						</li>
-					</ul>
-				</div>
-			</div>
-		</nav>
+      <div class="container">
+        <a class="navbar-brand" href="../index.php">
+          <img src="../images/logo.png" alt="" />
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbars-rs-food" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbars-rs-food">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active"><a class="nav-link" href="../index.php">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="menu.php">Menu</a></li>
+            <li class="nav-item"><a class="nav-link" href="showpack2.php">Offre</a></li>
+
+            
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Blog</a>
+              <div class="dropdown-menu" aria-labelledby="dropdown-a">
+                <a class="dropdown-item" href="blog.php">blog</a>
+                <a class="dropdown-item" href="nouveauteblog.php">Nouveaute</a>
+              </div>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="affichercommande.php">Cart</a></li>
+            <li class="nav-item  "><a class="nav-link" href="comment.php">Comment</a></li>
+            <li class="nav-item"><a class="nav-link" href="gift.php">Gift</a></li>
+            <li class="nav-item"><a class="nav-link" href="../about.php">About</a></li>
+
+            <?php
+// On teste si la variable de session existe et contient une valeur
+if(empty($_SESSION['e']))
+{
+    // Si inexistante ou nulle, on redirige vers le formulaire de login
+    echo '<li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Account</a>
+              <div class="dropdown-menu" aria-labelledby="dropdown-a">
+                <a class="dropdown-item" href="login.php">login</a>
+                <a class="dropdown-item" href="inscription.php">Register</a>
+              </div>
+            </li>';
+}
+else
+echo '<li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Account</a>
+              <div class="dropdown-menu" aria-labelledby="dropdown-a">
+                <a class="dropdown-item" href="logout.php">logout</a>
+                <a class="dropdown-item" href="inscription.php">Register</a>
+              </div>
+            </li>';
+?>
+            
+          </ul>
+        </div>
+      </div>
+    </nav>
 	</header>
 	<!-- End header -->
 	
