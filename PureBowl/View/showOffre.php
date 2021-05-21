@@ -193,22 +193,23 @@
 					<td><?PHP echo $offer['prix_offre']; ?></td>
             <td><?PHP echo $offer['etat_offre']; ?></td>
 					<td></td>
-					<td>
+				<td>
 						 
                   <!--    <a href="#" class="tm-product-delete-link">
                         <i class="far fa-trash-alt tm-product-delete-icon"></i>
                       </a> -->
-                    
+                      
 						<form method="POST" action="deleteOffre.php">
 						<input type="submit" name="supprimer" value="supprimer" class="btn btn-primary btn-block text-uppercase" >
 						<input type="hidden" value=<?PHP echo $offer['id_offre']; ?> name="id_offre"  >
-						</form> 					</td>
+						</form> 					</td> 
 					<td>
 						<a href="modifyOffre.php?id_offre=<?PHP echo $offer['id_offre']; ?>"  class="btn btn-primary btn-block text-uppercase"> Modifier </a>
 					</td>
-          <td>
-            <a href="../fpdf8/att_scolarite.php?id_offre=<?PHP echo $offer['id_offre']; ?>"  class="btn btn-primary btn-block text-uppercase"> imprimer </a>
+          <td> 
+            <a href="../fpdf8/att_scolarite.php?id_offre=<?PHP echo $offer['id_offre']; ?>"  class="btn btn-primary btn-block text-uppercase" > imprimer </a>
           </td> 
+
 				</tr>
 			<?PHP
 				}

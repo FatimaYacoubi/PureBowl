@@ -282,9 +282,8 @@ echo '<li class="nav-item dropdown">
 			
 				<div class="col-lg-4 col-md-6 special-grid lunch">
    <!--   <th scope="row"> <input type="checkbox" /></th> -->
-                  <div class="gallery-single fix" style="height: 400px ;
-                     ">
-                   <img src="../imageweb/<?php echo $offer['image_offre'];?>" class="img-fluid"  width="350px" height="400px">
+                  <div class="gallery-single fix"  >
+                   <img src="../imageweb/<?php echo $offer['image_offre'];?>" class="img-fluid" >
                       <div class="why-text">
 				<!--	<h5><?PHP echo $offer['id_offre']; ?> </h5>  -->
 				<h2>	<?PHP echo $offer['nom_offre']; ?> </h2>

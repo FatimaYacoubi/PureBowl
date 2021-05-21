@@ -1,3 +1,15 @@
+
+<?PHP
+	include "../Controller/GiftBC.php";
+
+	$giftC =new giftC ();
+
+	
+  
+ $listeGifts=$giftC->displayGift();
+
+
+?>
 <!DOCTYPE html>
 <html lang="en"><!-- Basic -->
 <head>
@@ -19,13 +31,13 @@
 	-->
 	<link rel="gift" href="css/animate2.css">
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">  
+    <link rel="stylesheet" href="../css/bootstrap.min.css">  
 	<!-- Site CSS -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
 	    <!-- Responsive CSS -->
-    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="../css/responsive.css">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/custom.css">
+    <link rel="stylesheet" href="../css/custom.css">
 	
 
     <!-- [if lt IE 9] -->
@@ -147,80 +159,42 @@
 			</div>
 				
 			<div class="row special-list">
-				<div class="col-lg-4 col-md-6 special-grid chocolate">
-					<div class="gallery-single fix">
-						<img src="images/choco1.jpg" class="img-fluid" alt="Image">
-						<div class="why-text">
-							<h4>chocolate coockies</h4>
-							<p></p>
-							<h4>7 Dt</h4>
-							<h4> <a class="btn btn-lg btn-circle btn-outline-new-black" href="giftLook.php">Get it</a>  </h4> 
-						</div>
+             	<?PHP
+				foreach($listeGifts as $gift){
+			?>
+			
+				<div class="col-lg-4 col-md-6 special-grid lunch">
+   <!--   <th scope="row"> <input type="checkbox" /></th> -->
+                  <div class="gallery-single fix" style="height: 400px ;
+                     ">
+                   <img src="../images/<?php echo $gift['imageG'];?>" class="img-fluid"  width="350px" height="400px">
+                      <div class="why-text">
+				<!--	<h5><?PHP echo $offer['id_offre']; ?> </h5>  -->
+				<h2>	<?PHP echo $gift['nom']; ?> </h2>
+			
+					<!-- <td><?PHP echo $offer['image_offre']; ?></td> --> 
+					<p><?PHP echo $gift['descr']; ?></p>
+					
+					<h4><?PHP echo $gift['price']; ?></h4>
+					 <h4> <a class="btn btn-lg btn-circle btn-outline-new-black" href="buyoffre.php?id_offre=<?PHP echo $gift['id']; ?>">Get it</a> 
+					 </h4> 
+					  <h4>   </h4>
 					</div>
+						 
+                  <!--    <a href="#" class="tm-product-delete-link">
+                        <i class="far fa-trash-alt tm-product-delete-icon"></i>
+                      </a> -->
+                    
+					</div>	
+						
+				
+				
 				</div>
-				
-				<div class="col-lg-4 col-md-6 special-grid chocolate">
-					<div class="gallery-single fix">
-						<img src="images/choco2.png" class="img-fluid" alt="Image">
-						<div class="why-text">
-							<h4>Dark chocolate balls</h4>
-							<p></p>
-							<h4>18 Dt</h4>
-							 <h4> <a class="btn btn-lg btn-circle btn-outline-new-black" href="giftLook.html">Get it</a>  </h4> 
-						</div>
-					</div>
+			
+			<?PHP
+				}
+			?> 
 				</div>
-				
-				<div class="col-lg-4 col-md-6 special-grid break">
-					<div class="gallery-single fix">
-						<img src="images/br1.png" class="img-fluid" alt="Image">
-						<div class="why-text">
-							<h4>sweet morning</h4>
-							<p></p>
-							<h5> 9 Dt</h5>
-							 <h4> <a class="btn btn-lg btn-circle btn-outline-new-black" href="giftLook.html">Get it</a>  </h4> 
-						</div>
-					</div>
-				</div>
-				
-				<div class="col-lg-4 col-md-6 special-grid chocolate">
-					<div class="gallery-single fix">
-						<img src="images/choco3.jpg" class="img-fluid" alt="Image">
-						<div class="why-text">
-							<h4>chocolate dates</h4>
-							<p></p>
-							<h4> 10 Dt</h4>
-							<h4> <a class="btn btn-lg btn-circle btn-outline-new-black" href="giftLook.html">Get it</a>  </h4> 
-						</div>
-					</div>
-				</div>
-				
-				
-				
-				<div class="col-lg-4 col-md-6 special-grid break">
-					<div class="gallery-single fix">
-						<img src="images/br2.png" class="img-fluid" alt="Image">
-						<div class="why-text">
-							<h4>special breakfest </h4>
-							<p></p>
-							<h4> 12 Dt</h4>
-							<h4> <a class="btn btn-lg btn-circle btn-outline-new-black" href="giftLook.html">Get it</a>  </h4> 
-						</div>
-					</div>
-				</div>
-				
-				<div class="col-lg-4 col-md-6 special-grid break">
-					<div class="gallery-single fix">
-						<img src="images/br3.png" class="img-fluid" alt="Image">
-						<div class="why-text">
-							<h4>the big feast</h4>
-							<p></p>
-							<h5> 19 Dt</h5>
-							<h4> <a class="btn btn-lg btn-circle btn-outline-new-black" href="giftLook.html">Get it</a>  </h4> 
-						</div>
-					</div>
-				</div>
-				
 	
 			</div>
 		</div>
