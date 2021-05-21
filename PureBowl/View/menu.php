@@ -55,7 +55,7 @@
 				</button>
 				<div class="collapse navbar-collapse" id="navbars-rs-food">
 					<ul class="navbar-nav ml-auto">
-						<li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
+						<li class="nav-item"><a class="nav-link" href="../index.php">Home</a></li>
 						<li class="nav-item active"><a class="nav-link" href="View/menu.php">Menu</a></li>
 						<li class="nav-item"><a class="nav-link" href="../about.html">About</a></li>
 						<li class="nav-item dropdown">

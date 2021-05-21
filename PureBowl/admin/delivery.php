@@ -81,8 +81,16 @@ if(!empty($_GET['idDeliveryForDelete'])) {
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mx-auto h-100">
      
-    
-
+    <li class="nav-item">
+              <a class="nav-link  " href="displayProduct.php">
+                <i class="fas fa-shopping-cart"></i> Products
+              </a>
+     </li>
+     <li class="nav-item">
+                <a class="nav-link" href="displayRecipe.php">
+                  <i class="fas fa-shopping-cart"></i> Recipes
+                </a>
+        </li>
       <li class="nav-item">
         <a class="nav-link active " href="delivery.php">
           <i class="fas fa-cubes"></i> Delivery
