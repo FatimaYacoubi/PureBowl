@@ -75,7 +75,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mx-auto h-100">
             <li class="nav-item">
-              <a class="nav-link" href="../index1.html">
+              <a class="nav-link" href="index1.php">
                 <i class="fas fa-tachometer-alt"></i> Dashboard
                 <span class="sr-only">(current)</span>
               </a>
@@ -160,11 +160,27 @@
         </div>
       </div>
     </nav>
-    <div class="container mt-5">
+    
+    <div class="container">
+            <div class="row">
+                <div class="col">
+                    
+                    <table class="table table-hover tm-table-small tm-product-table">
+                        <tr>
+                            <td><a 
+                            id="btn" href="afficherDisharchive.php"  ><h4>  <i class="fa fa-arrow-circle-right" ></i> Archived dishes <i class="fas fa-eye-slash"></i></h4></a></td>
+
+                        </tr>
+                    </table>
+                </div>
+            </div>
+         
+    <div class="container ">
       <div class="row tm-content-row">
         <div class="col-sm-12 col-md-12 col-lg-8 col-xl-8 tm-block-col">
           <div class="tm-bg-primary-dark tm-block tm-block-products">
             <div class="tm-product-table-container">
+              
               <table class="table table-hover tm-table-small tm-product-table">
                 <thead>
                   <tr>
@@ -219,15 +235,24 @@
           <td>
 
             <form method="POST" action="archiverDish.php">
-                            <button style="height: : 30px" type="submit" name="archiver "class="tm-product-delete-link" >
+                            <button style="height: : 30px" type="submit" name="archiver "class="tm-product-delete-link"onclick="return confirm('Are you sure you want to archive this item ?');" >
                         <i class="fas fa-archive tm-product-delete-icon" ></i></button> 
                         
                         <input type="hidden" value=<?PHP echo $dish['name']; ?> name="name">
              </form>
             </td>
-            <td>
+            <td style="width: 30px">
+                            <form>
+                            <a href="modifydish.php?name=<?PHP echo $dish['name']; ?>" class="tm-product-delete-link" onclick="return confirm('Are you sure you want to edit this item ?');" >
+                        <i class="far fa-edit tm-product-delete-icon" ></i>
+                      </a>
+                      </form>
+                    
+            </td>
+           <!-- <td>
+
 						<a href="modifydish.php? name=<?PHP echo $dish['name']; ?>" class="btn btn-primary btn-block text-uppercase"> Modify </a>
-					</td>
+					</td> -->
 				</tr>
 			<?PHP
 				}
@@ -347,11 +372,17 @@
             <!-- table container -->
           <a
               href="addProduct.php" 
-              class="btn btn-primary btn-block text-uppercase"> Add Dish </a>
-              <a
+              class="btn btn-primary btn-block text-uppercase"> <i class="fa fa-plus-square" > </i> </a>
+         
+            
+         
+              <!-- <a
               id="btn"
               href="afficherDisharchive.php"
-              class="container"> >>Archived dishes </a>
+              
+              class="container"> >>Archived dishes
+              <i class="fas fa-eye"></i>
+             </a> -->
              
           </div>
           
@@ -360,6 +391,8 @@
         
       </div>
     </div>
+  
+    
     <footer class="tm-footer row tm-mt-small">
       <div class="col-12 font-weight-light">
         <p class="text-center text-white mb-0 px-4 small">

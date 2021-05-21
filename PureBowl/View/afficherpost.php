@@ -133,7 +133,7 @@
                     <p class="text-white mt-5 mb-5">Welcome back, <b class="text-warning">Admin</b></p>
                     <table class="table table-hover tm-table-small tm-product-table">
                         <tr>
-                            <td><a href="afficherarchivedpost.php" class="text-warning" ><h4>See archived posts <i class="fas fa-eye"></i></h4></a></td>
+                            <td><a href="afficherarchivedpost.php" class="text-warning" ><h4>See archived posts <i class="fas fa-eye-slash"></i></h4></a></td>
                             <td>
                                 <a href="statepost.php" class="text-warning"  ><h4>See statistics of Posts's states <i class="fas fa-chart-bar"></i></h4> </a>
                             </td>
