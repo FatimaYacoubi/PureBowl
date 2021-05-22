@@ -71,50 +71,37 @@
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
 			<div class="container">
 				<a class="navbar-brand" href="index.html">
-					<img src="images/logo.png" alt="" />
+					<img src="../images/logo.png" alt="" />
 				</a>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbars-rs-food" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
 				  <span class="navbar-toggler-icon"></span>
 				</button>
 				<div class="collapse navbar-collapse" id="navbars-rs-food">
 					<ul class="navbar-nav ml-auto">
-						<li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-						<li class="nav-item"><a class="nav-link" href="menu.php">Menu</a></li>
-						<li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
-						<!--
-							<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Pages</a>
-							<div class="dropdown-menu" aria-labelledby="dropdown-a">
-								<a class="dropdown-item" href="reservation.html">Reservation</a>
-								<a class="dropdown-item" href="stuff.html">Stuff</a>
-								<a class="dropdown-item" href="gallery.html">Gallery</a>
-							</div>
-						</li>
-					-->
-						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Offres</a>
-							<div class="dropdown-menu" aria-labelledby="dropdown-a">
-								<a class="dropdown-item" href="offre.html">Offre</a>
-								<a class="dropdown-item" href="offre.html">Promotion</a>
-								</div>
-							</li>
-						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Blog</a>
-							<div class="dropdown-menu" aria-labelledby="dropdown-a">
-								<a class="dropdown-item" href="blog.html">blog</a>
-								<a class="dropdown-item" href="blog-details.html">blog Single</a>
-							</div>
-						</li>
-						<li class="nav-item"><a class="nav-link" href="affichercom1.php">My orders</a></li>
-						<li class="nav-item"><a class="nav-link" href="reclamation.html">Reclamation</a></li>
-						<li class="nav-item active "><a class="nav-link" href="gift.html">Gift</a></li>
-						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Sign in</a>
-							<div class="dropdown-menu" aria-labelledby="dropdown-a">
-								<a class="dropdown-item" href="login.html">As an administrator</a>
-								<a class="dropdown-item" href="blog-details.html">As a client</a>
-							</div>
-						</li>
+					<a class="navbar-brand" href="../index.php">
+          <img src="../images/logo.png" alt="" />
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbars-rs-food" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbars-rs-food">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item "><a class="nav-link" href="../index.php">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="menu.php">Menu</a></li>
+            <li class="nav-item"><a class="nav-link" href="showpack2.php">Offre</a></li>
+
+            
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Blog</a>
+              <div class="dropdown-menu" aria-labelledby="dropdown-a">
+                <a class="dropdown-item" href="blog.php">blog</a>
+                <a class="dropdown-item" href="nouveauteblog.php">Nouveaute</a>
+              </div>
+            </li>
+            <li class="nav-item "><a class="nav-link" href="affichercommande.php">Cart</a></li>
+            <li class="nav-item  "><a class="nav-link" href="comment.php">Comment</a></li>
+            <li class="nav-item active"><a class="nav-link" href="gift.php">Gift</a></li>
+            <li class="nav-item"><a class="nav-link" href="../about.php">About</a></li>
 					</ul>
 				</div>
 			</div>
@@ -133,7 +120,7 @@
       	<br>
       	<br>
       	<br>
-            <img src="images/choco1.jpg" alt="" width="500"> 
+            <img src="../images/choco3.jpg" alt="" width="500"> 
             
       </div>
 
@@ -143,7 +130,7 @@
 
         <!-- Product Description -->
         <div class="product-description">
-          <span>chocolate cookies</span>
+          <span>chocolate dates</span>
         <br>
       	<br>
       	<br>
@@ -152,13 +139,13 @@
           <h1>     </h1>
           <h1>    </h1>
           <h1>     </h1>
-            <h1>chocolate cookies</h1>
+            <h1>chocolate dates</h1>
             <!-- Product Pricing -->
         <div class="product-price">
-          <span>7 DT</span>
+          <span>20 DT</span>
         </div>
           <p>
-			‬‏These Chocolate Cookies are somewhere between a cookie and a brownie. They're soft and chewy withchocolate in every single bite </p>
+			‬‏These Chocolate date are covered with high equality chocolate covered with nuts and dry fruits (box with 30 pieces).</p>
         </div>
 
         <!-- Product Configuration -->
@@ -276,7 +263,7 @@ placeholder="Please enter the time you want it delivered" type="time" value="" r
 	<div class="container1"></div>
 	
 		<div class="contact-block">
-	<form action="./mail1/mailer.php">
+	<form action="mailer.php">
 	<!---
 		<input type="submit" value="Go to Google" />
 		</p>-->
@@ -314,7 +301,7 @@ placeholder="Please enter the time you want it delivered" type="time" value="" r
 						<div class="carousel-inner mt-4">
 							<div class="carousel-item text-center active">
 								<div class="img-box p-1 border rounded-circle m-auto">
-									<img class="d-block w-100 rounded-circle" src="images/profile-1.jpg" alt="">
+									<img class="d-block w-100 rounded-circle" src="../images/profile-1.jpg" alt="">
 								</div>
 								<h5 class="mt-4 mb-0"><strong class="text-warning text-uppercase">Wajdi Hachana</strong></h5>
 								<h6 class="text-dark m-0">Web Developer</h6>
@@ -322,7 +309,7 @@ placeholder="Please enter the time you want it delivered" type="time" value="" r
 							</div>
 							<div class="carousel-item text-center">
 								<div class="img-box p-1 border rounded-circle m-auto">
-									<img class="d-block w-100 rounded-circle" src="images/profile-3.jpg" alt="">
+									<img class="d-block w-100 rounded-circle" src="../images/profile-3.jpg" alt="">
 								</div>
 								<h5 class="mt-4 mb-0"><strong class="text-warning text-uppercase">Mohamed Hedi Yaacoubi</strong></h5>
 								<h6 class="text-dark m-0">Dentist</h6>
@@ -330,7 +317,7 @@ placeholder="Please enter the time you want it delivered" type="time" value="" r
 							</div>
 							<div class="carousel-item text-center">
 								<div class="img-box p-1 border rounded-circle m-auto">
-									<img class="d-block w-100 rounded-circle" src="images/profile-7.jpg" alt="">
+									<img class="d-block w-100 rounded-circle" src="../images/profile-7.jpg" alt="">
 								</div>
 								<h5 class="mt-4 mb-0"><strong class="text-warning text-uppercase">Daniel vebar</strong></h5>
 								<h6 class="text-dark m-0">Seo Analyst</h6>
