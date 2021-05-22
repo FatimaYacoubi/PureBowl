@@ -34,21 +34,6 @@ div.c {
   height: 700px;
   border: 3px solid orange;
 } 
-#customers th.headerSortUp{
-   background-image:url("../images/up.png") ;
-   background-color: #3399FF;
-   background-repeat:no-repeat;
-   background-position: center right;
-
-
- }
- #customers th.headerSortDown{
-   background-image:url("../images/down.png") ;
-   background-color: #3399FF;
-
-   background-repeat:no-repeat;
-   background-position: center right;
-
 
  }
 </style>
@@ -110,13 +95,7 @@ div.c {
 
                             </script>
              
-               <script>
-
-$(document).ready(function() {
-  $('#customers').tablesorter();
-
-});  
-</script>
+             
 </td>
 <script type="text/javascript">
         Chart.defaults.global.defaultFontColor = 'white';
