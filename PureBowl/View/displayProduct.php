@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="../css/bootstrap.min.css" />
     <!-- https://getbootstrap.com/ -->
     <link rel="stylesheet" href="../css/templatemo-style.css">
+
     <!--
   Product Admin CSS Template
   https://templatemo.com/tm-524-product-admin
@@ -429,9 +430,9 @@
       </div>
     </footer>
 
-    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="../js/jquery-3.3.1.min.js"></script>
     <!-- https://jquery.com/download/ -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
     <!-- https://getbootstrap.com/ -->
     <script>
       $(function() {
@@ -442,3 +443,4 @@
     </script>
   </body>
 </html>
+        

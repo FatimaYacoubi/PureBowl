@@ -78,28 +78,6 @@
             <li class="nav-item  "><a class="nav-link" href="comment.php">Comment</a></li>
             <li class="nav-item active"><a class="nav-link " href="gift.php">Gift</a></li>
             <li class="nav-item"><a class="nav-link" href="../about.php">About</a></li>
-			<?php
-// On teste si la variable de session existe et contient une valeur
-if(empty($_SESSION['e']))
-{
-    // Si inexistante ou nulle, on redirige vers le formulaire de login
-    echo '<li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Account</a>
-              <div class="dropdown-menu" aria-labelledby="dropdown-a">
-                <a class="dropdown-item" href="login.php">login</a>
-                <a class="dropdown-item" href="inscription.php">Register</a>
-              </div>
-            </li>';
-}
-else
-echo '<li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Account</a>
-              <div class="dropdown-menu" aria-labelledby="dropdown-a">
-                <a class="dropdown-item" href="logout.php">logout</a>
-                <a class="dropdown-item" href="inscription.php">Register</a>
-              </div>
-            </li>';
-?>
 
 					</ul>
 				</div>
