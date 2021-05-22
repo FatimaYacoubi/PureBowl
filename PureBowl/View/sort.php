@@ -1,8 +1,10 @@
-<?php  
- $connect = mysqli_connect("localhost", "root", "", "webprojet");  
- $query ="SELECT * FROM post ORDER BY id DESC";  
- $result = mysqli_query($connect, $query);  
- ?>  
+<?PHP
+  include "../Controller/postC.php";
+
+  $postC=new postC();
+  $listeUsers=$postC->afficherpostadmin();
+
+?>
 <html>
   <head>
     <meta charset="UTF-8">
@@ -153,24 +155,62 @@
                                     <td style=" color: white; font-size: 20px;">ID</td>  
                                     <td style=" color: white; font-size: 20px;">Title</td>  
                                     <td style=" color: white; font-size: 20px;">Date</td>  
-                                    <td style=" color: white; font-size: 20px;">Etat</td>  
-                               </tr>  
+                                    <td style=" color: white; font-size: 20px;"><p align="center">What to do ?</p></td>
+
+                               </tr> 
+
                           </thead>  
-                          <?php  
-                          while($row = mysqli_fetch_array($result))  
-                          {  
-                               echo '  
-                               <tr>  
-                                    <td style="background-color: #4e657a;color: white;; font-size: 18px;" class="text-white mt-5 mb-5">'.$row["id"].'</td>    
-                                    <td style="background-color: #4e657a;color: white;; font-size: 18px;" class="text-white mt-5 mb-5">'.$row["titre"].'</td>  
-                                    <td style="background-color: #4e657a;color: white;; font-size: 18px;" class="text-white mt-5 mb-5">'.$row["date"].'</td>  
-                                    <td style="background-color: #4e657a;color: white;; font-size: 18px;" class="text-white mt-5 mb-5">'.$row["etat"].'</td>  
-                               </tr>  
-                               ';  
-                          }  
-                          ?>  
-                     </table>  
+                         <tr>
+                           <?PHP
+                foreach($listeUsers as $user){
+            ?>
+                    <td><?PHP echo $user['id']; ?></td>
+                    <td class="tm-product-name"><?PHP echo $user['titre']; ?></td>
+                    <td><?PHP echo $user['date']; ?></td>
+                    <td><table align="center">
+                      <tr>
+                        <td style="width: 30px">
+                      
+                        
+                        <form method="POST" action="supprimerpost.php">
+                           <button type="submit" name="supprimer "class="tm-product-delete-link"onclick="return confirm('Are you sure you want to delete this item definitely?');" >
+                        <i class="far fa-trash-alt tm-product-delete-icon"></i>
+                   </button> Delete
+                        
+                        <input type="hidden" value=<?PHP echo $user['id']; ?> name="id">
+                        
+
+                        </form>
+                        
+                       
+                        </td >
+                        
+                        <td style="width: 30px">
+                            <form>
+                            <a href="modifierpost.php?id=<?PHP echo $user['id']; ?>" class="tm-product-delete-link" onclick="return confirm('Are you sure you want to edit this item ?');" >
+                        <i class="far fa-edit tm-product-delete-icon" ></i>
+                      </a><p align="center">Edit</p>
+                      </form>
+                        </td>
+                        <td style="width: 30px" ><form method="POST" action="archiverpost.php">
+                            <button style="height: : 30px" type="submit" name="archiver "class="tm-product-delete-link"onclick="return confirm('Are you sure you want to archive this item ?');" >
+                        <i class="fas fa-archive tm-product-delete-icon" ></i></button> Archive
+                        
+                        <input type="hidden" value=<?PHP echo $user['id']; ?> name="id">
+                    </form>
+
+                </td>
+                      </tr>
+                    </table></td>
+                    
+                         </tr>
+                           <?PHP
+                }
+            ?>
+                     </table> 
+
     
+     
   </body>
 </html>
 <script>  

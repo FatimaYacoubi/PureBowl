@@ -181,16 +181,23 @@
              </a>-->
                     
              <form method="POST" action="deleteRecipe.php">
-                             <button type="submit" name="supprimer "class="tm-product-delete-link" >
+                             <button type="submit" name="supprimer "class="tm-product-delete-link"onclick="return confirm('Are you sure you want to delete this item definitely?');" >
                         <i class="far fa-trash-alt tm-product-delete-icon"></i></button> 
                         
                         <input type="hidden" value=<?PHP echo $recipe['idR']; ?> name="idR">
                         
 
                         </form> 					</td>
-					<td>
+             <td >
+                            <form>
+                            <a href="modifyRecipe.php?idR=<?PHP echo $recipe['idR']; ?>" class="tm-product-delete-link" onclick="return confirm('Are you sure you want to edit this item ?');" >
+                        <i class="far fa-edit tm-product-delete-icon" ></i>
+                      </a>
+                      </form>
+                        </td>
+				 <!--	<td>
 						<a href="modifyRecipe.php?idR=<?PHP echo $recipe['idR']; ?>" class="btn btn-primary btn-block text-uppercase"> Modify </a>
-					</td>
+					</td>-->
 				</tr>
 			<?PHP
 				}
@@ -309,7 +316,7 @@
             <!-- table container -->
           <a
               href="addRecipe.php"
-              class="btn btn-primary btn-block text-uppercase mb-3"> Add Recipe </a>
+              class="btn btn-primary btn-block text-uppercase mb-3">  <i class="fa fa-plus-square" > </i> </a>
              
           </div>
         </div>

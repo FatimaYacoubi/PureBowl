@@ -1,11 +1,12 @@
 <?PHP
-	include "../config.php";
+	require_once "../config.php";
 	require_once '../Model/Delivery.php';
 	class DeliveryC {
 		
         function countCommand($id){
-            $sql="SELECT COUNT(d.id) as orders FROM commande as c join delivery as d on c.delivery_id = d.id WHERE d.id=".$id;
-            $db = config::getConnexion(); 
+            $sql="SELECT COUNT(d.id) as orders FROM verification as c join delivery as d on c.delivery_id = d.id WHERE d.id=".$id;
+         $db = config::getConnexion(); 
+            
 
             try{
                 $liste = $db->query($sql);
@@ -127,7 +128,7 @@
             }
         }
 
-        /**
+       /**
          * Fonction pour verifier s'il exsite des commandes
          * pour un delivery id specifié en faisant une jointure entre
          * delivery et commande
@@ -136,7 +137,7 @@
         {
 
             $sql="SELECT * FROM delivery  
-                 INNER JOIN  commande ON commande.delivery_id = delivery.id
+                 INNER JOIN  verification ON verification.delivery_id = delivery.id
                  WHERE delivery.id = ".$id;
 
             $db = config::getConnexion();
@@ -163,9 +164,9 @@
 
              if($exist){
                  $sql="SET FOREIGN_KEY_CHECKS=0; 
-                       DELETE delivery  , commande  
+                       DELETE delivery  , verification  
                        FROM delivery  
-                       INNER JOIN  commande ON commande.delivery_id = delivery.id
+                       INNER JOIN  verification ON verification.delivery_id = delivery.id
                        WHERE delivery.id = :id";
              }else{
                  $sql="DELETE FROM delivery WHERE delivery.id = :id";
@@ -181,5 +182,28 @@
                 echo 'Erreur: '.$e->getMessage();
             }
         }
+
+        function setDelivery($id,$del_id){
+
+            $db = config::getConnexion();
+            $sql = "UPDATE verification SET 
+                              delivery_id =:del_id
+                               WHERE id=:id";
+
+            try{
+                $query= $db->prepare($sql);
+
+                $query->execute([
+                    'id' => $id,
+                    'del_id' => $del_id
+                    
+                ]);
+                return 1 ;
+
+            } catch (Exception $e){
+                echo 'Erreur: '.$e->getMessage();
+            }
+        }
+
 	}
 

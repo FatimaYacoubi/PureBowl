@@ -219,7 +219,7 @@ echo '<li class="nav-item dropdown">
 									<h3>Username</h3>
 									<div class="col-md-12">
 										<div class="form-group">
-											<input type="text"  class="controle" id="nomClient" name="nomClient" required pattern="[a-zA-Z-\.]{3,20}" placeholder="Your Name" required data-error="Please enter your name" value="<?php echo $user->nom; ?>">
+											<input type="text"  class="controle" id="nomClient" name="nomClient" required pattern="[a-zA-Z-\. ]{3,20}" placeholder="Your Name" required data-error="Please enter your name" value="<?php echo $user->nom; ?>">
 											<div class="help-block with-errors"></div>
 										</div>                                 
 									</div>
