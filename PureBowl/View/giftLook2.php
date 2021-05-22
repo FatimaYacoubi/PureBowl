@@ -156,7 +156,7 @@ echo '<li class="nav-item dropdown">
       	<br>
       	<br>
       	<br>
-           <img src="../images/<?php echo $Gift['imageG'];?>" class="img-fluid"  width="350px" height="400px">
+           <img src="../images/<?php echo $gift['imageG'];?>" class="img-fluid"  width="350px" height="400px">
             
       </div>
 
@@ -193,7 +193,7 @@ echo '<li class="nav-item dropdown">
                
                   <div class="col-md-12">
                     <div class="form-group">
-                      <input id="dish" class="form-control" name="dish" =type="text" value=" nom= <?PHP echo $Gift['nom']; ?>" equired data-error="??">
+                      <input id="dish" class="form-control" name="nom" =type="text" value=" nom= <?PHP echo $gift['nom']; ?>" equired data-error="??">
                       <div class="help-block with-errors"></div>
                     </div>                                 
                   </div>
@@ -201,19 +201,19 @@ echo '<li class="nav-item dropdown">
                  
                   <div class="col-md-12">
                     <div class="form-group">
-                      <input type="text" name="wasf" class="form-control" value=" descr = <?PHP echo $Gift['descr']; ?>" readonly required autofocus>
+                      <input type="text" name="wasf" class="form-control" value=" descr = <?PHP echo $gift['descr']; ?>" readonly required autofocus>
                       <div class="help-block with-errors"></div>
                     </div> 
                   </div>
                <!--    <div class="col-md-12">
                     <div class="form-group">
-                       <input type="text" name="naw3" class="form-control" value="price = <?PHP echo $Gift['price']; ?>" readonly required autofocus>
+                       <input type="text" name="naw3" class="form-control" value="price = <?PHP echo $gift['price']; ?>" readonly required autofocus>
                       <div class="help-block with-errors"></div>
                     </div> 
                   </div> -->
                   <div class="col-md-12">
                     <div class="form-group">
-                      <input type="text" name="soum" class="form-control" value="price = <?PHP echo $Gift['price']; ?>" readonly required autofocus>
+                      <input type="text" name="soum" class="form-control" value="price = <?PHP echo $gift['price']; ?>" readonly required autofocus>
                       <div class="help-block with-errors"></div>
                     </div> 
                   </div> 
