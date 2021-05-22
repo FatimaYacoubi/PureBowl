@@ -153,7 +153,7 @@
 					<p><?PHP echo $gift['descr']; ?></p>
 					
 					<h4><?PHP echo $gift['price']; ?></h4>
-					 <h4> <a class="btn btn-lg btn-circle btn-outline-new-black" href="giftLook.php">Get it</a> 
+					 <h4> <a class="btn btn-lg btn-circle btn-outline-new-black" href="giftLook2.php?gift=<?php echo $gift['id'] ?>">Get it</a> 
 					 </h4> 
 					  <h4>   </h4>
 					</div>

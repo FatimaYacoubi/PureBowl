@@ -118,6 +118,22 @@
 				die('Erreur: '.$e->getMessage());
 			}
 		}	
+
+		function affichergit(){
+			
+			$sql="SELECT * FROM gift ORDER BY id DESC LIMIT 3 ";
+			$db = config::getConnexion();
+			try{
+				$liste = $db->query($sql);
+				return $liste;
+			}
+			catch (Exception $e){
+				die('Erreur: '.$e->getMessage());
+			}	
+		}
+
+
+
 	}
 
 ?>
