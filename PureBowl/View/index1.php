@@ -166,9 +166,9 @@ div.c {
                 <span>  <i class="fas fa-angle-down"></i> </span>
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="affectation.php">Delivery</a>
-                <a class="dropdown-item" href="provider.php">Provider</a>
-                <a class="dropdown-item" href="affectation.php">affectation</a>
+                <a class="dropdown-item" href="../admin/affectation.php">Delivery</a>
+                <a class="dropdown-item" href="../admin/provider.php">Provider</a>
+                <a class="dropdown-item" href="../admin/affectation.php">affectation</a>
                 
               </div>
             </li>
