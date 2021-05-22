@@ -210,11 +210,11 @@
             <form method="POST" action="deletepromo.php">
             <button type="submit" name="supprimer" value="supprimer" class="tm-product-delete-link"onclick="return confirm('Are you sure you want to delete this item definitely?');" >
             <input type="hidden" value=<?PHP echo $promo['id_promo']; ?> name="id_promo"  >
-            <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                   </button> Delete
+            <i class="far fa-trash-alt tm-product-delete-icon"> </i>
+                   </button> 
             </form>           </td>
           <td>
-            <a href="modifypromo.php?id_promo=<?PHP echo $promo['id_promo']; ?>"  class="tm-product-delete-link" onclick="return confirm('Are you sure you want to edit this item ?');" ><i class="far fa-edit tm-product-delete-icon" ></i></a>Edit
+            <a href="modifypromo.php?id_promo=<?PHP echo $promo['id_promo']; ?>"  class="tm-product-delete-link" onclick="return confirm('Are you sure you want to edit this item ?');" ><i class="far fa-edit tm-product-delete-icon" ></i></a>
           </td>
           
         </tr>
@@ -338,10 +338,8 @@
             <!-- table container -->
             <a
               href="addpromo.php"
-              class="btn btn-primary btn-block text-uppercase mb-3">Add new promo</a>
-            <button class="btn btn-primary btn-block text-uppercase">
-              Delete selected promos
-            </button>
+              class="btn btn-primary btn-block text-uppercase mb-3">  <i class="fa fa-plus-square" > </i> </a>
+            
           </div>
         </div>
         
