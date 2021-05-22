@@ -82,21 +82,114 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mx-auto h-100">
-            
-          
-            
-            <li class="nav-item">
-              <a class="nav-link active " href="displayRecipe.php">
-                <i class="fas fa-shopping-cart"></i> Recipes
+        <ul class="navbar-nav mx-auto h-100">
+          <li class="nav-item">
+              <a class="nav-link" href="index1.php">
+                <i class="fas fa-tachometer-alt"></i> Dashboard
+                <span class="sr-only">(current)</span>
               </a>
             </li>
-            
+            <li class="nav-item dropdown active">
+              <a
+                class="nav-link dropdown-toggle   "
+                href="#"
+                id="navbarDropdown"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false">
+                <i class="fas fa-concierge-bell"> </i>
+                <span> <i class="fas fa-angle-down"></i> </span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item  " href="displayDishes.php">Dishes</a>
+                <a class="dropdown-item active" href="displayRecipe.php">Recipes</a>
+                
+              </div>
+            </li>
+        
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="navbarDropdown"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false">
+                <i class="fas fa-gift"></i>
+                <span>  <i class="fas fa-angle-down"></i> </span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="displayGift.php">Gifts</a>
+                <a class="dropdown-item" href="displaycarte.php">Coupons</a>
+                
+              </div>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle "
+                href="#"
+                id="navbarDropdown"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false">
+                <i class="fas fa-percentage"></i>
 
+
+                <span>  <i class="fas fa-angle-down"></i> </span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="showpromo.php">Promotion</a>
+                <a class="dropdown-item" href="showOffre.php">Pack</a>
+                
+              </div>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle   "
+                href="#"
+                id="navbarDropdown"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false">
+                <i class="fas fa-exclamation-circle"></i>
+                <span> <i class="fas fa-angle-down"></i> </span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item  " href="afficherpost.php">Post</a>
+                <a class="dropdown-item" href="afficherreclamation.php">Reclamation</a>
+                
+              </div>
+            </li>
+        
+              <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle "
+                href="#"
+                id="navbarDropdown"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false">
+                <i class="fas fa-cubes"></i>
+                <span>  <i class="fas fa-angle-down"></i> </span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="affectation.php">Delivery</a>
+                <a class="dropdown-item" href="provider.php">Provider</a>
+                <a class="dropdown-item" href="affectation.php">affectation</a>
+                
+              </div>
+            </li>
+    
+     
           </ul>
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link d-block" href="../login.html">
+              <a class="nav-link d-block" href="login.php">
                 Admin, <b>Logout</b>
               </a>
             </li>

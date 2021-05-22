@@ -104,7 +104,7 @@
         
             <li class="nav-item dropdown">
               <a
-                class="nav-link dropdown-toggle active"
+                class="nav-link dropdown-toggle"
                 href="#"
                 id="navbarDropdown"
                 role="button"
@@ -142,7 +142,7 @@
             </li>
             <li class="nav-item dropdown">
               <a
-                class="nav-link dropdown-toggle "
+                class="nav-link dropdown-toggle  active "
                 href="#"
                 id="navbarDropdown"
                 role="button"
@@ -153,7 +153,7 @@
                 <span> <i class="fas fa-angle-down"></i> </span>
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="afficherpost.php">Post</a>
+                <a class="dropdown-item  active" href="afficherpost.php">Post</a>
                 <a class="dropdown-item" href="afficherreclamation.php">Reclamation</a>
                 
               </div>
