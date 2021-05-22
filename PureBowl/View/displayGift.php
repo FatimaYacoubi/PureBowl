@@ -228,30 +228,7 @@ div.c {
         <div class="col-sm-12 col-md-12 col-lg-8 col-xl-8 tm-block-col">
           <div class="tm-bg-primary-dark tm-block tm-block-products">
             <div class="tm-product-table-container">
-            <input type="text" name="search_plante" id="search_plante" class="form-control" placeholder="Rercher"/>
-            <script>
-                  $(document).ready(function() {
-                    $('#search_plante').keyup(function() {
-                      search_table($(this).val());
-                    });
-
-                    function search_table(value) {
-                      $('#customers tr').each(function() {
-                        var found = 'false';
-                        $(this).each(function() {
-                          if ($(this).text().toLowerCase().indexOf(value.toLowerCase()) >= 0) {
-                            found = 'true';
-                          }
-                        });
-                        if (found == 'true') {
-                          $(this).show();
-                        } else {
-                          $(this).hide();
-                        }
-                      });
-                    }
-                  });
-                </script>
+           
               <table class="table table-hover tm-table-small tm-product-table">
  
 
@@ -265,6 +242,9 @@ div.c {
                     <th scope="col">IMAGE</th>
                     <th scope="col">DESCRIPTION</th>
                     <th scope="col">PRICE</th>
+                    <th></th>
+                    <th scope="col">DELETE</th>
+                    <th scope="col">MODIFY</th>
 
                     <th scope="col">&nbsp;</th>
                   </tr>
@@ -287,19 +267,44 @@ div.c {
 					<td><?PHP echo $Gift['descr']; ?></td>
                     <td><?PHP echo $Gift['price']; ?></td>
 					<td></td>
-					<td>
+				<!--	<td>
 						 
-            <!-- <a href="#" class="tm-product-delete-link">
+             <a href="#" class="tm-product-delete-link">
                         <i class="far fa-trash-alt tm-product-delete-icon"></i>
-             </a>-->
+             </a>
                     
 						<form method="POST" action="delete-Gift.php">
 						<input type="submit" name="DELETE" value="DELETE" class="btn btn-primary btn-block text-uppercase">
 						<input type="hidden" value=<?PHP echo $Gift['id']; ?> name="id"  >
-						</form> 					</td>
-					<td>
-						<a herf="modify-Gift.php? id=<?PHP echo $Gift['id']; ?>" class="btn btn-primary btn-block text-uppercase"> modify </a>
-					</td>
+						</form> 					</td>-->
+
+            <td>
+						 
+             <!-- 
+               
+               <a href="#" class="tm-product-delete-link">
+                         <i class="far fa-trash-alt tm-product-delete-icon"></i>
+              </a>-->
+                     
+              <form method="POST" action="delete-Gift.php">
+                              <button type="submit" name="supprimer "class="tm-product-delete-link" onclick="return confirm('Are you sure you want to delete this item definitely?');">
+                         <i class="far fa-trash-alt tm-product-delete-icon"></i></button> 
+                         
+                         <input type="hidden" value=<?PHP echo $Gift['id']; ?> name="id">
+                         
+ 
+                         </form>
+                             
+             </td>
+			
+          <td style="width: 30px">
+                            <form>
+                            <a href="modify-Gift.php?id=<?PHP echo $Gift['id']; ?>" class="tm-product-delete-link" onclick="return confirm('Are you sure you want to edit this item ?');" >
+                        <i class="far fa-edit tm-product-delete-icon" ></i>
+                      </a>
+                      </form>
+                    
+            </td>
 				</tr>
 			<?PHP
 				}
@@ -310,11 +315,14 @@ div.c {
               </table>
               
             </div>
-            <!-- table container -->
+            <!-- table container 
             
           <a
               href="add-Gift.php"
-              class="btn btn-primary btn-block text-uppercase mb-3"> Add Gift </a>
+              class="btn btn-primary btn-block text-uppercase mb-3"> Add Gift </a>-->  
+                <a
+              href="add-Gift.php" 
+              class="btn btn-primary btn-block text-uppercase"> <i class="fa fa-plus-square" > </i> </a>
              
           </div>
         </div>

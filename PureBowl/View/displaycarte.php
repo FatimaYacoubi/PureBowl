@@ -311,13 +311,13 @@ $(document).ready(function() {
                     <th scope="col">&nbsp;</th>
                      
                     <th scope="col">Id </th>
-                   
-                    <th scope="col">Discount code</th>
+                 
+                    <th scope="col">DISCOUNT CODE</th>
                     <th scope="col">Price</th>
-                    
-                    <th scope="col"></th>
-
-                    <th scope="col">&nbsp;</th>
+                    <th > </th>
+                    <th scope="col">DELETE</th>
+                    <th scope="col">MODIFY</th>
+              <!--      <th scope="col">&nbsp;</th>-->
                   </tr>
                   <tr></tr>
                 </thead>
@@ -334,21 +334,43 @@ $(document).ready(function() {
         
                   
 					<td></td>
-					<td>
+          <td>
 						 
-            <!-- <a href="#" class="tm-product-delete-link">
+         
+             <form method="POST" action="deletecarte.php">
+                             <button type="submit" name="supprimer"class="tm-product-delete-link" onclick="return confirm('Are you sure you want to delete this item definitely?');">
+                        <i class="far fa-trash-alt tm-product-delete-icon"></i></button> 
+                        
+                        <input type="hidden" value=<?PHP echo $couponC['id']; ?> name="id">
+                        
+
+                        </form>
+                            
+            </td>
+            <td>
+				<!--		<a href="modifycarte.php? id=<?PHP echo $couponC['id']; ?>" class="btn btn-primary btn-block text-uppercase"> Modify </a>
+					</td>-->
+         <td style="width: 30px">
+                           <form>
+                           <a href="modifycarte.php? id=<?PHP echo $couponC['id']; ?>" class="tm-product-delete-link" onclick="return confirm('Are you sure you want to edit this item ?');" >
+                       <i class="far fa-edit tm-product-delete-icon" ></i>
+                     </a>
+                     </form>
+                   
+           </td>
+				<!--	<td>
+						 
+             <a href="#" class="tm-product-delete-link">
                         <i class="far fa-trash-alt tm-product-delete-icon"></i>
-             </a>-->
+             </a>
           
 						<form method="POST" action="deletecarte.php">
 						<input type="submit" name="DELETE" value="DELETE" class="btn btn-primary btn-block text-uppercase">
 						<input type="hidden" value=<?PHP echo $couponC['id']; ?> name="id"  >
             
-						</form> 					</td>
+						</form> 					</td>-->
 					
-          <td>
-						<a href="modifycarte.php? id=<?PHP echo $couponC['id']; ?>" class="btn btn-primary btn-block text-uppercase"> Modify </a>
-					</td>
+      
 				</tr>
    
 			<?PHP
@@ -359,9 +381,10 @@ $(document).ready(function() {
               </table>
             </div>
             <!-- table container -->
-          <a
-              href="addcarte1.php"
-              class="btn btn-primary btn-block text-uppercase mb-3"> Add Coupon </a>
+            <a
+              href="addcarte1.php" 
+              class="btn btn-primary btn-block text-uppercase"> <i class="fa fa-plus-square" > </i> </a>
+             
 
               <a href="csv.php">
 <button type="button" class="btn btn-info">Exporter xls</button></a>
