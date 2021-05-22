@@ -78,8 +78,94 @@
 .myOtherTable th { background-color:#3949c6;color:white;width:10%; }
 .myOtherTable td, .myOtherTable th { padding:1px;border:1; }
 </style>
+ <meta name="keywords" content=""> 
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Site Icons -->
+    <!-- Site Icons -->
+    
+   <link href="../css/progress-wizard.min.css" rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../css/bootstrap.min.css">    
+  <!-- Site CSS -->
+    <link rel="stylesheet" href="../css/affichercommande.css"> 
+
+
+    <link rel="stylesheet" href="../css/style.css"> 
+        <link rel="stylesheet" href="../css/style2.css">    
+
+    <link rel="stylesheet" href="../css/style.css">  
+        <link rel="stylesheet" href="../css/style3.css">    
+  
+  <!-- Pickadate CSS -->
+    <link rel="stylesheet" href="../css/classic.css">    
+  <link rel="stylesheet" href="../css/classic.date.css">    
+  <link rel="stylesheet" href="../css/classic.time.css">    
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="../css/responsive.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../css/custom.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     </head>
     <body >
+      <header class="top-navbar">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container">
+        <a class="navbar-brand" href="../index.php">
+          <img src="../images/logo.png" alt="" />
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbars-rs-food" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbars-rs-food">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item "><a class="nav-link" href="../index.php">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="menu.php">Menu</a></li>
+            <li class="nav-item"><a class="nav-link" href="showpack2.php">Offre</a></li>
+
+            
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Blog</a>
+              <div class="dropdown-menu" aria-labelledby="dropdown-a">
+                <a class="dropdown-item" href="blog.php">blog</a>
+                <a class="dropdown-item" href="nouveauteblog.php">Nouveaute</a>
+              </div>
+            </li>
+            <li class="nav-item active"><a class="nav-link" href="affichercommande.php">Cart</a></li>
+            <li class="nav-item  "><a class="nav-link" href="comment.php">Comment</a></li>
+            <li class="nav-item"><a class="nav-link" href="gift.php">Gift</a></li>
+            <li class="nav-item"><a class="nav-link" href="../about.php">About</a></li>
+
+            <?php
+// On teste si la variable de session existe et contient une valeur
+if(empty($_SESSION['e']))
+{
+    // Si inexistante ou nulle, on redirige vers le formulaire de login
+    echo '<li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Account</a>
+              <div class="dropdown-menu" aria-labelledby="dropdown-a">
+                <a class="dropdown-item" href="login.php">login</a>
+                <a class="dropdown-item" href="inscription.php">Register</a>
+              </div>
+            </li>';
+}
+else
+echo '<li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Account</a>
+              <div class="dropdown-menu" aria-labelledby="dropdown-a">
+                <a class="dropdown-item" href="logout.php">logout</a>
+                <a class="dropdown-item" href="inscription.php">Register</a>
+              </div>
+            </li>';
+?>
+            
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header> </head>
 
     
         <div class="container">
@@ -98,7 +184,7 @@
                 
         ?>
         <form action="" method="POST">
-            <table class="table table-hover tm-table-small tm-product-table">
+            <table align="center" class="myOtherTable">
                 <tr>
                     
                     <td>

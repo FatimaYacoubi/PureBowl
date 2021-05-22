@@ -1,3 +1,17 @@
+<?php
+session_start();
+
+// On teste si la variable de session existe et contient une valeur
+if(empty($_SESSION['e']))
+{
+    // Si inexistante ou nulle, on redirige vers le formulaire de login
+    header('Location:login.php');
+}
+include "../Controller/giftBC.php";
+$GiftC=new giftC();
+$listegift=$GiftC->affichergit();
+?>
+
 <!DOCTYPE html>
 <html lang="en"><!-- Basic -->
 <head>
@@ -37,26 +51,26 @@
     <meta name="author" content="">
 
     <!-- Site Icons -->
-    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">    
+    <link rel="stylesheet" href="../css/bootstrap.min.css">    
 	<!-- Site CSS -->
 
 
-    <link rel="stylesheet" href="css/style.css"> 
-        <link rel="stylesheet" href="css/style1.css">    
+    <link rel="stylesheet" href="../css/style.css"> 
+        <link rel="stylesheet" href="../css/style1.css">    
 
-    <link rel="stylesheet" href="css/style.css">    
+    <link rel="stylesheet" href="../css/style.css">    
 	<!-- Pickadate CSS -->
-    <link rel="stylesheet" href="css/classic.css">    
-	<link rel="stylesheet" href="css/classic.date.css">    
-	<link rel="stylesheet" href="css/classic.time.css">    
+    <link rel="stylesheet" href="../css/classic.css">    
+	<link rel="stylesheet" href="../css/classic.date.css">    
+	<link rel="stylesheet" href="../css/classic.time.css">    
     <!-- Responsive CSS -->
-    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="../css/responsive.css">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/custom.css">
+    <link rel="stylesheet" href="../css/custom.css">
 
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -70,60 +84,69 @@
 	<header class="top-navbar">
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
 			<div class="container">
-				<a class="navbar-brand" href="index.html">
-					<img src="images/logo.png" alt="" />
+				<a class="navbar-brand" href="../index.php">
+					<img src="../images/logo.png" alt="" />
 				</a>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbars-rs-food" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
 				  <span class="navbar-toggler-icon"></span>
 				</button>
 				<div class="collapse navbar-collapse" id="navbars-rs-food">
 					<ul class="navbar-nav ml-auto">
-						<li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+						<li class="nav-item "><a class="nav-link" href="../index.php">Home</a></li>
 						<li class="nav-item"><a class="nav-link" href="menu.php">Menu</a></li>
-						<li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
-						<!--
-							<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Pages</a>
-							<div class="dropdown-menu" aria-labelledby="dropdown-a">
-								<a class="dropdown-item" href="reservation.html">Reservation</a>
-								<a class="dropdown-item" href="stuff.html">Stuff</a>
-								<a class="dropdown-item" href="gallery.html">Gallery</a>
-							</div>
-						</li>
-					-->
-						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Offres</a>
-							<div class="dropdown-menu" aria-labelledby="dropdown-a">
-								<a class="dropdown-item" href="offre.html">Offre</a>
-								<a class="dropdown-item" href="offre.html">Promotion</a>
-								</div>
-							</li>
+						<li class="nav-item "><a class="nav-link" href="showpack2.php">Offre</a></li>
+
+						
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Blog</a>
 							<div class="dropdown-menu" aria-labelledby="dropdown-a">
-								<a class="dropdown-item" href="blog.html">blog</a>
-								<a class="dropdown-item" href="blog-details.html">blog Single</a>
+								<a class="dropdown-item" href="blog.php">blog</a>
+								<a class="dropdown-item" href="nouveauteblog.php">Nouveaute</a>
 							</div>
 						</li>
-						<li class="nav-item"><a class="nav-link" href="affichercom1.php">My orders</a></li>
-						<li class="nav-item"><a class="nav-link" href="reclamation.html">Reclamation</a></li>
-						<li class="nav-item active "><a class="nav-link" href="gift.html">Gift</a></li>
-						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Sign in</a>
+						<li class="nav-item"><a class="nav-link" href="affichercommande.php">Cart</a></li>
+						<li class="nav-item  "><a class="nav-link" href="comment.php">Comment</a></li>
+						<li class="nav-item active"><a class="nav-link " href="gift.php">Gift</a></li>
+						<li class="nav-item"><a class="nav-link" href="../about.html">About</a></li>
+
+						<?php
+// On teste si la variable de session existe et contient une valeur
+if(empty($_SESSION['e']))
+{
+    // Si inexistante ou nulle, on redirige vers le formulaire de login
+    echo '<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Account</a>
 							<div class="dropdown-menu" aria-labelledby="dropdown-a">
-								<a class="dropdown-item" href="login.html">As an administrator</a>
-								<a class="dropdown-item" href="blog-details.html">As a client</a>
+								<a class="dropdown-item" href="login.php">login</a>
+								<a class="dropdown-item" href="inscription.php">Register</a>
 							</div>
-						</li>
+						</li>';
+}
+else
+echo '<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Account</a>
+							<div class="dropdown-menu" aria-labelledby="dropdown-a">
+								<a class="dropdown-item" href="login.php">logout</a>
+								<a class="dropdown-item" href="inscription.php">Register</a>
+							</div>
+						</li>';
+?>
+						
 					</ul>
 				</div>
 			</div>
 		</nav>
 	</header>
+	</header>
 	<!-- End header -->
 	
     <main class="container">
-
+<?php
+		 $GiftC = new giftC();
+      if (isset($_GET['id'])) {
+        $gift = $GiftC->recupererGift($_GET['id']);
+        
+    ?>
       <!-- Left Column / Headphones Image -->
       <div class="column">
       	<br>
@@ -133,17 +156,17 @@
       	<br>
       	<br>
       	<br>
-            <img src="images/choco1.jpg" alt="" width="500"> 
+           <img src="../images/<?php echo $Gift['imageG'];?>" class="img-fluid"  width="350px" height="400px">
             
       </div>
 
 
       <!-- Right Column -->
-      <div class="right-column">
+  <div class="right-column">
 
         <!-- Product Description -->
-        <div class="product-description">
-          <span>chocolate cookies</span>
+       <div class="product-description">
+        
         <br>
       	<br>
       	<br>
@@ -152,62 +175,70 @@
           <h1>     </h1>
           <h1>    </h1>
           <h1>     </h1>
-            <h1>chocolate cookies</h1>
+           
             <!-- Product Pricing -->
-        <div class="product-price">
-          <span>7 DT</span>
-        </div>
-          <p>
-			‬‏These Chocolate Cookies are somewhere between a cookie and a brownie. They're soft and chewy withchocolate in every single bite </p>
-        </div>
-
+       
         <!-- Product Configuration -->
-        <div class="product-configuration">
+         <div class="product-configuration">
 
-          <!-- Product Color -->
-          <div class="row">
+         <!-- Product Color -->
+     <div class="row">
         <div class="col-lg-12 col-sm-12 col-xs-12">
           <div class="contact-block">
-            <form  action="view/passercommande.php" /*action="./mail1/mailer.php"*/ method="POST">
+            <form  action="passercommande.php" method="POST">
             	
 
               <div class="row">
                 <div class="col-md-12">
-                  <h3>Place your order</h3>
+               
                   <div class="col-md-12">
-					<div class="form-group">
-						<input id="dish" class="form-control" name="dish"  placeholder="Please enter your Gift"type="text" value="" equired data-error="??">
-						<div class="help-block with-errors"></div>
-					  </div>                                                           
+                    <div class="form-group">
+                      <input id="dish" class="form-control" name="dish" =type="text" value=" nom= <?PHP echo $Gift['nom']; ?>" equired data-error="??">
+                      <div class="help-block with-errors"></div>
+                    </div>                                 
                   </div>
 
                  
                   <div class="col-md-12">
                     <div class="form-group">
-                      <select class="custom-select d-block form-control" name="meat" id="meat" required data-error="Please select your prefered chocolate">
-                        <option disabled selected>Select chocolate Type*</option>
-                        <option value="White">White chocolate</option>
-                        <option value="Dark">Dark chocolate</option>
-                        <option value="Milk">Milk chocolate</option>
-                      </select>
+                      <input type="text" name="wasf" class="form-control" value=" descr = <?PHP echo $Gift['descr']; ?>" readonly required autofocus>
                       <div class="help-block with-errors"></div>
                     </div> 
                   </div>
-                   <div class="col-md-12">
+               <!--    <div class="col-md-12">
                     <div class="form-group">
-                      <select class="custom-select d-block form-control"  name="option" id="option" required data-error="Please select the options">
-                        <option disabled selected>Select Option*</option>
-                        <option value="nuts">with nuts</option>
-                        <option value="berries">with Berries</option>
-                       <option value="fruits">dried fruits </option>
-                      </select>
+                       <input type="text" name="naw3" class="form-control" value="price = <?PHP echo $Gift['price']; ?>" readonly required autofocus>
                       <div class="help-block with-errors"></div>
                     </div> 
-                  </div>  
+                  </div> -->
                   <div class="col-md-12">
                     <div class="form-group">
-                      <select class="custom-select d-block form-control"  name="person" id="person" required data-error="Please select the number of people ">
-                        <option disabled selected>for each person one box*</option>
+                      <input type="text" name="soum" class="form-control" value="price = <?PHP echo $Gift['price']; ?>" readonly required autofocus>
+                      <div class="help-block with-errors"></div>
+                    </div> 
+                  </div> 
+                  <div class="col-md-12">
+                    <div class="form-group">
+
+
+                <!--      <div class="help-block with-errors"></div>
+                    </div>                                 
+                  </div>
+                  <div class="col-md-12">
+                  	 <input type="text" name="pro" class="form-control" value="<?PHP echo $offer['etat_offre']; ?>" readonly required autofocus>
+                    <div class="form-group">
+               
+                      <div class="help-block with-errors"></div>
+                    </div>                                 
+                  </div>-->
+                  
+               <?php
+		}
+		 ?>
+		  <div class="col-md-12">
+                    <div class="form-group">
+                      <select class="custom-select d-block form-control"  name="person" id="person" required data-error="Please select the number of people">
+                        <option disabled selected>Select Person*</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -219,44 +250,40 @@
                       <div class="help-block with-errors"></div>
                     </div> 
                   </div> 
+
+		 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script >
+$(document).ready(function(){
+
+	var dtToday= new Date();
+	var month= dtToday.getMonth()+1;
+	var day= dtToday.getDate();
+	var year=dtToday.getFullYear();
+	if(month<10)
+		month='0'+month.toString();
+	if(day<10)
+		day='0'+day.toString();
+	var maxDate = year+'-'+month+'-'+day;
+$('#dateControl').attr('min',maxDate);
+})
+</script>
+                      <input id="dateControl" class="datepicker picker__input form-control" name="date" 
+                       placeholder="Please enter the date you want it delivered" type="date" value="">
+                      <div class="help-block with-errors"></div>
+                    </div>                                 
+                  </div>
                   <div class="col-md-12">
                     <div class="form-group">
-
-						<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-						<script >
-						$(document).ready(function(){
-						
-							var dtToday= new Date();
-							var month= dtToday.getMonth()+1;
-							var day= dtToday.getDate();
-							var year=dtToday.getFullYear();
-							if(month<10)
-								month='0'+month.toString();
-							if(day<10)
-								day='0'+day.toString();
-							var maxDate = year+'-'+month+'-'+day;
-						$('#dateControl').attr('min',maxDate);
-						})
-						</script>
-
-<input id="dateControl" class="datepicker picker__input form-control" name="date" 
-placeholder="Please enter the date you want it delivered" type="date" value="">
-<div class="help-block with-errors"></div>
-</div>                                 
-</div>
-<div class="col-md-12">
-<div class="form-group">
-<input id="time" class="time form-control picker__input"  name="time" 
-placeholder="Please enter the time you want it delivered" type="time" value="" required data-error="Please enter time">
-<div class="help-block with-errors"></div>
-</div>                                 
-</div>
-                  
-                
+                      <input id="time" class="time form-control picker__input"  name="time" 
+                       placeholder="Please enter the time you want it delivered" type="time" value="" required data-error="Please enter time">
+                      <div class="help-block with-errors"></div>
+                    </div>                                 
+                  </div>
 
           <!-- Cable Configuration -->
-		
-            <a href="#"> See the gift * </a>
+ 
+
+         <a href="../mail1/mail2.php"> See the Offre * </a>
           </div>
         </div> 
 <div class="product-price">
@@ -271,12 +298,7 @@ placeholder="Please enter the time you want it delivered" type="time" value="" r
             </div>
       </div> </div>
   </form>
-    </main> 
-	
-	<div class="container1"></div>
-	
-		<div class="contact-block">
-	<form action="./mail1/mailer.php">
+  <form action="mailer.php">
 	<!---
 		<input type="submit" value="Go to Google" />
 		</p>-->
@@ -293,10 +315,45 @@ placeholder="Please enter the time you want it delivered" type="time" value="" r
 		 </div>
    </div> </div> 
 	</form>
-	</div>
+</main> 
+<div class="row special-list">
+             	<?PHP
+				foreach($listegift as $Gift){
+			?>
+			
+				<div class="col-lg-4 col-md-6 special-grid lunch">
+   <!--   <th scope="row"> <input type="checkbox" /></th> -->
+                  <div class="gallery-single fix" style="height: 400px ;">
+                   <img src="../images/<?php echo $Gift['imageG'];?>" class="img-fluid"  width="350px" height="400px">
+                      <div class="why-text">
+				<!--	<h5><?PHP echo $Gift['id']; ?> </h5>  -->
+				<h2>	<?PHP echo $Gift['nom']; ?> </h2>
+			
+					<!-- <td><?PHP echo $Gift['imageG']; ?></td> --> 
+					<p><?PHP echo $Gift['descr']; ?></p>
+					
+					<h4><?PHP echo $Gift['price']; ?></h4>
+					 <h4> <a class="btn btn-lg btn-circle btn-outline-new-black" href="giftLook2.php?id=<?PHP echo $Gift['id']; ?>">Get it</a> 
+					    </h4>
+					</div>
+						 
+                  <!--    <a href="#" class="tm-product-delete-link">
+                        <i class="far fa-trash-alt tm-product-delete-icon"></i>
+                      </a> -->
+                    
+					</div>	
+						
+				
+				
+				</div>
+			
+			<?PHP
+				}
+			?> 
+				</div>
+
+
 	
-
-
 	<!-- Start Customer Reviews -->
 	<div class="customer-reviews-box">
 		<div class="container">
@@ -446,20 +503,20 @@ placeholder="Please enter the time you want it delivered" type="time" value="" r
 	<a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
 
 	<!-- ALL JS FILES -->
-	<script src="js/jquery-3.2.1.min.js"></script>
-	<script src="js/popper.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
+	<script src="../js/jquery-3.2.1.min.js"></script>
+	<script src="../js/popper.min.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
     <!-- ALL PLUGINS -->
-	<script src="js/jquery.superslides.min.js"></script>
-	<script src="js/images-loded.min.js"></script>
-	<script src="js/isotope.min.js"></script>
-	<script src="js/baguetteBox.min.js"></script>
-	<script src="js/picker.js"></script>
-	<script src="js/picker.date.js"></script>
-	<script src="js/picker.time.js"></script>
-	<script src="js/legacy.js"></script>
-	<script src="js/form-validator.min.js"></script>
-    <script src="js/contact-form-script.js"></script>
-    <script src="js/custom.js"></script>
+	<script src="../js/jquery.superslides.min.js"></script>
+	<script src="../js/images-loded.min.js"></script>
+	<script src="../js/isotope.min.js"></script>
+	<script src="../js/baguetteBox.min.js"></script>
+	<script src="../js/picker.js"></script>
+	<script src="../js/picker.date.js"></script>
+	<script src="../js/picker.time.js"></script>
+	<script src="../js/legacy.js"></script>
+	<script src="../js/form-validator.min.js"></script>
+    <script src="../js/contact-form-script.js"></script>
+    <script src="../js/custom.js"></script>
 </body>
 </html>

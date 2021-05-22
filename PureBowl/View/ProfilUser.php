@@ -18,23 +18,140 @@ if(empty($_SESSION['e']))
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <style> #aDiv{width: 300px; height: 300px; margin: 0 auto;}
-    body {
+  
+
+
+<!-- End Styles -->     <title> Pure Bowl</title>  
+
+   <meta name="keywords" content=""> 
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Site Icons -->
+    <!-- Site Icons -->
+    
+   <link href="../css/progress-wizard.min.css" rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../css/bootstrap.min.css">    
+  <!-- Site CSS -->
+    <link rel="stylesheet" href="../css/affichercommande.css"> 
+
+
+    <link rel="stylesheet" href="../css/style.css"> 
+        <link rel="stylesheet" href="../css/style2.css">    
+
+    <link rel="stylesheet" href="../css/style.css">  
+        <link rel="stylesheet" href="../css/style3.css">    
+  
+  <!-- Pickadate CSS -->
+    <link rel="stylesheet" href="../css/classic.css">    
+  <link rel="stylesheet" href="../css/classic.date.css">    
+  <link rel="stylesheet" href="../css/classic.time.css">    
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="../css/responsive.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../css/custom.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 300px;
+  margin: auto;
+  text-align: center;
+  font-family: arial;
   background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQa9E8MLs_rO4scn2FKCw_CTgT3AGITGfBAAm5Nt_uWOHPznHX0r13hnQ2uIhRXt9ngEpw&usqp=CAU');
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-size: 100% 100%; </style>
-    <title>Pure Bowl</title>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">   
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+  background-size: 100% 100%;
+}
 
-    <link rel="stylesheet" href="../css/style.css"> 
-        <link rel="stylesheet" href="../css/style1.css">    
-    <link rel="stylesheet" href="../css/style.css"> 
-</head>
-<body>
+.title {
+  color: grey;
+  font-size: 18px;
+}
+
+.button2 {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+}
+
+a {
+  text-decoration: none;
+  font-size: 22px;
+  color: black;
+}
+
+.button2:hover, a:hover {
+  opacity: 0.7;
+}
+</style>
+  </head>
+  <body>
+      <header class="top-navbar">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container">
+        <a class="navbar-brand" href="../index.php">
+          <img src="../images/logo.png" alt="" />
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbars-rs-food" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbars-rs-food">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item "><a class="nav-link" href="../index.php">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="menu.php">Menu</a></li>
+            <li class="nav-item"><a class="nav-link" href="showpack2.php">Offre</a></li>
+
+            
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Blog</a>
+              <div class="dropdown-menu" aria-labelledby="dropdown-a">
+                <a class="dropdown-item" href="blog.php">blog</a>
+                <a class="dropdown-item" href="nouveauteblog.php">Nouveaute</a>
+              </div>
+            </li>
+            <li class="nav-item active"><a class="nav-link" href="affichercommande.php">Cart</a></li>
+            <li class="nav-item  "><a class="nav-link" href="comment.php">Comment</a></li>
+            <li class="nav-item"><a class="nav-link" href="gift.php">Gift</a></li>
+            <li class="nav-item"><a class="nav-link" href="../about.php">About</a></li>
+
+            <?php
+// On teste si la variable de session existe et contient une valeur
+if(empty($_SESSION['e']))
+{
+    // Si inexistante ou nulle, on redirige vers le formulaire de login
+    echo '<li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Account</a>
+              <div class="dropdown-menu" aria-labelledby="dropdown-a">
+                <a class="dropdown-item" href="login.php">login</a>
+                <a class="dropdown-item" href="inscription.php">Register</a>
+              </div>
+            </li>';
+}
+else
+echo '<li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Account</a>
+              <div class="dropdown-menu" aria-labelledby="dropdown-a">
+                <a class="dropdown-item" href="logout.php">logout</a>
+                <a class="dropdown-item" href="inscription.php">Register</a>
+              </div>
+            </li>';
+?>
+            
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header> </head>
+
   <?php 
     $mail->setFrom('purebowlcontact@gmail.com', 'Pure Bowl'); //the sender
     $mail->addAddress( $_SESSION['e']); //reciver
@@ -48,77 +165,217 @@ if(empty($_SESSION['e']))
 echo 'Welcome dear Client ', $_SESSION['e'];
 ?>');
 </script>
-<div class="container bootstrap snippets bootdey">
-<div class="row">
-  <div class="profile-nav col-md-3">
-      <div class="panel">
-          <div class="user-heading round">
-              <a href="#">
-                <div class="container" align="center">
+     <div class="container" align="center">
                   <img src="../images/logo.png" alt="">
               </a>
                               <div class="container" align="center">
 
-              <h1>Your Profile</h1>
-              </div>
-          </div>
-
-          <ul class="nav nav-pills nav-stacked">
-          </ul>  </div>
-      </div>
-  </div> <div class="container" align="center">
-  <div class="panel-body bio-graph-info">
-              <?php 
+<br>
+<br>
+<br>
+<br>
+<div align="center">
+              <h1 style="color:white">Your Profile</h1>
+              
+<div class="card">
+  <img src="../images/profile-7.png" alt="John" style="width:100%">
+   <?php 
     foreach($listeUsers1 as $user1){
             ?> 
+  <h2 style="color:white"><?PHP echo $user1['prenom'];?><?PHP echo $user1['nom'];?></h2>
+    <h1></h1>
 
-              <div class="row">
-                  <div class="bio-row">
-                      <p><span>First Name : </span><?PHP echo $user1['prenom'];?></p>
-                  </div>
-                  <div class="bio-row">
-                      <p><span>Last Name :  </span><?PHP echo $user1['nom']; ?></p>
-                  </div>
-                  <div class="bio-row">
-                      <p><span>Email :  </span> <?PHP echo $_SESSION['e']; ?> </p>
-                  </div>
-                  <div class="bio-row">
-                      <p><span>Mobile :  </span><?PHP echo $user1['tel']; ?></p>
-                  </div>
-                  <div class="bio-row">
-                      <p><span>Adresse  : </span><?PHP echo $user1['adresse']; ?></p>
-                  </div>
-                  <div class="bio-row">
-                      <p><span>Login  : </span><?PHP echo $user1['login']; ?></p>
-                  </div>
-                  <div class="bio-row">
-                      <p><span>Password  : </span><?PHP echo $user1['password']; ?></p>
-                  </div> 
-                  <a href="updateuser1.php?idClient=<?PHP echo $user1['idClient']; ?>"  > 
+  <p class="title" style="color:white">    <?PHP echo $_SESSION['e']; ?> 
+</p>
+<p class="title" style="color:white">    <?PHP echo $user1['tel']; ?> 
+</p>
+  <p style="color:white"><?PHP echo $user1['adresse']; ?> </p>
+    <p style="color:white"><?PHP echo $user1['login']; ?> </p>
+        <p style="color:white"><?PHP echo $user1['password']; ?> </p>
+<td> <a href="updateuser1.php?idClient=<?PHP echo $user1['idClient']; ?>"  > 
                        <button class="btn-222" style="color:black">Edit</button>
                                                <input type="hidden" value=<?PHP echo $user1['idClient']; ?> name="idClient">
 
+                       
 
-                      </a>
-
-<?php 
-               } 
-          ?>   </div>
-
-              </div>
-          </div>
-      </div>
-     
-</div> 
+     <?php } ?>
 
 
-<?php
-// Il est bien connecté
-?>
                 <div class="container" align="center">
 
  <button><a class="btn-55" href="../View/login.php">Déconnexion</a></button>
  <button><a class="btn-55" href="../index.php">Acceuil</a></button>
 </div>
-</body>
-</html>
+</div>  
+  <div class="customer-reviews-box">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="heading-title text-center">
+            <h2>Customer Reviews</h2>
+            <p>Here are some customer reviews</p>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-8 mr-auto ml-auto text-center">
+          <div id="reviews" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner mt-4">
+              <div class="carousel-item text-center active">
+                <div class="img-box p-1 border rounded-circle m-auto">
+                  <img class="d-block w-100 rounded-circle" src="../images/profile-1.jpg" alt="">
+                </div>
+                <h5 class="mt-4 mb-0"><strong class="text-warning text-uppercase">Wajdi Hachana</strong></h5>
+                <h6 class="text-dark m-0">Web Developer</h6>
+                <p class="m-0 pt-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eu sem tempor, varius quam at, luctus dui. Mauris magna metus, dapibus nec turpis vel, semper malesuada ante. Idac bibendum scelerisque non non purus. Suspendisse varius nibh non aliquet.</p>
+              </div>
+              <div class="carousel-item text-center">
+                <div class="img-box p-1 border rounded-circle m-auto">
+                  <img class="d-block w-100 rounded-circle" src="../images/profile-3.jpg" alt="">
+                </div>
+                <h5 class="mt-4 mb-0"><strong class="text-warning text-uppercase">Mohamed Hedi Yaacoubi</strong></h5>
+                <h6 class="text-dark m-0">Dentist</h6>
+                <p class="m-0 pt-3">I love this application it helps me alot and the ingredients are the freshest.</p>
+              </div>
+              <div class="carousel-item text-center">
+                <div class="img-box p-1 border rounded-circle m-auto">
+                  <img class="d-block w-100 rounded-circle" src="../images/profile-7.jpg" alt="">
+                </div>
+                <h5 class="mt-4 mb-0"><strong class="text-warning text-uppercase">Daniel vebar</strong></h5>
+                <h6 class="text-dark m-0">Seo Analyst</h6>
+                <p class="m-0 pt-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eu sem tempor, varius quam at, luctus dui. Mauris magna metus, dapibus nec turpis vel, semper malesuada ante. Idac bibendum scelerisque non non purus. Suspendisse varius nibh non aliquet.</p>
+              </div>
+            </div>
+            <a class="carousel-control-prev" href="#reviews" role="button" data-slide="prev">
+              <i class="fa fa-angle-left" aria-hidden="true"></i>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#reviews" role="button" data-slide="next">
+              <i class="fa fa-angle-right" aria-hidden="true"></i>
+              <span class="sr-only">Next</span>
+            </a>
+                    </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Customer Reviews -->
+  
+  <!-- Start Contact info -->
+  <div class="contact-imfo-box">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <i class="fa fa-volume-control-phone"></i>
+          <div class="overflow-hidden">
+            <h4>Phone</h4>
+            <p class="lead">
+              +01 123-456-4590
+            </p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <i class="fa fa-envelope"></i>
+          <div class="overflow-hidden">
+            <h4>Email</h4>
+            <p class="lead">
+              yourmail@gmail.com
+            </p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <i class="fa fa-map-marker"></i>
+          <div class="overflow-hidden">
+            <h4>Location</h4>
+            <p class="lead">
+              800, Lorem Street, US
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Contact info -->
+  
+  <!-- Start Footer -->
+  <footer class="footer-area bg-f">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-3 col-md-6">
+          <h3>About Us</h3>
+          <p>Integer cursus scelerisque ipsum id efficitur. Donec a dui fringilla, gravida lorem ac, semper magna. Aenean rhoncus ac lectus a interdum. Vivamus semper posuere dui, at ornare turpis ultrices sit amet. Nulla cursus lorem ut nisi porta, ac eleifend arcu ultrices.</p>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <h3>Opening hours</h3>
+          <p><span class="text-color">Monday: </span>Closed</p>
+          <p><span class="text-color">Tue-Wed :</span> 9:Am - 10PM</p>
+          <p><span class="text-color">Thu-Fri :</span> 9:Am - 10PM</p>
+          <p><span class="text-color">Sat-Sun :</span> 5:PM - 10PM</p>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <h3>Contact information</h3>
+          <p class="lead">Ipsum Street, Lorem Tower, MO, Columbia, 508000</p>
+          <p class="lead"><a href="#">+01 2000 800 9999</a></p>
+          <p><a href="#"> info@admin.com</a></p>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <h3>Subscribe</h3>
+          <div class="subscribe_form">
+            <form class="subscribe_form">
+              <input name="EMAIL" id="subs-email" class="form_input" placeholder="Email Address..." type="email">
+              <button type="submit" class="submit">SUBSCRIBE</button>
+              <div class="clearfix"></div>
+            </form>
+          </div>
+          <ul class="list-inline f-social">
+            <li class="list-inline-item"><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+            <li class="list-inline-item"><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+            <li class="list-inline-item"><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+            <li class="list-inline-item"><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+            <li class="list-inline-item"><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <div class="copyright">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </footer>
+  <!-- End Footer -->
+  
+  <a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
+
+  <!-- ALL JS FILES -->
+  <script src="../js/jquery-3.2.1.min.js"></script>
+  <script src="../js/popper.min.js"></script>
+  <script src="../js/bootstrap.min.js"></script>
+    <!-- ALL PLUGINS -->
+  <script src="../js/jquery.superslides.min.js"></script>
+  <script src="../js/images-loded.min.js"></script>
+  <script src="../js/isotope.min.js"></script>
+  <script src="../js/baguetteBox.min.js"></script>
+  <script src="../js/picker.js"></script>
+  <script src="../js/picker.date.js"></script>
+  <script src="../js/picker.time.js"></script>
+  <script src="../js/legacy.js"></script>
+  <script src="../js/form-validator.min.js"></script>
+    <script src="../js/contact-form-script.js"></script>
+    <script src="../js/custom.js"></script>
+                <script src="../js/hide.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>  
+           <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />  
+           <script src="https://code.jquery.com/jquery-3.5.1.js"></script>  
+           <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>      
+           <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css" />
+    
+          
+   </body>
+  </html>
