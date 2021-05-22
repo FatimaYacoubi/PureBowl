@@ -32,6 +32,11 @@
 </style>
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Dashboard Admin - Dashboard HTML Template</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>  
+           <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />  
+           <script src="https://code.jquery.com/jquery-3.5.1.js"></script>  
+           <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>      
+           <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700">
     <!-- https://fonts.google.com/specimen/Roboto -->
     <link rel="stylesheet" href="../css/fontawesome.min.css">
@@ -146,30 +151,32 @@
                 </div>
             </div>
 <br>
-            <table class="table table-hover tm-table-small tm-product-table">
-            	
-                <thead>
-                  <tr>
+            <table id="employee_data" class="table table-hover tm-table-small tm-product-table">  
+                      <a href="afficherpost.php"><h3  align="center" style="color: orange;">Back</h3></a>
+                          <thead>  
+                               <tr>  
+                                    <td style=" color: white; font-size: 20px;">ID</td>  
+                                    <td style=" color: white; font-size: 20px;">Title</td>  
+                                    <td style=" color: white; font-size: 20px;">Date</td>  
+                                    <td style=" color: white; font-size: 20px;"><p align="center">What to do ?</p></td>
 
-                    <th scope="col">ID</th>
-                    <th scope="col">Titre</th>
-                    <th scope="col">Date</th>
-                    <th scope="col" colspan="3"><p align="center">What to do ?</p></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <?PHP
+                               </tr> 
+
+                          </thead>  
+                         <tr>
+                           <?PHP
                 foreach($listeUsers as $user){
             ?>
                     <td><?PHP echo $user['id']; ?></td>
                     <td class="tm-product-name"><?PHP echo $user['titre']; ?></td>
                     <td><?PHP echo $user['date']; ?></td>
-                    <td style="width: 30px">
+                    <td><table align="center">
+                      <tr>
+                        <td style="width: 30px">
                       
                         
                         <form method="POST" action="supprimerpost.php">
-                        	 <button type="submit" name="supprimer "class="tm-product-delete-link"onclick="return confirm('Are you sure you want to delete this item definitely?');" >
+                           <button type="submit" name="supprimer "class="tm-product-delete-link"onclick="return confirm('Are you sure you want to delete this item definitely?');" >
                         <i class="far fa-trash-alt tm-product-delete-icon"></i>
                    </button> Delete
                         
@@ -179,8 +186,8 @@
                         </form>
                         
                        
-                      	</td >
-                      	
+                        </td >
+                        
                         <td style="width: 30px">
                             <form>
                             <a href="modifierpost.php?id=<?PHP echo $user['id']; ?>" class="tm-product-delete-link" onclick="return confirm('Are you sure you want to edit this item ?');" >
@@ -188,7 +195,7 @@
                       </a><p align="center">Edit</p>
                       </form>
                         </td>
-                      	<td style="width: 30px" ><form method="POST" action="archiverpost.php">
+                        <td style="width: 30px" ><form method="POST" action="archiverpost.php">
                             <button style="height: : 30px" type="submit" name="archiver "class="tm-product-delete-link"onclick="return confirm('Are you sure you want to archive this item ?');" >
                         <i class="fas fa-archive tm-product-delete-icon" ></i></button> Archive
                         
@@ -196,20 +203,19 @@
                     </form>
 
                 </td>
-                        
-                         
-                     
-</form> 
+                      </tr>
+                    </table></td>
                     
-                    
-                    
-                  </tr>
-                  
-                </tbody>
-                <?PHP
+                         </tr>
+                           <?PHP
                 }
             ?>
-              </table>
+                     </table>
 		
 	</body>
 </html>
+<script>  
+ $(document).ready(function(){  
+      $('#employee_data').DataTable();  
+ });  
+ </script>  

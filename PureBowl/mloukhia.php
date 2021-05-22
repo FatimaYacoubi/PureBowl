@@ -188,7 +188,7 @@ echo '<li class="nav-item dropdown">
                   <h3>Place your order</h3>
                   <div class="col-md-12">
                     <div class="form-group">
-                      <input id="dish" class="form-control" name="dish"  placeholder="Please enter your dish"type="text" value="" equired data-error="??">
+                      <input id="dish" class="form-control" name="dish"  placeholder="Please enter your dish"type="hidden" value="Mloukhia" equired data-error="??">
                       <div class="help-block with-errors"></div>
                     </div>                                 
                   </div>

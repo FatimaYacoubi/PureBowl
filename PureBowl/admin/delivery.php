@@ -102,7 +102,12 @@ if(!empty($_GET['idDeliveryForDelete'])) {
         </a>
       </li>
      
-       
+       <li class="nav-item">
+                      <a class="nav-link  " href="affectation.php">
+                        <i class="fas fa-box"></i> affectation
+                             </a>
+                    </li>
+     
         <li class="nav-item dropdown notification">
 
             <a
