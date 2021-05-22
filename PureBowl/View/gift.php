@@ -96,7 +96,7 @@ include_once("../config.php");
 						</li>
 						<li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
 						<li class="nav-item"><a class="nav-link" href="reclamation.html">Reclamation</a></li>
-						<li class="nav-item active "><a class="nav-link" href="gift.html">Gift</a></li>
+						<li class="nav-item active "><a class="nav-link" href="gift.php">Gift</a></li>
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Sign in</a>
 							<div class="dropdown-menu" aria-labelledby="dropdown-a">
@@ -175,7 +175,7 @@ include_once("../config.php");
    <!--   <th scope="row"> <input type="checkbox" /></th> -->
                   <div class="gallery-single fix" style="height: 400px ;
                      ">
-                   <img src="../images/<?php echo $gift['imageG'];?>" class="img-fluid">
+                   <img src="../images/<?php echo $gift['imageG'];?>" class="img-fluid"http://localhost:8080/GitHub/PureBowl/PureBowl/View/displayGift.php>
                       <div class="why-text">
 				<!--	<h5><?PHP echo $gift['id']; ?> </h5>  -->
 				<h2>	<?PHP echo $gift['nom']; ?> </h2>
