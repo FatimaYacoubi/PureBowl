@@ -71,47 +71,117 @@ div.c {
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mx-auto h-100">
-                       
-                        <li class="nav-item">
-                            <a class="nav-link" href="products.html">
-                                <i class="fas fa-shopping-cart"></i>
-                                Products
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a  class="nav-link"  href="Pack.html">
-                                <i class="fas fa-shopping-cart"></i>
-                                Pack
-                            </a>
-                        </li>
+          <li class="nav-item active">
+              <a class="nav-link" href="index1.php">
+                <i class="fas fa-tachometer-alt"></i> Dashboard
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle "
+                href="#"
+                id="navbarDropdown"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false">
+                <i class="fas fa-concierge-bell"></i>
+                <span>  <i class="fas fa-angle-down"></i> </span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="displayProduct.php">Products</a>
+                <a class="dropdown-item" href="displayRecipe.php">Recipes</a>
+                
+              </div>
+            </li>
+        
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle "
+                href="#"
+                id="navbarDropdown"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false">
+                <i class="fas fa-gift"></i>
+                <span>  <i class="fas fa-angle-down"></i> </span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="displayGift.php">Gifts</a>
+                <a class="dropdown-item" href="displaycarte.php">Coupons</a>
+                
+              </div>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle "
+                href="#"
+                id="navbarDropdown"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false">
+                <i class="fas fa-percentage"></i>
 
-                        <li class="nav-item">
-                            <a class="nav-link" href="accounts.html">
-                                <i class="far fa-user"></i>
-                                Accounts
-                            </a>
-                        </li>
-                        
-                        <li class="nav-item">
-                            <a class="nav-link" href="afficherreclamation.php">
-                                <i class="fas fa-shopping-cart"></i>
-                                Reclamation
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="../post.html">
-                                <i class="far fa-user"></i>
-                                Posts
-                            </a>
-                        </li>
-                    </ul>
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link d-block" href="login.html">
-                                Admin, <b>Logout</b>
-                            </a>
-                        </li>
-                    </ul>
+
+                <span>  <i class="fas fa-angle-down"></i> </span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="showpromo.php">Promotion</a>
+                <a class="dropdown-item" href="showOffre.php">Pack</a>
+                
+              </div>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle "
+                href="#"
+                id="navbarDropdown"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false">
+                <i class="fas fa-exclamation-circle"></i>
+                <span> <i class="fas fa-angle-down"></i> </span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="afficherpost.php">Post</a>
+                <a class="dropdown-item" href="afficherreclamation.php">Reclamation</a>
+                
+              </div>
+            </li>
+        
+              <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle "
+                href="#"
+                id="navbarDropdown"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false">
+                <i class="fas fa-cubes"></i>
+                <span>  <i class="fas fa-angle-down"></i> </span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="../admin/affectation.php">Delivery</a>
+                <a class="dropdown-item" href="../admin/provider.php">Provider</a>
+                <a class="dropdown-item" href="../admin/affectation.php">affectation</a>
+                
+              </div>
+            </li>
+    
+     
+          </ul>
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link d-block" href="login.php">
+                Admin, <b>Logout</b>
+              </a>
+            </li>
+          </ul>
                 </div>
             </div>
 

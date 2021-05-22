@@ -60,16 +60,16 @@ include_once("../config.php");
         </button>
         <div class="collapse navbar-collapse" id="navbars-rs-food">
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item active"><a class="nav-link" href="../index.php">Home</a></li>
+            <li class="nav-item "><a class="nav-link" href="../index.php">Home</a></li>
             <li class="nav-item"><a class="nav-link" href="menu.php">Menu</a></li>
             <li class="nav-item"><a class="nav-link" href="showpack2.php">Offre</a></li>
 
             
-            <li class="nav-item dropdown">
+            <li class="nav-item dropdown active">
               <a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Blog</a>
               <div class="dropdown-menu" aria-labelledby="dropdown-a">
                 <a class="dropdown-item" href="blog.php">blog</a>
-                <a class="dropdown-item" href="nouveauteblog.php">Nouveaute</a>
+                <a class="dropdown-item active" href="nouveauteblog.php">Nouveaute</a>
               </div>
             </li>
             <li class="nav-item"><a class="nav-link" href="affichercommande.php">Cart</a></li>
