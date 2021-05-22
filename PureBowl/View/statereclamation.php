@@ -1,53 +1,151 @@
- <?php  
- $connect = mysqli_connect("localhost", "root", "", "webprojet");  
- $query = "SELECT etat, count(*) as number FROM reclamation GROUP BY etat";  
- $result = mysqli_query($connect, $query);  
- ?>  
+ <?php
+  include_once "../Controller/reclamationC.php";
+
+
+  $reclamationC=new reclamationC();
+  $listeUsers1=$reclamationC->afficherreclamation();
+ 
+?>
  <!DOCTYPE html>  
- <html>  
-      <head>  
-        <link rel="stylesheet" href="../css/bootstrap.min.css">
+ <html>
+ <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Dashboard Admin Pure Bowls</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700">
+    <!-- https://fonts.google.com/specimen/Roboto -->
+    <link rel="stylesheet" href="../css/fontawesome.min.css">
+    <!-- https://fontawesome.com/ -->
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
     <!-- https://getbootstrap.com/ -->
     <link rel="stylesheet" href="../css/templatemo-style.css">
-           <title>Stats</title>  
-           <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>  
-           <script type="text/javascript">  
-           google.charts.load('current', {'packages':['corechart']});  
-           google.charts.setOnLoadCallback(drawChart);  
-           function drawChart()  
-           {  
-                var data = google.visualization.arrayToDataTable([  
-                          ['Etat', 'Number'],  
-                          <?php  
-                          while($row = mysqli_fetch_array($result))  
-                          {  
-                               echo "['".$row["etat"]."', ".$row["number"]."],";  
-                          }  
+    <!--
+    Product Admin CSS Template
+    https://templatemo.com/tm-524-product-admin
+    -->      <script src="../js/Chart.js"></script>
+    <script src="https://raw.githack.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
+    <script src="../js/sort.js"></script>
+<style>
+div.c {
+  position: center;
+  left: 860px;
+  width: 500px;
+  height: 700px;
+  border: 3px solid orange;
+} 
+#customers th.headerSortUp{
+   background-image:url("../images/up.png") ;
+   background-color: #3399FF;
+   background-repeat:no-repeat;
+   background-position: center right;
 
-                          ?> 
 
-                     ]);  
-                var options = {  
-                      title: 'Percentage of archived and unarchived claims (1=unarchived)(0=archived)',  
-                      //is3D:true,  
-                      pieHole: 0.4  
-                     };  
-                var chart = new google.visualization.PieChart(document.getElementById('piechart'));  
-                chart.draw(data, options);  
-           }  
-           </script>  
-      </head>  
+ }
+ #customers th.headerSortDown{
+   background-image:url("../images/down.png") ;
+   background-color: #3399FF;
+
+   background-repeat:no-repeat;
+   background-position: center right;
+
+
+ }
+</style>
+</head>
+
       <body>  
-           <br /><br />  
-           <div style="width:1500px;">  
-                <h1 align="center" style="color: white">These are the statistics of claims's states</h1> 
-                  <a href="afficherreclamation.php"><h3  align="center" style="color: orange;">Back</h3></a>
- 
-                <br />  
+            <div class ="container" align="center">
+                        <table align="center">
+                            <tr>
 
-                <div id="piechart" style="width: 1500px; height: 800px;">
-                  
-                </div>  
-           </div>  
+                                <td>
+                                 <canvas id="lineChart"></canvas> </div>
+                    <div class="charts">
+                    <div class="c">
+                        <div class="charts-grids widget"id="pdf">
+
+                            <h4 class="btn btn-xs btn-primary btn-block">Etat statistics (archived/unarchived)</h4>
+              <br>
+            
+              </br>
+              
+                            <canvas  id="pie" width="922" height="813" style="width: 738px; height: 651px;"> </canvas>
+                        </div>
+                    </div>
+
+                    <?php
+                    $pdo=config::getConnexion();
+                    $query= $pdo ->prepare("select count(etat)as nombre,etat from reclamation GROUP by etat");
+
+                    $query->execute();
+                     $stat = $query->fetchAll();
+
+                    ?>
+
+
+                    <script>
+
+                                var pieData = [
+                                    <?php
+
+                                    foreach($stat as $count) {
+
+
+                                        echo "{value:".$count['nombre'].",";
+                                        echo "color:'rgb(",rand (0,255 ),",",rand (0,255 ), ",",rand (0,255 ),")',";
+                                        echo "label: '",$count['etat'], "'},";
+
+
+
+                                    }
+                                            ?>
+
+
+
+                                    ];
+
+
+                            new Chart(document.getElementById("pie").getContext("2d")).Pie(pieData);
+
+                            </script>
+             
+               <script>
+
+$(document).ready(function() {
+  $('#customers').tablesorter();
+
+});  
+</script>
+</td>
+<script type="text/javascript">
+        Chart.defaults.global.defaultFontColor = 'white';
+        let ctxLine,
+            ctxBar,
+            ctxPie,
+            optionsLine,
+            optionsBar,
+            optionsPie,
+            configLine,
+            configBar,
+
+            configPie,
+            lineChart;
+        barChart, pieChart;
+        // DOM is ready
+        $(function () {
+            drawLineChart(); // Line Chart
+            drawBarChart(); // Bar Chart
+            drawPieChart(); // Pie Chart
+
+            $(window).resize(function () {
+                updateLineChart();
+                updateBarChart();                
+            });
+        })
+    </script>
+
+
+
       </body>  
  </html>  
