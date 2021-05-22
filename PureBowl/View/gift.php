@@ -1,8 +1,12 @@
-<?php
-session_start();
-include_once("../config.php");
+<?PHP
+	include "../Controller/GiftBC.php";
 
-// On teste si la variable de session existe et contient une valeur
+	$giftC =new giftC ();
+
+	
+  
+ $listeGifts=$giftC->displayGift();
+
 
 ?>
 <!DOCTYPE html>
@@ -24,7 +28,7 @@ include_once("../config.php");
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
 	-->
-	<link rel="gift" href="../css/animate2.css">
+	<link rel="gift" href="css/animate2.css">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="../css/bootstrap.min.css">  
 	<!-- Site CSS -->
@@ -48,60 +52,58 @@ include_once("../config.php");
 	<!-- Start header -->
 	
 	<header class="top-navbar">
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="container">
-        <a class="navbar-brand" href="../index.php">
-          <img src="../images/logo.png" alt="" />
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbars-rs-food" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbars-rs-food">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item "><a class="nav-link" href="../index.php">Home</a></li>
-            <li class="nav-item"><a class="nav-link" href="menu.php">Menu</a></li>
-            <li class="nav-item"><a class="nav-link" href="showpack2.php">Offre</a></li>
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<div class="container">
+				<a class="navbar-brand" href="index.html">
+					<img src="images/logo.png" alt="" />
+				</a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbars-rs-food" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
+				  <span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbars-rs-food">
+					<ul class="navbar-nav ml-auto">
+						
+					<li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+						<li class="nav-item "><a class="nav-link" href="menu.php">Menu</a></li>
+						<li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Pages</a>
+							<div class="dropdown-menu" aria-labelledby="dropdown-a">
+								<a class="dropdown-item" href="reservation.html">Reservation</a>
+								<a class="dropdown-item" href="stuff.html">Stuff</a>
+								<a class="dropdown-item" href="gallery.html">Gallery</a>
+							</div>
+						</li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Offres</a>
+							<div class="dropdown-menu" aria-labelledby="dropdown-a">
+								<a class="dropdown-item" href="offre.html">Offre</a>
+								<a class="dropdown-item" href="offre.html">Promotion</a>
+								</div>
+							</li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Blog</a>
+							<div class="dropdown-menu" aria-labelledby="dropdown-a">
+								<a class="dropdown-item" href="blog.html">blog</a>
+								<a class="dropdown-item" href="blog-details.html">blog Single</a>
+							</div>
+						</li>
+						<li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+						<li class="nav-item"><a class="nav-link" href="reclamation.html">Reclamation</a></li>
+						<li class="nav-item active "><a class="nav-link" href="gift.html">Gift</a></li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Sign in</a>
+							<div class="dropdown-menu" aria-labelledby="dropdown-a">
+								<a class="dropdown-item" href="login.html">As an administrator</a>
+								<a class="dropdown-item" href="blog-details.html">As a client</a>
 
-            
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Blog</a>
-              <div class="dropdown-menu" aria-labelledby="dropdown-a">
-                <a class="dropdown-item" href="blog.php">blog</a>
-                <a class="dropdown-item" href="nouveauteblog.php">Nouveaute</a>
-              </div>
-            </li>
-            <li class="nav-item"><a class="nav-link" href="affichercommande.php">Cart</a></li>
-            <li class="nav-item  "><a class="nav-link" href="comment.php">Comment</a></li>
-            <li class="nav-item active"><a class="nav-link" href="gift.php">Gift</a></li>
-            <li class="nav-item"><a class="nav-link" href="../about.php">About</a></li>
+							</div>
+						</li>
 
-            <?php
-// On teste si la variable de session existe et contient une valeur
-if(empty($_SESSION['e']))
-{
-    // Si inexistante ou nulle, on redirige vers le formulaire de login
-    echo '<li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Account</a>
-              <div class="dropdown-menu" aria-labelledby="dropdown-a">
-                <a class="dropdown-item" href="login.php">login</a>
-                <a class="dropdown-item" href="inscription.php">Register</a>
-              </div>
-            </li>';
-}
-else
-echo '<li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Account</a>
-              <div class="dropdown-menu" aria-labelledby="dropdown-a">
-                <a class="dropdown-item" href="logout.php">logout</a>
-                <a class="dropdown-item" href="inscription.php">Register</a>
-              </div>
-            </li>';
-?>
-            
-          </ul>
-        </div>
-      </div>
-    </nav>
+					</ul>
+				</div>
+			</div>
+		</nav>
 	</header>
 	<!-- End header -->
 	
@@ -120,7 +122,7 @@ echo '<li class="nav-item dropdown">
 	<!--video part-->
 	<div class="banner">
 	<video autoplay="" muted="" loop="">
-		<source src="../images/gift.mp4" type="video/mp4">
+		<source src="images/gift.mp4" type="video/mp4">
 	</video>	
 	<div id="ll"></div>
 	<script type="text/javascript">
@@ -157,80 +159,42 @@ echo '<li class="nav-item dropdown">
 			</div>
 				
 			<div class="row special-list">
-				<div class="col-lg-4 col-md-6 special-grid chocolate">
-					<div class="gallery-single fix">
-						<img src="../images/choco1.jpg" class="img-fluid" alt="Image">
-						<div class="why-text">
-							<h4>chocolate coockies</h4>
-							<p></p>
-							<h4>7 Dt</h4>
-							<h4> <a class="btn btn-lg btn-circle btn-outline-new-black" href="../giftLook.php">Get it</a>  </h4> 
-						</div>
+             	<?PHP
+				foreach($listeGifts as $gift){
+			?>
+			
+				<div class="col-lg-4 col-md-6 special-grid lunch">
+   <!--   <th scope="row"> <input type="checkbox" /></th> -->
+                  <div class="gallery-single fix" style="height: 400px ;
+                     ">
+                   <img src="../images/<?php echo $gift['imageG'];?>" class="img-fluid"  width="350px" height="400px">
+                      <div class="why-text">
+				<!--	<h5><?PHP echo $offer['id_offre']; ?> </h5>  -->
+				<h2>	<?PHP echo $gift['nom']; ?> </h2>
+			
+					<!-- <td><?PHP echo $offer['image_offre']; ?></td> --> 
+					<p><?PHP echo $gift['descr']; ?></p>
+					
+					<h4><?PHP echo $gift['price']; ?></h4>
+					 <h4> <a class="btn btn-lg btn-circle btn-outline-new-black" href="buyoffre.php?id_offre=<?PHP echo $gift['id']; ?>">Get it</a> 
+					 </h4> 
+					  <h4>   </h4>
 					</div>
+						 
+                  <!--    <a href="#" class="tm-product-delete-link">
+                        <i class="far fa-trash-alt tm-product-delete-icon"></i>
+                      </a> -->
+                    
+					</div>	
+						
+				
+				
 				</div>
-				
-				<div class="col-lg-4 col-md-6 special-grid chocolate">
-					<div class="gallery-single fix">
-						<img src="../images/choco2.png" class="img-fluid" alt="Image">
-						<div class="why-text">
-							<h4>Dark chocolate balls</h4>
-							<p></p>
-							<h4>18 Dt</h4>
-							 <h4> <a class="btn btn-lg btn-circle btn-outline-new-black" href="giftLook.html">Get it</a>  </h4> 
-						</div>
-					</div>
+			
+			<?PHP
+				}
+			?> 
 				</div>
-				
-				<div class="col-lg-4 col-md-6 special-grid break">
-					<div class="gallery-single fix">
-						<img src="../images/br1.png" class="img-fluid" alt="Image">
-						<div class="why-text">
-							<h4>sweet morning</h4>
-							<p></p>
-							<h5> 9 Dt</h5>
-							 <h4> <a class="btn btn-lg btn-circle btn-outline-new-black" href="giftLook.html">Get it</a>  </h4> 
-						</div>
-					</div>
-				</div>
-				
-				<div class="col-lg-4 col-md-6 special-grid chocolate">
-					<div class="gallery-single fix">
-						<img src="../images/choco3.jpg" class="img-fluid" alt="Image">
-						<div class="why-text">
-							<h4>chocolate dates</h4>
-							<p></p>
-							<h4> 10 Dt</h4>
-							<h4> <a class="btn btn-lg btn-circle btn-outline-new-black" href="giftLook.html">Get it</a>  </h4> 
-						</div>
-					</div>
-				</div>
-				
-				
-				
-				<div class="col-lg-4 col-md-6 special-grid break">
-					<div class="gallery-single fix">
-						<img src="../images/br2.png" class="img-fluid" alt="Image">
-						<div class="why-text">
-							<h4>special breakfest </h4>
-							<p></p>
-							<h4> 12 Dt</h4>
-							<h4> <a class="btn btn-lg btn-circle btn-outline-new-black" href="giftLook.html">Get it</a>  </h4> 
-						</div>
-					</div>
-				</div>
-				
-				<div class="col-lg-4 col-md-6 special-grid break">
-					<div class="gallery-single fix">
-						<img src="../images/br3.png" class="img-fluid" alt="Image">
-						<div class="why-text">
-							<h4>the big feast</h4>
-							<p></p>
-							<h5> 19 Dt</h5>
-							<h4> <a class="btn btn-lg btn-circle btn-outline-new-black" href="giftLook.html">Get it</a>  </h4> 
-						</div>
-					</div>
-				</div>
-				
 	
 			</div>
 		</div>
@@ -403,16 +367,16 @@ echo '<li class="nav-item dropdown">
 	<a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
 
 	<!-- ALL JS FILES -->
-	<script src="../js/jquery-3.2.1.min.js"></script>
-	<script src="../js/popper.min.js"></script>
-	<script src="../js/bootstrap.min.js"></script>
+	<script src="jquery-3.2.1.min.js"></script>
+	<script src="js/popper.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
     <!-- ALL PLUGINS -->
-	<script src="../js/jquery.superslides.min.js"></script>
-	<script src="../js/images-loded.min.js"></script>
-	<script src="../js/isotope.min.js"></script>
-	<script src="../js/baguetteBox.min.js"></script>
-	<script src="../js/form-validator.min.js"></script>
-    <script src="../js/contact-form-script.js"></script>
-    <script src="../js/custom.js"></script>
+	<script src="js/jquery.superslides.min.js"></script>
+	<script src="js/images-loded.min.js"></script>
+	<script src="js/isotope.min.js"></script>
+	<script src="js/baguetteBox.min.js"></script>
+	<script src="js/form-validator.min.js"></script>
+    <script src="js/contact-form-script.js"></script>
+    <script src="js/custom.js"></script>
 </body>
 </html>
