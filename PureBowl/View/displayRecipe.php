@@ -69,7 +69,7 @@
                 <span> <i class="fas fa-angle-down"></i> </span>
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item  " href="displayDishes.php">Dishes</a>
+                <a class="dropdown-item  " href="displayProduct.php">Dishes</a>
                 <a class="dropdown-item active" href="displayRecipe.php">Recipes</a>
                 
               </div>
