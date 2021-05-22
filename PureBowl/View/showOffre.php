@@ -59,76 +59,114 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mx-auto h-100">
             <li class="nav-item">
-              <a class="nav-link" href="index1.html">
+              <a class="nav-link" href="index1.php">
                 <i class="fas fa-tachometer-alt"></i> Dashboard
                 <span class="sr-only">(current)</span>
               </a>
             </li>
             <li class="nav-item dropdown">
               <a
-                class="nav-link dropdown-toggle"
+                class="nav-link dropdown-toggle "
                 href="#"
                 id="navbarDropdown"
                 role="button"
                 data-toggle="dropdown"
                 aria-haspopup="true"
                 aria-expanded="false">
-                <i class="far fa-file-alt"></i>
-                <span> Reports <i class="fas fa-angle-down"></i> </span>
+                <i class="fas fa-concierge-bell"></i>
+                <span>  <i class="fas fa-angle-down"></i> </span>
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">Daily Report</a>
-                <a class="dropdown-item" href="#">Weekly Report</a>
-                <a class="dropdown-item" href="#">Yearly Report</a>
+                <a class="dropdown-item" href="displayProduct.php">Products</a>
+                <a class="dropdown-item" href="displayRecipe.php">Recipes</a>
+                
               </div>
             </li>
-            <li class="nav-item">
-              <a class="nav-link " href="products.html">
-                <i class="fas fa-shopping-cart"></i> Products
+        
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle "
+                href="#"
+                id="navbarDropdown"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false">
+                <i class="fas fa-gift"></i>
+                <span>  <i class="fas fa-angle-down"></i> </span>
               </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="displayGift.php">Gifts</a>
+                <a class="dropdown-item" href="displaycarte.php">Coupons</a>
+                
+              </div>
             </li>
-            <li class="nav-item">
-                            <a class="nav-link active" href="Pack.html">
-                                <i class="fas fa-shopping-cart"></i>
-                                Pack
-                            </a>
-                        </li>
+            <li class="nav-item dropdown active">
+              <a
+                class="nav-link dropdown-toggle "
+                href="#"
+                id="navbarDropdown"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false">
+                <i class="fas fa-percentage"></i>
 
-            <li class="nav-item">
-              <a class="nav-link" href="accounts.html">
-                <i class="far fa-user"></i> Accounts
+
+                <span>  <i class="fas fa-angle-down"></i> </span>
               </a>
-            </li>
-             <li class="nav-item">
-              <a class="nav-link" href="showpromo.php">
-                <i class="far fa-user"></i> Promo
-              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="showpromo.php">Promotion</a>
+                <a class="dropdown-item" href="showOffre.php">Pack</a>
+                
+              </div>
             </li>
             <li class="nav-item dropdown">
               <a
-                class="nav-link dropdown-toggle"
+                class="nav-link dropdown-toggle "
                 href="#"
                 id="navbarDropdown"
                 role="button"
                 data-toggle="dropdown"
                 aria-haspopup="true"
                 aria-expanded="false">
-                <i class="fas fa-cog"></i>
-                <span> Settings <i class="fas fa-angle-down"></i> </span>
+                <i class="fas fa-exclamation-circle"></i>
+                <span> <i class="fas fa-angle-down"></i> </span>
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">Profile</a>
-                <a class="dropdown-item" href="#">Billing</a>
-                <a class="dropdown-item" href="#">Customize</a>
+                <a class="dropdown-item" href="afficherpost.php">Post</a>
+                <a class="dropdown-item" href="afficherreclamation.php">Reclamation</a>
+                
               </div>
             </li>
-          </ul>
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link d-block" href="login.html">
-                Admin, <b>Logout</b>
+        
+              <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle "
+                href="#"
+                id="navbarDropdown"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false">
+                <i class="fas fa-cubes"></i>
+                <span>  <i class="fas fa-angle-down"></i> </span>
               </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="affectation.php">Delivery</a>
+                <a class="dropdown-item" href="provider.php">Provider</a>
+                <a class="dropdown-item" href="affectation.php">affectation</a>
+                
+              </div>
             </li>
+             
+     
+     
+       
+     
+      
+    
+     
           </ul>
         </div>
       </div>
@@ -170,6 +208,7 @@
                     <th scope="col">Type</th>
                     <th scope="col">Prix</th>
                      <th scope="col">Etat</th>
+                     <th colspan="3"><p align="center">What to do ?</p></th>
                       
                     
                     <th scope="col"> </th>
@@ -200,14 +239,16 @@
                       </a> -->
                       
 						<form method="POST" action="deleteOffre.php">
-						<input type="submit" name="supprimer" value="supprimer" class="btn btn-primary btn-block text-uppercase" >
-						<input type="hidden" value=<?PHP echo $offer['id_offre']; ?> name="id_offre"  >
+						<button type="submit" name="supprimer"  class="tm-product-delete-link"onclick="return confirm('Are you sure you want to delete this item definitely?');" >
+						<input type="hidden" value=<?PHP echo $offer['id_offre']; ?> name="id_offre"  ><i class="far fa-trash-alt tm-product-delete-icon"></i>
+                   </button> Delete
 						</form> 					</td> 
 					<td>
-						<a href="modifyOffre.php?id_offre=<?PHP echo $offer['id_offre']; ?>"  class="btn btn-primary btn-block text-uppercase"> Modifier </a>
+            
+						<a href="modifyOffre.php?id_offre=<?PHP echo $offer['id_offre']; ?>"   class="tm-product-delete-link" onclick="return confirm('Are you sure you want to edit this item ?');" ><i class="far fa-edit tm-product-delete-icon" ></i></a><p align="center">Edit</p>
 					</td>
           <td> 
-            <a href="../fpdf8/att_scolarite.php?id_offre=<?PHP echo $offer['id_offre']; ?>"  class="btn btn-primary btn-block text-uppercase" > imprimer </a>
+            <a href="../fpdf8/att_scolarite.php?id_offre=<?PHP echo $offer['id_offre']; ?>"  class="tm-product-delete-link" onclick="return confirm('Are you sure you want to print this item ?');" ><i class="far fa-edit tm-product-delete-icon" ></i></a><p align="center">Print</p>
           </td> 
 
 				</tr>
@@ -347,9 +388,9 @@
       </div>
     </footer>
 
-    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="../js/jquery-3.3.1.min.js"></script>
     <!-- https://jquery.com/download/ -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
     <!-- https://getbootstrap.com/ -->
     <script>
       $(function() {
