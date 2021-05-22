@@ -15,7 +15,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Dashboard Admin - Dashboard HTML Template</title>
+    <title>Dashboard Admin Pure Bowls</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700">
     <!-- https://fonts.google.com/specimen/Roboto -->
     <link rel="stylesheet" href="../css/fontawesome.min.css">
@@ -26,7 +26,35 @@
     <!--
     Product Admin CSS Template
     https://templatemo.com/tm-524-product-admin
-    -->
+    -->      <script src="../js/Chart.js"></script>
+    <script src="https://raw.githack.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
+    <script src="../js/sort.js"></script>
+<style>
+div.c {
+  position: center;
+  left: 860px;
+  width: 500px;
+  height: 700px;
+  border: 3px solid orange;
+} 
+#customers th.headerSortUp{
+   background-image:url("../images/up.png") ;
+   background-color: #3399FF;
+   background-repeat:no-repeat;
+   background-position: center right;
+
+
+ }
+ #customers th.headerSortDown{
+   background-image:url("../images/down.png") ;
+   background-color: #3399FF;
+
+   background-repeat:no-repeat;
+   background-position: center right;
+
+
+ }
+</style>
 </head>
 
 <body id="reportsPage">
@@ -88,49 +116,97 @@
             </div>
 
         </nav>
-        <div class="container">
+        <div class="container" align="center">
             <div class="row">
                 <div class="col">
                     <p class="text-white mt-5 mb-5">Welcome back, <b>Admin</b></p>
                 </div>
             </div>
             <!-- row -->
-            <div class="row tm-content-row">
-                <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 tm-block-col">
-                    <div class="tm-bg-primary-dark tm-block">
-                        <table>
+            <div class ="container" align="center">
+                        <table align="center">
                             <tr>
+
                                 <td>
-                                <a href="statecommande.php" class="text-warning"  ><h4>See statistics of meat types of orders <i class="fas fa-chart-bar"></i></h4> </a>
-                            </td>
+                                 <canvas id="lineChart"></canvas> </div>
+                    <div class="charts">
+                    <div class="c">
+                        <div class="charts-grids widget"id="pdf">
+
+                            <h4 class="btn btn-xs btn-primary btn-block">Meat statistics</h4>
+              <br>
+            
+              </br>
+              
+                            <canvas  id="pie" width="922" height="813" style="width: 738px; height: 651px;"> </canvas>
+                        </div>
+                    </div>
+
+                    <?php
+                    $pdo=config::getConnexion();
+                    $query= $pdo ->prepare("select count(meat)as nombre,meat from commande GROUP by meat");
+
+                    $query->execute();
+                     $stat = $query->fetchAll();
+
+                    ?>
+
+
+                    <script>
+
+                                var pieData = [
+                                    <?php
+
+                                    foreach($stat as $count) {
+
+
+                                        echo "{value:".$count['nombre'].",";
+                                        echo "color:'rgb(",rand (0,255 ),",",rand (0,255 ), ",",rand (0,255 ),")',";
+                                        echo "label: '",$count['meat'], "'},";
+
+
+
+                                    }
+                                            ?>
+
+
+
+                                    ];
+
+
+                            new Chart(document.getElementById("pie").getContext("2d")).Pie(pieData);
+
+                            </script>
+             
+               <script>
+
+$(document).ready(function() {
+  $('#customers').tablesorter();
+
+});  
+</script>
+</td>
+
                             </tr>
                         </table>
-                        <canvas id="lineChart"></canvas>
-                    </div>
-                </div>
-                <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 tm-block-col">
-                    <div class="tm-bg-primary-dark tm-block">
-                        <h2 class="tm-block-title">Performance</h2>
-                        <canvas id="barChart"></canvas>
-                    </div>
-                </div>
+                       
                                 <div class="col-12 tm-block-col">
                     <div class="tm-bg-primary-dark tm-block tm-block-taller tm-block-scroll">
-                        <h2 class="tm-block-title">Clients info</h2>
+                        <h2  class="text-warning" >Clients info</h2>
                          <table class="table">
                             <thead>
                                 <tr>
                                     <tr colspan="8">
-        <th> Client id </th> 
-        <th> Name </th> 
-        <th> Last Name </th> 
-        <th> Email</th> 
-        <th> Number </th>  
-        <th> Login </th>                                   
-        <th> Password </th>                           
-                                  <th> Adress </th>   
-                                                                    <th> Edit </th>                           
-                                                                    <th> Delete </th>                           
+        <th class="text-warning"> Client id </th> 
+        <th class="text-warning"> Name </th> 
+        <th class="text-warning"> Last Name </th> 
+        <th class="text-warning"> Email</th> 
+        <th class="text-warning"> Number </th>  
+        <th class="text-warning"> Login </th>                                   
+        <th class="text-warning"> Password </th>                           
+                                  <th class="text-warning"> Adress </th>   
+                                                                    <th class="text-warning"> Edit </th>                           
+                                                                    <th class="text-warning"> Delete </th>                           
 
                         
                         
@@ -177,18 +253,18 @@
                 </div>
                 <div class="col-12 tm-block-col">
                     <div class="tm-bg-primary-dark tm-block tm-block-taller tm-block-scroll">
-                        <h2 class="tm-block-title">Orders List</h2>
+                        <h2 class="text-warning" >Orders List</h2>
                         <table class="table">
                             <thead>
                                 <tr>
                                     <tr colspan="8"> 
-        <th>Order </th> 
-        <th> Meat Type </th> 
-        <th> Option </th> 
-        <th> People </th> 
-        <th> Date</th> 
-        <th> Time </th>  
-        <th> Price </th>                           
+        <th class="text-warning">Order </th> 
+        <th class="text-warning"> Meat Type </th> 
+        <th class="text-warning"> Option </th> 
+        <th class="text-warning"> People </th> 
+        <th class="text-warning"> Date</th> 
+        <th class="text-warning"> Time </th>  
+        <th class="text-warning"> Price </th>                           
           
    </tr> 
     
@@ -205,9 +281,8 @@
     <td><?PHP echo $user['time']; ?></td> 
         <td> 15 dt</td> 
          <td style="width: 30px" >
-            <form method="POST" action="archivercommande.php">
-                            <button style="height: : 30px" type="submit" name="inarchiver "class="tm-product-delete-link" >
-                        <i class="fas fa-archive tm-product-delete-icon" ></i></button> 
+                           <form method="POST" action="supprimercommande1.php">
+                        <button type="submit" name="supprimer" class="btn-222" id="1" style="color:black" onClick="\return confirm('Are you sure you want to delete?')\"> Delete</button> 
                         
                         <input type="hidden" value=<?PHP echo $user['id']; ?> name="id">
                     </form>

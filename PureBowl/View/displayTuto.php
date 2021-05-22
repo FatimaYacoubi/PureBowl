@@ -152,8 +152,9 @@ $tuto=new tutoC();
   </div>
   </div>
   <div class="text-center">
-        <button onclick="window.print();" class="btn btn-lg btn-circle btn-outline-new-black" id="print-btn"> <i class="fa fa-file-pdf-o" aria-hidden="true"></i></button>
+       <!-- <button onclick="window.print();" class="btn btn-lg btn-circle btn-outline-new-black" id="print-btn"> <i class="fa fa-file-pdf-o" aria-hidden="true"></i></button> -->
          <!-- <a class="btn btn-lg btn-circle btn-outline-new-black" href="sendMail.php?dish=<?php echo $tuto['name'] ?>&duration=<?php echo $tuto['duration'] ?>&ingredients=<?php echo $tuto['ingredients'] ?>&steps=<?php echo $tuto['steps'] ?>"> <i class="fa fa-envelope-o" aria-hidden="true"></i></a> --> 
+		 <a class="btn btn-lg btn-circle btn-outline-new-black" href="../fpdf8/imprimerPdf.php?dish=<?php echo $tuto['name'] ?>&duration=<?php echo $tuto['duration'] ?>&ingredients=<?php echo $tuto['ingredients'] ?>&steps=<?php echo $tuto['steps'] ?>" > <i class="fa fa-file-pdf-o" aria-hidden="true"></i> </a>
 		 <a class="btn btn-lg btn-circle btn-outline-new-black" href="testMail.php?dish=<?php echo $tuto['name'] ?>&duration=<?php echo $tuto['duration'] ?>&ingredients=<?php echo $tuto['ingredients'] ?>&steps=<?php echo $tuto['steps'] ?>"> <i class="fa fa-envelope-o" aria-hidden="true"></i></a> 
     
 	
