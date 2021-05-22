@@ -55,7 +55,7 @@
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
 			<div class="container">
 				<a class="navbar-brand" href="index.html">
-					<img src="images/logo.png" alt="" />
+					<img src="../images/logo.png" alt="" />
 				</a>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbars-rs-food" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
 				  <span class="navbar-toggler-icon"></span>
@@ -121,7 +121,7 @@
 	<!--video part-->
 	<div class="banner">
 	<video autoplay="" muted="" loop="">
-		<source src="images/gift.mp4" type="video/mp4">
+		<source src="../images/gift.mp4" type="video/mp4">
 	</video>	
 	<div id="ll"></div>
 	<script type="text/javascript">
@@ -166,7 +166,7 @@
    <!--   <th scope="row"> <input type="checkbox" /></th> -->
                   <div class="gallery-single fix" style="height: 400px ;
                      ">
-                   <img src="../images/<?php echo $gift['imageG'];?>" class="img-fluid"  width="350px" height="400px">
+                   <img src="../images/<?PHP echo $gift['imageG']; ?>" class="img-fluid"  width="350px" height="400px">
                       <div class="why-text">
 				<!--	<h5><?PHP echo $offer['id_offre']; ?> </h5>  -->
 				<h2>	<?PHP echo $gift['nom']; ?> </h2>

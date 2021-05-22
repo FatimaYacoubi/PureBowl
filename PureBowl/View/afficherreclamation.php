@@ -32,6 +32,23 @@
 </style>
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Dashboard Admin - Dashboard HTML Template</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>  
+           <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />  
+           <script src="https://code.jquery.com/jquery-3.5.1.js"></script>  
+           <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>      
+           <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css" />
+           <script src="../js/jquery.superslides.min.js"></script>
+  <script src="../js/images-loded.min.js"></script>
+  <script src="../js/isotope.min.js"></script>
+  <script src="../js/baguetteBox.min.js"></script>
+  <script src="../js/picker.js"></script>
+  <script src="../js/picker.date.js"></script>
+  <script src="../js/picker.time.js"></script>
+  <script src="../js/legacy.js"></script>
+  <script src="../js/form-validator.min.js"></script>
+    <script src="../js/contact-form-script.js"></script>
+    <script src="../js/custom.js"></script>
+        <script src="../js/progressbar.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700">
     <!-- https://fonts.google.com/specimen/Roboto -->
     <link rel="stylesheet" href="../css/fontawesome.min.css">
@@ -60,14 +77,32 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mx-auto h-100">
-                        
-                        <li class="nav-item">
-                            <a class="nav-link" href="displayProduct.php">
-                                <i class="fas fa-shopping-cart"></i>
-                                Products
-                            </a>
-                        </li>
-                        <li class="nav-item dropdown">
+          <li class="nav-item">
+              <a class="nav-link" href="index1.php">
+                <i class="fas fa-tachometer-alt"></i> Dashboard
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle "
+                href="#"
+                id="navbarDropdown"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false">
+                <i class="fas fa-concierge-bell"></i>
+                <span>  <i class="fas fa-angle-down"></i> </span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="displayProduct.php">Products</a>
+                <a class="dropdown-item" href="displayRecipe.php">Recipes</a>
+                
+              </div>
+            </li>
+        
+            <li class="nav-item dropdown">
               <a
                 class="nav-link dropdown-toggle active"
                 href="#"
@@ -76,8 +111,8 @@
                 data-toggle="dropdown"
                 aria-haspopup="true"
                 aria-expanded="false">
-                <i class="far fa-file-alt"></i>
-                <span> Services <i class="fas fa-angle-down"></i> </span>
+                <i class="fas fa-gift"></i>
+                <span>  <i class="fas fa-angle-down"></i> </span>
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="displayGift.php">Gifts</a>
@@ -85,56 +120,74 @@
                 
               </div>
             </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="displayRecipe.php">
-                                <i class="fas fa-shopping-cart"></i>
-                                Recipes
-                            </a>
-                        </li>
-                        <li class="nav-item">
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle "
+                href="#"
+                id="navbarDropdown"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false">
+                <i class="fas fa-percentage"></i>
 
-                            <a class="nav-link  " href="../admin/delivery.php">
-                              <i class="fas fa-truck"></i> Delivery
-                            </a>
-                          </li>
-                          <li class="nav-item">
-                            <a class="nav-link " href="../admin/provider.php">
-                              <i class="fas fa-cubes"></i> provider
-                            </a>
-                          </li>
-                        <li class="nav-item">
-                            <a  class="nav-link"  href="../Pack.html">
-                                <i class="fas fa-shopping-cart"></i>
-                                Pack
-                            </a>
-                        </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link" href="../accounts.html">
-                                <i class="far fa-user"></i>
-                                Accounts
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="afficherreclamation.php">
-                                <i class="fas fa-comment"></i>
-                                Reclamation
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="../post.html">
-                                <i class="fa fa-file" ></i>
-                                Posts
-                            </a>
-                        </li>
-                    </ul>
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link d-block" href="../login.html">
-                                Admin, <b>Logout</b>
-                            </a>
-                        </li>
-                    </ul>
+                <span>  <i class="fas fa-angle-down"></i> </span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="showpromo.php">Promotion</a>
+                <a class="dropdown-item" href="showOffre.php">Pack</a>
+                
+              </div>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle "
+                href="#"
+                id="navbarDropdown"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false">
+                <i class="fas fa-exclamation-circle"></i>
+                <span> <i class="fas fa-angle-down"></i> </span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="afficherpost.php">Post</a>
+                <a class="dropdown-item" href="afficherreclamation.php">Reclamation</a>
+                
+              </div>
+            </li>
+        
+              <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle "
+                href="#"
+                id="navbarDropdown"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false">
+                <i class="fas fa-cubes"></i>
+                <span>  <i class="fas fa-angle-down"></i> </span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="affectation.php">Delivery</a>
+                <a class="dropdown-item" href="provider.php">Provider</a>
+                <a class="dropdown-item" href="affectation.php">affectation</a>
+                
+              </div>
+            </li>
+    
+     
+          </ul>
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link d-block" href="login.php">
+                Admin, <b>Logout</b>
+              </a>
+            </li>
+          </ul>
                 </div>
             </div>
 
@@ -152,7 +205,6 @@
                             <td>
                                  <a href="pdfreclamation.php" class="text-warning" ><h4>Download list of Claims as PDF <i class="fa fa-download" aria-hidden="true"></i></h4> </a>
                             </td>
-                            <td colspan="6" align="center"><a href="sortreclamation.php" class="text-warning" ><h4>Search and sort <i class="fas fa-search"></i></h4> </a> </td>
                         </tr>
                     </table>
                     <br>
@@ -162,23 +214,22 @@
 <br>
 <br>
 <br>
-            <table class="table table-hover tm-table-small tm-product-table">
-                
-                <thead>
-                  <tr>
+<table id="employee_data" class="table table-hover tm-table-small tm-product-table">  
+                          <thead>  
+                               <tr>  
+                                   <td style=" color: white; font-size: 20px;">ID</td>  
+                                    <td style=" color: white; font-size: 20px;">Description</td>  
+                                    <td style=" color: white; font-size: 20px;">Date</td>
+                                    <td style=" color: white; font-size: 20px;">NomCLient</td>
+                                    <td style=" color: white; font-size: 20px;">PhoneCLient</td>
+                                    <td style=" color: white; font-size: 20px;">EmailClient</td>  
+                                    <td style=" color: white; font-size: 20px;"><p align="center">What to do ?</p></td>
 
-                    <th scope="col">ID</th>
-                    <th scope="col">Description</th>
-                    <th scope="col">Date</th>
-                    <th scope="col">NomCLient</th>
-                    <th scope="col">PhoneCLient</th>
-                    <th scope="col">EmailCLient</th>
-                    <th scope="col" colspan="2"><p align="center">What to do ?</p></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <?PHP
+                               </tr> 
+
+                          </thead>  
+                         <tr>
+                           <?PHP
                 foreach($listeUsers as $user){
             ?>
                     <td><?PHP echo $user['id']; ?></td>
@@ -187,8 +238,9 @@
                     <td><?PHP echo $user['nomClient']; ?></td>
                     <td><?PHP echo $user['phoneClient']; ?></td>
                     <td><?PHP echo $user['emailClient']; ?></td>
-
-                    <td style="width: 30px">
+                    <td><table align="center">
+                      <tr>
+                        <td style="width: 30px">
                       
                         
                         <form method="POST" action="supprimerreclamation.php">
@@ -210,20 +262,21 @@
                     </form>
 
                 </td>
-                        
-                         
-                     
-</form> 
+                      </tr>
+                    </table></td>
                     
-                    
-                    
-                  </tr>
-                  
-                </tbody>
-                <?PHP
+                         </tr>
+                           <?PHP
                 }
             ?>
-              </table>
-        
-    </body>
+                     </table>
+    
+  </body>
 </html>
+<script>  
+ $(document).ready(function(){  
+      $('#employee_data').DataTable();  
+ });  
+ </script>  
+    <!-- ALL PLUGINS -->
+        <script src="../js/bootstrap.min.js"></script>
