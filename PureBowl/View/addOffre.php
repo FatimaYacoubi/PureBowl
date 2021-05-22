@@ -24,7 +24,7 @@
             !empty($_POST["type_offre"]) && 
             !empty($_POST["prix_offre"]) 
            // !empty($_POST["etat_offre"]) 
-        ) {if( preg_match ( " /^[a-zA-Z]{2,}$/ " , $_POST['nom_offre'] )==1 && preg_match (" /^[a-zA-Z]{2,}$/ ", $_POST['descrip_offre'] )==1  && preg_match ( ' #^[0-9]{3}+$# ', $_POST['prix_offre'])==1 ) {
+        ) {if( preg_match ( " /^[a-zA-Z]{2,}$/ " , $_POST['nom_offre'] )==1 /*&& preg_match (" /^[a-zA-Z]{2,}$/ ", $_POST['descrip_offre'] )==1*/  && preg_match ( ' #^[0-9]{3}+$# ', $_POST['prix_offre'])==1 ) {
             $offer = new offre(
                 $_POST['nom_offre'],
                 $_POST['image_offre'], 
@@ -38,10 +38,10 @@
         }
         else {
             echo "<br>";echo "<br>";
-            if(preg_match ( " /^[a-zA-Z]{2,}$/ " , $_POST['nom_offre'] )==0){  echo ' <script> alert ("Le nom doit contenir que des lettres") </script>'; }
-            if(preg_match ( " /^[a-zA-Z]{2,}$/ " , $_POST['descrip_offre'] )==0){echo '<script> alert ("La Description doit contenir que des lettres") </script> '; }
+            if(preg_match ( " /^[a-zA-Z ]{2,}$/ " , $_POST['nom_offre'] )==0){  echo ' <script> alert ("Le nom doit contenir que des lettres") </script>'; }
+           /* if(preg_match ( " /^[a-zA-Z]{2,}$/ " , $_POST['descrip_offre'] )==0){echo '<script> alert ("La Description doit contenir que des lettres") </script> '; } */
            
-            if(preg_match ( " /^[0-9]{}$/ " , $_POST['prix_offre'] )==0){echo  '<script> alert ("Le prix doit contenir 3  chiffres ") </script>'; }
+            if(preg_match ( " /^[0-9]{3}$/ " , $_POST['prix_offre'] )==0){echo  '<script> alert ("Le prix doit contenir 3  chiffres ") </script>'; }
             
           }
       }

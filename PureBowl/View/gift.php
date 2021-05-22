@@ -1,3 +1,4 @@
+
 <?PHP
 	include "../Controller/GiftBC.php";
 
@@ -8,6 +9,11 @@
  $listeGifts=$giftC->displayGift();
 
 
+
+session_start();
+include_once("../config.php");
+
+// On teste si la variable de session existe et contient une valeur
 ?>
 <!DOCTYPE html>
 <html lang="en"><!-- Basic -->
@@ -159,6 +165,8 @@
 			</div>
 				
 			<div class="row special-list">
+
+
              	<?PHP
 				foreach($listeGifts as $gift){
 			?>
@@ -194,6 +202,65 @@
 			<?PHP
 				}
 			?> 
+
+				<div class="col-lg-4 col-md-6 special-grid chocolate">
+					<div class="gallery-single fix">
+						<img src="../images/choco1.jpg" class="img-fluid" alt="Image">
+						<div class="why-text">
+							<h4>chocolate coockies</h4>
+							<p></p>
+							<h4>7 Dt</h4>
+							<h4> <a class="btn btn-lg btn-circle btn-outline-new-black" href="../giftLook.php">Get it</a>  </h4> 
+						</div>
+					</div>
+				</div>
+				
+				<div class="col-lg-4 col-md-6 special-grid chocolate">
+					<div class="gallery-single fix">
+						<img src="../images/choco2.png" class="img-fluid" alt="Image">
+						<div class="why-text">
+							<h4>Dark chocolate balls</h4>
+							<p></p>
+							<h4>18 Dt</h4>
+							 <h4> <a class="btn btn-lg btn-circle btn-outline-new-black" href="giftLook.html">Get it</a>  </h4> 
+						</div>
+					</div>
+						 
+                  <!--    <a href="#" class="tm-product-delete-link">
+                        <i class="far fa-trash-alt tm-product-delete-icon"></i>
+                      </a> -->
+                    
+					</div>	
+						
+				
+				
+				</div>
+				
+				
+				
+				<div class="col-lg-4 col-md-6 special-grid break">
+					<div class="gallery-single fix">
+						<img src="../images/br2.png" class="img-fluid" alt="Image">
+						<div class="why-text">
+							<h4>special breakfest </h4>
+							<p></p>
+							<h4> 12 Dt</h4>
+							<h4> <a class="btn btn-lg btn-circle btn-outline-new-black" href="giftLook.html">Get it</a>  </h4> 
+						</div>
+					</div>
+				</div>
+				
+				<div class="col-lg-4 col-md-6 special-grid break">
+					<div class="gallery-single fix">
+						<img src="../images/br3.png" class="img-fluid" alt="Image">
+						<div class="why-text">
+							<h4>the big feast</h4>
+							<p></p>
+							<h5> 19 Dt</h5>
+							<h4> <a class="btn btn-lg btn-circle btn-outline-new-black" href="giftLook.html">Get it</a>  </h4> 
+						</div>
+					</div>
+
 				</div>
 	
 			</div>
@@ -368,15 +435,15 @@
 
 	<!-- ALL JS FILES -->
 	<script src="jquery-3.2.1.min.js"></script>
-	<script src="js/popper.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
+	<script src="../js/popper.min.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
     <!-- ALL PLUGINS -->
-	<script src="js/jquery.superslides.min.js"></script>
-	<script src="js/images-loded.min.js"></script>
-	<script src="js/isotope.min.js"></script>
-	<script src="js/baguetteBox.min.js"></script>
-	<script src="js/form-validator.min.js"></script>
-    <script src="js/contact-form-script.js"></script>
-    <script src="js/custom.js"></script>
+	<script src="../js/jquery.superslides.min.js"></script>
+	<script src="../js/images-loded.min.js"></script>
+	<script src="../js/isotope.min.js"></script>
+	<script src="../js/baguetteBox.min.js"></script>
+	<script src="../js/form-validator.min.js"></script>
+    <script src="../js/contact-form-script.js"></script>
+    <script src="../js/custom.js"></script>
 </body>
 </html>
